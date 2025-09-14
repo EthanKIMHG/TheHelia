@@ -12,10 +12,8 @@ export default function Home () {
 					width={1280}
 					height={680}
 					alt="더헬리아 메인"
-          
           style={{
             borderRadius: '1%',
-            
           }}
            />
 			</main>
