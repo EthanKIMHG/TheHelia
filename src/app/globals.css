@@ -1,38 +1,100 @@
 @import "tailwindcss";
 
+@font-face {
+  font-family: "Source Serif Pro";
+  src: url("/font/source-serif-pro.regular.otf") format("opentype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Source Serif Pro";
+  src: url("/font/source-serif-pro.semibold.otf") format("opentype");
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "MaruBuri Regular";
+  src: url("/font/MaruBuri-Regular.otf") format("opentype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "MaruBuri SemiBold";
+  src: url("/font/MaruBuri-SemiBold.otf") format("opentype");
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
 :root {
   --background: #F8F6F5;
   --foreground: #e9e4df;
+  --primary: #C4A678;
+  --secondary: #4A4A4A;
+  --border: #DEDEDE;
+}
 
-  --primary: #cdb187;
-  --secondary: #787878
-  
-  
+:root[data-theme="dark"] {
+  --background: #100d0a;
+  --foreground: #f5eee7;
+  --primary: #d5b488;
+  --secondary: #a8a8a8;
+  --border: #DEDEDE;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --font-maru: "MaruBuri SemiBold", serif;
+  --font-maru-semi: "MaruBuri SemiBold", serif;
+  --font-serif: "Source Serif Pro", "Times New Roman", serif;
+  --font-source: "Source Serif Pro", "Times New Roman", serif;
+  --font-source-semi: "Source Serif Pro", "Times New Roman", serif;
   --color-primary: var(--primary);
   --color-secondary: var(--secondary);
-  
-  
+  --color-border: var(--border)
 }
 
 @media (prefers-color-scheme: dark) {
-  :root {
-    --background: #F8F6F5;
-    --foreground: #e9e4df;
-
-    --primary: #cdb187;
-    --secondary: #787878;
+  :root:not([data-theme="light"]) {
+    --background: #000000;
+    --foreground: #f5eee7;
+    --primary: #d5b488;
+    --secondary: white;
+    --color-border: var(--border)
   }
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: "Source Serif Pro", "Times New Roman", serif;
+  transition: background-color 240ms ease, color 240ms ease;
+}
+
+@layer utilities {
+  .font-source {
+    font-family: "Source Serif Pro", "Times New Roman", serif;
+    font-weight: 400;
+  }
+
+  .font-source-semi {
+    font-family: "Source Serif Pro", "Times New Roman", serif;
+    font-weight: 600;
+  }
+}
+
+
+@media (min-width: 1920px) {
+  .home-hero {
+    width: 100vw;
+    max-width: 100vw;
+    height: 100vh;
+    max-height: none;
+  }
 }
