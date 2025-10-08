@@ -88,7 +88,7 @@ const NAV_ITEMS: NavItemDefinition[] = [
           ko: "방문 전 가장 편안한 길 안내와 도착 팁을 확인하세요.",
         },
         previewImage: {
-          src: "/img/main/homepage_2.jpg",
+          src: "/img/headerpreview/location.png",
           alt: {
             en: "Map to The Helia",
             ko: "더헬리아 위치 안내 지도",
@@ -120,7 +120,7 @@ const NAV_ITEMS: NavItemDefinition[] = [
           ko: "프레스티지 스위트에서의 고요한 회복 여정을 만나보세요.",
         },
         previewImage: {
-          src: "/img/main/homepage_3.jpg",
+          src: "/img/headerpreview/prestige.jpg",
           alt: {
             en: "Prestige suite interior",
             ko: "프레스티지 스위트 인테리어",
@@ -139,7 +139,7 @@ const NAV_ITEMS: NavItemDefinition[] = [
           ko: "맞춤 케어가 담긴 VVIP 플로어를 경험해 보세요.",
         },
         previewImage: {
-          src: "/img/main/homepage_4.jpg",
+          src: "/img/headerpreview/vvip.jpg",
           alt: {
             en: "VVIP suite lounge",
             ko: "VVIP 스위트 라운지",
@@ -158,7 +158,7 @@ const NAV_ITEMS: NavItemDefinition[] = [
           ko: "아늑함을 더한 VIP 객실을 살펴보세요.",
         },
         previewImage: {
-          src: "/img/main/homepage_5.jpg",
+          src: "/img/headerpreview/vip.jpg",
           alt: {
             en: "VIP room details",
             ko: "VIP 객실 디테일",
@@ -190,7 +190,7 @@ const NAV_ITEMS: NavItemDefinition[] = [
           ko: "산모를 위한 시그니처 테라피로 몸과 마음을 쉬어가세요.",
         },
         previewImage: {
-          src: "/img/main/homepage_6.jpg",
+          src: "/img/headerpreview/spa.png",
           alt: {
             en: "Helia spa treatment",
             ko: "헬리아 스파 케어",
@@ -209,7 +209,7 @@ const NAV_ITEMS: NavItemDefinition[] = [
           ko: "신생아를 위한 섬세한 스파 케어를 만나보세요.",
         },
         previewImage: {
-          src: "/img/main/homepage_3.jpg",
+          src: "/img/headerpreview/babyspa.jpg",
           alt: {
             en: "Baby spa session",
             ko: "베이비 스파 세션",
@@ -228,7 +228,7 @@ const NAV_ITEMS: NavItemDefinition[] = [
           ko: "아기를 위한 안전하고 포근한 공간을 확인해 보세요.",
         },
         previewImage: {
-          src: "/img/main/homepage_4.jpg",
+          src: "/img/headerpreview/infantroom.png",
           alt: {
             en: "Infant room care",
             ko: "신생아실 케어",
@@ -279,7 +279,7 @@ const NAV_ITEMS: NavItemDefinition[] = [
           ko: "원하시는 기간을 확인하고 예약을 신청하세요.",
         },
         previewImage: {
-          src: "/img/main/homepage_1.jpg",
+          src: "/img/headerpreview/reservation.png",
           alt: {
             en: "Reservation concierge",
             ko: "예약 컨시어지",
@@ -288,7 +288,7 @@ const NAV_ITEMS: NavItemDefinition[] = [
       },
       {
         id: "price",
-        href: "/price",
+        href: "/reservation/price",
         label: {
           en: "Price",
           ko: "가격",
@@ -298,7 +298,7 @@ const NAV_ITEMS: NavItemDefinition[] = [
           ko: "가격 정보와 맞춤 패키지를 살펴보세요.",
         },
         previewImage: {
-          src: "/img/main/homepage_2.jpg",
+          src: "/img/headerpreview/reservation.png",
           alt: {
             en: "Price detail brochure",
             ko: "가격 안내 브로슈어",
@@ -738,7 +738,7 @@ export default function Header() {
               role="dialog"
               aria-labelledby="desktop-nav-heading"
               aria-modal="true"
-              className=" bg-background p-8 pb-9 rounded-b-2xl border-border border-[1px] flex gap-14 justify-center"
+              className=" bg-background p-8 pb-9 rounded-b-2xl border-border mt-[1px] border-t-0 border-[1px] flex gap-14 justify-center"
             >
               <div className="flex flex-col justify-between gap-6">
                   <h3 id="desktop-nav-heading" className="text-2xl text-secondary ">
