@@ -33,7 +33,7 @@ export default function HomeCarousel() {
     setIndex((prev) => (prev - 1 + images.length) % images.length);
 
   const handleDragEnd = (_: MouseEvent | TouchEvent | PointerEvent, info: PanInfo) => {
-    const threshold = 300;
+    const threshold = 150;
     if (info.offset.x < -threshold) {
       showNext();
     } else if (info.offset.x > threshold) {
@@ -71,7 +71,7 @@ export default function HomeCarousel() {
             fill
             priority={index === 0}
             sizes="100vw"
-            className="h-full w-full object-cover object-center"
+            className="h-full w-full "
           />
         </motion.div>
       </AnimatePresence>
