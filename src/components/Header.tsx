@@ -131,7 +131,7 @@ export default function Header() {
       className={clsx(
         "sticky top-0 z-50 w-full border-b border-border bg-background/90 text-lg backdrop-blur supports-[backdrop-filter]:bg-background/70",
         {
-          "font-maru": locale === "ko",
+          "font-maru-semi": locale === "ko",
           "font-source-semi": locale === "en",
         },
       )}

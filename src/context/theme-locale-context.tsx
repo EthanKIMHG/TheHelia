@@ -27,6 +27,7 @@ const ThemeLocaleContext = createContext<ThemeLocaleContextValue | undefined>(
 );
 
 const THEME_STORAGE_KEY = "theme";
+const THEME_COOKIE_KEY = "theme";
 const LOCALE_STORAGE_KEY = "locale";
 
 const resolveInitialTheme = (fallback: ThemeMode = "light"): ThemeMode => {
@@ -55,15 +56,15 @@ const resolveInitialLocale = (preferred: SupportedLocale): SupportedLocale => {
 type ThemeLocaleProviderProps = {
   children: ReactNode;
   initialLocale?: SupportedLocale;
+  initialTheme?: ThemeMode;
 };
 
 export function ThemeLocaleProvider({
   children,
   initialLocale = "ko",
+  initialTheme = "light",
 }: ThemeLocaleProviderProps) {
-  const [theme, setThemeState] = useState<ThemeMode>(() =>
-    resolveInitialTheme("light"),
-  );
+  const [theme, setThemeState] = useState<ThemeMode>(initialTheme);
   const [locale, setLocaleState] = useState<SupportedLocale>(() =>
     resolveInitialLocale(initialLocale),
   );
@@ -73,10 +74,19 @@ export function ThemeLocaleProvider({
   }, [initialLocale]);
 
   useEffect(() => {
+    if (typeof window === "undefined") return;
+    const stored = resolveInitialTheme(initialTheme);
+    if (stored !== theme) {
+      setThemeState(stored);
+    }
+  }, [initialTheme, theme]);
+
+  useEffect(() => {
     if (typeof document === "undefined") return;
     document.documentElement.setAttribute("data-theme", theme);
     if (typeof window !== "undefined") {
       window.localStorage.setItem(THEME_STORAGE_KEY, theme);
+      document.cookie = `${THEME_COOKIE_KEY}=${theme}; path=/; max-age=31536000`;
     }
   }, [theme]);
 
@@ -104,10 +114,21 @@ export function ThemeLocaleProvider({
 
   const setTheme = useCallback((value: ThemeMode) => {
     setThemeState(value);
+    if (typeof window !== "undefined") {
+      window.localStorage.setItem(THEME_STORAGE_KEY, value);
+      document.cookie = `${THEME_COOKIE_KEY}=${value}; path=/; max-age=31536000`;
+    }
   }, []);
 
   const toggleTheme = useCallback(() => {
-    setThemeState((current) => (current === "dark" ? "light" : "dark"));
+    setThemeState((current) => {
+      const next = current === "dark" ? "light" : "dark";
+      if (typeof window !== "undefined") {
+        window.localStorage.setItem(THEME_STORAGE_KEY, next);
+        document.cookie = `${THEME_COOKIE_KEY}=${next}; path=/; max-age=31536000`;
+      }
+      return next;
+    });
   }, []);
 
   const setLocale = useCallback((value: SupportedLocale) => {

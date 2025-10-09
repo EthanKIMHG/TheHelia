@@ -20,11 +20,11 @@ export function SubPageHero({ title, description, imageSrc, imageAlt }: SubPageH
           sizes="(min-width: 1024px) 100vw, 100vw"
           className=" object-fill"
         />
-        <div className="absolute inset-0 flex flex-col items-center justify-center gap-3 bg-black/40 px-6 text-center text-white">
-          <span className="text-lg tracking-wide md:text-6xl ">
+        <div className="absolute inset-0 flex flex-col items-center justify-center gap-3 bg-black/20 px-6 text-center text-foreground space-y-4">
+          <span className="text-2xl tracking-wider md:text-5xl">
             {title}
           </span>
-          <span className="text-sm md:text-xl">{description}</span>
+          <span className="text-lg md:text-xl">{description}</span>
         </div>
       </div>
     </section>

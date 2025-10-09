@@ -259,7 +259,7 @@ export const NAV_ITEMS: NavItemDefinition[] = [
         href: "/reservation",
         label: {
           en: "Reservation",
-          ko: "예약",
+          ko: "예약 하기",
         },
         description: {
           en: "Check availability and request your preferred stay.",
@@ -282,7 +282,7 @@ export const NAV_ITEMS: NavItemDefinition[] = [
         href: "/reservation/price",
         label: {
           en: "Price",
-          ko: "가격",
+          ko: "가격 보기",
         },
         description: {
           en: "Browse pricing and tailored package options.",
@@ -374,6 +374,31 @@ subPageList.forEach((sub) => {
   subPageMap.set(sub.href, sub);
 });
 
+const mainPathMap = new Map<string, NavItemDefinition>();
+
+const normalizePath = (value: string) => {
+  if (!value) return "/";
+  if (!value.startsWith("/")) {
+    return `/${value}`;
+  }
+  return value === "" ? "/" : value;
+};
+
+NAV_ITEMS.forEach((section) => {
+  if (section.href) {
+    mainPathMap.set(normalizePath(section.href), section);
+  }
+  section.sub?.forEach((sub) => {
+    const parentSegments = sub.href.split("/").filter(Boolean).slice(0, -1);
+    if (parentSegments.length) {
+      const parentPath = normalizePath(parentSegments.join("/"));
+      if (!mainPathMap.has(parentPath)) {
+        mainPathMap.set(parentPath, section);
+      }
+    }
+  });
+});
+
 export function getSubPageContent(path: string, locale: Locale = "ko") {
   const entry = subPageMap.get(path);
   if (!entry) return null;
@@ -431,4 +456,17 @@ export function getLocalizedNavItems(locale: Locale): NavItem[] {
       }),
     ),
   }));
+}
+
+export function getMainPageContent(path: string, locale: Locale = "ko") {
+  const normalized = normalizePath(path);
+  const entry = mainPathMap.get(normalized);
+  if (!entry) return null;
+  const fallbackPreview = entry.sub?.[2]?.previewImage;
+  return {
+    title: entry.label[locale],
+    description: entry.description?.[locale],
+    imageSrc: fallbackPreview?.src ?? "/img/main/homepage_2.jpg",
+    imageAlt: fallbackPreview?.alt[locale] ?? entry.label[locale],
+  };
 }
