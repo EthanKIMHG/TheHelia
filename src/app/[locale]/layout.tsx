@@ -1,5 +1,6 @@
 import { LocaleShell } from "@/components/LocaleShell";
 import type { Locale } from "@/components/header/types";
+import { cookies } from "next/headers";
 import { notFound } from "next/navigation";
 
 const SUPPORTED_LOCALES: Locale[] = ["ko", "en"];
@@ -19,6 +20,11 @@ export default async function LocaleLayout({
   }
 
   const locale = localeParam as Locale;
+  const themeCookie = cookies().get("theme");
+  const theme =
+    themeCookie && (themeCookie.value === "dark" || themeCookie.value === "light")
+      ? themeCookie.value
+      : "light";
 
-  return <LocaleShell locale={locale}>{children}</LocaleShell>;
+  return <LocaleShell locale={locale} theme={theme}>{children}</LocaleShell>;
 }

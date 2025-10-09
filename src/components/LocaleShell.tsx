@@ -1,27 +1,33 @@
 "use client";
 
+import clsx from "clsx";
 import Header from "@/components/Header";
 import PageTransition from "@/components/PageTransition";
+import { Footer } from "@/components/Footer";
 import { ThemeLocaleProvider } from "@/context/theme-locale-context";
 import type { Locale } from "./header/types";
 
 interface LocaleShellProps {
   locale: Locale;
+  theme: "light" | "dark";
   children: React.ReactNode;
 }
 
-export function LocaleShell({ locale, children }: LocaleShellProps) {
+export function LocaleShell({ locale, theme, children }: LocaleShellProps) {
+  const fontClass = locale === "ko" ? "font-maru-semi" : "font-source-semi";
+
   return (
-    <ThemeLocaleProvider initialLocale={locale}>
+    <ThemeLocaleProvider initialLocale={locale} initialTheme={theme}>
       <Header />
-      <main className="min-h-[calc(100dvh-4rem)] w-full">
+      <main
+        className={clsx(
+          "min-h-[calc(100dvh-4rem)] w-full transition-colors",
+          fontClass,
+        )}
+      >
         <PageTransition>{children}</PageTransition>
       </main>
-      <footer className="border-t border-[color:rgb(0,0,0,0.06)] py-8">
-        <div className="mx-auto max-w-6xl px-4 text-sm text-secondary">
-          © {new Date().getFullYear()} 더헬리아 산후조리원
-        </div>
-      </footer>
+      <Footer />
     </ThemeLocaleProvider>
   );
 }
