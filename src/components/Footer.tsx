@@ -154,7 +154,7 @@ export function Footer() {
         fontClass,
       )}
     >
-      <div className="mx-auto flex w-full max-w-6xl flex-col gap-12">
+      <div className="mx-auto flex w-full max-w-7xl flex-col gap-12">
         <div className="flex flex-col gap-6 md:flex-row md:items-start md:justify-between">
           <div className="max-w-xl space-y-4">
             <span className="inline-block py-2 text-base uppercase tracking-[0.18em] text-primary">
@@ -188,7 +188,7 @@ export function Footer() {
           </div>
         </div>
 
-        <div className="grid gap-4 md:grid-cols-2">
+        <div className="grid gap-18 md:grid-cols-2">
           <div className="rounded-3xl border border-white/12 bg-[#141414] p-6">
             <div className="flex items-center gap-3 text-white/80">
               <Calendar1Icon className="h-6 w-6 text-primary" />
@@ -226,10 +226,10 @@ export function Footer() {
         <div className="grid gap-8 border-t border-white/12 pt-8 md:grid-cols-3">
           {copy.sections.map((section) => (
             <div key={section.title} className="space-y-4">
-              <h4 className="text-[11px] font-semibold uppercase tracking-[0.2em] text-white/55">
+              <h4 className="text-sm font-semibold uppercase tracking-[0.2em] text-primary">
                 {section.title}
               </h4>
-              <div className="flex flex-col gap-3 text-sm text-white/82">
+              <div className="flex flex-col gap-3 text-base text-white/82">
                 {section.items.map((item) =>
                   item.href ? (
                     <Link
