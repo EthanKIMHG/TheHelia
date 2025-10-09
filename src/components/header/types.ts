@@ -1,6 +1,7 @@
 import type { Variants } from "framer-motion";
 
 export type Locale = "en" | "ko";
+export const LOCALES: Locale[] = ["ko", "en"];
 
 export type SubNavItemDefinition = {
   id: string;
@@ -27,6 +28,7 @@ export type NavItem = {
   id: string;
   label: string;
   href?: string;
+  baseHref?: string;
   description?: string;
   comingSoon?: boolean;
   sub?: NavSubItem[];
@@ -36,6 +38,7 @@ export type NavSubItem = {
   id: string;
   label: string;
   href: string;
+  baseHref: string;
   description: string;
   previewImage?: {
     src: string;

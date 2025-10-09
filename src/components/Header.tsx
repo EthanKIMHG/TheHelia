@@ -1,128 +1,69 @@
 "use client";
 
 import clsx from "clsx";
-import { useCallback, useEffect, useMemo, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { GlobeIcon, Languages, Menu, MoonIcon, SunIcon } from "lucide-react";
+import { useCallback, useEffect, useMemo, useState } from "react";
 
+import { useThemeLocale } from "@/context/theme-locale-context";
 import { DesktopPrimaryNav } from "./header/DesktopPrimaryNav";
 import { DesktopNavPanel } from "./header/DesktopNavPanel";
 import { MobileNavDrawer } from "./header/MobileNavDrawer";
-import { NAV_ITEMS } from "./header/nav-data";
-import type {
-  Locale,
-  NavItem,
-  NavSubItem,
-  PreviewData,
-} from "./header/types";
+import { getLocalizedNavItems } from "./header/nav-data";
+import type { Locale, NavItem, NavSubItem, PreviewData } from "./header/types";
+
+const SUPPORTED_LOCALES: Locale[] = ["ko", "en"];
+
+const stripLocaleFromPath = (path: string) => {
+  if (!path) return "/";
+  const segments = path.split("/").filter(Boolean);
+  if (segments.length && SUPPORTED_LOCALES.includes(segments[0] as Locale)) {
+    const rest = segments.slice(1).join("/");
+    return rest ? `/${rest}` : "/";
+  }
+  return path.startsWith("/") ? path : `/${path}`;
+};
 
 export default function Header() {
+  const router = useRouter();
   const pathname = usePathname();
+  const { theme, locale, setLocale, toggleTheme } = useThemeLocale();
+
   const [mobileOpen, setMobileOpen] = useState(false);
   const [activeNav, setActiveNav] = useState<NavItem | null>(null);
-  const [theme, setTheme] = useState<"light" | "dark">("light");
-  const [locale, setLocale] = useState<Locale>("ko");
   const [previewData, setPreviewData] = useState<PreviewData | null>(null);
   const [mobileSections, setMobileSections] = useState<Record<string, boolean>>({});
 
-  useEffect(() => {
-    if (typeof window === "undefined") return;
-    const storedTheme = window.localStorage.getItem("theme");
-    if (storedTheme === "light" || storedTheme === "dark") {
-      setTheme(storedTheme);
-    } else {
-      const media = window.matchMedia("(prefers-color-scheme: dark)");
-      setTheme(media.matches ? "dark" : "light");
-    }
+  const normalizedPath = useMemo(() => stripLocaleFromPath(pathname ?? "/"), [pathname]);
+
+  const navItems = useMemo(() => getLocalizedNavItems(locale), [locale]);
+
+  const buildPreviewData = useCallback((subItem?: NavSubItem | null): PreviewData | null => {
+    if (!subItem || !subItem.previewImage) return null;
+    return {
+      src: subItem.previewImage.src,
+      alt: subItem.previewImage.alt,
+      label: subItem.label,
+      copy: subItem.previewCopy,
+    };
   }, []);
-
-  useEffect(() => {
-    if (typeof window === "undefined") return;
-    const storedLocale = window.localStorage.getItem("locale");
-    if (storedLocale === "ko" || storedLocale === "en") {
-      setLocale(storedLocale);
-    }
-  }, []);
-
-  useEffect(() => {
-    if (typeof document === "undefined") return;
-    document.documentElement.setAttribute("data-theme", theme);
-    if (typeof window !== "undefined") {
-      window.localStorage.setItem("theme", theme);
-    }
-  }, [theme]);
-
-  useEffect(() => {
-    if (typeof document === "undefined") return;
-    document.documentElement.lang = locale;
-    if (typeof window !== "undefined") {
-      window.localStorage.setItem("locale", locale);
-    }
-  }, [locale]);
-
-  const buildPreviewData = useCallback(
-    (subItem?: NavSubItem | null): PreviewData | null => {
-      if (!subItem || !subItem.previewImage) return null;
-      return {
-        src: subItem.previewImage.src,
-        alt: subItem.previewImage.alt,
-        label: subItem.label,
-        copy: subItem.previewCopy,
-      };
-    },
-    [],
-  );
-
-  const toggleTheme = () =>
-    setTheme((current) => (current === "dark" ? "light" : "dark"));
-
-  const toggleLocale = () =>
-    setLocale((current) => (current === "ko" ? "en" : "ko"));
-
-  const toggleMobileSection = (id: string) => {
-    setMobileSections((current) => ({
-      ...current,
-      [id]: !current[id],
-    }));
-  };
-
-  const navItems = useMemo<NavItem[]>(
-    () =>
-      NAV_ITEMS.map(({ label, description, sub, ...rest }) => ({
-        ...rest,
-        label: label[locale],
-        description: description?.[locale],
-        sub: sub?.map(({ label: subLabel, description: subDescription, previewImage, previewCopy, ...subRest }) => ({
-          ...subRest,
-          label: subLabel[locale],
-          description: subDescription[locale],
-          previewImage: previewImage
-            ? {
-                src: previewImage.src,
-                alt: previewImage.alt[locale],
-              }
-            : undefined,
-          previewCopy: previewCopy ? previewCopy[locale] : undefined,
-        })),
-      })),
-    [locale],
-  );
 
   const handleNavClick = useCallback(
     (item: NavItem) => {
+      if (!item.sub?.length) {
+        setActiveNav(null);
+        setPreviewData(null);
+        return;
+      }
       setActiveNav((current) => {
         const isSame = current?.id === item.id;
         if (isSame) {
           setPreviewData(null);
           return null;
         }
-        if (item.sub?.length) {
-          setPreviewData(buildPreviewData(item.sub[0]));
-        } else {
-          setPreviewData(null);
-        }
+        setPreviewData(buildPreviewData(item?.sub[0]));
         return item;
       });
     },
@@ -136,41 +77,54 @@ export default function Header() {
     setMobileSections({});
   }, []);
 
-  useEffect(() => {
-    setActiveNav(null);
-    setMobileOpen(false);
-    setPreviewData(null);
-    setMobileSections({});
-  }, [pathname]);
-
-  useEffect(() => {
-    if (!activeNav) return;
-    const updated = navItems.find((item) => item.id === activeNav.id);
-    if (!updated || updated === activeNav) return;
-    setActiveNav(updated);
-    if (updated.sub?.length) {
-      setPreviewData(buildPreviewData(updated.sub[0]));
-    } else {
+  const changeLocale = useCallback(
+    (nextLocale: Locale) => {
+      if (nextLocale === locale) return;
+      setLocale(nextLocale);
+      const basePath = normalizedPath === "/" ? "" : normalizedPath;
+      const target = `/${nextLocale}${basePath}`.replace(/\/{2,}/g, "/");
+      setMobileOpen(false);
+      setMobileSections({});
+      setActiveNav(null);
       setPreviewData(null);
-    }
-  }, [navItems, activeNav, buildPreviewData]);
+      router.push(target);
+    },
+    [locale, normalizedPath, router, setLocale],
+  );
 
   const isActivePath = useCallback(
     (item: NavItem) => {
-      if (item.sub?.some((subItem) => pathname.startsWith(subItem.href))) {
+      if (item.sub?.some((subItem) => normalizedPath.startsWith(subItem.baseHref))) {
         return true;
       }
-      if (item.id === "the-helia" && pathname === "/") {
-        return true;
+      if (item.baseHref) {
+        if (item.baseHref === "/") {
+          return normalizedPath === "/";
+        }
+        return normalizedPath.startsWith(item.baseHref);
       }
-      if (!item.href) return false;
-      if (item.href === "/") {
-        return pathname === "/";
-      }
-      return pathname.startsWith(item.href);
+      return false;
     },
-    [pathname],
+    [normalizedPath],
   );
+
+  useEffect(() => {
+    setActiveNav(null);
+    setPreviewData(null);
+    setMobileOpen(false);
+  }, [normalizedPath]);
+
+  useEffect(() => {
+    setMobileSections((current) => {
+      const next = { ...current };
+      navItems.forEach((item) => {
+        if (item.sub?.some((sub) => normalizedPath.startsWith(sub.baseHref))) {
+          next[item.id] = true;
+        }
+      });
+      return next;
+    });
+  }, [navItems, normalizedPath]);
 
   return (
     <header
@@ -183,7 +137,7 @@ export default function Header() {
       )}
     >
       <div className="mx-auto flex h-16 max-w-7xl items-center px-4 md:grid md:grid-cols-[auto_1fr_auto] md:gap-10 md:px-6">
-        <Link href="/" className="flex items-center">
+        <Link href={`/${locale}`} className="flex items-center">
           {theme === "light" ? (
             <Image
               src="/img/logo/header_logo.png"
@@ -215,32 +169,24 @@ export default function Header() {
         <div className="ml-auto flex items-center gap-4 md:ml-0 md:gap-1">
           <button
             type="button"
-            onClick={toggleLocale}
-            className="hidden h-10 w-10 items-center justify-center text-secondary transition md:inline-flex"
+            onClick={() => changeLocale(locale === "ko" ? "en" : "ko")}
+            className="hidden h-10 w-10 items-center justify-center text-secondary transition md:inline-flex cursor-pointer"
             aria-label={locale === "ko" ? "Switch to English" : "한국어로 전환"}
           >
-            {locale === "ko" ? (
-              <Languages className="h-5 w-5" />
-            ) : (
-              <GlobeIcon className="h-5 w-5" />
-            )}
+            {locale === "ko" ? <GlobeIcon className="h-5 w-5" /> : <Languages className="h-5 w-5" />}
           </button>
 
           <button
             type="button"
             onClick={toggleTheme}
-            className="hidden h-10 w-10 items-center justify-center text-secondary transition md:inline-flex"
+            className="hidden h-10 w-10 items-center justify-center text-secondary transition md:inline-flex cursor-pointer"
             aria-label={theme === "dark" ? "라이트 모드로 전환" : "다크 모드로 전환"}
           >
-            {theme === "dark" ? (
-              <SunIcon className="h-5 w-5" />
-            ) : (
-              <MoonIcon className="h-5 w-5" />
-            )}
+            {theme === "dark" ? <SunIcon className="h-5 w-5" /> : <MoonIcon className="h-5 w-5" />}
           </button>
 
           <button
-            className="inline-flex h-10 w-10 items-center justify-center rounded-md text-secondary md:hidden"
+            className="inline-flex h-10 w-10 items-center justify-center rounded-md text-secondary md:hidden cursor-pointer"
             aria-label="메뉴 열기"
             onClick={() => setMobileOpen(true)}
           >
@@ -252,13 +198,15 @@ export default function Header() {
 
       <MobileNavDrawer
         open={mobileOpen}
-        theme={theme}
         locale={locale}
+        theme={theme}
         navItems={navItems}
-        pathname={pathname}
+        normalizedPath={normalizedPath}
         mobileSections={mobileSections}
-        onToggleSection={toggleMobileSection}
-        onToggleLocale={toggleLocale}
+        onToggleSection={(id) =>
+          setMobileSections((current) => ({ ...current, [id]: !current[id] }))
+        }
+        onLocaleChange={changeLocale}
         onToggleTheme={toggleTheme}
         onClose={closeOverlays}
       />
@@ -267,7 +215,7 @@ export default function Header() {
         activeNav={activeNav}
         previewData={previewData}
         locale={locale}
-        pathname={pathname}
+        normalizedPath={normalizedPath}
         onClose={closeOverlays}
         onPreviewChange={setPreviewData}
         buildPreviewData={buildPreviewData}

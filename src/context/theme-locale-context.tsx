@@ -29,8 +29,8 @@ const ThemeLocaleContext = createContext<ThemeLocaleContextValue | undefined>(
 const THEME_STORAGE_KEY = "theme";
 const LOCALE_STORAGE_KEY = "locale";
 
-const resolveInitialTheme = (): ThemeMode => {
-  if (typeof window === "undefined") return "light";
+const resolveInitialTheme = (fallback: ThemeMode = "light"): ThemeMode => {
+  if (typeof window === "undefined") return fallback;
 
   const stored = window.localStorage.getItem(THEME_STORAGE_KEY);
   if (stored === "light" || stored === "dark") {
@@ -42,18 +42,35 @@ const resolveInitialTheme = (): ThemeMode => {
     : "light";
 };
 
-const resolveInitialLocale = (): SupportedLocale => {
-  if (typeof window === "undefined") return "ko";
+const resolveInitialLocale = (preferred: SupportedLocale): SupportedLocale => {
+  if (typeof window === "undefined") return preferred;
 
   const stored = window.localStorage.getItem(LOCALE_STORAGE_KEY);
-  return stored === "en" ? "en" : "ko";
+  if (stored === "ko" || stored === "en") {
+    return stored;
+  }
+  return preferred;
 };
 
-export function ThemeLocaleProvider({ children }: { children: ReactNode }) {
-  const [theme, setThemeState] = useState<ThemeMode>(() => resolveInitialTheme());
-  const [locale, setLocaleState] = useState<SupportedLocale>(() =>
-    resolveInitialLocale(),
+type ThemeLocaleProviderProps = {
+  children: ReactNode;
+  initialLocale?: SupportedLocale;
+};
+
+export function ThemeLocaleProvider({
+  children,
+  initialLocale = "ko",
+}: ThemeLocaleProviderProps) {
+  const [theme, setThemeState] = useState<ThemeMode>(() =>
+    resolveInitialTheme("light"),
   );
+  const [locale, setLocaleState] = useState<SupportedLocale>(() =>
+    resolveInitialLocale(initialLocale),
+  );
+
+  useEffect(() => {
+    setLocaleState(resolveInitialLocale(initialLocale));
+  }, [initialLocale]);
 
   useEffect(() => {
     if (typeof document === "undefined") return;
@@ -80,11 +97,6 @@ export function ThemeLocaleProvider({ children }: { children: ReactNode }) {
           setThemeState(event.newValue);
         }
       }
-      if (event.key === LOCALE_STORAGE_KEY) {
-        if (event.newValue === "ko" || event.newValue === "en") {
-          setLocaleState(event.newValue);
-        }
-      }
     };
     window.addEventListener("storage", handleStorage);
     return () => window.removeEventListener("storage", handleStorage);
@@ -100,10 +112,19 @@ export function ThemeLocaleProvider({ children }: { children: ReactNode }) {
 
   const setLocale = useCallback((value: SupportedLocale) => {
     setLocaleState(value);
+    if (typeof window !== "undefined") {
+      window.localStorage.setItem(LOCALE_STORAGE_KEY, value);
+    }
   }, []);
 
   const toggleLocale = useCallback(() => {
-    setLocaleState((current) => (current === "ko" ? "en" : "ko"));
+    setLocaleState((current) => {
+      const next = current === "ko" ? "en" : "ko";
+      if (typeof window !== "undefined") {
+        window.localStorage.setItem(LOCALE_STORAGE_KEY, next);
+      }
+      return next;
+    });
   }, []);
 
   const value = useMemo<ThemeLocaleContextValue>(

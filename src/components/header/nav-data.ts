@@ -1,4 +1,4 @@
-import { NavItemDefinition } from "./types";
+import { Locale, NavItem, NavItemDefinition, SubNavItemDefinition } from "./types";
 
 export const NAV_ITEMS: NavItemDefinition[] = [
   {
@@ -362,3 +362,73 @@ export const NAV_ITEMS: NavItemDefinition[] = [
     ],
   },
 ];
+
+type SubPageDefinition = SubNavItemDefinition & { href: string };
+
+const subPageList: SubPageDefinition[] = NAV_ITEMS.flatMap((section) =>
+  (section.sub ?? []).map((sub) => ({ ...sub, href: sub.href })),
+);
+
+const subPageMap = new Map<string, SubPageDefinition>();
+subPageList.forEach((sub) => {
+  subPageMap.set(sub.href, sub);
+});
+
+export function getSubPageContent(path: string, locale: Locale = "ko") {
+  const entry = subPageMap.get(path);
+  if (!entry) return null;
+  return {
+    title: entry.label[locale],
+    description: entry.description[locale],
+    imageSrc: entry.previewImage?.src ?? "/img/main/homepage_1.jpg",
+    imageAlt: entry.previewImage?.alt[locale] ?? entry.label[locale],
+    copy: entry.previewCopy?.[locale],
+  };
+}
+
+export function getAvailableSubPages() {
+  return Array.from(subPageMap.keys());
+}
+
+const normalizeLocaleHref = (locale: Locale, href?: string) => {
+  if (!href) return undefined;
+  if (href === "/" || href === "") {
+    return `/${locale}`;
+  }
+  const combined = `/${locale}${href}`.replace(/\/{2,}/g, "/");
+  return combined.endsWith("/") && combined !== `/${locale}`
+    ? combined.slice(0, -1)
+    : combined;
+};
+
+export function getLocalizedNavItems(locale: Locale): NavItem[] {
+  return NAV_ITEMS.map(({ label, description, sub, href, ...rest }) => ({
+    ...rest,
+    label: label[locale],
+    description: description?.[locale],
+    href: normalizeLocaleHref(locale, href),
+    baseHref: href,
+    sub: sub?.map(
+      ({
+        label: subLabel,
+        description: subDescription,
+        previewImage,
+        previewCopy,
+        ...subRest
+      }) => ({
+        ...subRest,
+        label: subLabel[locale],
+        description: subDescription[locale],
+        href: normalizeLocaleHref(locale, subRest.href),
+        baseHref: subRest.href,
+        previewImage: previewImage
+          ? {
+              src: previewImage.src,
+              alt: previewImage.alt[locale],
+            }
+          : undefined,
+        previewCopy: previewCopy ? previewCopy[locale] : undefined,
+      }),
+    ),
+  }));
+}

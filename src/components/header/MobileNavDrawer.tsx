@@ -17,26 +17,31 @@ import { accordionVariants } from "./types";
 
 type MobileNavDrawerProps = {
   open: boolean;
-  theme: "light" | "dark";
   locale: Locale;
+  theme: "light" | "dark";
   navItems: NavItem[];
-  pathname: string;
+  normalizedPath: string;
   mobileSections: Record<string, boolean>;
   onToggleSection: (id: string) => void;
-  onToggleLocale: () => void;
+  onLocaleChange: (locale: Locale) => void;
   onToggleTheme: () => void;
   onClose: () => void;
 };
 
+const LOCALE_LABEL: Record<Locale, string> = {
+  ko: "한국어",
+  en: "English",
+};
+
 export function MobileNavDrawer({
   open,
-  theme,
   locale,
+  theme,
   navItems,
-  pathname,
+  normalizedPath,
   mobileSections,
   onToggleSection,
-  onToggleLocale,
+  onLocaleChange,
   onToggleTheme,
   onClose,
 }: MobileNavDrawerProps) {
@@ -76,7 +81,7 @@ export function MobileNavDrawer({
             <div className="flex items-center">
               <button
                 type="button"
-                onClick={onToggleLocale}
+                onClick={() => onLocaleChange(locale === "ko" ? "en" : "ko")}
                 className="flex-1 rounded-lg px-3 py-2 text-sm text-secondary cursor-pointer"
               >
                 {locale === "ko" ? (
@@ -115,7 +120,7 @@ export function MobileNavDrawer({
             </div>
           </div>
 
-          <nav className="flex flex-1 flex-col gap-2 overflow-y-auto pb-4">
+          <nav className="flex flex-col gap-2 overflow-y-auto pb-4">
             {navItems.map((item) => {
               const hasSub = item.sub && item.sub.length > 0;
               const sectionOpen = hasSub && !!mobileSections[item.id];
@@ -123,14 +128,14 @@ export function MobileNavDrawer({
               return (
                 <div
                   key={item.id}
-                  className="rounded-xl  p-2"
+                  className="rounded-xl p-2"
                 >
                   {hasSub ? (
                     <>
                       <button
                         type="button"
                         onClick={() => onToggleSection(item.id)}
-                        className="flex w-full items-center justify-between rounded-lg px-3 py-2 text-left text-secondary transition hover:bg-black/5"
+                        className="flex w-full items-center justify-between rounded-lg px-3 py-2 text-left text-secondary transition hover:bg-black/5 cursor-pointer"
                       >
                         <span className="text-base font-medium">{item.label}</span>
                         <ChevronDown
@@ -154,7 +159,7 @@ export function MobileNavDrawer({
                           >
                             <motion.ul layout className="flex flex-col gap-1">
                               {item.sub?.map((subItem) => {
-                                const active = pathname.startsWith(subItem.href);
+                                const active = normalizedPath.startsWith(subItem.baseHref);
                                 return (
                                   <li key={subItem.id}>
                                     <Link
@@ -183,7 +188,7 @@ export function MobileNavDrawer({
                       onClick={onClose}
                       className={clsx(
                         "flex items-center justify-between rounded-lg px-3 py-2 text-base transition",
-                        pathname.startsWith(item.href)
+                        normalizedPath.startsWith(item.baseHref ?? "")
                           ? "bg-black/5 text-secondary"
                           : "text-secondary/70 hover:bg-black/5 hover:text-secondary",
                       )}
