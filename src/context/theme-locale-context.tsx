@@ -48,8 +48,14 @@ const resolveInitialLocale = (preferred: SupportedLocale): SupportedLocale => {
 
   const stored = window.localStorage.getItem(LOCALE_STORAGE_KEY);
   if (stored === "ko" || stored === "en") {
-    return stored;
+    if (stored === preferred) {
+      return stored;
+    }
+    window.localStorage.setItem(LOCALE_STORAGE_KEY, preferred);
+    return preferred;
   }
+
+  window.localStorage.setItem(LOCALE_STORAGE_KEY, preferred);
   return preferred;
 };
 
@@ -70,7 +76,10 @@ export function ThemeLocaleProvider({
   );
 
   useEffect(() => {
-    setLocaleState(resolveInitialLocale(initialLocale));
+    setLocaleState(initialLocale);
+    if (typeof window !== "undefined") {
+      window.localStorage.setItem(LOCALE_STORAGE_KEY, initialLocale);
+    }
   }, [initialLocale]);
 
   useEffect(() => {

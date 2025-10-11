@@ -18,6 +18,10 @@ export type SubNavItemDefinition = {
 export type NavItemDefinition = {
   id: string;
   href?: string;
+  previewImage?: {
+    src: string;
+    alt: Record<Locale, string>;
+  };
   comingSoon?: boolean;
   label: Record<Locale, string>;
   description?: Record<Locale, string>;

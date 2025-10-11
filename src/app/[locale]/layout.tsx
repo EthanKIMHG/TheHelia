@@ -20,7 +20,7 @@ export default async function LocaleLayout({
   }
 
   const locale = localeParam as Locale;
-  const themeCookie = cookies().get("theme");
+  const themeCookie = (await cookies()).get("theme");
   const theme =
     themeCookie && (themeCookie.value === "dark" || themeCookie.value === "light")
       ? themeCookie.value

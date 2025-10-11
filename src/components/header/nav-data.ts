@@ -7,6 +7,13 @@ export const NAV_ITEMS: NavItemDefinition[] = [
       en: "The Helia",
       ko: "더 헬리아",
     },
+    previewImage: {
+      src: "/img/subhero/thehelia.jpg",
+      alt: {
+        en: "The Helia",
+        ko: "더 헬리아"
+      }
+    },
     sub: [
       {
         id: "about",
@@ -65,6 +72,13 @@ export const NAV_ITEMS: NavItemDefinition[] = [
     description: {
       en: "Explore private rooms curated for every stage of recovery.",
       ko: "회복 단계에 맞춘 프라이빗 객실을 만나보세요.",
+    },
+    previewImage: {
+      src: "/img/subhero/room&suite.jpg",
+      alt: {
+        en: "Room & Suites",
+        ko: "룸 & 스위트"
+      }
     },
     sub: [
       {
@@ -147,6 +161,13 @@ export const NAV_ITEMS: NavItemDefinition[] = [
     description: {
       en: "Premium care designed for both mother and baby.",
       ko: "산모와 아기를 위한 프리미엄 케어를 만나보세요.",
+    },
+    previewImage: {
+      src: "/img/subhero/service.jpg",
+      alt: {
+        en: "Service",
+        ko: "서비스"
+      }
     },
     sub: [
       {
@@ -253,6 +274,13 @@ export const NAV_ITEMS: NavItemDefinition[] = [
       en: "Plan your stay with tailored reservation support.",
       ko: "맞춤 예약 안내와 절차를 확인하세요.",
     },
+    previewImage: {
+      src: "/img/subhero/reservation.jpg",
+      alt: {
+        en: "Reservation",
+        ko: "예약"
+      }
+    },
     sub: [
       {
         id: "reservation-overview",
@@ -311,6 +339,13 @@ export const NAV_ITEMS: NavItemDefinition[] = [
     description: {
       en: "Warm stories and helpful tips from The Helia community.",
       ko: "더헬리아와 함께한 따뜻한 이야기와 유익한 정보를 전해드립니다.",
+    },
+    previewImage: {
+      src: "/img/subhero/stories.jpg",
+      alt: {
+        en: "Stories",
+        ko: "스토리"
+      }
     },
     sub: [
       {
@@ -462,7 +497,7 @@ export function getMainPageContent(path: string, locale: Locale = "ko") {
   const normalized = normalizePath(path);
   const entry = mainPathMap.get(normalized);
   if (!entry) return null;
-  const fallbackPreview = entry.sub?.[2]?.previewImage;
+  const fallbackPreview = entry.previewImage;
   return {
     title: entry.label[locale],
     description: entry.description?.[locale],
