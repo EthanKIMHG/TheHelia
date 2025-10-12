@@ -479,7 +479,7 @@ export function getLocalizedNavItems(locale: Locale): NavItem[] {
         ...subRest,
         label: subLabel[locale],
         description: subDescription[locale],
-        href: normalizeLocaleHref(locale, subRest.href),
+        href: normalizeLocaleHref(locale, subRest.href) ?? subRest.href,
         baseHref: subRest.href,
         previewImage: previewImage
           ? {

@@ -215,7 +215,7 @@ function getLocalizedCopy(locale: Locale) {
         iconSmall: <BusFrontIcon className="h-5 w-5 text-primary" />,
       },
       {
-        title: isKo ? "자가용" : "By Car",
+        title: isKo ? "자동차" : "By Car",
         description: isKo
           ? "MS메디컬스퀘어 지하주차장 이용 · 방문 고객 주차권 제공"
           : "Use the MS Medical Square underground parking · Parking validation provided",

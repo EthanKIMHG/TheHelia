@@ -183,3 +183,7 @@ export function useThemeLocale() {
   }
   return context;
 }
+
+export function useOptionalThemeLocale() {
+  return useContext(ThemeLocaleContext);
+}

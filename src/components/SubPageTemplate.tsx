@@ -1,17 +1,28 @@
 "use client";
 
-import { ReactNode } from "react";
-import { useThemeLocale } from "@/context/theme-locale-context";
+import { ReactNode, useMemo } from "react";
+import { useOptionalThemeLocale } from "@/context/theme-locale-context";
+import type { Locale } from "./header/types";
 import { SubPageHero } from "./SubPageHero";
 import { getMainPageContent, getSubPageContent } from "./header/nav-data";
 
 interface SubPageTemplateProps {
   path: string;
   children?: ReactNode;
+  localeOverride?: Locale;
 }
 
-export function SubPageTemplate({ path, children }: SubPageTemplateProps) {
-  const { locale } = useThemeLocale();
+export function SubPageTemplate({
+  path,
+  children,
+  localeOverride,
+}: SubPageTemplateProps) {
+  const themeLocale = useOptionalThemeLocale();
+  const contextLocale = themeLocale?.locale ?? "ko";
+  const locale = useMemo(
+    () => localeOverride ?? contextLocale,
+    [contextLocale, localeOverride],
+  );
 
   const primary = getSubPageContent(path, locale);
   if (!primary) {
@@ -38,7 +49,7 @@ export function SubPageTemplate({ path, children }: SubPageTemplateProps) {
         imageAlt={main?.imageAlt ?? primary.imageAlt}
       />
 
-      <section className="mx-auto flex w-full max-w-6xl flex-col items-center gap-8 px-4 pt-12 text-secondary ">
+      <section className="mx-auto flex w-full max-w-6xl flex-col items-center gap-8 px-4 pt-20 text-secondary">
         <div className="text-center">
           <h2 className="text-3xl font-semibold md:text-4xl">
             {primary.title}
@@ -50,7 +61,7 @@ export function SubPageTemplate({ path, children }: SubPageTemplateProps) {
         </div>
 
         {children ? (
-          <div className=" w-full max-w-5xl rounded-xl backdrop-blur ">
+          <div className=" w-full max-w-7xl rounded-xl backdrop-blur ">
             {children}
           </div>
         ) : null}

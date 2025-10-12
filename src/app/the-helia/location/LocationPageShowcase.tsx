@@ -10,7 +10,7 @@ import {
 } from "lucide-react";
 import type { Locale } from "@/components/header/types";
 import { LocationContent } from "./LocationContent";
-import { LocationDesignVariantClassic } from "./LocationDesignExamples";
+
 
 const BOOKING_URL =
   "https://booking.naver.com/booking/6/bizes/1021790";
@@ -57,7 +57,7 @@ function LocationHeroSection({ locale }: { locale: Locale }) {
   const content = getHeroContent(locale);
 
   return (
-    <section className="overflow-hidden rounded-3xl border border-border/30 bg-gradient-to-br from-background via-background/95 to-background shadow-lg">
+    <section className="overflow-hidden rounded-3xl border border-border/50 bg-gradient-to-br from-background via-background/95 to-background mt-12">
       <div className="grid gap-10 p-8 lg:grid-cols-[1.2fr_0.8fr] lg:p-12">
         <div className="flex flex-col gap-6 justify-center">
           <div className="space-y-3">
@@ -105,13 +105,24 @@ function LocationHeroSection({ locale }: { locale: Locale }) {
               </div>
             ))}
           </div>
+          <div className="overflow-hidden rounded-3xl border border-border/40">
+            <iframe
+              title="The Helia Location"
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3174.8384058135257!2d126.95109607716499!3d37.275258840774896!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x277bcbed795ddd7%3A0xad9cdb91d0fde45f!2z642U7Zes66as7JWEIOyCsO2bhOyhsOumrOybkA!5e0!3m2!1sko!2sus!4v1760246577990!5m2!1sko!2sus"
+              loading="lazy"
+              className="h-56 w-full md:h-56"
+              referrerPolicy="no-referrer-when-downgrade"
+              allowFullScreen
+            />
+            
+          </div>
         </div>
 
         <div className="grid gap-4">
           {content.cards.map((card) => (
             <article
               key={card.id}
-              className="flex flex-col gap-4 rounded-3xl border border-border/40 bg-background/90 p-4 shadow-sm"
+              className="flex flex-col gap-4 rounded-3xl border border-border/40 bg-background/90 p-4 shadow-sm h-fit"
             >
               <div className="flex items-center gap-3 text-secondary">
                 <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-primary/10">

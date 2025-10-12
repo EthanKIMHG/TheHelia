@@ -63,7 +63,7 @@ export default function Header() {
           setPreviewData(null);
           return null;
         }
-        setPreviewData(buildPreviewData(item?.sub[0]));
+        setPreviewData(buildPreviewData(item.sub?.[0] ?? null));
         return item;
       });
     },

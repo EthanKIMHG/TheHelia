@@ -5,6 +5,7 @@ import { getSubPageContent } from "@/components/header/nav-data";
 import type { Locale } from "@/components/header/types";
 import type { ComponentType } from "react";
 import { LocationPageShowcase } from "@/app/the-helia/location/LocationPageShowcase";
+import { AboutPageShowcase } from "@/app/the-helia/about/AboutPageShowcase";
 
 type LocaleSlugPageProps = {
   params: Promise<{
@@ -15,6 +16,7 @@ type LocaleSlugPageProps = {
 
 const CUSTOM_CONTENT: Record<string, ComponentType<{ locale: Locale }>> = {
   "/the-helia/location": LocationPageShowcase,
+  "/the-helia/about": AboutPageShowcase,
 };
 
 export default async function LocaleSlugPage({ params }: LocaleSlugPageProps) {
