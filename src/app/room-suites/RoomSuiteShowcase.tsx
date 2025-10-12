@@ -99,7 +99,7 @@ export function RoomSuiteShowcase({ suiteId, locale }: RoomSuiteShowcaseProps) {
               alt={currentImage.alt}
               fill
               sizes="(min-width: 768px) 70vw, 100vw"
-              className="object-cover"
+              className=""
               priority
             />
             <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent p-4 text-sm text-background/90">
@@ -180,43 +180,6 @@ export function RoomSuiteShowcase({ suiteId, locale }: RoomSuiteShowcaseProps) {
 
       <AmenitiesSection copy={copy.amenities} />
     </div>
-  );
-}
-
-function HeroSection({ copy }: { copy: SuiteCopy["hero"] }) {
-  const highlights = copy.highlights ?? [];
-  return (
-    <section className="overflow-hidden rounded-3xl border border-border/30 bg-gradient-to-br from-background via-background/85 to-background shadow-lg">
-      <div className="grid gap-8 p-8 md:grid-cols-[1.1fr_0.9fr] md:p-12">
-        <div className="space-y-5">
-          <p className="text-sm font-semibold uppercase tracking-[0.3em] text-primary">
-            {copy.badge}
-          </p>
-          <h1 className="text-3xl font-semibold text-foreground md:text-3xl">
-            {copy.title}
-          </h1>
-          <p className="text-base leading-relaxed text-foreground/70 md:text-lg">
-            {copy.subtitle}
-          </p>
-        </div>
-        <div className="grid gap-4 sm:grid-cols-3">
-          {highlights.map((highlight) => (
-            <div
-              key={highlight.title}
-              className="rounded-2xl border border-border/30 bg-background/95 p-5 shadow-sm"
-            >
-              <p className="text-xs font-semibold uppercase tracking-[0.2em] text-primary/80">
-                {highlight.title}
-              </p>
-              <p className="mt-2 text-lg font-semibold text-foreground">
-                {highlight.value}
-              </p>
-              <p className="mt-1 text-xs text-foreground/60">{highlight.note}</p>
-            </div>
-          ))}
-        </div>
-      </div>
-    </section>
   );
 }
 
@@ -362,17 +325,42 @@ const SUITE_CONTENT: Record<
       nextLabel: "다음 이미지",
       carousel: [
         {
-          src: "/img/headerpreview/prestige.jpg",
+          src: "/img/room/prestige.jpg",
           alt: "프레스티지 스위트 전경",
           caption: "투룸 구조로 구분된 라운지와 휴식 공간",
         },
         {
-          src: "/img/main/homepage_2.jpg",
+          src: "/img/room/prestige2.jpg",
           alt: "프레스티지 스위트 라운지",
           caption: "가족이 함께하는 라운지 존",
         },
         {
-          src: "/img/main/homepage_4.jpg",
+          src: "/img/room/prestige3.jpg",
+          alt: "프레스티지 스위트 침실",
+          caption: "모션 베드와 구스 침구로 완성한 심플한 휴식",
+        },
+        {
+          src: "/img/room/prestige4.jpg",
+          alt: "프레스티지 스위트 침실",
+          caption: "모션 베드와 구스 침구로 완성한 심플한 휴식",
+        },
+        {
+          src: "/img/room/prestige5.jpg",
+          alt: "프레스티지 스위트 침실",
+          caption: "모션 베드와 구스 침구로 완성한 심플한 휴식",
+        },
+        {
+          src: "/img/room/prestige6.jpg",
+          alt: "프레스티지 스위트 침실",
+          caption: "모션 베드와 구스 침구로 완성한 심플한 휴식",
+        },
+        {
+          src: "/img/room/prestige7.jpg",
+          alt: "프레스티지 스위트 침실",
+          caption: "모션 베드와 구스 침구로 완성한 심플한 휴식",
+        },
+        {
+          src: "/img/room/prestige8.jpg",
           alt: "프레스티지 스위트 침실",
           caption: "모션 베드와 구스 침구로 완성한 심플한 휴식",
         },
@@ -487,19 +475,44 @@ const SUITE_CONTENT: Record<
       nextLabel: "Next image",
       carousel: [
         {
-          src: "/img/headerpreview/prestige.jpg",
-          alt: "Prestige suite overview",
-          caption: "Separated lounge and sleeping zones for privacy",
+          src: "/img/room/prestige.jpg",
+          alt: "프레스티지 스위트 전경",
+          caption: "투룸 구조로 구분된 라운지와 휴식 공간",
         },
         {
-          src: "/img/main/homepage_2.jpg",
-          alt: "Prestige lounge area",
-          caption: "A lounge prepared for family conversations and rest",
+          src: "/img/room/prestige2.jpg",
+          alt: "프레스티지 스위트 라운지",
+          caption: "가족이 함께하는 라운지 존",
         },
         {
-          src: "/img/main/homepage_4.jpg",
-          alt: "Prestige bedroom",
-          caption: "Motion beds and down bedding for restorative sleep",
+          src: "/img/room/prestige3.jpg",
+          alt: "프레스티지 스위트 침실",
+          caption: "모션 베드와 구스 침구로 완성한 심플한 휴식",
+        },
+        {
+          src: "/img/room/prestige4.jpg",
+          alt: "프레스티지 스위트 침실",
+          caption: "모션 베드와 구스 침구로 완성한 심플한 휴식",
+        },
+        {
+          src: "/img/room/prestige5.jpg",
+          alt: "프레스티지 스위트 침실",
+          caption: "모션 베드와 구스 침구로 완성한 심플한 휴식",
+        },
+        {
+          src: "/img/room/prestige6.jpg",
+          alt: "프레스티지 스위트 침실",
+          caption: "모션 베드와 구스 침구로 완성한 심플한 휴식",
+        },
+        {
+          src: "/img/room/prestige7.jpg",
+          alt: "프레스티지 스위트 침실",
+          caption: "모션 베드와 구스 침구로 완성한 심플한 휴식",
+        },
+        {
+          src: "/img/room/prestige8.jpg",
+          alt: "프레스티지 스위트 침실",
+          caption: "모션 베드와 구스 침구로 완성한 심플한 휴식",
         },
       ],
       featureGroups: [
@@ -614,19 +627,29 @@ const SUITE_CONTENT: Record<
       nextLabel: "다음 이미지",
       carousel: [
         {
-          src: "/img/main/homepage_5.jpg",
+          src: "/img/room/vvip.jpg",
           alt: "VVIP 스위트 전경",
           caption: "프라이빗 라운지와 슬립 존이 자연스럽게 연결된 구조",
         },
         {
-          src: "/img/main/homepage_6.jpg",
-          alt: "VVIP 스위트 침실",
-          caption: "산모 휴식을 우선한 베드와 침구",
+          src: "/img/room/vvip2.jpg",
+          alt: "VVIP 스위트 전경",
+          caption: "프라이빗 라운지와 슬립 존이 자연스럽게 연결된 구조",
         },
         {
-          src: "/img/main/homepage_3.jpg",
-          alt: "VVIP 스위트 케어 존",
-          caption: "케어 설비가 가깝게 배치된 실내 구성",
+          src: "/img/room/vvip3.jpg",
+          alt: "VVIP 스위트 전경",
+          caption: "프라이빗 라운지와 슬립 존이 자연스럽게 연결된 구조",
+        },
+        {
+          src: "/img/room/vvip4.jpg",
+          alt: "VVIP 스위트 전경",
+          caption: "프라이빗 라운지와 슬립 존이 자연스럽게 연결된 구조",
+        },
+        {
+          src: "/img/room/vvip5.jpg",
+          alt: "VVIP 스위트 전경",
+          caption: "프라이빗 라운지와 슬립 존이 자연스럽게 연결된 구조",
         },
       ],
       featureGroups: [
@@ -734,19 +757,29 @@ const SUITE_CONTENT: Record<
       nextLabel: "Next image",
       carousel: [
         {
-          src: "/img/main/homepage_5.jpg",
-          alt: "VVIP suite overview",
-          caption: "A private layout with lounge and sleep zones flowing together",
+          src: "/img/room/vvip.jpg",
+          alt: "VVIP 스위트 전경",
+          caption: "프라이빗 라운지와 슬립 존이 자연스럽게 연결된 구조",
         },
         {
-          src: "/img/main/homepage_6.jpg",
-          alt: "VVIP bedroom",
-          caption: "Rest-focused bed and bedding arrangement",
+          src: "/img/room/vvip2.jpg",
+          alt: "VVIP 스위트 전경",
+          caption: "프라이빗 라운지와 슬립 존이 자연스럽게 연결된 구조",
         },
         {
-          src: "/img/main/homepage_3.jpg",
-          alt: "VVIP care zone",
-          caption: "Care facilities positioned within easy reach",
+          src: "/img/room/vvip3.jpg",
+          alt: "VVIP 스위트 전경",
+          caption: "프라이빗 라운지와 슬립 존이 자연스럽게 연결된 구조",
+        },
+        {
+          src: "/img/room/vvip4.jpg",
+          alt: "VVIP 스위트 전경",
+          caption: "프라이빗 라운지와 슬립 존이 자연스럽게 연결된 구조",
+        },
+        {
+          src: "/img/room/vvip5.jpg",
+          alt: "VVIP 스위트 전경",
+          caption: "프라이빗 라운지와 슬립 존이 자연스럽게 연결된 구조",
         },
       ],
       featureGroups: [
@@ -856,19 +889,29 @@ const SUITE_CONTENT: Record<
       nextLabel: "다음 이미지",
       carousel: [
         {
-          src: "/img/main/homepage_1.jpg",
-          alt: "VIP 스위트 전경",
-          caption: "컴팩트하면서도 밝은 휴식 공간",
+          src: "/img/room/vvip.jpg",
+          alt: "VVIP 스위트 전경",
+          caption: "프라이빗 라운지와 슬립 존이 자연스럽게 연결된 구조",
         },
         {
-          src: "/img/main/homepage_6.jpg",
-          alt: "VIP 스위트 침실",
-          caption: "모션 베드로 조절 가능한 수면 환경",
+          src: "/img/room/vvip2.jpg",
+          alt: "VVIP 스위트 전경",
+          caption: "프라이빗 라운지와 슬립 존이 자연스럽게 연결된 구조",
         },
         {
-          src: "/img/main/homepage_3.jpg",
-          alt: "VIP 스위트 케어 설비",
-          caption: "프리미엄 원목 아기 침대와 케어 기기가 한 공간에",
+          src: "/img/room/vvip3.jpg",
+          alt: "VVIP 스위트 전경",
+          caption: "프라이빗 라운지와 슬립 존이 자연스럽게 연결된 구조",
+        },
+        {
+          src: "/img/room/vvip4.jpg",
+          alt: "VVIP 스위트 전경",
+          caption: "프라이빗 라운지와 슬립 존이 자연스럽게 연결된 구조",
+        },
+        {
+          src: "/img/room/vvip5.jpg",
+          alt: "VVIP 스위트 전경",
+          caption: "프라이빗 라운지와 슬립 존이 자연스럽게 연결된 구조",
         },
       ],
       featureGroups: [
@@ -976,19 +1019,29 @@ const SUITE_CONTENT: Record<
       nextLabel: "Next image",
       carousel: [
         {
-          src: "/img/main/homepage_1.jpg",
-          alt: "VIP suite overview",
-          caption: "A bright, compact space for rest",
+          src: "/img/room/vvip.jpg",
+          alt: "VVIP 스위트 전경",
+          caption: "프라이빗 라운지와 슬립 존이 자연스럽게 연결된 구조",
         },
         {
-          src: "/img/main/homepage_6.jpg",
-          alt: "VIP bedroom",
-          caption: "Adjustable sleep environment with motion bed",
+          src: "/img/room/vvip2.jpg",
+          alt: "VVIP 스위트 전경",
+          caption: "프라이빗 라운지와 슬립 존이 자연스럽게 연결된 구조",
         },
         {
-          src: "/img/main/homepage_3.jpg",
-          alt: "VIP care equipment",
-          caption: "Premium wooden crib and care devices in one zone",
+          src: "/img/room/vvip3.jpg",
+          alt: "VVIP 스위트 전경",
+          caption: "프라이빗 라운지와 슬립 존이 자연스럽게 연결된 구조",
+        },
+        {
+          src: "/img/room/vvip4.jpg",
+          alt: "VVIP 스위트 전경",
+          caption: "프라이빗 라운지와 슬립 존이 자연스럽게 연결된 구조",
+        },
+        {
+          src: "/img/room/vvip5.jpg",
+          alt: "VVIP 스위트 전경",
+          caption: "프라이빗 라운지와 슬립 존이 자연스럽게 연결된 구조",
         },
       ],
       featureGroups: [

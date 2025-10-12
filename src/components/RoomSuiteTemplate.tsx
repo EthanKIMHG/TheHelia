@@ -67,7 +67,7 @@ export function RoomSuiteTemplate({
     const labels = SUITE_LABELS[slug as keyof typeof SUITE_LABELS];
     const label = labels?.[locale] ?? slug.toUpperCase();
     const baseClasses =
-      "inline-flex items-center gap-2 rounded-full border border-primary/30 px-5 py-3 text-base font-semibold transition";
+      "inline-flex items-center gap-2 rounded-2xl border border-primary/30 px-5 py-3 text-base font-semibold transition";
     const desktopClasses =
       variant === "mobile"
         ? "bg-primary/10 text-primary hover:bg-primary hover:text-background"
