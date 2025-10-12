@@ -37,10 +37,10 @@ export function Footer() {
               {copy.description}
             </p>
             <div className="flex gap-4 mt-3">
-              <Link href={`/${locale}/reservation`} className=" cursor-pointer hover:underline underline-offset-4 rounded-xl p-2 border-border/20 border-[1px] ">
+              <Link href={`/${locale}/reservation`} className=" cursor-pointer hover:underline underline-offset-4 rounded-xl p-2 px-4 border-border/30 border-[1px] ">
                 <span className="text-base">{copy.linkLabel.reservation}</span>
               </Link>
-              <Link href={`/${locale}/the-helia/location`} className=" cursor-pointer underline-offset-4  hover:underline rounded-xl p-2 border-border/20 border-[1px]">
+              <Link href={`/${locale}/the-helia/location`} className=" cursor-pointer underline-offset-4  hover:underline rounded-xl p-2 px-4 border-border/30 border-[1px]">
                 <span className="text-base">{copy.linkLabel.location}</span>
               </Link>
             </div>
@@ -66,6 +66,7 @@ export function Footer() {
               <Instagram className="h-4 w-4 " />
               <span className="text-sm md:text-base">{copy.contact.instagram}</span>
             </div>
+            
           </div>
         </div>
 
@@ -91,7 +92,7 @@ export function Footer() {
                 {block.hours}
               </div>
               {block.note && (
-                <p className="mt-2 text-xs text-foreground">{block.note}</p>
+                <p className="mt-2 text-xs text-white/80">{block.note}</p>
               )}
             </div>
           ))}

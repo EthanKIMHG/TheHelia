@@ -36,13 +36,13 @@ type PhilosophyCopy = ReturnType<typeof getAboutCopy>["philosophy"];
 
 function PhilosophySection({ copy }: { copy: PhilosophyCopy }) {
   return (
-    <section className="overflow-hidden rounded-3xl border border-border/30 bg-gradient-to-br from-background via-background/85 to-background shadow">
+    <section className="overflow-hidden rounded-3xl border border-border/50 bg-gradient-to-br from-primary/10 via-background/85 to-background">
       <div className="space-y-8 p-8 md:p-12">
         <header className="space-y-3">
           <p className="text-sm font-semibold uppercase tracking-[0.3em] text-primary">
             {copy.badge}
           </p>
-          <h2 className="text-3xl font-semibold text-foreground md:text-4xl">
+          <h2 className="text-2xl font-semibold text-foreground md:text-3xl">
             {copy.title}
           </h2>
           <p className="text-base leading-relaxed text-foreground/70 md:text-lg">
@@ -80,7 +80,7 @@ function SpacesSection({ copy }: { copy: SpacesCopy }) {
           <p className="text-sm font-semibold uppercase tracking-[0.25em] text-primary">
             {copy.badge}
           </p>
-          <h2 className="text-3xl font-semibold text-foreground md:text-4xl">
+          <h2 className="text-2xl font-semibold text-foreground md:text-3xl">
             {copy.title}
           </h2>
           <p className="text-base leading-relaxed text-foreground/70 md:text-lg">
@@ -144,7 +144,7 @@ function CareSection({ copy }: { copy: CareCopy }) {
           <p className="text-sm font-semibold uppercase tracking-[0.3em] text-primary">
             {copy.badge}
           </p>
-          <h2 className="text-3xl font-semibold text-foreground md:text-4xl">
+          <h2 className="text-2xl font-semibold text-foreground md:text-3xl">
             {copy.title}
           </h2>
           <p className="text-base leading-relaxed text-foreground/70 md:text-lg">

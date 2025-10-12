@@ -27,7 +27,7 @@ export function SubPageHero({ title, imageSrc, imageAlt }: SubPageHeroProps) {
           className=" object-cover"
           
         />
-        <div className={clsx("absolute inset-0 flex flex-col items-center justify-center gap-3 px-6 text-center bg-black/20 text-foreground ", {
+        <div className={clsx("absolute inset-0 flex flex-col items-center justify-center gap-3 px-6 text-center bg-black/20 text-white ", {
           "hidden": secondPath === "the-helia"
         })}>
           <span className={"text-2xl tracking-wider md:text-5xl "}>

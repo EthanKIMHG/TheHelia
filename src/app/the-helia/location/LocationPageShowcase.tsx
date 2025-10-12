@@ -58,7 +58,7 @@ function LocationHeroSection({ locale }: { locale: Locale }) {
 
   return (
     <section className="overflow-hidden rounded-3xl border border-border/50 bg-gradient-to-br from-background via-background/95 to-background mt-12">
-      <div className="grid gap-10 p-8 lg:grid-cols-[1.2fr_0.8fr] lg:p-12">
+      <div className="grid gap-10 p-8 lg:grid-cols-[1.3fr_0.7fr] lg:p-12">
         <div className="flex flex-col gap-6 justify-center">
           <div className="space-y-3">
             <p className="text-sm font-semibold uppercase tracking-[0.3em] text-primary">
@@ -86,19 +86,19 @@ function LocationHeroSection({ locale }: { locale: Locale }) {
             {content.highlights.map((item) => (
               <div
                 key={item.id}
-                className="flex items-start gap-4 rounded-2xl border border-border/40 bg-background/95 p-4 shadow-sm"
+                className="flex items-center gap-4 rounded-2xl border border-border/40 bg-background/95 p-3 shadow-sm"
               >
-                <div className="flex h-11 w-11 flex-shrink-0 items-center justify-center rounded-xl bg-primary/10">
-                  <item.Icon className="h-6 w-6 text-primary" />
+                <div className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-xl bg-primary/10">
+                  <item.Icon className="h-5 w-5 text-primary" />
                 </div>
                 <div className="space-y-1">
                   <p className="text-sm font-semibold text-primary/80">
                     {item.label}
                   </p>
-                  <p className="text-xl font-semibold text-secondary">
+                  <p className="text-lg font-semibold text-secondary">
                     {item.value}
                   </p>
-                  <p className="text-sm text-secondary/65">
+                  <p className="text-xs text-secondary/65">
                     {item.description}
                   </p>
                 </div>
@@ -122,7 +122,7 @@ function LocationHeroSection({ locale }: { locale: Locale }) {
           {content.cards.map((card) => (
             <article
               key={card.id}
-              className="flex flex-col gap-4 rounded-3xl border border-border/40 bg-background/90 p-4 shadow-sm h-fit"
+              className="flex flex-col gap-2 rounded-3xl border border-border/40 bg-background/90 p-4 shadow-sm h-fit"
             >
               <div className="flex items-center gap-3 text-secondary">
                 <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-primary/10">
@@ -132,7 +132,7 @@ function LocationHeroSection({ locale }: { locale: Locale }) {
                   {card.title}
                 </p>
               </div>
-              <div className="space-y-1 text-lg font-semibold leading-relaxed text-secondary">
+              <div className="text-lg font-semibold leading-relaxed text-secondary">
                 {renderMultiline(card.value)}
               </div>
               <p className="text-sm leading-relaxed text-secondary/65">
@@ -164,8 +164,8 @@ function getHeroContent(locale: Locale): LocationHeroContent {
       label: isKo ? "예약 문의" : "Reservation",
       value: "010-5077-3962",
       description: isKo
-        ? "카카오톡 @thehelia로도 상담 가능합니다."
-        : "Also available via KakaoTalk @thehelia.",
+        ? "카카오톡 THEHELIA 로도 상담 가능합니다."
+        : "Also available via KakaoTalk THEHELIA.",
     },
     {
       id: "hours",
@@ -184,8 +184,8 @@ function getHeroContent(locale: Locale): LocationHeroContent {
       Icon: MapPinIcon,
       title: isKo ? "주소" : "Address",
       value: isKo
-        ? "경기도 수원시 권선구\n금곡로 197번길 18-39"
-        : "18-39 Geumgok-ro 197beon-gil,\nGwonseon-gu, Suwon",
+        ? "경기도 수원시 권선구 금곡로 197번길 18-39"
+        : "18-39 Geumgok-ro 197beon-gil, Gwonseon-gu, Suwon",
       description: isKo
         ? "MS메디컬스퀘어 5·6층 · 5층 안내 데스크에서 등록 후 이동해 주세요."
         : "MS Medical Square 5F-6F · Register at the 5F ground desk before heading up.",

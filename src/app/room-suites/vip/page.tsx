@@ -1,5 +1,10 @@
-import { SubPageTemplate } from "@/components/SubPageTemplate";
+import { RoomSuiteTemplate } from "@/components/RoomSuiteTemplate";
+import { RoomSuiteShowcase } from "../RoomSuiteShowcase";
 
 export default function VipSuitePage() {
-  return <SubPageTemplate path="/room-suites/vip" />;
+  return (
+    <RoomSuiteTemplate path="/room-suites/vip">
+      <RoomSuiteShowcase suiteId="vip" />
+    </RoomSuiteTemplate>
+  );
 }
