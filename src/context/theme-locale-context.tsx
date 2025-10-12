@@ -5,6 +5,7 @@ import {
   useCallback,
   useContext,
   useEffect,
+  useLayoutEffect,
   useMemo,
   useState,
   type ReactNode,
@@ -70,7 +71,11 @@ export function ThemeLocaleProvider({
   initialLocale = "ko",
   initialTheme = "light",
 }: ThemeLocaleProviderProps) {
-  const [theme, setThemeState] = useState<ThemeMode>(initialTheme);
+  const [theme, setThemeState] = useState<ThemeMode>(() =>
+    typeof window === "undefined"
+      ? initialTheme
+      : resolveInitialTheme(initialTheme),
+  );
   const [locale, setLocaleState] = useState<SupportedLocale>(() =>
     resolveInitialLocale(initialLocale),
   );
@@ -82,15 +87,10 @@ export function ThemeLocaleProvider({
     }
   }, [initialLocale]);
 
-  useEffect(() => {
-    if (typeof window === "undefined") return;
-    const stored = resolveInitialTheme(initialTheme);
-    if (stored !== theme) {
-      setThemeState(stored);
-    }
-  }, [initialTheme, theme]);
+  const useIsomorphicLayoutEffect =
+    typeof window !== "undefined" ? useLayoutEffect : useEffect;
 
-  useEffect(() => {
+  useIsomorphicLayoutEffect(() => {
     if (typeof document === "undefined") return;
     document.documentElement.setAttribute("data-theme", theme);
     if (typeof window !== "undefined") {
