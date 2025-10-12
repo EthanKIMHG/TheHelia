@@ -45,21 +45,21 @@ export function Footer() {
               </Link>
             </div>
           </div>
-          <div className="flex flex-col gap-4 text-sm text-foreground">
+          <div className="flex flex-col gap-4 text-sm">
             <div className="flex items-start gap-3">
-              <MapPinIcon className="h-4 w-4 text-foreground" />
+              <MapPinIcon className="h-4 w-4" />
               <span className="text-sm md:text-base">{copy.contact.address}</span>
             </div>
             <div className="flex items-center gap-3">
-              <PhoneIcon className="h-4 w-4 text-foreground" />
+              <PhoneIcon className="h-4 w-4 " />
               <span className="text-sm md:text-base">{copy.contact.phone}</span>
             </div>
             <div className="flex items-center gap-3">
-              <MailIcon className="h-4 w-4 text-foreground" />
+              <MailIcon className="h-4 w-4 " />
               <span className="text-sm md:text-base">{copy.contact.email}</span>
             </div>
             <div className="flex items-center gap-3">
-              <Building className="h-4 w-4 text-foreground" />
+              <Building className="h-4 w-4 " />
               <span className="text-sm md:text-base">biz: {copy.contact.biz}</span>
             </div>
             <div className="flex items-center gap-3">
