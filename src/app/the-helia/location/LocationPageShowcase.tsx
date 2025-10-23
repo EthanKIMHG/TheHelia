@@ -76,7 +76,7 @@ function LocationHeroSection({ locale }: { locale: Locale }) {
               href={BOOKING_URL}
               target="_blank"
               rel="noreferrer"
-              className="inline-flex items-center justify-center rounded-lg border border-primary/40 bg-primary px-6 py-3 text-base font-semibold text-background transition-colors hover:bg-primary/90 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
+              className="inline-flex items-center justify-center rounded-lg border border-primary/40 bg-[#00DE5A] hover:bg-[#00DE5A]/90 px-6 py-3 text-base font-semibold text-black transition-colors "
             >
               {content.buttonLabel}
             </a>
@@ -220,7 +220,7 @@ function getHeroContent(locale: Locale): LocationHeroContent {
     subtitle: isKo
       ? "여유로운 상담과 투어를 위해 사전 예약으로 방문 일정을 안내해 드립니다."
       : "Reserve your consultation and tour in advance for a relaxed visit.",
-    buttonLabel: isKo ? "방문 예약 하기" : "Book a Visit",
+    buttonLabel: isKo ? "네이버 예약 하기" : "Book a Visit",
     highlights,
     cards,
   };

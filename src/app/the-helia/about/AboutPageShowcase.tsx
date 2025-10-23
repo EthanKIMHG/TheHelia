@@ -36,7 +36,7 @@ type PhilosophyCopy = ReturnType<typeof getAboutCopy>["philosophy"];
 
 function PhilosophySection({ copy }: { copy: PhilosophyCopy }) {
   return (
-    <section className="overflow-hidden rounded-3xl border border-border/50 bg-gradient-to-br from-primary/10 via-background/85 to-background">
+    <section className="overflow-hidden rounded-3xl border border-border/50 bg-gradient-to-br from-primary-5 via-primary/5 to-background/95">
       <div className="space-y-8 p-8 md:p-12">
         <header className="space-y-3">
           <p className="text-sm font-semibold uppercase tracking-[0.3em] text-primary">
@@ -138,7 +138,7 @@ type CareCopy = ReturnType<typeof getAboutCopy>["care"];
 
 function CareSection({ copy }: { copy: CareCopy }) {
   return (
-    <section className="overflow-hidden rounded-3xl border border-border/30 bg-gradient-to-br from-primary/5 via-background to-background shadow">
+    <section className="overflow-hidden rounded-3xl border border-border/30 bg-gradient-to-br from-primary-5 via-primary/5 to-background/95 shadow">
       <div className="space-y-8 p-8 md:p-12">
         <header className="space-y-3">
           <p className="text-sm font-semibold uppercase tracking-[0.3em] text-primary">
@@ -226,32 +226,6 @@ function DailyFlowSection({ copy }: { copy: DailyFlowCopy }) {
   );
 }
 
-type ClosingCopy = ReturnType<typeof getAboutCopy>["closing"];
-
-function ClosingSection({ copy }: { copy: ClosingCopy }) {
-  return (
-    <section className="overflow-hidden rounded-3xl border border-border/30 bg-gradient-to-r from-primary/20 via-primary/15 to-primary/20 p-[1px] shadow-lg">
-      <div className="h-full rounded-[calc(1.5rem-1px)] bg-background/95 p-8 md:p-12">
-        <div className="grid gap-8 md:grid-cols-[1fr_auto] md:items-center">
-          <div className="space-y-4">
-            <p className="text-sm font-semibold uppercase tracking-[0.3em] text-primary">
-              {copy.badge}
-            </p>
-            <h2 className="text-3xl font-semibold text-foreground md:text-4xl">
-              {copy.title}
-            </h2>
-            <p className="text-base leading-relaxed text-foreground/75 md:text-lg">
-              {copy.description}
-            </p>
-          </div>
-          <div className="rounded-2xl border border-border/30 bg-background/90 p-6 text-sm text-foreground/70 shadow-sm">
-            <p>{copy.note}</p>
-          </div>
-        </div>
-      </div>
-    </section>
-  );
-}
 
 type VideoCopy = ReturnType<typeof getAboutCopy>["video"];
 

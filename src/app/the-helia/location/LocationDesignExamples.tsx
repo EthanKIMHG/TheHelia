@@ -38,7 +38,7 @@ export function LocationDesignVariantClassic({
 
         <div className="grid gap-8 lg:grid-cols-[1.1fr_0.9fr]">
           <div className="space-y-6">
-            <div className="rounded-3xl border border-border/40 bg-gradient-to-br from-primary/10 via-primary/5 to-background/95 p-6 shadow-inner">
+            <div className="rounded-3xl border border-border/40 bg-gradient-to-br from-primary-5 via-primary/5 to-background/95 p-6 shadow-inner">
               <h4 className="flex items-center gap-2 text-base font-semibold text-secondary">
                 <Building2 className="h-5 w-5 text-primary" />
                 {copy.headings.address}
@@ -174,7 +174,7 @@ function getLocalizedCopy(locale: Locale) {
         : "Please register at the ground-floor desk before heading up via elevator.",
     },
     contact: {
-      phone: "010-5077-3962 · KakaoTalk @thehelia",
+      phone: "010-5077-3962 · KakaoTalk THEHELIA",
       note: isKo
         ? "상담은 사전 예약제로 운영됩니다."
         : "Consultations are available by reservation only.",

@@ -60,30 +60,38 @@ export function RoomSuiteTemplate({
     return combined.replace(/\/{2,}/g, "/");
   };
 
-  const renderSwitchButton = (slug?: string, variant: "left" | "right" | "mobile" = "mobile") => {
+  const renderSwitchButton = (
+    slug?: string,
+    options?: { align?: "left" | "right"; isMobile?: boolean; isActive?: boolean },
+  ) => {
     if (!slug) {
       return <span className="hidden md:block" />;
     }
-    const labels = SUITE_LABELS[slug as keyof typeof SUITE_LABELS];
+    const labels = SUITE_SLUGS.includes(slug as typeof SUITE_SLUGS[number])
+      ? SUITE_LABELS[slug as keyof typeof SUITE_LABELS]
+      : undefined;
     const label = labels?.[locale] ?? slug.toUpperCase();
+    const { align, isMobile = false, isActive = false } = options ?? {};
     const baseClasses =
-      "inline-flex items-center gap-2 rounded-2xl border border-primary/30 px-5 py-3 text-base font-semibold transition";
-    const desktopClasses =
-      variant === "mobile"
-        ? "bg-primary/10 text-primary hover:bg-primary hover:text-background"
-        : "bg-background/90 text-primary hover:bg-primary hover:text-background";
+      "inline-flex items-center gap-2 rounded-2xl border px-6 py-3 text-base font-semibold transition";
+    const paletteClasses = isMobile
+      ? isActive
+        ? "border-primary bg-primary text-background shadow"
+        : "border-primary/40 bg-background/90 text-primary hover:bg-primary hover:text-background"
+      : "border-primary/30 bg-background/95 text-primary hover:bg-primary hover:text-background";
     const alignmentClasses =
-      variant === "left"
+      align === "left"
         ? "self-start md:self-auto"
-        : variant === "right"
-          ? "self-end md:self-auto"
-          : "";
+        : align === "right"
+        ? "self-end md:self-auto"
+        : "";
+
     return (
       <Link
         key={slug}
         href={buildSuiteHref(slug)}
-        className={`${baseClasses} ${desktopClasses} ${alignmentClasses}`}
-        >
+        className={`${baseClasses} ${paletteClasses} ${alignmentClasses}`.trim()}
+      >
         {label}
       </Link>
     );
@@ -99,21 +107,26 @@ export function RoomSuiteTemplate({
 
       <section className="mx-auto flex w-full max-w-6xl flex-col gap-8 px-4 pt-16 text-secondary">
         <div className="hidden items-start justify-between md:flex md:gap-6">
-          {renderSwitchButton(otherSuites[0], "left")}
+          {renderSwitchButton(otherSuites[0], { align: "left" })}
           <div className="text-center">
-            <h2 className="text-4xl font-semibold">
+            <h2 className="text-3xl font-semibold">
               {primary.title}
             </h2>
             <p className="mt-4 text-base leading-relaxed text-secondary/80">
               {primary.copy ?? primary.description}
             </p>
           </div>
-          {renderSwitchButton(otherSuites[1], "right")}
+          {renderSwitchButton(otherSuites[1], { align: "right" })}
         </div>
 
         <div className="flex flex-col gap-4 md:hidden">
           <div className="flex flex-wrap items-center justify-center gap-3">
-            {otherSuites.map((slug) => renderSwitchButton(slug, "mobile"))}
+            {SUITE_SLUGS.map((slug) =>
+              renderSwitchButton(slug, {
+                isMobile: true,
+                isActive: slug === currentSuite,
+              }),
+            )}
           </div>
         </div>
 

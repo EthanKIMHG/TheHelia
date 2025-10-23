@@ -8,6 +8,7 @@ import type { ComponentType } from "react";
 import { LocationPageShowcase } from "@/app/the-helia/location/LocationPageShowcase";
 import { AboutPageShowcase } from "@/app/the-helia/about/AboutPageShowcase";
 import { RoomSuiteShowcase } from "@/app/room-suites/RoomSuiteShowcase";
+import { ReservationPageContent } from "@/app/reservation/ReservationPageContent";
 
 type LocaleSlugPageProps = {
   params: Promise<{
@@ -34,6 +35,7 @@ const CUSTOM_CONTENT: Record<string, ComponentType<{ locale: Locale }>> = {
   "/room-suites/prestige": PrestigeSuiteContent,
   "/room-suites/vvip": VvipSuiteContent,
   "/room-suites/vip": VipSuiteContent,
+  "/reservation": ({ locale }) => <ReservationPageContent locale={locale} />,
 };
 
 export default async function LocaleSlugPage({ params }: LocaleSlugPageProps) {

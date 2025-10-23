@@ -59,7 +59,7 @@ export function RoomSuiteShowcase({ suiteId, locale }: RoomSuiteShowcaseProps) {
 
   return (
     <div className="space-y-14">
-      <section className="rounded-3xl border border-border/30 bg-background/95 p-6 shadow-lg md:p-10">
+      <section className="rounded-3xl border border-border/30 bg-background/95 p-6 shadow md:p-10">
         <div className="flex flex-col gap-6 md:flex-row md:items-center md:justify-between">
           <div>
             <p className="text-sm font-semibold uppercase tracking-[0.3em] text-primary">
@@ -185,7 +185,7 @@ export function RoomSuiteShowcase({ suiteId, locale }: RoomSuiteShowcaseProps) {
 
 function AmenitiesSection({ copy }: { copy: SuiteCopy["amenities"] }) {
   return (
-    <section className="overflow-hidden rounded-3xl border border-border/30 bg-gradient-to-br from-primary/10 via-background/95 to-background shadow-lg">
+    <section className="overflow-hidden rounded-3xl border border-border/30 bg-gradient-to-br from-primary/5 via-primary/5 to-background/95 shadow">
       <div className="space-y-6 p-8 md:p-12">
         <header className="space-y-2">
           <p className="text-sm font-semibold uppercase tracking-[0.3em] text-primary">
