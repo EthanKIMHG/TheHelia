@@ -129,7 +129,7 @@ export default function Header() {
   return (
     <header
       className={clsx(
-        "sticky top-0 z-50 w-full border-b border-border bg-background/90 text-lg backdrop-blur supports-[backdrop-filter]:bg-background/70",
+        "sticky top-0 z-50 w-full border-b border-border bg-background/90 text-lg supports-[backdrop-filter]:bg-background/70 ",
         {
           "font-maru-semi": locale === "ko",
           "font-source-semi": locale === "en",
@@ -223,3 +223,5 @@ export default function Header() {
     </header>
   );
 }
+
+
