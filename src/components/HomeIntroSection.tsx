@@ -1,8 +1,8 @@
 "use client";
 
+import { useOptionalThemeLocale } from "@/context/theme-locale-context";
 import { motion } from "framer-motion";
 import Image from "next/image";
-import { useOptionalThemeLocale } from "@/context/theme-locale-context";
 import ScrollFloat from "./ui/ScrollFloat";
 
 type IntroSectionId = "intro" | "intro2";
@@ -171,7 +171,7 @@ const KOREAN_COPY = {
       image: { src: "/img/spa/spa_1.png", alt: "스파 케어 공간" },
     },
   ],
-} as const;
+};
 
 const ENGLISH_COPY = {
   primaryText: "Thoughtful care and premium amenities for an unforgettable 14-day stay.",
@@ -200,4 +200,4 @@ const ENGLISH_COPY = {
       image: { src: "/img/main/homepage_5.jpg", alt: "Spa and therapy room" },
     },
   ],
-} as const;
+};

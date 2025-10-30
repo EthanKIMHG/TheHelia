@@ -1,11 +1,11 @@
 "use client";
 
-import { useEffect, useMemo, useRef } from "react";
-import clsx from "clsx";
 import HomeCarousel from "@/components/HomeCarousel";
-import LogoLoop from "@/components/LogoLoop";
 import { HomeIntroSection } from "@/components/HomeIntroSection";
+import LogoLoop from "@/components/LogoLoop";
 import { useThemeLocale } from "@/context/theme-locale-context";
+import clsx from "clsx";
+import { useEffect, useMemo, useRef } from "react";
 const co_op_logos = [
   { src: '/img/logo/BodyFriend.png', alt: 'Bodyfriend' },
   { src: '/img/logo/LaCloud.png', alt: 'La Cloud' },
@@ -16,7 +16,7 @@ const co_op_logos = [
   { src: '/img/logo/Dyson.png', alt: 'Dyson' },
   { src: '/img/logo/JellyView.png', alt: 'Jelly View' },
   { src: '/img/logo/Libero.png', alt: 'Libero' },
-] as const;
+];
 
 export default function LocaleHomePage() {
   const { locale } = useThemeLocale();
