@@ -1,6 +1,6 @@
-import React, { useEffect, useMemo, useRef, ReactNode, RefObject } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import React, { ReactNode, RefObject, useEffect, useMemo, useRef } from 'react';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -14,6 +14,7 @@ interface ScrollFloatProps {
   scrollStart?: string;
   scrollEnd?: string;
   stagger?: number;
+  scrub?: boolean;
 }
 
 const ScrollFloat: React.FC<ScrollFloatProps> = ({
@@ -25,17 +26,25 @@ const ScrollFloat: React.FC<ScrollFloatProps> = ({
   ease = 'back.inOut(2)',
   scrollStart = 'center bottom+=50%',
   scrollEnd = 'bottom bottom-=40%',
-  stagger = 0.03
+  stagger = 0.03,
+  scrub = true
 }) => {
   const containerRef = useRef<HTMLHeadingElement>(null);
 
   const splitText = useMemo(() => {
     const text = typeof children === 'string' ? children : '';
-    return text.split('').map((char, index) => (
-      <span className="inline-block word" key={index}>
-        {char === ' ' ? '\u00A0' : char}
-      </span>
-    ));
+    const tokens = text.split(/(\s+)/);
+    return tokens.map((token, index) => {
+      const isWhitespace = token.trim() === "";
+      return (
+        <span
+          key={index}
+          className={isWhitespace ? 'inline-block whitespace-pre' : 'inline-block word'}
+        >
+          {isWhitespace ? token : token}
+        </span>
+      );
+    });
   }, [children]);
 
   useEffect(() => {
@@ -44,7 +53,7 @@ const ScrollFloat: React.FC<ScrollFloatProps> = ({
 
     const scroller = scrollContainerRef && scrollContainerRef.current ? scrollContainerRef.current : window;
 
-    const charElements = el.querySelectorAll('.inline-block');
+    const charElements = el.querySelectorAll('.word');
 
     gsap.fromTo(
       charElements,
@@ -69,15 +78,15 @@ const ScrollFloat: React.FC<ScrollFloatProps> = ({
           scroller,
           start: scrollStart,
           end: scrollEnd,
-          scrub: true
+          scrub
         }
       }
     );
-  }, [scrollContainerRef, animationDuration, ease, scrollStart, scrollEnd, stagger]);
+  }, [scrollContainerRef, animationDuration, ease, scrollStart, scrollEnd, stagger, scrub]);
 
   return (
     <h2 ref={containerRef} className={`my-5 overflow-hidden ${containerClassName}`}>
-      <span className={`inline-block text-[clamp(1.6rem,4vw,3rem)] leading-[1.5] ${textClassName}`}>{splitText}</span>
+      <span className={`inline-block  leading-[1.5] ${textClassName}`}>{splitText}</span>
     </h2>
   );
 };

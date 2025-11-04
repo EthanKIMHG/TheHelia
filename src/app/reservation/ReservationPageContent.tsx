@@ -1,11 +1,10 @@
 "use client";
 
-import { useMemo } from "react";
-import Link from "next/link";
-import Image from "next/image";
-import { CalendarClock, CalendarHeart, CheckCircle2, ClipboardList, Inbox, MessageCircle, NotebookText, Phone } from "lucide-react";
-import { useOptionalThemeLocale } from "@/context/theme-locale-context";
 import type { Locale } from "@/components/header/types";
+import { useOptionalThemeLocale } from "@/context/theme-locale-context";
+import { MessageCircle, Phone } from "lucide-react";
+import Link from "next/link";
+import { useMemo } from "react";
 
 type ReservationPageContentProps = {
   locale?: Locale;
@@ -136,7 +135,7 @@ function getReservationCopy(locale: Locale) {
             ? "카카오톡 채널에서 상담 가능 · 빠른 메시지 회신"
             : "Chat via KakaoTalk channel for quick responses",
           cta: isKo ? "카카오톡 연결" : "Open KakaoTalk",
-          href: "https://pf.kakao.com/_Zxnxkxj/chat",
+          href: "https://pf.kakao.com/THEHELIA",
           icon: MessageCircle,
         },
       ],

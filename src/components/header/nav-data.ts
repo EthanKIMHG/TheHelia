@@ -163,7 +163,7 @@ export const NAV_ITEMS: NavItemDefinition[] = [
       ko: "산모와 아기를 위한 프리미엄 케어를 만나보세요.",
     },
     previewImage: {
-      src: "/img/subhero/service.jpg",
+      src: "/img/spa/spa_main.png",
       alt: {
         en: "Service",
         ko: "서비스"
