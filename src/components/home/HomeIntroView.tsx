@@ -1,35 +1,41 @@
 "use client";
 
+import AnimatedTextReveal from "@/components/common/AnimatedTextReveal";
 import { useOptionalThemeLocale } from "@/context/theme-locale-context";
-import { useEffect, useState } from "react";
 import Image from "next/image";
+import { useCallback, useEffect, useRef, useState } from "react";
 import {
-  PerspectiveGalleryShowcase,
-  StackedRevealShowcase,
-  TiltedCardShowcase,
-  type ExperienceHighlight,
-} from "./ExperienceShowcaseVariants";
-import ScrollFloat from "./ui/ScrollFloat";
+  HomeExperienceGallery,
+  HomeExperienceStacked,
+  HomeExperienceTilted,
+  type HomeExperienceHighlight,
+} from "./HomeExperienceShowcase";
 
-type HomeIntroSectionProps = {
+type HomeIntroViewProps = {
   onSectionMount?: (id: string, node: HTMLElement | null) => void;
 };
 
 const SHOWCASE_SEQUENCE = ["stacked", "tilted", "perspective"] as const;
 const SHOWCASE_COMPONENTS = {
-  stacked: StackedRevealShowcase,
-  tilted: TiltedCardShowcase,
-  perspective: PerspectiveGalleryShowcase,
+  stacked: HomeExperienceStacked,
+  tilted: HomeExperienceTilted,
+  perspective: HomeExperienceGallery,
 } as const;
 
-export function HomeIntroSection({
+export function HomeIntroView({
   onSectionMount,
-}: HomeIntroSectionProps = {}) {
+}: HomeIntroViewProps = {}) {
   const themeLocale = useOptionalThemeLocale();
   const locale = themeLocale?.locale ?? "ko";
   const theme = themeLocale?.theme ?? "light";
   const copy = locale === "ko" ? KOREAN_COPY : ENGLISH_COPY;
   const [isMobile, setIsMobile] = useState(false);
+  const registerSection = useCallback(
+    (id: string, node: HTMLElement | null) => {
+      onSectionMount?.(id, node);
+    },
+    [onSectionMount],
+  );
 
   useEffect(() => {
     const updateViewport = () => {
@@ -44,11 +50,11 @@ export function HomeIntroSection({
     <>
       <section
         id="intro"
-        ref={(node) => onSectionMount?.("intro", node)}
+        ref={(node) => registerSection("intro", node)}
         className="flex min-h-screen w-full items-center justify-center bg-background px-6 py-12 text-secondary md:py-16"
       >
         <div className="mx-auto flex w-full max-w-4xl flex-col items-center gap-12 text-center">
-          <PinnedCopy
+          <IntroHeroContent
             primary={copy.primaryText}
             secondary={copy.secondaryText}
             theme={theme}
@@ -58,8 +64,7 @@ export function HomeIntroSection({
 
       {copy.grid.map((item, index) => {
         const variant = SHOWCASE_SEQUENCE[index % SHOWCASE_SEQUENCE.length];
-        const Showcase = SHOWCASE_COMPONENTS[variant];
-        const highlight: ExperienceHighlight = {
+        const highlight: HomeExperienceHighlight = {
           meta: item.meta,
           title: item.title,
           description: item.description,
@@ -70,13 +75,14 @@ export function HomeIntroSection({
         };
 
         return (
-          <Showcase
+          <HomeShowcaseSlot
             key={item.title}
             id={`intro-experience-${index}`}
-            sectionRef={(node) =>
-              onSectionMount?.(`intro-experience-${index}`, node)
-            }
+            variant={variant}
             highlight={highlight}
+            register={(node) =>
+              registerSection(`intro-experience-${index}`, node)
+            }
             order={
               isMobile
                 ? "image-first"
@@ -91,13 +97,13 @@ export function HomeIntroSection({
   );
 }
 
-type PinnedCopyProps = {
+type IntroHeroContentProps = {
   primary: string;
   secondary: string;
   theme: "light" | "dark";
 };
 
-function PinnedCopy({ primary, secondary, theme }: PinnedCopyProps) {
+function IntroHeroContent({ primary, secondary, theme }: IntroHeroContentProps) {
   const logoSrc =
     theme === "dark"
       ? "/img/logo/page_logo_white.png"
@@ -116,13 +122,13 @@ function PinnedCopy({ primary, secondary, theme }: PinnedCopyProps) {
         />
       </div>
 
-      <PinnedBlock
+      <IntroTextReveal
         text={primary}
         scrub={false}
         className="text-2xl md:text-5xl"
         animationDuration={1}
       />
-      <PinnedBlock
+      <IntroTextReveal
         text={secondary}
         className="max-w-3xl text-lg leading-relaxed md:text-[22px]"
         scrub={false}
@@ -134,7 +140,7 @@ function PinnedCopy({ primary, secondary, theme }: PinnedCopyProps) {
   );
 }
 
-type PinnedBlockProps = {
+type IntroTextRevealProps = {
   text: string;
   className?: string;
   scrub?: boolean;
@@ -143,16 +149,16 @@ type PinnedBlockProps = {
   animationDuration?: number;
 };
 
-function PinnedBlock({
+function IntroTextReveal({
   text,
   className,
   scrub = true,
   scrollStart,
   scrollEnd,
   animationDuration,
-}: PinnedBlockProps) {
+}: IntroTextRevealProps) {
   return (
-    <ScrollFloat
+    <AnimatedTextReveal
       animationDuration={animationDuration ?? 1.6}
       ease="back.inOut(1)"
       scrollStart={scrollStart ?? "center bottom+=50%"}
@@ -162,7 +168,7 @@ function PinnedBlock({
       textClassName={className}
     >
       {text}
-    </ScrollFloat>
+    </AnimatedTextReveal>
   );
 }
 
@@ -266,3 +272,72 @@ const ENGLISH_COPY = {
     },
   ],
 };
+
+type HomeShowcaseSlotProps = {
+  id: string;
+  variant: (typeof SHOWCASE_SEQUENCE)[number];
+  highlight: HomeExperienceHighlight;
+  order: "text-first" | "image-first";
+  register: (node: HTMLElement | null) => void;
+};
+
+function HomeShowcaseSlot({
+  id,
+  variant,
+  highlight,
+  order,
+  register,
+}: HomeShowcaseSlotProps) {
+  const [visible, setVisible] = useState(false);
+  const placeholderRef = useRef<HTMLElement | null>(null);
+
+  useEffect(() => {
+    const node = placeholderRef.current;
+    if (!node || visible) return;
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const entry = entries[0];
+        if (entry?.isIntersecting) {
+          setVisible(true);
+          observer.disconnect();
+        }
+      },
+      { rootMargin: "0px 0px -20%", threshold: 0.25 },
+    );
+    observer.observe(node);
+    return () => observer.disconnect();
+  }, [visible]);
+
+  useEffect(() => {
+    return () => register(null);
+  }, [register]);
+
+  if (!visible) {
+    return (
+      <section
+        id={id}
+        ref={(node) => {
+          placeholderRef.current = node;
+          register(node);
+        }}
+        className="flex min-h-screen w-full items-center justify-center bg-background px-6 py-16 text-secondary md:py-24"
+      >
+        <div className="flex h-full w-full max-w-6xl items-center justify-center rounded-3xl border border-dashed border-border/60 bg-background/60 text-secondary/40">
+          <span className="text-sm font-semibold uppercase tracking-[0.3em]">
+            Section is loading…
+          </span>
+        </div>
+      </section>
+    );
+  }
+
+  const ShowcaseComponent = SHOWCASE_COMPONENTS[variant];
+  return (
+    <ShowcaseComponent
+      id={id}
+      sectionRef={(node) => register(node)}
+      highlight={highlight}
+      order={order}
+    />
+  );
+}

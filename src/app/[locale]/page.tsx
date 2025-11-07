@@ -1,8 +1,10 @@
 "use client";
 
-import HomeCarousel from "@/components/HomeCarousel";
-import { HomeIntroSection } from "@/components/HomeIntroSection";
-import LogoLoop from "@/components/LogoLoop";
+import HeroCarousel from "@/components/home/HeroCarousel";
+import { HomeIntroView } from "@/components/home/HomeIntroView";
+import PartnerLogoMarquee from "@/components/home/PartnerLogoMarquee";
+import { HomeNavigationGallery } from "@/components/home/HomeNavigationGallery";
+import type { Locale } from "@/components/header/types";
 import { useThemeLocale } from "@/context/theme-locale-context";
 import clsx from "clsx";
 import { animate } from "framer-motion";
@@ -141,35 +143,18 @@ export default function LocaleHomePage() {
         <section
           id="hero"
           ref={(node) => registerSection("hero", node)}
-          className="w-full "
+          className="w-full"
         >
-          <HomeCarousel />
+          <HeroCarousel />
         </section>
 
-        <HomeIntroSection onSectionMount={registerSection} />
+        <HomeIntroView onSectionMount={registerSection} />
 
-        <section
-          id="highlight"
-          ref={(node) => registerSection("highlight", node)}
-          className="flex w-full items-center justify-center bg-background px-8 py-12"
-          style={{ minHeight: "80vh" }}
-        >
-          <div className="flex h-full w-full max-w-6xl flex-col items-center justify-center rounded-3xl border border-dashed border-primary/30 bg-background/90 p-8 text-center text-secondary shadow-sm">
-            <span className="text-sm font-semibold uppercase tracking-[0.3em] text-primary">
-              {locale === "ko" ? "섹션 플레이스홀더" : "Section Placeholder"}
-            </span>
-            <h2 className="mt-6 text-3xl font-semibold md:text-4xl">
-              {locale === "ko"
-                ? "곧 콘텐츠가 들어갈 영역입니다."
-                : "Future content will live here."}
-            </h2>
-            <p className="mt-4 max-w-2xl text-base text-secondary/70 md:text-lg">
-              {locale === "ko"
-                ? "필요한 정보를 알려주시면 이 섹션을 완성해 드릴게요."
-                : "Share the details when ready, and we’ll craft this section to match."}
-            </p>
-          </div>
-        </section>
+        <HomeNavigationGallery
+          locale={locale as Locale}
+          sectionId="highlight"
+          onSectionMount={(node) => registerSection("highlight", node)}
+        />
 
         <section
           id="partners"
@@ -181,7 +166,7 @@ export default function LocaleHomePage() {
               {locale === "ko" ? "더 헬리아와 함께하는 기업들" : "Our Partners"}
             </span>
           </div>
-          <LogoLoop
+          <PartnerLogoMarquee
             logos={co_op_logos}
             speed={80}
             direction="left"

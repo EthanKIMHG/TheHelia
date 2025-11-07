@@ -35,6 +35,10 @@ export type NavItem = {
   baseHref?: string;
   description?: string;
   comingSoon?: boolean;
+  previewImage?: {
+    src: string;
+    alt: string;
+  };
   sub?: NavSubItem[];
 };
 

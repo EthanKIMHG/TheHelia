@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import Image, { type ImageProps } from "next/image";
 
-export type ExperienceHighlight = {
+export type HomeExperienceHighlight = {
   meta: string;
   title: string;
   description: string;
@@ -11,30 +11,34 @@ export type ExperienceHighlight = {
   badge?: string;
 };
 
-type ExperienceShowcaseProps = {
-  highlight: ExperienceHighlight;
+type HomeShowcaseProps = {
+  highlight: HomeExperienceHighlight;
   order?: "text-first" | "image-first";
   id?: string;
   sectionRef?: (node: HTMLElement | null) => void;
 };
 
-export function StackedRevealShowcase({
+export function HomeExperienceStacked({
   highlight,
   order = "image-first",
   id,
   sectionRef,
-}: ExperienceShowcaseProps) {
+}: HomeShowcaseProps) {
   const textFirst = order === "text-first";
 
   return (
-    <section
+    <motion.section
       id={id}
       ref={sectionRef}
       className="flex min-h-screen w-full items-center justify-center bg-background px-6 py-16 text-secondary md:py-24"
+        initial={{ opacity: 0, y: 32 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, amount: 0.55 }}
+      transition={{ duration: 0.7, ease: "easeOut" }}
     >
       <div className="mx-auto grid w-full max-w-6xl items-center gap-12 md:grid-cols-[1.1fr_0.9fr]">
         <motion.div
-          className="relative h-[340px] w-full overflow-hidden rounded-[32px] border border-border/40 bg-background shadow-2xl md:h-[420px] lg:h-[520px]"
+          className="relative h-[340px] w-full overflow-hidden rounded-[32px] border border-border bg-background shadow-2xl md:h-[420px] lg:h-[520px]"
           initial={{ opacity: 0, scale: 0.92, y: 20 }}
           whileInView={{ opacity: 1, scale: 1, y: 0 }}
           viewport={{ once: true, amount: 0.5 }}
@@ -57,7 +61,7 @@ export function StackedRevealShowcase({
           />
           {highlight.badge ? (
             <motion.span
-              className="absolute left-6 top-6 inline-flex items-center justify-center rounded-full border border-white/40 bg-white/10 px-3 py-1 text-xs font-semibold uppercase tracking-[0.3em] text-white backdrop-blur"
+              className="absolute left-6 top-6 inline-flex items-center justify-center rounded-full border border-border bg-white/10 px-3 py-1 text-xs font-semibold uppercase tracking-[0.3em] text-white backdrop-blur"
               initial={{ opacity: 0, y: -10 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, amount: 0.6 }}
@@ -83,7 +87,7 @@ export function StackedRevealShowcase({
         </motion.div>
 
         <motion.div
-          className="flex flex-col gap-6 rounded-[32px] border border-border/40 bg-background/80 px-8 py-10 backdrop-blur"
+          className="flex flex-col gap-6 rounded-[32px] border border-border bg-background/80 px-8 py-10 backdrop-blur"
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.45 }}
@@ -118,23 +122,27 @@ export function StackedRevealShowcase({
           ) : null}
         </motion.div>
       </div>
-    </section>
+    </motion.section>
   );
 }
 
-export function TiltedCardShowcase({
+export function HomeExperienceTilted({
   highlight,
   order = "image-first",
   id,
   sectionRef,
-}: ExperienceShowcaseProps) {
+}: HomeShowcaseProps) {
   const textFirst = order === "text-first";
 
   return (
-    <section
+    <motion.section
       id={id}
       ref={sectionRef}
       className="flex min-h-screen w-full items-center justify-center bg-background px-6 py-16 text-secondary md:py-24"
+      initial={{ opacity: 0, y: 32 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, amount: 0.55 }}
+      transition={{ duration: 0.7, ease: "easeOut" }}
     >
       <div className="mx-auto flex w-full max-w-6xl flex-col gap-16 lg:grid lg:grid-cols-[0.9fr_1.1fr] lg:items-center">
         <motion.div
@@ -171,7 +179,7 @@ export function TiltedCardShowcase({
               {highlight.bullets.map((bullet, idx) => (
                 <motion.div
                   key={bullet}
-                  className="rounded-2xl border border-border/30 bg-background/80 px-6 py-4 shadow-sm"
+                  className="rounded-2xl border border-border bg-background/80 px-6 py-4 shadow-sm"
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true, amount: 0.5 }}
@@ -200,7 +208,7 @@ export function TiltedCardShowcase({
             transition={{ delay: 0.3, duration: 0.6 }}
           />
           <motion.div
-            className="relative h-[360px] w-full rotate-[-4.5deg] overflow-hidden rounded-[36px] border border-border/30 bg-background/80 shadow-2xl"
+            className="relative h-[360px] w-full rotate-[-4.5deg] overflow-hidden rounded-[36px] border border-border bg-background/80 shadow-2xl"
             initial={{ rotate: textFirst ? 8 : -8, y: 40 }}
             whileInView={{ rotate: textFirst ? -4.5 : 4.5, y: 0 }}
             viewport={{ once: true, amount: 0.5 }}
@@ -215,7 +223,7 @@ export function TiltedCardShowcase({
             />
           </motion.div>
           <motion.div
-            className="absolute -bottom-9 right-6 flex w-[220px] flex-col gap-3 rounded-2xl border border-border/30 bg-background p-4 shadow-lg"
+            className="absolute -bottom-9 right-6 flex w-[220px] flex-col gap-3 rounded-2xl border border-border bg-background p-4 shadow-lg"
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.5 }}
@@ -228,23 +236,27 @@ export function TiltedCardShowcase({
           </motion.div>
         </motion.div>
       </div>
-    </section>
+    </motion.section>
   );
 }
 
-export function PerspectiveGalleryShowcase({
+export function HomeExperienceGallery({
   highlight,
   order = "image-first",
   id,
   sectionRef,
-}: ExperienceShowcaseProps) {
+}: HomeShowcaseProps) {
   const textFirst = order === "text-first";
 
   return (
-    <section
+    <motion.section
       id={id}
       ref={sectionRef}
       className="relative flex min-h-screen w-full items-center justify-center bg-gradient-to-b from-background via-background/90 to-primary/20 px-6 py-16 text-secondary md:py-28"
+      initial={{ opacity: 0, y: 40 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, amount: 0.55 }}
+      transition={{ duration: 0.8, ease: "easeOut" }}
     >
       <motion.div
         className="absolute left-1/2 top-1/3 h-[48rem] w-[48rem] -translate-x-1/2 rounded-full bg-primary/10 blur-[120px]"
@@ -302,7 +314,7 @@ export function PerspectiveGalleryShowcase({
               {highlight.bullets.map((bullet) => (
                 <motion.li
                   key={bullet}
-                  className="flex items-center gap-3 rounded-full border border-border/20 bg-background/80 px-5 py-3 backdrop-blur"
+                  className="flex items-center gap-3 rounded-full border border-border bg-background/80 px-5 py-3 backdrop-blur"
                   variants={{
                     hidden: { opacity: 0, x: -20 },
                     visible: { opacity: 1, x: 0 },
@@ -318,7 +330,7 @@ export function PerspectiveGalleryShowcase({
 
         <div className="relative grid grid-cols-2 gap-6" style={{ order: textFirst ? 2 : 1 }}>
           <motion.div
-            className="col-span-2 h-[260px] overflow-hidden rounded-[32px] border border-border/30 shadow-xl md:h-[300px]"
+            className="col-span-2 h-[260px] overflow-hidden rounded-[32px] border border-border shadow-xl md:h-[300px]"
             initial={{ opacity: 0, y: 40 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.45 }}
@@ -334,7 +346,7 @@ export function PerspectiveGalleryShowcase({
           </motion.div>
 
           <motion.div
-            className="relative h-[200px] overflow-hidden rounded-3xl border border-border/20 bg-background/90 shadow-lg"
+            className="relative h-[200px] overflow-hidden rounded-3xl border border-border bg-background/90 shadow-lg"
             initial={{ opacity: 0, scale: 0.92 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true, amount: 0.4 }}
@@ -358,7 +370,7 @@ export function PerspectiveGalleryShowcase({
           </motion.div>
 
           <motion.div
-            className="relative h-[200px] overflow-hidden rounded-3xl border border-border/20 bg-background/90 shadow-lg"
+            className="relative h-[200px] overflow-hidden rounded-3xl border border-border bg-background/90 shadow-lg"
             initial={{ opacity: 0, scale: 0.92 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true, amount: 0.4 }}
@@ -386,6 +398,6 @@ export function PerspectiveGalleryShowcase({
           </motion.div>
         </div>
       </div>
-    </section>
+    </motion.section>
   );
 }

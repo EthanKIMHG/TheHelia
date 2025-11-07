@@ -1,3 +1,5 @@
+"use client";
+
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import Image from 'next/image';
 
@@ -19,7 +21,7 @@ export type LogoItem =
       height?: number;
     };
 
-export interface LogoLoopProps {
+export interface PartnerLogoMarqueeProps {
   logos: LogoItem[];
   speed?: number;
   direction?: 'left' | 'right';
@@ -184,7 +186,7 @@ const useAnimationLoop = (
   }, [targetVelocity, seqWidth, isHovered, pauseOnHover]);
 };
 
-export const LogoLoop = React.memo<LogoLoopProps>(
+export const PartnerLogoMarquee = React.memo<PartnerLogoMarqueeProps>(
   ({
     logos,
     speed = 120,
@@ -405,6 +407,6 @@ export const LogoLoop = React.memo<LogoLoopProps>(
   }
 );
 
-LogoLoop.displayName = 'LogoLoop';
+PartnerLogoMarquee.displayName = 'PartnerLogoMarquee';
 
-export default LogoLoop;
+export default PartnerLogoMarquee;

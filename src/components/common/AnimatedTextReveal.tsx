@@ -1,10 +1,12 @@
+"use client";
+
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import React, { ReactNode, RefObject, useEffect, useMemo, useRef } from 'react';
 
 gsap.registerPlugin(ScrollTrigger);
 
-interface ScrollFloatProps {
+interface AnimatedTextRevealProps {
   children: ReactNode;
   scrollContainerRef?: RefObject<HTMLElement>;
   containerClassName?: string;
@@ -17,7 +19,7 @@ interface ScrollFloatProps {
   scrub?: boolean;
 }
 
-const ScrollFloat: React.FC<ScrollFloatProps> = ({
+const AnimatedTextReveal: React.FC<AnimatedTextRevealProps> = ({
   children,
   scrollContainerRef,
   containerClassName = '',
@@ -86,9 +88,11 @@ const ScrollFloat: React.FC<ScrollFloatProps> = ({
 
   return (
     <h2 ref={containerRef} className={`my-5 overflow-hidden ${containerClassName}`}>
-      <span className={`inline-block  leading-[1.5] ${textClassName}`}>{splitText}</span>
+      <span className={`inline-block text-[clamp(1.6rem,4vw,3rem)] leading-[1.5] ${textClassName}`}>
+        {splitText}
+      </span>
     </h2>
   );
 };
 
-export default ScrollFloat;
+export default AnimatedTextReveal;

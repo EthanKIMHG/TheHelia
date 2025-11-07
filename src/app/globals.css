@@ -75,6 +75,9 @@ body {
   color: var(--foreground);
   font-family: "Source Serif Pro", "Times New Roman", serif;
   transition: background-color 240ms ease, color 240ms ease;
+  margin: 0;
+  overflow-x: hidden;
+  width: 100%;
 }
 
 @layer utilities {

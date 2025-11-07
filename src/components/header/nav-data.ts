@@ -462,35 +462,43 @@ const normalizeLocaleHref = (locale: Locale, href?: string) => {
 };
 
 export function getLocalizedNavItems(locale: Locale): NavItem[] {
-  return NAV_ITEMS.map(({ label, description, sub, href, ...rest }) => ({
-    ...rest,
-    label: label[locale],
-    description: description?.[locale],
-    href: normalizeLocaleHref(locale, href),
-    baseHref: href,
-    sub: sub?.map(
-      ({
-        label: subLabel,
-        description: subDescription,
-        previewImage,
-        previewCopy,
-        ...subRest
-      }) => ({
-        ...subRest,
-        label: subLabel[locale],
-        description: subDescription[locale],
-        href: normalizeLocaleHref(locale, subRest.href) ?? subRest.href,
-        baseHref: subRest.href,
-        previewImage: previewImage
-          ? {
-              src: previewImage.src,
-              alt: previewImage.alt[locale],
-            }
-          : undefined,
-        previewCopy: previewCopy ? previewCopy[locale] : undefined,
-      }),
-    ),
-  }));
+  return NAV_ITEMS.map(
+    ({ label, description, sub, href, previewImage, ...rest }) => ({
+      ...rest,
+      label: label[locale],
+      description: description?.[locale],
+      href: normalizeLocaleHref(locale, href),
+      baseHref: href,
+      previewImage: previewImage
+        ? {
+            src: previewImage.src,
+            alt: previewImage.alt[locale],
+          }
+        : undefined,
+      sub: sub?.map(
+        ({
+          label: subLabel,
+          description: subDescription,
+          previewImage: subPreviewImage,
+          previewCopy,
+          ...subRest
+        }) => ({
+          ...subRest,
+          label: subLabel[locale],
+          description: subDescription[locale],
+          href: normalizeLocaleHref(locale, subRest.href) ?? subRest.href,
+          baseHref: subRest.href,
+          previewImage: subPreviewImage
+            ? {
+                src: subPreviewImage.src,
+                alt: subPreviewImage.alt[locale],
+              }
+            : undefined,
+          previewCopy: previewCopy ? previewCopy[locale] : undefined,
+        }),
+      ),
+    }),
+  );
 }
 
 export function getMainPageContent(path: string, locale: Locale = "ko") {

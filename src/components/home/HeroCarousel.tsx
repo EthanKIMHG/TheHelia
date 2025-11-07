@@ -1,4 +1,4 @@
-'use client'
+"use client";
 
 import { useEffect, useState } from "react";
 import Image from "next/image";
@@ -24,7 +24,7 @@ const CAROUSEL_IMAGES: CarouselImage[] = [
 const TRANSITION = { duration: 0.6, ease: "easeInOut" as const };
 const AUTOPLAY_DELAY = 10000;
 
-export default function HomeCarousel() {
+export default function HeroCarousel() {
   const images = CAROUSEL_IMAGES;
   const [index, setIndex] = useState(0);
 
