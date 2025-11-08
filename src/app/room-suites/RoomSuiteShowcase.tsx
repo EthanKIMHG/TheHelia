@@ -37,9 +37,9 @@ export function RoomSuiteShowcase({ suiteId, locale }: RoomSuiteShowcaseProps) {
     () => getSuiteCopy(activeLocale, suiteId),
     [activeLocale, suiteId],
   );
-  const [currentIndex, setCurrentIndex] = useState(0);
+  const [currentIndex, setCurrentIndex] = useState(1);
 
-  const currentImage = copy.carousel[currentIndex] ?? copy.carousel[0];
+  const currentImage = copy.carousel[currentIndex] ?? copy.carousel[1];
 
   const handlePrev = () => {
     setCurrentIndex((prev) =>
@@ -99,7 +99,7 @@ export function RoomSuiteShowcase({ suiteId, locale }: RoomSuiteShowcaseProps) {
               alt={currentImage.alt}
               fill
               sizes="(min-width: 768px) 70vw, 100vw"
-              className=""
+              className="object-cover"
               priority
             />
             <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent p-4 text-sm text-background/90">
@@ -325,7 +325,7 @@ const SUITE_CONTENT: Record<
       nextLabel: "다음 이미지",
       carousel: [
         {
-          src: "/img/room/prestige.jpg",
+          src: "/img/room/prestige1.jpg",
           alt: "프레스티지 스위트 전경",
           caption: "투룸 구조로 구분된 라운지와 휴식 공간",
         },
@@ -361,6 +361,16 @@ const SUITE_CONTENT: Record<
         },
         {
           src: "/img/room/prestige8.jpg",
+          alt: "프레스티지 스위트 침실",
+          caption: "모션 베드와 구스 침구로 완성한 심플한 휴식",
+        },
+        {
+          src: "/img/room/prestige9.jpg",
+          alt: "프레스티지 스위트 침실",
+          caption: "모션 베드와 구스 침구로 완성한 심플한 휴식",
+        },
+        {
+          src: "/img/room/prestige10.jpg",
           alt: "프레스티지 스위트 침실",
           caption: "모션 베드와 구스 침구로 완성한 심플한 휴식",
         },
@@ -514,6 +524,16 @@ const SUITE_CONTENT: Record<
           alt: "프레스티지 스위트 침실",
           caption: "모션 베드와 구스 침구로 완성한 심플한 휴식",
         },
+        {
+          src: "/img/room/prestige9.jpg",
+          alt: "프레스티지 스위트 침실",
+          caption: "모션 베드와 구스 침구로 완성한 심플한 휴식",
+        },
+        {
+          src: "/img/room/prestige10.jpg",
+          alt: "프레스티지 스위트 침실",
+          caption: "모션 베드와 구스 침구로 완성한 심플한 휴식",
+        },
       ],
       featureGroups: [
         {
@@ -627,7 +647,7 @@ const SUITE_CONTENT: Record<
       nextLabel: "다음 이미지",
       carousel: [
         {
-          src: "/img/room/vvip.jpg",
+          src: "/img/room/vvip1.jpg",
           alt: "VVIP 스위트 전경",
           caption: "프라이빗 라운지와 슬립 존이 자연스럽게 연결된 구조",
         },
@@ -648,6 +668,16 @@ const SUITE_CONTENT: Record<
         },
         {
           src: "/img/room/vvip5.jpg",
+          alt: "VVIP 스위트 전경",
+          caption: "프라이빗 라운지와 슬립 존이 자연스럽게 연결된 구조",
+        },
+        {
+          src: "/img/room/vvip6.jpg",
+          alt: "VVIP 스위트 전경",
+          caption: "프라이빗 라운지와 슬립 존이 자연스럽게 연결된 구조",
+        },
+        {
+          src: "/img/room/vvip7.jpg",
           alt: "VVIP 스위트 전경",
           caption: "프라이빗 라운지와 슬립 존이 자연스럽게 연결된 구조",
         },
@@ -781,6 +811,16 @@ const SUITE_CONTENT: Record<
           alt: "VVIP 스위트 전경",
           caption: "프라이빗 라운지와 슬립 존이 자연스럽게 연결된 구조",
         },
+        {
+          src: "/img/room/vvip6.jpg",
+          alt: "VVIP 스위트 전경",
+          caption: "프라이빗 라운지와 슬립 존이 자연스럽게 연결된 구조",
+        },
+        {
+          src: "/img/room/vvip7.jpg",
+          alt: "VVIP 스위트 전경",
+          caption: "프라이빗 라운지와 슬립 존이 자연스럽게 연결된 구조",
+        },
       ],
       featureGroups: [
         {
@@ -889,7 +929,7 @@ const SUITE_CONTENT: Record<
       nextLabel: "다음 이미지",
       carousel: [
         {
-          src: "/img/room/vvip.jpg",
+          src: "/img/room/vvip1.jpg",
           alt: "VVIP 스위트 전경",
           caption: "프라이빗 라운지와 슬립 존이 자연스럽게 연결된 구조",
         },
@@ -1019,7 +1059,7 @@ const SUITE_CONTENT: Record<
       nextLabel: "Next image",
       carousel: [
         {
-          src: "/img/room/vvip.jpg",
+          src: "/img/room/vvip1.jpg",
           alt: "VVIP 스위트 전경",
           caption: "프라이빗 라운지와 슬립 존이 자연스럽게 연결된 구조",
         },
