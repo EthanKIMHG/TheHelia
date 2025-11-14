@@ -139,7 +139,7 @@ export default function LocaleHomePage() {
         locale === "ko" ? "font-maru-semi" : "font-source-semi",
       )}
     >
-      <main className="flex flex-col items-center w-full">
+      <main className="flex w-full flex-col items-center overflow-x-hidden">
         <section
           id="hero"
           ref={(node) => registerSection("hero", node)}
