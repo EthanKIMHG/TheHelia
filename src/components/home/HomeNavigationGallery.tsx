@@ -1,7 +1,7 @@
 "use client";
 
 import clsx from "clsx";
-import { motion } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useMemo, useState } from "react";
@@ -49,7 +49,7 @@ export function HomeNavigationGallery({
       locale === "ko"
         ? {
             badge: "HELIA NAVIGATION",
-            title: "더 헬리아의 무드를 따라가 보세요",
+            title: "더 헬리아의 다양한 모습 바로가기",
             subtitle:
               "원하는 메뉴에 마우스를 올려 미리보기를 확인하고 바로 이동해 보세요.",
             cta: "바로가기",
@@ -133,7 +133,7 @@ function NavigationPanelGrid({
         columnTemplate
           ? {
               gridTemplateColumns: columnTemplate,
-              transition: "grid-template-columns 0.6s ease",
+              transition: "grid-template-columns 0.3s ease",
             }
           : undefined
       }
@@ -188,6 +188,7 @@ function NavigationPanelCard({
   };
   const isExpanded = active && isDesktop;
   const showSubLinks = isExpanded && item.sub?.length;
+  const showDetailedCopy = !isDesktop || isExpanded;
 
   return (
     <motion.button
@@ -228,27 +229,40 @@ function NavigationPanelCard({
         )}
       >
         <div>
-          <p
+          <h3
             className={clsx(
-              "text-sm uppercase tracking-[0.35em] text-white/80",
+              "text-2xl font-semibold uppercase tracking-[0.1em] text-white/80",
               localeClassName(locale),
             )}
           >
             {item.label}
-          </p>
-          <h3
-            className={clsx(
-              "mt-3 text-2xl font-semibold leading-snug md:text-3xl",
-              active ? "text-white" : "text-white/85",
-            )}
-          >
-            {item.description ?? item.label}
           </h3>
-          {item.sub?.length ? (
-            <p className="mt-4 text-base text-white/80 line-clamp-3 md:text-lg">
-              {item.sub[0].description}
-            </p>
-          ) : null}
+          <AnimatePresence initial={false}>
+            {showDetailedCopy ? (
+              <motion.div
+                key={`${item.id}-copy`}
+                className="mt-3"
+                initial={{ opacity: 0, y: 12 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: 12 }}
+                transition={{ duration: 0.5, ease: "easeOut" }}
+              >
+                <h3
+                  className={clsx(
+                    "text-2xl font-semibold leading-snug md:text-2xl",
+                    active ? "text-white" : "text-white/85",
+                  )}
+                >
+                  {item.description ?? item.label}
+                </h3>
+                {item.sub?.length ? (
+                  <p className="mt-4 text-base text-white/80 line-clamp-3 md:text-lg">
+                    {item.sub[0].description}
+                  </p>
+                ) : null}
+              </motion.div>
+            ) : null}
+          </AnimatePresence>
         </div>
 
         <div
@@ -265,7 +279,7 @@ function NavigationPanelCard({
                 <Link
                   key={sub.id}
                   href={sub.href}
-                  className="rounded-lg border border-white/40 px-3 py-1 transition hover:bg-white/15"
+                  className="rounded-lg border border-white/40 transition hover:bg-white/15 px-5 py-2 "
                 >
                   {sub.label}
                 </Link>

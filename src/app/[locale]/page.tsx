@@ -175,7 +175,7 @@ export default function LocaleHomePage() {
             pauseOnHover
             scaleOnHover
             ariaLabel="cooperation logos"
-            className="bg-white"
+            className="bg-[#f5eee7]"
           />
         </section>
       </main>

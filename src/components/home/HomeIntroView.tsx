@@ -4,7 +4,7 @@ import AnimatedTextReveal from "@/components/common/AnimatedTextReveal";
 import { useOptionalThemeLocale } from "@/context/theme-locale-context";
 import { DEFAULT_BLUR_DATA_URL } from "@/lib/blur-placeholder";
 import Image from "next/image";
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import {
   HomeExperienceGallery,
   HomeExperienceStacked,
@@ -74,14 +74,13 @@ export function HomeIntroView({
           bullets: item.bullets,
           badge: item.badge,
         };
+        const ShowcaseComponent = SHOWCASE_COMPONENTS[variant];
 
         return (
-          <HomeShowcaseSlot
+          <ShowcaseComponent
             key={item.title}
             id={`intro-experience-${index}`}
-            variant={variant}
-            highlight={highlight}
-            register={(node) =>
+            sectionRef={(node) =>
               registerSection(`intro-experience-${index}`, node)
             }
             order={
@@ -91,6 +90,7 @@ export function HomeIntroView({
                   ? "text-first"
                   : "image-first"
             }
+            highlight={highlight}
           />
         );
       })}
@@ -275,72 +275,3 @@ const ENGLISH_COPY = {
     },
   ],
 };
-
-type HomeShowcaseSlotProps = {
-  id: string;
-  variant: (typeof SHOWCASE_SEQUENCE)[number];
-  highlight: HomeExperienceHighlight;
-  order: "text-first" | "image-first";
-  register: (node: HTMLElement | null) => void;
-};
-
-function HomeShowcaseSlot({
-  id,
-  variant,
-  highlight,
-  order,
-  register,
-}: HomeShowcaseSlotProps) {
-  const [visible, setVisible] = useState(false);
-  const placeholderRef = useRef<HTMLElement | null>(null);
-
-  useEffect(() => {
-    const node = placeholderRef.current;
-    if (!node || visible) return;
-    const observer = new IntersectionObserver(
-      (entries) => {
-        const entry = entries[0];
-        if (entry?.isIntersecting) {
-          setVisible(true);
-          observer.disconnect();
-        }
-      },
-      { rootMargin: "0px 0px -20%", threshold: 0.25 },
-    );
-    observer.observe(node);
-    return () => observer.disconnect();
-  }, [visible]);
-
-  useEffect(() => {
-    return () => register(null);
-  }, [register]);
-
-  if (!visible) {
-    return (
-      <section
-        id={id}
-        ref={(node) => {
-          placeholderRef.current = node;
-          register(node);
-        }}
-        className="flex min-h-screen w-full items-center justify-center bg-background px-6 py-16 text-secondary md:py-24"
-      >
-        <div className="flex h-full w-full max-w-6xl items-center justify-center rounded-3xl border border-dashed border-border/60 bg-background/60 text-secondary/40">
-          <span className="text-sm font-semibold uppercase tracking-[0.3em]">
-            Section is loading…
-          </span>
-        </div>
-      </section>
-    );
-  }
-
-  const ShowcaseComponent = SHOWCASE_COMPONENTS[variant];
-  return (
-    <ShowcaseComponent
-      id={id}
-      sectionRef={(node) => register(node)}
-      highlight={highlight}
-      order={order}
-    />
-  );
-}

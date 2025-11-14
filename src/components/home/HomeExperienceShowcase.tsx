@@ -32,14 +32,14 @@ export function HomeExperienceStacked({
       id={id}
       ref={sectionRef}
       className="flex min-h-screen w-full items-center justify-center bg-background px-6 py-16 text-secondary md:py-24"
-        initial={{ opacity: 0, y: 32 }}
+      initial={{ opacity: 0, y: 32 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, amount: 0.55 }}
       transition={{ duration: 0.7, ease: "easeOut" }}
     >
-      <div className="mx-auto grid w-full max-w-6xl items-center gap-12 md:grid-cols-[1.1fr_0.9fr]">
+      <div className="mx-auto flex w-full max-w-6xl flex-col gap-12 md:grid md:grid-cols-[1.1fr_0.9fr]">
         <motion.div
-          className="relative h-[340px] w-full overflow-hidden rounded-[32px] border border-border bg-background shadow-2xl md:h-[420px] lg:h-[520px]"
+          className="relative h-[280px] w-full overflow-hidden rounded-[32px] border border-border bg-background shadow-2xl sm:h-[320px] md:h-[420px] lg:h-[520px]"
           initial={{ opacity: 0, scale: 0.92, y: 20 }}
           whileInView={{ opacity: 1, scale: 1, y: 0 }}
           viewport={{ once: true, amount: 0.5 }}
@@ -257,20 +257,20 @@ export function HomeExperienceGallery({
     <motion.section
       id={id}
       ref={sectionRef}
-      className="relative flex min-h-screen w-full items-center justify-center bg-gradient-to-b from-background via-background/90 to-primary/20 px-6 py-16 text-secondary md:py-28"
+      className="relative flex min-h-screen w-full items-center justify-center px-6 py-16 text-secondary md:py-28"
       initial={{ opacity: 0, y: 40 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, amount: 0.55 }}
       transition={{ duration: 0.8, ease: "easeOut" }}
     >
       <motion.div
-        className="absolute left-1/2 top-1/3 h-[48rem] w-[48rem] -translate-x-1/2 rounded-full bg-primary/10 blur-[120px]"
+        className="pointer-events-none absolute left-1/2 top-1/3 h-[32rem] w-[32rem] -translate-x-1/2 rounded-full bg-primary/10 blur-[120px] sm:h-[40rem] sm:w-[40rem] lg:h-[48rem] lg:w-[48rem]"
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}
         viewport={{ once: true, amount: 0.4 }}
         transition={{ duration: 1.2, ease: "easeOut" }}
       />
-      <div className="relative z-[1] mx-auto grid w-full max-w-6xl gap-14 lg:grid-cols-[1.05fr_0.95fr] lg:items-center">
+      <div className="relative z-[1] mx-auto flex w-full max-w-6xl flex-col gap-14 lg:grid lg:grid-cols-[1.05fr_0.95fr] lg:items-center">
         <motion.div
           className="space-y-6"
           initial={{ opacity: 0, x: textFirst ? 60 : -60 }}
@@ -333,19 +333,22 @@ export function HomeExperienceGallery({
           ) : null}
         </motion.div>
 
-        <div className="relative grid grid-cols-2 gap-6" style={{ order: textFirst ? 2 : 1 }}>
+        <div
+          className="relative grid w-full grid-cols-1 gap-6 sm:grid-cols-2 "
+          style={{ order: textFirst ? 2 : 1 }}
+        >
           <motion.div
-            className="col-span-2 h-[260px] overflow-hidden rounded-[32px] border border-border shadow-xl md:h-[300px]"
+            className="col-span-1 h-[220px] overflow-hidden rounded-[32px] border border-border shadow-xl sm:col-span-2 sm:h-[260px] md:h-[300px]"
             initial={{ opacity: 0, y: 40 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.45 }}
             transition={{ duration: 0.7, ease: "easeOut" }}
           >
             <Image
-              src={highlight.image}
+              src="/img/spa/spa_main.png"
               alt={highlight.imageAlt}
               fill
-              className="object-cover"
+              className="object-fill rounded-[32px]"
               sizes="(min-width: 1024px) 45vw, 100vw"
               placeholder="blur"
               blurDataURL={DEFAULT_BLUR_DATA_URL}
@@ -353,7 +356,7 @@ export function HomeExperienceGallery({
           </motion.div>
 
           <motion.div
-            className="relative h-[200px] overflow-hidden rounded-3xl border border-border bg-background/90 shadow-lg"
+            className="relative h-[180px] overflow-hidden rounded-3xl border border-border bg-background/90 shadow-lg sm:h-[200px]"
             initial={{ opacity: 0, scale: 0.92 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true, amount: 0.4 }}
@@ -377,7 +380,7 @@ export function HomeExperienceGallery({
           </motion.div>
 
           <motion.div
-            className="relative h-[200px] overflow-hidden rounded-3xl border border-border bg-background/90 shadow-lg"
+            className="relative h-[180px] overflow-hidden rounded-3xl border border-border bg-background/90 shadow-lg sm:h-[200px]"
             initial={{ opacity: 0, scale: 0.92 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true, amount: 0.4 }}
