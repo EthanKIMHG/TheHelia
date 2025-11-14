@@ -1,7 +1,6 @@
 "use client";
 
-import Image from "next/image";
-import { useEffect, useRef, useState } from "react";
+import type { Locale } from "@/components/header/types";
 import {
   Baby,
   CalendarCheck2,
@@ -13,7 +12,8 @@ import {
   Sparkles,
   Stethoscope,
 } from "lucide-react";
-import type { Locale } from "@/components/header/types";
+import Image from "next/image";
+import { useEffect, useRef, useState } from "react";
 
 type AboutPageShowcaseProps = {
   locale: Locale;

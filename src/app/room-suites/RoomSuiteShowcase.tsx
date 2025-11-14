@@ -1,7 +1,7 @@
 "use client";
 
-import { useMemo, useState } from "react";
-import Image from "next/image";
+import type { Locale } from "@/components/header/types";
+import { useOptionalThemeLocale } from "@/context/theme-locale-context";
 import {
   Baby,
   BedDouble,
@@ -12,14 +12,14 @@ import {
   Droplets,
   Fan,
   Heart,
-  LaptopMinimal,
   Lamp,
+  LaptopMinimal,
   Sofa,
   Sparkles,
   Wifi,
 } from "lucide-react";
-import { useOptionalThemeLocale } from "@/context/theme-locale-context";
-import type { Locale } from "@/components/header/types";
+import Image from "next/image";
+import { useMemo, useState } from "react";
 
 type SuiteId = "prestige" | "vvip" | "vip";
 
@@ -485,7 +485,7 @@ const SUITE_CONTENT: Record<
       nextLabel: "Next image",
       carousel: [
         {
-          src: "/img/room/prestige.jpg",
+          src: "/img/room/prestige1.jpg",
           alt: "프레스티지 스위트 전경",
           caption: "투룸 구조로 구분된 라운지와 휴식 공간",
         },

@@ -185,7 +185,7 @@ const KOREAN_COPY = {
       description:
         "모든 객실은 독립형 스위트 구조로 설계되어 가족만의 시간을 온전히 지킬 수 있습니다. La Cloud 모션 베드와 헝가리산 구스 침구를 갖추어 편안한 14일의 여정을 완성합니다.",
       meta: "PRESTIGE · VVIP · VIP",
-      image: { src: "/img/room/prestige.jpg", alt: "프라이빗 객실 전경" },
+      image: { src: "/img/room/prestige1.jpg", alt: "프라이빗 객실 전경" },
       bullets: [
         "독립형 투룸 구조와 라운지",
         "헝가리산 구스 침구 & La Cloud 모션 베드",
@@ -236,7 +236,7 @@ const ENGLISH_COPY = {
       description:
         "Independent suite layouts safeguard precious family time. La Cloud motion beds and Hungarian down bedding ensure deep rest throughout your stay.",
       meta: "PRESTIGE · VVIP · VIP",
-      image: { src: "/img/main/homepage_4.jpg", alt: "Private suite view" },
+      image: { src: "/img/main/prestige1.jpg", alt: "Private suite view" },
       bullets: [
         "Two-room layouts with dedicated lounge zone",
         "Hungarian goose bedding & La Cloud motion beds",
@@ -250,7 +250,7 @@ const ENGLISH_COPY = {
       description:
         "Round-the-clock nursing staff oversee each newborn with advanced sterilisation and tailored protocols, keeping rooming-in transitions seamless.",
       meta: "24H Nursery",
-      image: { src: "/img/신생아 메인.jpg", alt: "Nursery facility" },
+      image: { src: "/img/infantroom.jpg", alt: "Nursery facility" },
       bullets: [
         "24-hour nurse presence with 1:3 care ratio",
         "Smart monitoring with real-time updates",
@@ -264,7 +264,7 @@ const ENGLISH_COPY = {
       description:
         "Pre- and postnatal therapies, lymphatic programs, and private treatment rooms offer a serene healing experience tailored to each mother.",
       meta: "Helia Signature Spa",
-      image: { src: "/img/main/homepage_5.jpg", alt: "Spa and therapy room" },
+      image: { src: "/img/spa/spa_1.jpg", alt: "Spa and therapy room" },
       bullets: [
         "Prenatal & postpartum body recovery blends",
         "Lymphatic drainage and posture balance work",
