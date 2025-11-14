@@ -5,6 +5,7 @@ import { motion } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useMemo, useState } from "react";
+import { DEFAULT_BLUR_DATA_URL } from "@/lib/blur-placeholder";
 
 import { getLocalizedNavItems } from "@/components/header/nav-data";
 import type { Locale, NavItem } from "@/components/header/types";
@@ -214,6 +215,8 @@ function NavigationPanelCard({
           )}
           sizes="(min-width: 1024px) 20vw, 100vw"
           priority={active}
+          placeholder="blur"
+          blurDataURL={DEFAULT_BLUR_DATA_URL}
         />
         <div className="absolute inset-0 bg-gradient-to-t from-black/55 via-black/20 to-black/0" />
       </div>

@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import Image from "next/image";
 import { AnimatePresence, motion, PanInfo } from "framer-motion";
+import { DEFAULT_BLUR_DATA_URL } from "@/lib/blur-placeholder";
 
 type CarouselImage = {
   src: string;
@@ -71,6 +72,8 @@ export default function HeroCarousel() {
             fill
             priority={index === 0}
             sizes="100vw"
+            placeholder="blur"
+            blurDataURL={DEFAULT_BLUR_DATA_URL}
             className="h-full w-full "
           />
         </motion.div>

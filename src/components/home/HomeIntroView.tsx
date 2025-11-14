@@ -2,6 +2,7 @@
 
 import AnimatedTextReveal from "@/components/common/AnimatedTextReveal";
 import { useOptionalThemeLocale } from "@/context/theme-locale-context";
+import { DEFAULT_BLUR_DATA_URL } from "@/lib/blur-placeholder";
 import Image from "next/image";
 import { useCallback, useEffect, useRef, useState } from "react";
 import {
@@ -119,6 +120,8 @@ function IntroHeroContent({ primary, secondary, theme }: IntroHeroContentProps) 
           height={120}
           className="object-contain"
           priority
+          placeholder="blur"
+          blurDataURL={DEFAULT_BLUR_DATA_URL}
         />
       </div>
 

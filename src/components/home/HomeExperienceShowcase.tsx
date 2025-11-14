@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import Image, { type ImageProps } from "next/image";
+import { DEFAULT_BLUR_DATA_URL } from "@/lib/blur-placeholder";
 
 export type HomeExperienceHighlight = {
   meta: string;
@@ -51,6 +52,8 @@ export function HomeExperienceStacked({
             fill
             className="object-cover"
             sizes="(min-width: 1024px) 50vw, 100vw"
+            placeholder="blur"
+            blurDataURL={DEFAULT_BLUR_DATA_URL}
           />
           <motion.div
             className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/15 to-transparent"
@@ -220,6 +223,8 @@ export function HomeExperienceTilted({
               fill
               className="object-cover"
               sizes="(min-width: 1024px) 40vw, 100vw"
+              placeholder="blur"
+              blurDataURL={DEFAULT_BLUR_DATA_URL}
             />
           </motion.div>
           <motion.div
@@ -342,6 +347,8 @@ export function HomeExperienceGallery({
               fill
               className="object-cover"
               sizes="(min-width: 1024px) 45vw, 100vw"
+              placeholder="blur"
+              blurDataURL={DEFAULT_BLUR_DATA_URL}
             />
           </motion.div>
 
@@ -382,6 +389,8 @@ export function HomeExperienceGallery({
               fill
               className="object-cover"
               sizes="(min-width: 1024px) 35vw, 100vw"
+              placeholder="blur"
+              blurDataURL={DEFAULT_BLUR_DATA_URL}
             />
             <motion.div
               className="absolute inset-0 flex flex-col justify-end gap-2 bg-gradient-to-t from-black/50 via-black/20 to-transparent px-5 pb-5 text-white"

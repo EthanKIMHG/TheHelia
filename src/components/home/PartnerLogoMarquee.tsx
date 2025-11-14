@@ -1,7 +1,10 @@
 "use client";
 
+"use client";
+
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import Image from 'next/image';
+import { DEFAULT_BLUR_DATA_URL } from '@/lib/blur-placeholder';
 
 export type LogoItem =
   | {
@@ -298,6 +301,8 @@ export const PartnerLogoMarquee = React.memo<PartnerLogoMarqueeProps>(
             loading='lazy'
             decoding='async'
             draggable={false}
+            placeholder="blur"
+            blurDataURL={DEFAULT_BLUR_DATA_URL}
           />
         );
 
