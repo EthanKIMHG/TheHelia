@@ -2,7 +2,7 @@
 
 import type { Locale } from "@/components/header/types";
 import { useOptionalThemeLocale } from "@/context/theme-locale-context";
-import { MessageCircle, Phone } from "lucide-react";
+import { CalendarCheck, MessageCircle, Phone } from "lucide-react";
 import Link from "next/link";
 import { useMemo } from "react";
 
@@ -53,14 +53,28 @@ function ContactSection({ copy }: { copy: ContactCopy }) {
               <span>{channel.value}</span>
             </div>
             <p className="mt-2 text-sm text-foreground/65">{channel.note}</p>
-            {channel.href ? (
+            
+            {channel.href && channel.id === "booking" ? (
+              
               <Link
                 href={channel.href}
-                className="mt-4 inline-flex items-center gap-2 rounded-full border border-primary/40 bg-primary/10 px-4 py-2 text-sm font-semibold text-primary transition hover:bg-primary hover:text-background"
+                target="_blank"
+                rel="noreferrer"
+                className="mt-4 inline-block items-center justify-center rounded-xl border border-primary/40 bg-[#00DE5A] hover:bg-[#00DE5A]/90 p-3 text-sm font-semibold text-black transition-colors"
               >
                 {channel.cta}
               </Link>
-            ) : null}
+            ) : (
+              <Link
+                href={channel.href}
+                target="_blank"
+                rel="noreferrer"
+                className="mt-4 inline-flex items-center gap-2 rounded-xl border border-primary/40 bg-primary/10 p-3 text-sm font-semibold text-primary transition hover:bg-primary hover:text-background"
+                
+              >
+                {channel.cta}
+              </Link>
+            )}
           </div>
         ))}
       </div>
@@ -119,6 +133,17 @@ function getReservationCopy(locale: Locale) {
         : "Reach out by phone or KakaoTalk—our concierge team gets back to you promptly with available slots.",
       channels: [
         {
+          id: "booking",
+          label: isKo ? "온라인 예약" : "Online Reservation",
+          value: isKo ? "온라인 예약하기" : "Online Reservation",
+          note: isKo
+            ? "네이버 예약하기 버튼을 누르면 네이버 예약하기 페이지로 이동합니다."
+            : "Press the Naver Reservation button to navigate to the Naver Reservation page.",
+          cta: isKo ? "네이버 예약하기" : "Naver Reservation",
+          href: "https://booking.naver.com/booking/6/bizes/1021790",
+          icon: CalendarCheck,
+        },
+        {
           label: isKo ? "전화 문의" : "Phone Reservation",
           value: "010-5077-3962",
           note: isKo
@@ -130,12 +155,12 @@ function getReservationCopy(locale: Locale) {
         },
         {
           label: isKo ? "카카오톡" : "KakaoTalk",
-          value: "THEHELIA",
+          value: "더헬리아산후조리원",
           note: isKo
             ? "카카오톡 채널에서 상담 가능 · 빠른 메시지 회신"
             : "Chat via KakaoTalk channel for quick responses",
           cta: isKo ? "카카오톡 연결" : "Open KakaoTalk",
-          href: "https://pf.kakao.com/THEHELIA",
+          href: "https://pf.kakao.com/_GGXHn",
           icon: MessageCircle,
         },
       ],

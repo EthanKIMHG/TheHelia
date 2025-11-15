@@ -1,14 +1,20 @@
-"use client";
+'use client'
 
-import clsx from "clsx";
-import { AnimatePresence, motion } from "framer-motion";
-import Image from "next/image";
-import Link from "next/link";
-import { useEffect, useMemo, useState } from "react";
-import { DEFAULT_BLUR_DATA_URL } from "@/lib/blur-placeholder";
+import clsx from 'clsx'
+import { AnimatePresence, motion } from 'framer-motion'
+import { ChevronDown } from 'lucide-react'
+import Image from 'next/image'
+import Link from 'next/link'
+import {
+  type KeyboardEvent,
+  type MouseEvent as ReactMouseEvent,
+  useEffect,
+  useMemo,
+  useState,
+} from 'react'
 
-import { getLocalizedNavItems } from "@/components/header/nav-data";
-import type { Locale, NavItem } from "@/components/header/types";
+import { getLocalizedNavItems } from '@/components/header/nav-data'
+import type { Locale, NavItem } from '@/components/header/types'
 
 type NavigationCopy = {
   badge: string;
@@ -171,37 +177,62 @@ function NavigationPanelCard({
   locale,
 }: NavigationPanelCardProps) {
   const targetHref =
-    item.href ?? item.sub?.[0]?.href ?? item.sub?.[0]?.baseHref ?? "#";
+    item.href ?? item.sub?.[0]?.href ?? item.sub?.[0]?.baseHref ?? '#'
   const previewSrc =
     item.previewImage?.src ??
     item.sub?.[0]?.previewImage?.src ??
-    "/img/main/homepage_1.jpg";
+    '/img/main/homepage_1.jpg'
   const previewAlt =
     item.previewImage?.alt ??
     item.sub?.[0]?.previewImage?.alt ??
-    item.label;
+    item.label
 
-  const handleMobileNavigate = () => {
-    if (!isDesktop && typeof window !== "undefined") {
-      window.location.href = targetHref;
+  const isExpanded = active && isDesktop
+  const shouldShowDetails = isDesktop ? isExpanded : active
+  const shouldShowActions = isDesktop ? true : active
+  const showSubLinks = shouldShowDetails && item.sub?.length
+
+  const handleDesktopActivate = () => {
+    if (!isDesktop) return
+    onActivate(item.id)
+  }
+
+  const handleContainerClick = () => {
+    if (isDesktop) return
+    onActivate(item.id)
+  }
+
+  const handleKeyDown = (event: KeyboardEvent<HTMLElement>) => {
+    if (event.key !== 'Enter' && event.key !== ' ') return
+    event.preventDefault()
+    if (!isDesktop) {
+      onActivate(item.id)
     }
-  };
-  const isExpanded = active && isDesktop;
-  const showSubLinks = isExpanded && item.sub?.length;
-  const showDetailedCopy = !isDesktop || isExpanded;
+  }
+
+  const handleToggleClick = (event: ReactMouseEvent<HTMLButtonElement>) => {
+    event.stopPropagation()
+    if (!isDesktop) {
+      onActivate(item.id)
+    }
+  }
 
   return (
-    <motion.button
+    <motion.article
       layout
-      transition={{ layout: { duration: 0.5, ease: "easeOut" } }}
-      type="button"
-      onMouseEnter={() => onActivate(item.id)}
-      onFocus={() => onActivate(item.id)}
-      onClick={handleMobileNavigate}
+      transition={{ layout: { duration: 0.5, ease: 'easeOut' } }}
+      role="button"
+      tabIndex={0}
+      aria-pressed={active}
+      aria-expanded={!isDesktop ? active : isExpanded}
+      onMouseEnter={handleDesktopActivate}
+      onFocus={handleDesktopActivate}
+      onClick={handleContainerClick}
+      onKeyDown={handleKeyDown}
       className={clsx(
-        "group relative min-h-[210px] overflow-hidden rounded-3xl border border-border/40 bg-background/70 text-left transition-all duration-500 ease-[cubic-bezier(0.4,0,0.2,1)] cursor-ne-resize",
-        "flex flex-col",
-        isDesktop && "md:min-h-[80vh]",
+        'group relative min-h-[80px] overflow-hidden rounded-3xl border border-border/40 bg-background/70 text-left transition-all duration-500 ease-[cubic-bezier(0.4,0,0.2,1)] cursor-ne-resize focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/40',
+        'flex flex-col',
+        isDesktop && 'md:min-h-[80vh]',
       )}
     >
       <span className="sr-only">{item.label}</span>
@@ -211,46 +242,65 @@ function NavigationPanelCard({
           alt={previewAlt}
           fill
           className={clsx(
-            "object-cover transition duration-500",
-            active ? "scale-110" : "scale-100",
+            'object-cover transition duration-500',
+            active ? 'scale-110' : 'scale-100',
           )}
-          sizes="(min-width: 1024px) 20vw, 100vw"
+          
           priority={active}
-          placeholder="blur"
-          blurDataURL={DEFAULT_BLUR_DATA_URL}
         />
         <div className="absolute inset-0 bg-gradient-to-t from-black/55 via-black/20 to-black/0" />
       </div>
 
       <div
         className={clsx(
-          "relative flex h-full flex-col justify-between p-6 text-white transition-colors",
-          active ? "backdrop-blur-sm" : "",
+          'relative flex h-full flex-col justify-between p-6 text-white transition-colors',
+          active ? '' : 'backdrop-blur-sm',
         )}
       >
         <div>
-          <h3
-            className={clsx(
-              "text-2xl font-semibold uppercase tracking-[0.1em] text-white/80",
-              localeClassName(locale),
-            )}
-          >
-            {item.label}
-          </h3>
+          <div className="flex items-center justify-between gap-3">
+            <h3
+              className={clsx(
+                'text-2xl uppercase tracking-[0.1em] text-white/80',
+                localeClassName(locale),
+              )}
+            >
+              {item.label}
+            </h3>
+            {!isDesktop ? (
+              <button
+                type="button"
+                aria-label="Toggle navigation details"
+                aria-expanded={active}
+                onClick={handleToggleClick}
+                className={clsx(
+                  'inline-flex h-9 w-9 items-center justify-center rounded-full border border-white/30 bg-black/20 transition',
+                  active ? 'bg-white/15' : 'bg-black/40',
+                )}
+              >
+                <ChevronDown
+                  className={clsx(
+                    'h-4 w-4 text-white transition-transform duration-300',
+                    active ? 'rotate-180' : 'rotate-0',
+                  )}
+                />
+              </button>
+            ) : null}
+          </div>
           <AnimatePresence initial={false}>
-            {showDetailedCopy ? (
+            {shouldShowDetails ? (
               <motion.div
                 key={`${item.id}-copy`}
                 className="mt-3"
                 initial={{ opacity: 0, y: 12 }}
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: 12 }}
-                transition={{ duration: 0.5, ease: "easeOut" }}
+                transition={{ duration: 0.3, ease: 'easeOut' }}
               >
                 <h3
                   className={clsx(
-                    "text-2xl font-semibold leading-snug md:text-2xl",
-                    active ? "text-white" : "text-white/85",
+                    'text-xl font-semibold leading-snug md:text-2xl',
+                    active ? 'text-white' : 'text-white/85',
                   )}
                 >
                   {item.description ?? item.label}
@@ -265,42 +315,58 @@ function NavigationPanelCard({
           </AnimatePresence>
         </div>
 
-        <div
-          className={clsx(
-            "mt-auto flex w-full gap-4 pt-6",
-            isExpanded
-              ? "flex-col md:flex-row md:items-center md:justify-between"
-              : "flex-col items-center",
-          )}
-        >
-          {showSubLinks ? (
-            <div className="flex flex-wrap justify-center gap-2 text-xs text-white/90 md:justify-start">
-              {item.sub?.map((sub) => (
-                <Link
-                  key={sub.id}
-                  href={sub.href}
-                  className="rounded-lg border border-white/40 transition hover:bg-white/15 px-5 py-2 "
-                >
-                  {sub.label}
-                </Link>
-              ))}
-            </div>
+        <AnimatePresence initial={false}>
+          {isDesktop || shouldShowActions ? (
+            <motion.div
+              key={`${item.id}-actions-${isDesktop ? 'desktop' : 'mobile'}`}
+              className={clsx(
+                'mt-auto flex w-full gap-4 pt-6',
+                isExpanded
+                  ? 'flex-col md:flex-row md:items-center md:justify-between'
+                  : 'flex-col items-center',
+              )}
+              initial={
+                isDesktop
+                  ? false
+                  : {
+                      opacity: 0,
+                      y: 12,
+                    }
+              }
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: 12 }}
+              transition={{ duration: 0.3, ease: 'easeOut' }}
+            >
+              {showSubLinks ? (
+                <div className="flex flex-wrap justify-center gap-2 text-xs text-white/90 md:justify-start">
+                  {item.sub?.map((sub) => (
+                    <Link
+                      key={sub.id}
+                      href={sub.href}
+                      className="rounded-lg border border-white/40 transition hover:bg-white/15 px-5 py-2 "
+                    >
+                      {sub.label}
+                    </Link>
+                  ))}
+                </div>
+              ) : null}
+              <Link
+                href={targetHref}
+                className={clsx(
+                  'inline-flex items-center gap-2 rounded-lg  px-5 py-2 text-xs font-semibold uppercase tracking-[0.35em] text-white cursor-pointer border border-white/20',
+                  showSubLinks ? '' : 'justify-center border border-white/20 ',
+                )}
+              >
+                {ctaLabel}
+                <span aria-hidden className="text-base">↗</span>
+              </Link>
+            </motion.div>
           ) : null}
-          <Link
-            href={targetHref}
-            className={clsx(
-              "inline-flex items-center gap-2 rounded-lg  px-5 py-2 text-xs font-semibold uppercase tracking-[0.35em] text-white cursor-pointer border border-white/20",
-              showSubLinks ? "" : "justify-center border border-white/20 ",
-            )}
-          >
-            {ctaLabel}
-            <span aria-hidden className="text-base">↗</span>
-          </Link>
-        </div>
+        </AnimatePresence>
       </div>
-    </motion.button>
-  );
+    </motion.article>
+  )
 }
 
 const localeClassName = (locale: Locale) =>
-  locale === "ko" ? "font-maru-semi" : "font-source-semi";
+  locale === 'ko' ? 'font-maru-semi' : 'font-source-semi'

@@ -201,8 +201,8 @@ function getLocalizedCopy(locale: Locale) {
       {
         title: isKo ? "지하철" : "Subway",
         description: isKo
-          ? "수인분당선 고색역 2번 출구에서 도보 8분 거리"
-          : "8-minute walk from Gosaek Station (Bundang Line) Exit 2",
+          ? "홈플러스 서수원점에서 도보 5분 거리"
+          : "5-minute walk from HomePlus West Suwon Branch",
         icon: <TrainFrontIcon className="h-6 w-6 text-primary" />,
         iconSmall: <TrainFrontIcon className="h-5 w-5 text-primary" />,
       },

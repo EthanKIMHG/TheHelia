@@ -1,6 +1,7 @@
 "use client";
 
 import {
+  CalendarCheck,
   CalendarClock,
   CarFrontIcon,
   MapPinIcon,
@@ -72,14 +73,33 @@ function LocationHeroSection({ locale }: { locale: Locale }) {
             </p>
           </div>
           <div className="flex flex-wrap items-center gap-4">
-            <a
-              href={BOOKING_URL}
-              target="_blank"
-              rel="noreferrer"
-              className="inline-flex items-center justify-center rounded-lg border border-primary/40 bg-[#00DE5A] hover:bg-[#00DE5A]/90 px-6 py-3 text-base font-semibold text-black transition-colors "
-            >
-              {content.buttonLabel}
-            </a>
+            <div className="flex items-center gap-4 rounded-2xl border border-border/40 bg-background/95 p-3 shadow-sm w-full">
+              <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-primary/10">
+                <CalendarCheck className="h-5 w-5 text-primary" />
+              </div>
+              
+              <div className="space-y-2 w-full">
+                <p className="text-sm font-semibold text-primary/80">
+                  {locale === "ko" ? "방문일정 예약하기" : "Book a Visit Schedule"}
+                </p>
+                <div className="flex items-center justify-between">
+                  <p className="text-lg font-semibold text-secondary">
+                    {locale === "ko" ? "온라인 예약하기" : "Online Reservation"}
+                  </p>
+                  <a
+                    href={BOOKING_URL}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="inline-block items-center justify-center rounded-lg border border-primary/40 bg-[#00DE5A] hover:bg-[#00DE5A]/90 p-3 text-base font-semibold text-black transition-colors"
+                  >
+                    {content.buttonLabel}
+                  </a>
+                </div>
+                <p className="text-xs text-secondary/65">
+                  {locale === "ko" ? "네이버 예약하기 버튼을 누르면 네이버 예약하기 페이지로 이동합니다." : "Press the Naver Reservation button to navigate to the Naver Reservation page."}
+                </p>
+              </div>
+            </div>
           </div>
 
           <div className="grid gap-4 md:grid-cols-2">
@@ -114,7 +134,6 @@ function LocationHeroSection({ locale }: { locale: Locale }) {
               referrerPolicy="no-referrer-when-downgrade"
               allowFullScreen
             />
-            
           </div>
         </div>
 
@@ -158,14 +177,15 @@ function getHeroContent(locale: Locale): LocationHeroContent {
   const isKo = locale === "ko";
 
   const highlights: HeroHighlight[] = [
+    
     {
       id: "contact",
       Icon: PhoneCall,
-      label: isKo ? "예약 문의" : "Reservation",
+      label: isKo ? "예약 문의" : "Reservation Inquiry",
       value: "010-5077-3962",
       description: isKo
-        ? "카카오톡 THEHELIA 로도 상담 가능합니다."
-        : "Also available via KakaoTalk THEHELIA.",
+        ? "카카오톡 더헬리아 산후조리원 채널로도 상담 가능합니다."
+        : "Also available via KakaoTalk 더헬리아 산후조리원 Plus Channel.",
     },
     {
       id: "hours",
@@ -176,6 +196,7 @@ function getHeroContent(locale: Locale): LocationHeroContent {
         ? "주말·공휴일은 사전 예약 후 방문해 주세요."
         : "Weekends & holidays by reservation only.",
     },
+    
   ];
 
   const cards: HeroCard[] = [
@@ -195,11 +216,12 @@ function getHeroContent(locale: Locale): LocationHeroContent {
       Icon: TrainFrontIcon,
       title: isKo ? "대중교통" : "Transit",
       value: isKo
-        ? "수인분당선 고색역 2번 출구 도보 8분"
-        : "8-min walk from Gosaek Station Exit 2",
+        ? "홈플러스 서수원점에서 도보 5분 거리"
+        : "5-minute walk from HomePlus West Suwon Branch"
+        ,
       description: isKo
-        ? "버스 13-1, 64-2, 200번 이용 시 ‘금곡동 주민센터’ 정류장에서 하차 후 도보 3분."
-        : "Buses 13-1, 64-2, 200 → alight at 'Geumgok-dong Community Center' and walk 3 minutes.",
+        ? "버스 13-1, 64-2, 200번 이용 시 ‘금곡동 주민센터’ 정류장에서 하차 후 도보 5분. (2028년 신분당선 개통 예정)"
+        : "Buses 13-1, 64-2, 200 → alight at 'Geumgok-dong Community Center' and walk 5 minutes.",
     },
     {
       id: "parking",
@@ -220,7 +242,7 @@ function getHeroContent(locale: Locale): LocationHeroContent {
     subtitle: isKo
       ? "여유로운 상담과 투어를 위해 사전 예약으로 방문 일정을 안내해 드립니다."
       : "Reserve your consultation and tour in advance for a relaxed visit.",
-    buttonLabel: isKo ? "네이버 예약 하기" : "Book a Visit",
+    buttonLabel: isKo ? "네이버 예약 하기" : "Naver Reservation",
     highlights,
     cards,
   };
