@@ -1,14 +1,14 @@
 import { notFound } from "next/navigation";
 
-import { SubPageTemplate } from "@/components/SubPageTemplate";
+import { ReservationPageContent } from "@/app/reservation/ReservationPageContent";
+import { RoomSuiteShowcase } from "@/app/room-suites/RoomSuiteShowcase";
+import { AboutPageShowcase } from "@/app/the-helia/about/AboutPageShowcase";
+import { LocationPageShowcase } from "@/app/the-helia/location/LocationPageShowcase";
 import { RoomSuiteTemplate } from "@/components/RoomSuiteTemplate";
+import { SubPageTemplate } from "@/components/SubPageTemplate";
 import { getSubPageContent } from "@/components/header/nav-data";
 import type { Locale } from "@/components/header/types";
 import type { ComponentType } from "react";
-import { LocationPageShowcase } from "@/app/the-helia/location/LocationPageShowcase";
-import { AboutPageShowcase } from "@/app/the-helia/about/AboutPageShowcase";
-import { RoomSuiteShowcase } from "@/app/room-suites/RoomSuiteShowcase";
-import { ReservationPageContent } from "@/app/reservation/ReservationPageContent";
 
 type LocaleSlugPageProps = {
   params: Promise<{
@@ -38,7 +38,9 @@ const CUSTOM_CONTENT: Record<string, ComponentType<{ locale: Locale }>> = {
   "/reservation": ({ locale }) => <ReservationPageContent locale={locale} />,
 };
 
+
 export default async function LocaleSlugPage({ params }: LocaleSlugPageProps) {
+
   const { locale, slug } = await params;
   const normalizedLocale: Locale = locale === "en" ? "en" : "ko";
   

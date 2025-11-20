@@ -139,7 +139,7 @@ function NavigationPanelGrid({
         columnTemplate
           ? {
               gridTemplateColumns: columnTemplate,
-              transition: "grid-template-columns 0.3s ease",
+              // Removed CSS transition to let Framer Motion handle layout changes
             }
           : undefined
       }
@@ -220,7 +220,10 @@ function NavigationPanelCard({
   return (
     <motion.article
       layout
-      transition={{ layout: { duration: 0.5, ease: 'easeOut' } }}
+      transition={{
+        layout: { type: "spring", stiffness: 300, damping: 30 },
+        opacity: { duration: 0.2 },
+      }}
       role="button"
       tabIndex={0}
       aria-pressed={active}
@@ -230,7 +233,7 @@ function NavigationPanelCard({
       onClick={handleContainerClick}
       onKeyDown={handleKeyDown}
       className={clsx(
-        'group relative min-h-[80px] overflow-hidden rounded-3xl border border-border/40 bg-background/70 text-left transition-all duration-500 ease-[cubic-bezier(0.4,0,0.2,1)] cursor-ne-resize focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/40',
+        'group relative min-h-[80px] overflow-hidden rounded-3xl border border-border/40 bg-background/70 text-left cursor-ne-resize focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/40',
         'flex flex-col',
         isDesktop && 'md:min-h-[80vh]',
       )}
