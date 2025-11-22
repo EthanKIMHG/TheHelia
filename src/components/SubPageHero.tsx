@@ -1,3 +1,4 @@
+import { ScrollReveal } from "@/components/common/ScrollReveal";
 import clsx from "clsx";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
@@ -30,9 +31,11 @@ export function SubPageHero({ title, imageSrc, imageAlt }: SubPageHeroProps) {
         <div className={clsx("absolute inset-0 flex flex-col items-center justify-center gap-3 px-6 text-center bg-black/20 text-white ", {
           "hidden": secondPath === "the-helia"
         })}>
-          <span className={"text-2xl tracking-wider md:text-5xl "}>
-            {title}
-          </span>
+          <ScrollReveal>
+            <span className={"text-2xl tracking-wider md:text-5xl font-serif"}>
+              {title}
+            </span>
+          </ScrollReveal>
           
         </div>
       </div>

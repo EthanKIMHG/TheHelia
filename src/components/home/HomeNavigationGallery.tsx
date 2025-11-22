@@ -221,8 +221,8 @@ function NavigationPanelCard({
     <motion.article
       layout
       transition={{
-        layout: { type: "spring", stiffness: 300, damping: 30 },
-        opacity: { duration: 0.2 },
+        layout: { duration: 0.6, ease: [0.32, 0.72, 0, 1] }, // Fluid ease
+        opacity: { duration: 0.4 },
       }}
       role="button"
       tabIndex={0}
@@ -346,7 +346,7 @@ function NavigationPanelCard({
                     <Link
                       key={sub.id}
                       href={sub.href}
-                      className="rounded-lg border border-white/40 transition hover:bg-white/15 px-5 py-2 "
+                      className="rounded-full border border-white/20 bg-black/20 px-4 py-2 transition-all hover:bg-white hover:text-black hover:border-white"
                     >
                       {sub.label}
                     </Link>
@@ -356,12 +356,13 @@ function NavigationPanelCard({
               <Link
                 href={targetHref}
                 className={clsx(
-                  'inline-flex items-center gap-2 rounded-lg  px-5 py-2 text-xs font-semibold uppercase tracking-[0.35em] text-white cursor-pointer border border-white/20',
-                  showSubLinks ? '' : 'justify-center border border-white/20 ',
+                  'inline-flex items-center gap-2 rounded-full px-6 py-3 text-xs font-semibold uppercase tracking-[0.2em] text-white transition-all duration-300',
+                  'border border-white/30 bg-white/10 backdrop-blur-md hover:bg-white hover:text-black hover:border-white',
+                  showSubLinks ? '' : 'justify-center',
                 )}
               >
                 {ctaLabel}
-                <span aria-hidden className="text-base">↗</span>
+                <span aria-hidden className="text-lg">→</span>
               </Link>
             </motion.div>
           ) : null}

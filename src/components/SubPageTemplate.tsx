@@ -1,10 +1,11 @@
 "use client";
 
-import { ReactNode, useMemo } from "react";
 import { useOptionalThemeLocale } from "@/context/theme-locale-context";
+import { ReactNode, useMemo } from "react";
+import { ScrollReveal } from "./common/ScrollReveal";
+import { getMainPageContent, getSubPageContent } from "./header/nav-data";
 import type { Locale } from "./header/types";
 import { SubPageHero } from "./SubPageHero";
-import { getMainPageContent, getSubPageContent } from "./header/nav-data";
 
 interface SubPageTemplateProps {
   path: string;
@@ -51,12 +52,14 @@ export function SubPageTemplate({
 
       <section className="mx-auto flex w-full max-w-6xl flex-col items-center gap-8 px-4 pt-20 text-secondary">
         <div className="text-center">
-          <h2 className="text-3xl font-semibold md:text-4xl">
-            {primary.title}
-          </h2>
-          <p className="mt-4 text-base leading-relaxed text-secondary/80 md:text-lg">
-            {primary.copy ?? primary.description}
-          </p>
+          <ScrollReveal>
+            <h2 className="text-3xl font-semibold md:text-4xl font-serif text-foreground">
+              {primary.title}
+            </h2>
+            <p className="mt-4 text-base leading-relaxed text-secondary/80 md:text-lg">
+              {primary.copy ?? primary.description}
+            </p>
+          </ScrollReveal>
           
         </div>
 

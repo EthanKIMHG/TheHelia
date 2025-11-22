@@ -1,10 +1,10 @@
 "use client";
 
-import clsx from "clsx";
+import { Footer } from "@/components/Footer";
 import Header from "@/components/Header";
 import PageTransition from "@/components/PageTransition";
-import { Footer } from "@/components/Footer";
 import { ThemeLocaleProvider } from "@/context/theme-locale-context";
+import clsx from "clsx";
 import type { Locale } from "./header/types";
 
 interface LocaleShellProps {

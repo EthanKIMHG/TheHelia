@@ -1,11 +1,12 @@
 "use client";
 
+import { useOptionalThemeLocale } from "@/context/theme-locale-context";
 import Link from "next/link";
 import { ReactNode, useMemo } from "react";
-import { useOptionalThemeLocale } from "@/context/theme-locale-context";
-import { SubPageHero } from "./SubPageHero";
+import { ScrollReveal } from "./common/ScrollReveal";
 import { getMainPageContent, getSubPageContent } from "./header/nav-data";
 import type { Locale } from "./header/types";
+import { SubPageHero } from "./SubPageHero";
 
 interface RoomSuiteTemplateProps {
   path: string;
@@ -76,9 +77,9 @@ export function RoomSuiteTemplate({
       "inline-flex items-center gap-2 rounded-2xl border px-6 py-3 text-base font-semibold transition";
     const paletteClasses = isMobile
       ? isActive
-        ? "border-primary bg-primary text-background shadow"
-        : "border-primary/40 bg-background/90 text-primary hover:bg-primary hover:text-background"
-      : "border-primary/30 bg-background/95 text-primary hover:bg-primary hover:text-background";
+        ? "border-primary bg-primary text-background shadow-md"
+        : "border-primary/20 bg-white/80 dark:bg-[#2A2928]/60 backdrop-blur-sm text-primary hover:bg-primary hover:text-background"
+      : "border-primary/20 bg-white/80 dark:bg-[#2A2928]/60 backdrop-blur-md text-primary hover:bg-primary hover:text-background shadow-sm";
     const alignmentClasses =
       align === "left"
         ? "self-start md:self-auto"
@@ -109,12 +110,14 @@ export function RoomSuiteTemplate({
         <div className="hidden items-start justify-between md:flex md:gap-6">
           {renderSwitchButton(otherSuites[0], { align: "left" })}
           <div className="text-center">
-            <h2 className="text-3xl font-semibold">
-              {primary.title}
-            </h2>
-            <p className="mt-4 text-base leading-relaxed text-secondary/80">
-              {primary.copy ?? primary.description}
-            </p>
+            <ScrollReveal>
+              <h2 className="text-3xl font-semibold font-serif text-foreground">
+                {primary.title}
+              </h2>
+              <p className="mt-4 text-base leading-relaxed text-secondary/80">
+                {primary.copy ?? primary.description}
+              </p>
+            </ScrollReveal>
           </div>
           {renderSwitchButton(otherSuites[1], { align: "right" })}
         </div>

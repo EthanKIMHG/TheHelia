@@ -1,16 +1,16 @@
 "use client";
 
-import {
-  CalendarCheck,
-  CalendarClock,
-  CarFrontIcon,
-  MapPinIcon,
-  PhoneCall,
-  TrainFrontIcon,
-  type LucideIcon,
-} from "lucide-react";
+import { ScrollReveal } from "@/components/common/ScrollReveal";
 import type { Locale } from "@/components/header/types";
-import { LocationContent } from "./LocationContent";
+import {
+    CalendarCheck,
+    CalendarClock,
+    CarFrontIcon,
+    MapPinIcon,
+    PhoneCall,
+    TrainFrontIcon,
+    type LucideIcon,
+} from "lucide-react";
 
 
 const BOOKING_URL =
@@ -47,9 +47,10 @@ type LocationPageShowcaseProps = {
 
 export function LocationPageShowcase({ locale }: LocationPageShowcaseProps) {
   return (
-    <div className="space-y-12">
+    <div className="space-y-24 pb-20">
       <LocationHeroSection locale={locale} />
-      <LocationContent locale={locale} />
+      <LocationMapSection />
+      <LocationInfoSection locale={locale} />
     </div>
   );
 }
@@ -58,31 +59,33 @@ function LocationHeroSection({ locale }: { locale: Locale }) {
   const content = getHeroContent(locale);
 
   return (
+    <ScrollReveal>
     <section className="overflow-hidden rounded-3xl border border-border/50 bg-gradient-to-br from-background via-background/95 to-background mt-12">
-      <div className="grid gap-10 p-8 lg:grid-cols-[1.3fr_0.7fr] lg:p-12">
+      <div className="grid gap-10 p-8 lg:grid-cols-2 lg:p-12 items-center">
         <div className="flex flex-col gap-6 justify-center">
           <div className="space-y-3">
-            <p className="text-sm font-semibold uppercase tracking-[0.3em] text-primary">
+            <p className="text-sm font-semibold uppercase tracking-[0.3em] text-primary font-playfair italic">
               {content.badge}
             </p>
-            <h2 className="text-2xl font-semibold leading-tight text-secondary md:text-3xl">
+            <h2 className="text-3xl font-semibold leading-tight text-secondary md:text-4xl font-serif">
               {content.title}
             </h2>
             <p className="text-lg leading-relaxed text-secondary/75 md:text-xl">
               {content.subtitle}
             </p>
           </div>
-          <div className="flex flex-wrap items-center gap-4">
-            <div className="flex items-center gap-4 rounded-2xl border border-border/40 bg-background/95 p-3 shadow-sm w-full">
-              <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-primary/10">
-                <CalendarCheck className="h-5 w-5 text-primary" />
+          
+          <div className="flex flex-col gap-4">
+            <div className="flex items-center gap-4 rounded-2xl border border-border/40 bg-white/80 dark:bg-[#2A2928]/60 backdrop-blur-sm p-5 shadow-sm w-full transition hover:shadow-md">
+              <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-primary/10 dark:bg-[#333231] text-primary">
+                <CalendarCheck className="h-6 w-6" />
               </div>
               
-              <div className="space-y-2 w-full">
-                <p className="text-sm font-semibold text-primary/80">
+              <div className="space-y-1 w-full">
+                <p className="text-sm font-semibold text-primary/80 font-serif">
                   {locale === "ko" ? "방문일정 예약하기" : "Book a Visit Schedule"}
                 </p>
-                <div className="flex items-center justify-between">
+                <div className="flex flex-wrap items-center justify-between gap-3">
                   <p className="text-lg font-semibold text-secondary">
                     {locale === "ko" ? "온라인 예약하기" : "Online Reservation"}
                   </p>
@@ -90,78 +93,101 @@ function LocationHeroSection({ locale }: { locale: Locale }) {
                     href={BOOKING_URL}
                     target="_blank"
                     rel="noreferrer"
-                    className="inline-block items-center justify-center rounded-lg border border-primary/40 bg-[#00DE5A] hover:bg-[#00DE5A]/90 p-3 text-base font-semibold text-black transition-colors"
+                    className="inline-flex items-center justify-center rounded-xl bg-[#00DE5A] px-5 py-2.5 text-sm font-bold text-white shadow-sm transition-transform hover:scale-105 hover:bg-[#00c450]"
                   >
                     {content.buttonLabel}
                   </a>
                 </div>
-                <p className="text-xs text-secondary/65">
-                  {locale === "ko" ? "네이버 예약하기 버튼을 누르면 네이버 예약하기 페이지로 이동합니다." : "Press the Naver Reservation button to navigate to the Naver Reservation page."}
-                </p>
               </div>
             </div>
-          </div>
-
-          <div className="grid gap-4 md:grid-cols-2">
-            {content.highlights.map((item) => (
-              <div
-                key={item.id}
-                className="flex items-center gap-4 rounded-2xl border border-border/40 bg-background/95 p-3 shadow-sm"
-              >
-                <div className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-xl bg-primary/10">
-                  <item.Icon className="h-5 w-5 text-primary" />
-                </div>
-                <div className="space-y-1">
-                  <p className="text-sm font-semibold text-primary/80">
-                    {item.label}
-                  </p>
-                  <p className="text-lg font-semibold text-secondary">
-                    {item.value}
-                  </p>
-                  <p className="text-xs text-secondary/65">
-                    {item.description}
-                  </p>
-                </div>
-              </div>
-            ))}
-          </div>
-          <div className="overflow-hidden rounded-3xl border border-border/40">
-            <iframe
-              title="The Helia Location"
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3174.8384058135257!2d126.95109607716499!3d37.275258840774896!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x277bcbed795ddd7%3A0xad9cdb91d0fde45f!2z642U7Zes66as7JWEIOyCsO2bhOyhsOumrOybkA!5e0!3m2!1sko!2sus!4v1760246577990!5m2!1sko!2sus"
-              loading="lazy"
-              className="h-56 w-full md:h-56"
-              referrerPolicy="no-referrer-when-downgrade"
-              allowFullScreen
-            />
+            <p className="text-xs text-secondary/50 px-2">
+              {locale === "ko" ? "* 네이버 예약하기 페이지로 이동합니다." : "* Redirects to Naver Reservation page."}
+            </p>
           </div>
         </div>
 
         <div className="grid gap-4">
-          {content.cards.map((card) => (
-            <article
-              key={card.id}
-              className="flex flex-col gap-2 rounded-3xl border border-border/40 bg-background/90 p-4 shadow-sm h-fit"
+          {content.highlights.map((item) => (
+            <div
+              key={item.id}
+              className="flex items-center gap-5 rounded-2xl border border-border/40 bg-white/80 dark:bg-[#2A2928]/60 backdrop-blur-sm p-6 shadow-sm transition hover:bg-white/90 dark:hover:bg-[#2A2928]/80 hover:shadow-md"
             >
-              <div className="flex items-center gap-3 text-secondary">
-                <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-primary/10">
-                  <card.Icon className="h-5 w-5 text-primary" />
-                </div>
-                <p className="text-sm font-semibold tracking-[0.05em]">
-                  {card.title}
+              <div className="flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-xl bg-primary/10 dark:bg-[#333231]">
+                <item.Icon className="h-6 w-6 text-primary" />
+              </div>
+              <div className="space-y-1">
+                <p className="text-sm font-semibold text-primary/80 font-serif">
+                  {item.label}
+                </p>
+                <p className="text-xl font-semibold text-secondary">
+                  {item.value}
+                </p>
+                <p className="text-sm text-secondary/65">
+                  {item.description}
                 </p>
               </div>
-              <div className="text-lg font-semibold leading-relaxed text-secondary">
-                {renderMultiline(card.value)}
-              </div>
-              <p className="text-sm leading-relaxed text-secondary/65">
-                {card.description}
-              </p>
-            </article>
+            </div>
           ))}
         </div>
       </div>
     </section>
+    </ScrollReveal>
+  );
+}
+
+function LocationMapSection() {
+  return (
+    <ScrollReveal>
+      <section className="w-full h-[500px] rounded-3xl overflow-hidden shadow-lg border border-border/30 relative group">
+        <iframe
+          title="The Helia Location"
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3174.8384058135257!2d126.95109607716499!3d37.275258840774896!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x277bcbed795ddd7%3A0xad9cdb91d0fde45f!2z642U7Zes66as7JWEIOyCsO2bhOyhsOumrOybkA!5e0!3m2!1sko!2sus!4v1760246577990!5m2!1sko!2sus"
+          loading="lazy"
+          className="h-full w-full grayscale-[20%] transition-all duration-700 group-hover:grayscale-0"
+          referrerPolicy="no-referrer-when-downgrade"
+          allowFullScreen
+        />
+        <div className="absolute top-4 right-4 bg-white/90 backdrop-blur-md px-4 py-2 rounded-full text-xs font-semibold shadow-sm text-secondary pointer-events-none">
+          MS Medical Square 5F-6F
+        </div>
+      </section>
+    </ScrollReveal>
+  );
+}
+
+function LocationInfoSection({ locale }: { locale: Locale }) {
+  const content = getHeroContent(locale);
+  
+  return (
+    <ScrollReveal>
+      <section className="grid gap-6 md:grid-cols-3">
+        {content.cards.map((card, index) => (
+          <article
+            key={card.id}
+            className={`flex flex-col gap-4 rounded-3xl border border-border/40 bg-white/80 dark:bg-[#2A2928]/60 backdrop-blur-md p-8 shadow-sm transition hover:shadow-lg hover:-translate-y-1 ${
+              index === 0 ? "md:col-span-3 md:flex-row md:items-center" : ""
+            }`}
+          >
+            <div className={`flex items-center gap-4 text-secondary ${index === 0 ? "md:w-1/3" : ""}`}>
+              <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-primary/10 dark:bg-[#333231]">
+                <card.Icon className="h-7 w-7 text-primary" />
+              </div>
+              <p className="text-lg font-semibold tracking-[0.05em] font-serif">
+                {card.title}
+              </p>
+            </div>
+            <div className={index === 0 ? "md:w-2/3" : ""}>
+              <div className="text-xl font-semibold leading-relaxed text-secondary mb-2">
+                {renderMultiline(card.value)}
+              </div>
+              <p className="text-base leading-relaxed text-secondary/65">
+                {card.description}
+              </p>
+            </div>
+          </article>
+        ))}
+      </section>
+    </ScrollReveal>
   );
 }
 

@@ -1,5 +1,6 @@
 "use client";
 
+import { ScrollReveal } from "@/components/common/ScrollReveal";
 import type { Locale } from "@/components/header/types";
 import { useOptionalThemeLocale } from "@/context/theme-locale-context";
 import {
@@ -59,13 +60,14 @@ export function RoomSuiteShowcase({ suiteId, locale }: RoomSuiteShowcaseProps) {
 
   return (
     <div className="space-y-14">
+      <ScrollReveal>
       <section className="rounded-3xl border border-border/30 bg-background/95 p-6 shadow md:p-10">
         <div className="flex flex-col gap-6 md:flex-row md:items-center md:justify-between">
           <div>
             <p className="text-sm font-semibold uppercase tracking-[0.3em] text-primary">
               {copy.carouselBadge}
             </p>
-            <h3 className="mt-2 text-2xl font-semibold text-foreground md:text-3xl">
+            <h3 className="mt-2 text-2xl font-semibold text-foreground md:text-3xl font-serif">
               {copy.carouselTitle}
             </h3>
             <p className="mt-2 text-sm leading-relaxed text-foreground/70 md:text-base">
@@ -131,7 +133,9 @@ export function RoomSuiteShowcase({ suiteId, locale }: RoomSuiteShowcaseProps) {
           ))}
         </div>
       </section>
+      </ScrollReveal>
 
+      <ScrollReveal>
       <section className="grid gap-6 md:grid-cols-[1.1fr_0.9fr]">
         <div className="space-y-6">
           {copy.featureGroups.map((group) => (
@@ -153,14 +157,14 @@ export function RoomSuiteShowcase({ suiteId, locale }: RoomSuiteShowcaseProps) {
             </article>
           ))}
         </div>
-        <aside className="flex flex-col gap-4 rounded-3xl border border-border/30 bg-background/90 p-6 shadow-sm">
+        <aside className="flex flex-col gap-4 rounded-3xl border border-border/30 bg-white/80 dark:bg-[#2A2928]/60 backdrop-blur-md p-6 shadow-sm">
           <h4 className="text-sm font-semibold uppercase tracking-[0.3em] text-primary">
             {copy.facts.badge}
           </h4>
           <ul className="space-y-4">
             {copy.facts.items.map((fact) => (
               <li key={fact.title} className="flex items-start gap-3 text-sm">
-                <div className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-xl bg-primary/10 text-primary">
+                <div className="flex h-12 w-12 items-center justify-center rounded-full bg-primary/10 dark:bg-[#333231] text-primary">
                   <fact.icon className="h-5 w-5" />
                 </div>
                 <div>
@@ -177,6 +181,7 @@ export function RoomSuiteShowcase({ suiteId, locale }: RoomSuiteShowcaseProps) {
           </div>
         </aside>
       </section>
+      </ScrollReveal>
 
       <AmenitiesSection copy={copy.amenities} />
     </div>
@@ -185,13 +190,14 @@ export function RoomSuiteShowcase({ suiteId, locale }: RoomSuiteShowcaseProps) {
 
 function AmenitiesSection({ copy }: { copy: SuiteCopy["amenities"] }) {
   return (
-    <section className="overflow-hidden rounded-3xl border border-border/30 bg-gradient-to-br from-primary/5 via-primary/5 to-background/95 shadow">
+    <ScrollReveal>
+    <section className="overflow-hidden rounded-3xl border border-border/30 bg-white/80 dark:bg-[#2A2928]/60 backdrop-blur-md shadow">
       <div className="space-y-6 p-8 md:p-12">
         <header className="space-y-2">
           <p className="text-sm font-semibold uppercase tracking-[0.3em] text-primary">
             {copy.badge}
           </p>
-          <h3 className="text-2xl font-semibold text-foreground md:text-3xl">
+          <h3 className="text-2xl font-semibold text-foreground md:text-3xl font-serif">
             {copy.title}
           </h3>
           <p className="text-sm text-foreground/70 md:text-base">
@@ -202,7 +208,7 @@ function AmenitiesSection({ copy }: { copy: SuiteCopy["amenities"] }) {
           {copy.groups.map((group) => (
             <article
               key={group.title}
-              className="rounded-2xl border border-border/30 bg-background/95 p-6 shadow-sm"
+              className="rounded-2xl border border-border/30 bg-white/80 dark:bg-[#2A2928]/60 backdrop-blur-md p-6 shadow-sm transition-all hover:shadow-md"
             >
               <h4 className="text-lg font-semibold text-foreground">
                 {group.title}
@@ -221,6 +227,7 @@ function AmenitiesSection({ copy }: { copy: SuiteCopy["amenities"] }) {
         <p className="text-xs text-foreground/60">{copy.notice}</p>
       </div>
     </section>
+    </ScrollReveal>
   );
 }
 

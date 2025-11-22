@@ -1,5 +1,7 @@
 @import "tailwindcss";
 
+@custom-variant dark (&:where([data-theme=dark], [data-theme=dark] *));
+
 @font-face {
   font-family: "Source Serif Pro";
   src: url("/font/source-serif-pro.regular.otf") format("opentype");
@@ -15,6 +17,7 @@
   font-style: normal;
   font-display: swap;
 }
+
 @font-face {
   font-family: "MaruBuri Regular";
   src: url("/font/MaruBuri-Regular.otf") format("opentype");
@@ -32,19 +35,31 @@
 }
 
 :root {
-  --background: #F8F6F5;
-  --foreground: #4A4A4A;
-  --primary: #C4A678;
-  --secondary: #4A4A4A;
+  --background: #F9F8F4;
+  /* Warm White */
+  --foreground: #2C2C2C;
+  /* Deep Charcoal */
+  --primary: #807360;
+  /* Warm Beige-Taupe */
+  --secondary: #5D5D5D;
+  /* Medium Charcoal for secondary text */
+  --accent: #CFA898;
+  /* Soft Terracotta */
   --border: #DEDEDE;
 }
 
 :root[data-theme="dark"] {
-  --background: #100d0a;
-  --foreground: #f5eee7;
-  --primary: #d5b488;
-  --secondary: #f5eee7;
-  --border: #838383;
+  --background: #1C1B1A;
+  /* Warm Dark */
+  --foreground: #F0EBE0;
+  /* Cream Beige */
+  --primary: #9CACA9;
+  /* Lighter Sage for Dark Mode */
+  --secondary: #B0B0B0;
+  /* Light Grey for secondary text */
+  --accent: #DDBFB0;
+  /* Lighter Terracotta */
+  --border: #444444;
 }
 
 @theme inline {
@@ -57,6 +72,7 @@
   --font-source-semi: "Source Serif Pro", "Times New Roman", serif;
   --color-primary: var(--primary);
   --color-secondary: var(--secondary);
+  --color-accent: var(--accent);
   --color-border: var(--border)
 }
 

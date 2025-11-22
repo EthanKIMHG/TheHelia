@@ -1,5 +1,6 @@
 "use client";
 
+import { ScrollReveal } from "@/components/common/ScrollReveal";
 import type { Locale } from "@/components/header/types";
 import { useOptionalThemeLocale } from "@/context/theme-locale-context";
 import { CalendarCheck, MessageCircle, Phone } from "lucide-react";
@@ -16,7 +17,8 @@ export function ReservationPageContent({ locale }: ReservationPageContentProps) 
   const copy = useMemo(() => getReservationCopy(activeLocale), [activeLocale]);
 
   return (
-    <div className="space-y-16">
+    <div className="space-y-24 pb-20">
+      <ProcessSection copy={copy.process} />
       <ContactSection copy={copy.contact} />
       <NoticeSection copy={copy.notice} />
     </div>
@@ -27,12 +29,13 @@ type ContactCopy = ReturnType<typeof getReservationCopy>["contact"];
 
 function ContactSection({ copy }: { copy: ContactCopy }) {
   return (
-    <section className="rounded-3xl border border-border/30 bg-background/90 p-6 shadow md:p-10">
+    <ScrollReveal>
+    <section className="rounded-3xl border border-border/30 bg-white/80 dark:bg-[#2A2928]/60 backdrop-blur-md p-6 shadow md:p-10">
       <header className="space-y-3">
-        <p className="text-sm font-semibold uppercase tracking-[0.3em] text-primary">
+        <p className="text-sm font-semibold uppercase tracking-[0.3em] text-primary font-playfair italic">
           {copy.badge}
         </p>
-        <h2 className="text-3xl font-semibold text-foreground md:text-3xl">
+        <h2 className="text-3xl font-semibold text-foreground md:text-3xl font-serif">
           {copy.title}
         </h2>
         <p className="text-base leading-relaxed text-foreground/70 md:text-lg">
@@ -43,9 +46,13 @@ function ContactSection({ copy }: { copy: ContactCopy }) {
         {copy.channels.map((channel) => (
           <div
             key={channel.label}
-            className="rounded-2xl border border-border/30 bg-background/95 p-6 shadow-sm"
+            className={`rounded-2xl border border-border/30 p-6 shadow-sm transition-all ${
+              channel.id === "booking"
+                ? "bg-gradient-to-br from-primary/10 to-background border-primary/40 shadow-md"
+                : "bg-white/80 dark:bg-[#2A2928]/60 backdrop-blur-sm hover:bg-white/90 dark:hover:bg-[#2A2928]/80"
+            }`}
           >
-            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-primary/80">
+            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-primary/80 font-serif">
               {channel.label}
             </p>
             <div className="mt-3 flex items-center gap-2 text-lg font-semibold text-foreground">
@@ -69,7 +76,7 @@ function ContactSection({ copy }: { copy: ContactCopy }) {
                 href={channel.href}
                 target="_blank"
                 rel="noreferrer"
-                className="mt-4 inline-flex items-center gap-2 rounded-xl border border-primary/40 bg-primary/10 p-3 text-sm font-semibold text-primary transition hover:bg-primary hover:text-background"
+                className="mt-4 inline-flex items-center gap-2 rounded-xl border border-primary/40 bg-primary/10 dark:bg-[#333231] p-3 text-sm font-semibold text-primary transition hover:bg-primary hover:text-background"
                 
               >
                 {channel.cta}
@@ -79,21 +86,60 @@ function ContactSection({ copy }: { copy: ContactCopy }) {
         ))}
       </div>
     </section>
+    </ScrollReveal>
   );
 }
 
+
+
+type ProcessCopy = ReturnType<typeof getReservationCopy>["process"];
+
+function ProcessSection({ copy }: { copy: ProcessCopy }) {
+  return (
+    <ScrollReveal>
+      <section className="rounded-3xl border border-border/30 bg-white/80 dark:bg-[#2A2928]/60 backdrop-blur-md p-8 shadow-sm md:p-10">
+        <header className="space-y-3 text-center mb-10">
+          <p className="text-sm font-semibold uppercase tracking-[0.3em] text-primary font-playfair italic">
+            {copy.badge}
+          </p>
+          <h2 className="text-2xl font-semibold text-foreground md:text-3xl font-serif">
+            {copy.title}
+          </h2>
+          <p className="text-base leading-relaxed text-foreground/70 md:text-lg">
+            {copy.subtitle}
+          </p>
+        </header>
+        <div className="grid gap-6 md:grid-cols-4">
+          {copy.steps.map((step, index) => (
+            <div key={step.label} className="relative flex flex-col items-center text-center">
+              {index < copy.steps.length - 1 && (
+                <div className="absolute top-6 left-1/2 w-full h-px bg-border/50 hidden md:block" />
+              )}
+              <div className="relative z-10 flex h-12 w-12 items-center justify-center rounded-full bg-primary text-white font-serif text-lg shadow-md mb-4">
+                {index + 1}
+              </div>
+              <h3 className="text-lg font-semibold text-foreground font-serif mb-2">{step.title}</h3>
+              <p className="text-sm text-foreground/70 leading-relaxed">{step.description}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+    </ScrollReveal>
+  );
+}
 
 
 type NoticeCopy = ReturnType<typeof getReservationCopy>["notice"];
 
 function NoticeSection({ copy }: { copy: NoticeCopy }) {
   return (
+    <ScrollReveal>
     <section className="rounded-3xl border border-dashed border-primary/40 bg-gradient-to-br from-primary/5 via-primary/5 to-background/95 p-6 text-primary/80 shadow md:p-8">
       <div className="space-y-3">
-        <p className="text-sm font-semibold uppercase tracking-[0.3em]">
+        <p className="text-sm font-semibold uppercase tracking-[0.3em] font-playfair italic">
           {copy.badge}
         </p>
-        <h2 className="text-2xl font-semibold text-secondary md:text-3xl">
+        <h2 className="text-2xl font-semibold text-secondary md:text-3xl font-serif">
           {copy.title}
         </h2>
         <p className="text-sm leading-relaxed text-secondary md:text-base">
@@ -104,9 +150,9 @@ function NoticeSection({ copy }: { copy: NoticeCopy }) {
         {copy.items.map((group) => (
           <article
             key={group.title}
-            className="rounded-2xl border border-primary/20 bg-background/95 p-5 text-secondary shadow-sm"
+            className="rounded-2xl border border-primary/20 bg-white/80 dark:bg-[#2A2928]/60 backdrop-blur-sm p-5 text-secondary shadow-sm"
           >
-            <h3 className="text-base font-semibold">{group.title}</h3>
+            <h3 className="text-base font-semibold font-serif">{group.title}</h3>
             <ul className="mt-3 space-y-2 text-sm">
               {group.points.map((point) => (
                 <li key={point} className="flex items-start gap-2">
@@ -119,6 +165,7 @@ function NoticeSection({ copy }: { copy: NoticeCopy }) {
         ))}
       </div>
     </section>
+    </ScrollReveal>
   );
 }
 

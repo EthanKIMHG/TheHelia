@@ -1,10 +1,10 @@
 "use client";
 
-import HeroCarousel from "@/components/home/HeroCarousel";
-import { HomeIntroView } from "@/components/home/HomeIntroView";
-import PartnerLogoMarquee from "@/components/home/PartnerLogoMarquee";
-import { HomeNavigationGallery } from "@/components/home/HomeNavigationGallery";
 import type { Locale } from "@/components/header/types";
+import { CinematicHero } from "@/components/home/CinematicHero";
+import { HomeIntroView } from "@/components/home/HomeIntroView";
+import { HomeNavigationGallery } from "@/components/home/HomeNavigationGallery";
+import PartnerLogoMarquee from "@/components/home/PartnerLogoMarquee";
 import { useThemeLocale } from "@/context/theme-locale-context";
 import clsx from "clsx";
 import { animate } from "framer-motion";
@@ -48,41 +48,11 @@ export default function LocaleHomePage() {
 
     const handleWheel = (event: WheelEvent) => {
       if (Math.abs(event.deltaY) < 20) return;
-      event.preventDefault();
-      if (isAnimatingRef.current) return;
-
-      const order = sectionOrderRef.current;
-      if (order.length === 0) return;
-
-      const direction = event.deltaY > 0 ? 1 : -1;
-      const nextIndex = Math.min(
-        Math.max(0, currentIndexRef.current + direction),
-        order.length - 1,
-      );
-      if (nextIndex === currentIndexRef.current) return;
-
-      const targetId = order[nextIndex];
-      const targetNode = targetId ? sectionRefs.current[targetId] : null;
-      if (!targetNode) return;
-
-      const targetOffset =
-        targetNode.getBoundingClientRect().top + window.scrollY;
-      isAnimatingRef.current = true;
-      animationRef.current?.stop();
-      animationRef.current = animate(window.scrollY, targetOffset, {
-        duration: 0.9,
-        ease: [0.16, 0.84, 0.44, 1],
-        onUpdate: (value) => {
-          window.scrollTo({ top: value, behavior: "auto" });
-        },
-        onComplete: () => {
-          currentIndexRef.current = nextIndex;
-          isAnimatingRef.current = false;
-        },
-        onStop: () => {
-          isAnimatingRef.current = false;
-        },
-      });
+      // Lenis handles smooth scrolling, so we might not need manual scroll jacking anymore.
+      // However, if "snap" effect is desired, we can keep it.
+      // For "Warmth & Breath", natural scroll is usually better than forced snap.
+      // Let's disable the snap for now to test Lenis fully.
+      return; 
     };
 
     window.addEventListener("wheel", handleWheel, { passive: false });
@@ -145,8 +115,9 @@ export default function LocaleHomePage() {
           ref={(node) => registerSection("hero", node)}
           className="w-full"
         >
-          <HeroCarousel />
+          <CinematicHero />
         </section>
+        
 
         <HomeIntroView onSectionMount={registerSection} />
 

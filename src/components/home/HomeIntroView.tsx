@@ -1,27 +1,17 @@
 "use client";
 
-import AnimatedTextReveal from "@/components/common/AnimatedTextReveal";
+import { ScrollReveal } from "@/components/common/ScrollReveal";
+import { motion } from "framer-motion";
+
 import { useOptionalThemeLocale } from "@/context/theme-locale-context";
 import { DEFAULT_BLUR_DATA_URL } from "@/lib/blur-placeholder";
 import Image from "next/image";
 import { useCallback, useEffect, useState } from "react";
-import {
-  HomeExperienceGallery,
-  HomeExperienceStacked,
-  HomeExperienceTilted,
-  type HomeExperienceHighlight,
-} from "./HomeExperienceShowcase";
+import { BentoGridShowcase } from "./BentoGridShowcase";
 
 type HomeIntroViewProps = {
   onSectionMount?: (id: string, node: HTMLElement | null) => void;
 };
-
-const SHOWCASE_SEQUENCE = ["stacked", "tilted", "perspective"] as const;
-const SHOWCASE_COMPONENTS = {
-  stacked: HomeExperienceStacked,
-  tilted: HomeExperienceTilted,
-  perspective: HomeExperienceGallery,
-} as const;
 
 export function HomeIntroView({
   onSectionMount,
@@ -52,20 +42,19 @@ export function HomeIntroView({
       <section
         id="intro"
         ref={(node) => registerSection("intro", node)}
-        className="flex min-h-screen w-full items-center justify-center bg-background px-6 py-12 text-secondary md:py-16"
+        className="flex min-h-[60vh] w-full items-center justify-center bg-background px-6 py-12 text-secondary md:py-20"
       >
-        <div className="mx-auto flex w-full max-w-4xl flex-col items-center gap-12 text-center">
+        <ScrollReveal className="mx-auto flex w-full max-w-4xl flex-col items-center gap-12 text-center">
           <IntroHeroContent
             primary={copy.primaryText}
             secondary={copy.secondaryText}
             theme={theme}
           />
-        </div>
+        </ScrollReveal>
       </section>
 
-      {copy.grid.map((item, index) => {
-        const variant = SHOWCASE_SEQUENCE[index % SHOWCASE_SEQUENCE.length];
-        const highlight: HomeExperienceHighlight = {
+      <BentoGridShowcase
+        highlights={copy.grid.map((item) => ({
           meta: item.meta,
           title: item.title,
           description: item.description,
@@ -73,27 +62,9 @@ export function HomeIntroView({
           imageAlt: item.image.alt,
           bullets: item.bullets,
           badge: item.badge,
-        };
-        const ShowcaseComponent = SHOWCASE_COMPONENTS[variant];
-
-        return (
-          <ShowcaseComponent
-            key={item.title}
-            id={`intro-experience-${index}`}
-            sectionRef={(node) =>
-              registerSection(`intro-experience-${index}`, node)
-            }
-            order={
-              isMobile
-                ? "image-first"
-                : index % 2 === 1
-                  ? "text-first"
-                  : "image-first"
-            }
-            highlight={highlight}
-          />
-        );
-      })}
+        }))}
+        onSectionMount={registerSection}
+      />
     </>
   );
 }
@@ -152,26 +123,26 @@ type IntroTextRevealProps = {
   animationDuration?: number;
 };
 
+
+
 function IntroTextReveal({
   text,
   className,
-  scrub = true,
-  scrollStart,
-  scrollEnd,
-  animationDuration,
+  animationDuration = 1,
 }: IntroTextRevealProps) {
   return (
-    <AnimatedTextReveal
-      animationDuration={animationDuration ?? 1.6}
-      ease="back.inOut(1)"
-      scrollStart={scrollStart ?? "center bottom+=50%"}
-      scrollEnd={scrollEnd ?? "bottom bottom-=40%"}
-      stagger={0.07}
-      scrub={scrub}
-      textClassName={className}
+    <motion.div
+      initial={{ opacity: 0, y: 30 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: false, margin: "-10%" }} // Changed once: true to false for re-triggering if needed, but ScrollReveal wrapper handles main scrub
+      transition={{ 
+        duration: animationDuration, 
+        ease: [0.22, 1, 0.36, 1] // Premium ease curve
+      }}
+      className={className}
     >
       {text}
-    </AnimatedTextReveal>
+    </motion.div>
   );
 }
 
@@ -236,7 +207,7 @@ const ENGLISH_COPY = {
       description:
         "Independent suite layouts safeguard precious family time. La Cloud motion beds and Hungarian down bedding ensure deep rest throughout your stay.",
       meta: "PRESTIGE · VVIP · VIP",
-      image: { src: "/img/main/prestige1.jpg", alt: "Private suite view" },
+      image: { src: "/img/room/prestige1.jpg", alt: "Private suite view" },
       bullets: [
         "Two-room layouts with dedicated lounge zone",
         "Hungarian goose bedding & La Cloud motion beds",
@@ -264,7 +235,7 @@ const ENGLISH_COPY = {
       description:
         "Pre- and postnatal therapies, lymphatic programs, and private treatment rooms offer a serene healing experience tailored to each mother.",
       meta: "Helia Signature Spa",
-      image: { src: "/img/spa/spa_1.jpg", alt: "Spa and therapy room" },
+      image: { src: "/img/spa/spa_1.png", alt: "Spa and therapy room" },
       bullets: [
         "Prenatal & postpartum body recovery blends",
         "Lymphatic drainage and posture balance work",

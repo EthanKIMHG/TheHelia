@@ -1,9 +1,9 @@
 "use client";
 
-import { useEffect, useState } from "react";
-import Image from "next/image";
-import { AnimatePresence, motion, PanInfo } from "framer-motion";
 import { DEFAULT_BLUR_DATA_URL } from "@/lib/blur-placeholder";
+import { AnimatePresence, motion, PanInfo } from "framer-motion";
+import Image from "next/image";
+import { useEffect, useState } from "react";
 
 type CarouselImage = {
   src: string;
@@ -50,7 +50,7 @@ export default function HeroCarousel() {
   }, [images.length, index]);
 
   return (
-    <div className="relative w-full overflow-hidden home-hero h-[45vh] sm:h-[50vh] md:h-[60vh] 2xl:h-screen 2xl:max-h-none 2xl:rounded-none bg-black/5 touch-pan-y">
+    <div className="relative w-full overflow-hidden home-hero h-[45vh] sm:h-[50vh] md:h-[60vh] 2xl:h-full  bg-black/5 touch-pan-y">
       <AnimatePresence initial={false} mode="wait">
         <motion.div
           key={images[index].src}

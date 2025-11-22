@@ -1,6 +1,7 @@
 import { notFound } from "next/navigation";
 
 import { ReservationPageContent } from "@/app/reservation/ReservationPageContent";
+import { PricePageContent } from "@/app/reservation/price/PricePageContent";
 import { RoomSuiteShowcase } from "@/app/room-suites/RoomSuiteShowcase";
 import { AboutPageShowcase } from "@/app/the-helia/about/AboutPageShowcase";
 import { LocationPageShowcase } from "@/app/the-helia/location/LocationPageShowcase";
@@ -36,6 +37,7 @@ const CUSTOM_CONTENT: Record<string, ComponentType<{ locale: Locale }>> = {
   "/room-suites/vvip": VvipSuiteContent,
   "/room-suites/vip": VipSuiteContent,
   "/reservation": ({ locale }) => <ReservationPageContent locale={locale} />,
+  "/reservation/price": PricePageContent,
 };
 
 

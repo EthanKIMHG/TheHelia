@@ -1,15 +1,16 @@
 "use client";
 
 import clsx from "clsx";
+import { motion } from "framer-motion";
+import { GlobeIcon, Languages, Menu, MoonIcon, SunIcon } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
-import { GlobeIcon, Languages, Menu, MoonIcon, SunIcon } from "lucide-react";
 import { useCallback, useEffect, useMemo, useState } from "react";
 
 import { useThemeLocale } from "@/context/theme-locale-context";
-import { DesktopPrimaryNav } from "./header/DesktopPrimaryNav";
 import { DesktopNavPanel } from "./header/DesktopNavPanel";
+import { DesktopPrimaryNav } from "./header/DesktopPrimaryNav";
 import { MobileNavDrawer } from "./header/MobileNavDrawer";
 import { getLocalizedNavItems } from "./header/nav-data";
 import type { Locale, NavItem, NavSubItem, PreviewData } from "./header/types";
@@ -127,7 +128,10 @@ export default function Header() {
   }, [navItems, normalizedPath]);
 
   return (
-    <header
+    <motion.header
+      initial={{ y: -20, opacity: 0 }}
+      animate={{ y: 0, opacity: 1 }}
+      transition={{ duration: 0.5, ease: "easeOut" }}
       className={clsx(
         "sticky top-0 z-50 w-full border-b border-border bg-background/90 text-lg backdrop-blur supports-[backdrop-filter]:bg-background/70",
         {
@@ -220,6 +224,6 @@ export default function Header() {
         onPreviewChange={setPreviewData}
         buildPreviewData={buildPreviewData}
       />
-    </header>
+    </motion.header>
   );
 }
