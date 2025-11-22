@@ -22,7 +22,7 @@ const CAROUSEL_IMAGES: CarouselImage[] = [
   { src: `${IMAGE_PATH}/homepage_6.jpg`, alt: "더헬리아 메인 이미지 6", quality: 100 }
 ];
 
-const TRANSITION = { duration: 0.6, ease: "easeInOut" as const };
+const TRANSITION = { duration: 1.5, ease: "easeInOut" as const };
 const AUTOPLAY_DELAY = 10000;
 
 export default function HeroCarousel() {
@@ -50,15 +50,15 @@ export default function HeroCarousel() {
   }, [images.length, index]);
 
   return (
-    <div className="relative w-full overflow-hidden home-hero h-[45vh] sm:h-[50vh] md:h-[60vh] 2xl:h-full  bg-black/5 touch-pan-y">
+    <div className="relative w-full h-full overflow-hidden bg-black/5 touch-pan-y">
       <AnimatePresence initial={false} mode="wait">
         <motion.div
           key={images[index].src}
-          initial={{ opacity: 0, scale: 1.02 }}
+          initial={{ opacity: 0, scale: 1.05 }}
           animate={{ opacity: 1, scale: 1 }}
-          exit={{ opacity: 0, scale: 0.98 }}
+          exit={{ opacity: 0 }}
           transition={TRANSITION}
-          className="relative h-full w-full"
+          className="absolute inset-0 h-full w-full"
           drag="x"
           dragConstraints={{ left: 0, right: 0 }}
           onDragEnd={handleDragEnd}
@@ -74,7 +74,7 @@ export default function HeroCarousel() {
             sizes="100vw"
             placeholder="blur"
             blurDataURL={DEFAULT_BLUR_DATA_URL}
-            className="h-full w-full "
+            className="h-full w-full object-cover"
           />
         </motion.div>
       </AnimatePresence>

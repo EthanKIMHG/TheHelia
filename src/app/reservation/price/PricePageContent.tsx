@@ -85,7 +85,7 @@ function MainPriceSection({ isKo }: { isKo: boolean }) {
       <section className="overflow-hidden rounded-3xl border border-border/40 bg-white/80 dark:bg-[#2A2928]/60 backdrop-blur-md shadow-sm">
         <div className="overflow-x-auto">
           <table className="w-full min-w-[1000px] text-sm md:text-base">
-            <thead className="bg-white dark:bg-[#333231] text-primary/90 dark:text-primary/90">
+            <thead className="bg-primary/10 dark:bg-[#333231] text-primary/90 dark:text-primary/90">
               <tr>
                 {headers.map((header, i) => (
                   <th key={i} className="px-6 py-4 font-serif font-semibold whitespace-nowrap text-center first:text-left">
@@ -109,6 +109,9 @@ function MainPriceSection({ isKo }: { isKo: boolean }) {
               ))}
             </tbody>
           </table>
+        </div>
+        <div className="mt-2 px-4 pb-4 text-right text-xs text-primary/60 md:hidden">
+          {isKo ? "* 좌우로 스크롤하여 확인하실 수 있습니다." : "* Scroll horizontally to view more."}
         </div>
       </section>
     </ScrollReveal>
@@ -250,6 +253,9 @@ function DetailRatesSection({ isKo }: { isKo: boolean }) {
                 </tbody>
               </table>
             </div>
+            <div className="mt-2 px-4 pb-4 text-right text-xs text-primary/60 md:hidden">
+              {isKo ? "* 좌우로 스크롤하여 확인하실 수 있습니다." : "* Scroll horizontally to view more."}
+            </div>
           </div>
         </section>
       </ScrollReveal>
@@ -281,6 +287,9 @@ function DetailRatesSection({ isKo }: { isKo: boolean }) {
                   ))}
                 </tbody>
               </table>
+            </div>
+            <div className="mt-2 px-4 pb-4 text-right text-xs text-primary/60 md:hidden">
+              {isKo ? "* 좌우로 스크롤하여 확인하실 수 있습니다." : "* Scroll horizontally to view more."}
             </div>
           </div>
         </section>
@@ -329,6 +338,9 @@ function RefundPolicySection({ isKo }: { isKo: boolean }) {
                 </tr>
               </tbody>
             </table>
+          </div>
+          <div className="mt-2 px-4 pb-4 text-right text-xs text-primary/60 md:hidden">
+            {isKo ? "* 좌우로 스크롤하여 확인하실 수 있습니다." : "* Scroll horizontally to view more."}
           </div>
         </div>
         <p className="mt-4 text-xs text-foreground/60 leading-relaxed">

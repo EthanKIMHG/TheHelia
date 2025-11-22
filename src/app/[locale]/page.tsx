@@ -115,7 +115,7 @@ export default function LocaleHomePage() {
           ref={(node) => registerSection("hero", node)}
           className="w-full"
         >
-          <CinematicHero />
+          <CinematicHero locale={locale} />
         </section>
         
 
