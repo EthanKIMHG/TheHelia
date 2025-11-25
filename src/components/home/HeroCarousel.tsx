@@ -79,7 +79,7 @@ export default function HeroCarousel() {
         </motion.div>
       </AnimatePresence>
 
-      <div className="absolute bottom-6 left-1/2 flex -translate-x-1/2 gap-2">
+      <div className="absolute bottom-6 left-1/2 flex -translate-x-1/2 gap-2 z-99">
         {images.map((image, dotIndex) => {
           const isActive = dotIndex === index;
           return (

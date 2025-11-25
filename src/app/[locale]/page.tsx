@@ -4,6 +4,7 @@ import type { Locale } from "@/components/header/types";
 import { CinematicHero } from "@/components/home/CinematicHero";
 import { HomeIntroView } from "@/components/home/HomeIntroView";
 import { HomeNavigationGallery } from "@/components/home/HomeNavigationGallery";
+import { HomePrograms } from "@/components/home/HomePrograms";
 import PartnerLogoMarquee from "@/components/home/PartnerLogoMarquee";
 import { useThemeLocale } from "@/context/theme-locale-context";
 import clsx from "clsx";
@@ -120,6 +121,11 @@ export default function LocaleHomePage() {
         
 
         <HomeIntroView onSectionMount={registerSection} />
+
+        <HomePrograms
+          locale={locale as Locale}
+          onSectionMount={(node) => registerSection("programs", node)}
+        />
 
         <HomeNavigationGallery
           locale={locale as Locale}
