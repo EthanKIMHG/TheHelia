@@ -3,15 +3,15 @@
 import { ScrollReveal } from "@/components/common/ScrollReveal";
 import type { Locale } from "@/components/header/types";
 import {
-    Baby,
-    CalendarCheck2,
-    ChefHat,
-    Flower2,
-    HeartHandshake,
-    MoonStar,
-    ShieldCheck,
-    Sparkles,
-    Stethoscope,
+  Baby,
+  CalendarCheck2,
+  ChefHat,
+  Flower2,
+  HeartHandshake,
+  MoonStar,
+  ShieldCheck,
+  Sparkles,
+  Stethoscope,
 } from "lucide-react";
 import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
@@ -166,9 +166,7 @@ function CareSection({ copy }: { copy: CareCopy }) {
           {copy.cards.map((card, index) => (
             <article
               key={card.title}
-              className={`flex h-full flex-col gap-4 rounded-2xl border border-border/30 bg-white/80 dark:bg-[#2A2928]/60 backdrop-blur-md p-6 shadow-sm transition-all duration-500 hover:-translate-y-1 hover:shadow-lg ${
-                index === 1 ? "md:translate-y-8" : ""
-              }`}
+              className={`flex h-full flex-col gap-4 rounded-2xl border border-border/30 bg-white/80 dark:bg-[#2A2928]/60 backdrop-blur-md p-6 shadow-sm transition-all duration-500 hover:-translate-y-1 hover:shadow-lg`}
             >
               <div className="flex items-center gap-3 text-foreground">
                 <div className="flex h-12 w-12 items-center justify-center rounded-full bg-primary/10 dark:bg-[#333231]">
