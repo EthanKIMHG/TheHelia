@@ -35,17 +35,18 @@
 }
 
 :root {
-  --background: #F9F8F4;
-  /* Warm White */
-  --foreground: #2C2C2C;
-  /* Deep Charcoal */
-  --primary: #807360;
-  /* Warm Beige-Taupe */
-  --secondary: #5D5D5D;
-  /* Medium Charcoal for secondary text */
-  --accent: #CFA898;
-  /* Soft Terracotta */
-  --border: #DEDEDE;
+  --background: #FDFBF9;
+  /* Creamy Warm White */
+  --foreground: #443735;
+  /* Dark Warm Brown (rgb 68, 55, 53) */
+  --primary: #8C6A5D;
+  /* Elegant Warm Rose-Brown */
+  --secondary: #70605D;
+  /* Medium Warm Brown */
+  --accent: #D4B8B1;
+  /* Soft Rose */
+  --border: #E6DCD9;
+  /* Warm Light Grey */
 }
 
 :root[data-theme="dark"] {
