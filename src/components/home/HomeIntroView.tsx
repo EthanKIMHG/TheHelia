@@ -99,7 +99,7 @@ function IntroHeroContent({ primary, secondary, theme }: IntroHeroContentProps) 
       <IntroTextReveal
         text={primary}
         scrub={false}
-        className="text-2xl md:text-5xl"
+        className="text-2xl md:text-5xl dark:text-white"
         animationDuration={1}
       />
       <IntroTextReveal

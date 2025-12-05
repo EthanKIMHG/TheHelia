@@ -1,8 +1,8 @@
 "use client";
 
-import { ScrollReveal } from "@/components/common/ScrollReveal";
 import { useOptionalThemeLocale } from "@/context/theme-locale-context";
 import { SpaBrandIntro } from "./SpaBrandIntro";
+import { SpaServiceBento } from "./SpaServiceBento";
 import { SpaServiceCarousel } from "./SpaServiceCarousel";
 
 export function HeliaSpaPageContent() {
@@ -12,44 +12,49 @@ export function HeliaSpaPageContent() {
   const copy = isKo ? KOREAN_COPY : ENGLISH_COPY;
 
   return (
-    <div className="w-full flex flex-col gap-24 pb-24">
-      {/* Brand Intro (Philosophy + THALAC) */}
+    <div className="w-full flex flex-col gap-12 pb-24">
+      {/* Brand Intro (Philosophy + THALAC Text + Images) */}
       <SpaBrandIntro copy={copy} />
 
-      {/* Head Spa Carousel */}
-      <SpaServiceCarousel
-        badge={copy.headSpa.badge}
-        title={copy.headSpa.title}
-        description={copy.headSpa.description}
-        images={copy.headSpa.images}
-        features={copy.headSpa.features}
-      />
+      <div className="flex flex-col gap-24 mt-12">
+        {/* Head Spa Carousel (Kept as requested/default) */}
+        <SpaServiceCarousel
+          badge={copy.headSpa.badge}
+          title={copy.headSpa.title}
+          description={copy.headSpa.description}
+          images={copy.headSpa.images}
+          features={copy.headSpa.features}
+        />
 
-      {/* Body Therapies Carousel */}
-      <SpaServiceCarousel
-        badge={copy.bodyCare.badge}
-        title={copy.bodyCare.title}
-        description={copy.bodyCare.description}
-        images={copy.bodyCare.images}
-        features={copy.bodyCare.features}
-      />
+        {/* Prenatal Body Therapy Bento */}
+        <SpaServiceBento
+          badge={copy.prenatal.badge}
+          title={copy.prenatal.title}
+          description={copy.prenatal.description}
+          images={copy.prenatal.images}
+          features={copy.prenatal.features}
+        />
 
-      {/* CTA */}
-      <ScrollReveal>
-        <div className="max-w-4xl mx-auto w-full px-4">
-          <div className="text-center bg-primary/5 rounded-[2.5rem] p-12 border border-primary/10">
-            <h3 className="text-2xl font-serif font-semibold text-foreground mb-4">
-              {copy.cta.title}
-            </h3>
-            <p className="text-secondary/80 mb-8 whitespace-pre-line">
-              {copy.cta.description}
-            </p>
-            <button className="inline-flex items-center justify-center px-10 py-4 rounded-full bg-primary text-white font-medium text-lg transition-all hover:bg-primary/90 hover:scale-105 active:scale-95 shadow-lg shadow-primary/20">
-              {copy.cta.button}
-            </button>
-          </div>
-        </div>
-      </ScrollReveal>
+        {/* Postpartum Body Therapy Bento */}
+        <SpaServiceBento
+          badge={copy.postpartum.badge}
+          title={copy.postpartum.title}
+          description={copy.postpartum.description}
+          images={copy.postpartum.images}
+          features={copy.postpartum.features}
+          reversed
+        />
+
+        {/* Breast Care Bento */}
+        <SpaServiceBento
+          badge={copy.breastCare.badge}
+          title={copy.breastCare.title}
+          description={copy.breastCare.description}
+          images={copy.breastCare.images}
+          features={copy.breastCare.features}
+        />
+      </div>
+
     </div>
   );
 }
@@ -85,9 +90,10 @@ const KOREAN_COPY = {
     description: "호르몬 변화로 예민해진 두피를 진정시키고, 깊은 이완을 통해 스트레스를 해소하는 더헬리아만의 시그니처 헤드스파입니다.",
     images: [
       { src: "/img/spa/headspa1.jpg", alt: "헤드스파 메인", caption: "편안한 샴푸대에서의 두피 케어" },
-      { src: "/img/spa/headspa2.jpg", alt: "헤드스파 케어", caption: "전문 테라피스트의 섬세한 터치" },
-      { src: "/img/spa/headspa3.jpg", alt: "헤드스파 릴랙싱", caption: "아로마와 함께하는 깊은 이완" },
-      { src: "/img/spa/headspa4.jpg", alt: "헤드스파 시설", caption: "프라이빗하고 아늑한 스파 룸" },
+      { src: "/img/spa/headspa2.jpg", alt: "헤드스파 메인2", caption: "편안한 샴푸대에서의 두피 케어" },
+      { src: "/img/spa/headspa3.jpg", alt: "헤드스파 케어", caption: "전문 테라피스트의 섬세한 터치" },
+      { src: "/img/spa/headspa4.jpg", alt: "헤드스파 릴랙싱", caption: "아로마와 함께하는 깊은 이완" },
+      { src: "/img/spa/headspa5.jpg", alt: "헤드스파 시설", caption: "프라이빗하고 아늑한 스파 룸" },
     ],
     features: [
       {
@@ -104,29 +110,51 @@ const KOREAN_COPY = {
       },
     ],
   },
-  bodyCare: {
-    badge: "BODY THERAPY",
-    title: "산전 & 산후 바디 테라피",
-    description: "임신 중의 부종 관리부터 출산 후의 체형 교정까지, 엄마의 몸을 가장 잘 아는 전문가의 손길로 건강한 아름다움을 되찾아드립니다.",
-    images: [
-      { src: "/img/spa/spa2.jpg", alt: "바디 테라피 룸", caption: "아늑하고 따뜻한 분위기의 테라피 룸" },
-      { src: "/img/spa/spa3.jpg", alt: "스파 시설", caption: "최신식 스파 설비와 편안한 베드" },
-      { src: "/img/spa/spa4.jpg", alt: "릴랙싱 존", caption: "휴식을 위한 프라이빗 공간" },
-      { src: "/img/spa/spa5.jpg", alt: "테라피 제품", caption: "엄선된 프리미엄 오일과 제품" },
-      { src: "/img/spa/spa6.jpg", alt: "스파 인테리어", caption: "마음의 안정을 주는 인테리어" },
-    ],
+  prenatal: {
+    badge: "PRENATAL",
+    title: "산전 바디 테라피",
+    description: "임신 중기부터 말기까지, 급격한 신체 변화로 인한 통증과 부종을 완화하고 엄마와 태아의 교감을 돕는 릴랙싱 케어입니다.",
+    images: ["/img/spa/pre1.jpg", "/img/spa/pre2.jpg", "/img/spa/pre3.jpg", "/img/spa/pre4.jpg", "/img/spa/pre5.jpg"],
     features: [
       {
-        title: "산전 마사지 (Prenatal)",
-        items: ["임신 중기~말기 부종 완화", "허리 및 골반 통증 집중 케어", "튼살 예방 및 피부 탄력 유지", "태교를 위한 심리적 안정"],
+        title: "순환 & 부종 관리",
+        items: ["임신성 부종 완화 및 혈액 순환 촉진", "다리 저림 및 경련 예방", "체내 노폐물 배출"],
       },
       {
-        title: "산후 마사지 (Postpartum)",
-        items: ["출산 후 골반 교정 및 통증 완화", "오로 배출 촉진 및 자궁 회복", "디톡스 슬리밍 & 바디 라인 회복", "산후 우울감 완화"],
+        title: "통증 집중 케어",
+        items: ["허리 및 골반 통증 완화", "어깨 및 목 긴장 해소", "튼살 예방 및 피부 탄력 유지"],
+      },
+    ],
+  },
+  postpartum: {
+    badge: "POSTPARTUM",
+    title: "산후 바디 테라피",
+    description: "출산 후 틀어진 골반과 체형을 바로잡고, 산후풍 예방과 오로 배출을 돕는 전문적인 회복 프로그램입니다.",
+    images: ["/img/spa/after1.jpg", "/img/spa/after2.jpg", "/img/spa/after3.jpg", "/img/spa/after4.jpg", "/img/spa/after5.jpg", "/img/spa/after6.jpg"],
+    features: [
+      {
+        title: "체형 교정 & 회복",
+        items: ["벌어진 골반 및 복직근 이개 회복", "산후 부종 및 체중 감량 지원", "바디 라인 리프팅"],
       },
       {
-        title: "스페셜 케어",
-        items: ["고주파 기기를 이용한 심부열 관리", "온열 돔을 이용한 독소 배출", "개인별 맞춤 아로마 블렌딩"],
+        title: "디톡스 & 밸런스",
+        items: ["오로 배출 촉진 및 자궁 회복", "산후 우울감 완화 및 호르몬 밸런스", "온열 돔을 이용한 심부열 독소 배출"],
+      },
+    ],
+  },
+  breastCare: {
+    badge: "BREAST CARE",
+    title: "가슴 마사지",
+    description: "모유 수유를 준비하는 산모님과 수유 중인 산모님을 위한 전문적인 가슴 관리 프로그램입니다. 유선 발달을 돕고 젖몸살을 예방합니다.",
+    images: ["/img/spa/breast1.jpg", "/img/spa/breast2.jpg", "/img/spa/breast3.jpg", "/img/spa/breast4.jpg", "/img/spa/breast5.jpg"],
+    features: [
+      {
+        title: "수유 준비 & 통증 완화",
+        items: ["유선 발달 촉진 및 유두 관리", "젖몸살 및 유방 울혈 예방", "수유 자세 교정 및 통증 완화"],
+      },
+      {
+        title: "단유 관리",
+        items: ["건강하고 아름다운 단유를 위한 체계적 관리", "가슴 처짐 예방 및 탄력 회복", "잔여 모유 배출 및 독소 제거"],
       },
     ],
   },
@@ -187,29 +215,51 @@ const ENGLISH_COPY = {
       },
     ],
   },
-  bodyCare: {
-    badge: "BODY THERAPY",
-    title: "Prenatal & Postpartum Body Therapy",
-    description: "From edema management during pregnancy to body correction after childbirth, we restore healthy beauty with the touch of experts who know the mother's body best.",
-    images: [
-      { src: "/img/spa/spa2.jpg", alt: "Body Therapy Room", caption: "Cozy and warm therapy room" },
-      { src: "/img/spa/spa3.jpg", alt: "Spa Facility", caption: "Latest spa equipment and comfortable beds" },
-      { src: "/img/spa/spa4.jpg", alt: "Relaxing Zone", caption: "Private space for rest" },
-      { src: "/img/spa/spa5.jpg", alt: "Therapy Products", caption: "Selected premium oils and products" },
-      { src: "/img/spa/spa6.jpg", alt: "Spa Interior", caption: "Interior that gives peace of mind" },
-    ],
+  prenatal: {
+    badge: "PRENATAL",
+    title: "Prenatal Body Therapy",
+    description: "Relaxing care that relieves pain and edema caused by rapid physical changes from mid to late pregnancy and helps communion between mother and fetus.",
+    images: ["/img/spa/pre1.jpg", "/img/spa/pre2.jpg", "/img/spa/pre3.jpg", "/img/spa/pre4.jpg", "/img/spa/pre5.jpg"],
     features: [
       {
-        title: "Prenatal Massage",
-        items: ["Edema relief for mid~late pregnancy", "Intensive care for back & pelvic pain", "Stretch mark prevention & elasticity", "Psychological stability for prenatal care"],
+        title: "Circulation & Edema Care",
+        items: ["Relief of gestational edema & promotion of blood circulation", "Prevention of leg numbness & cramps", "Elimination of body wastes"],
       },
       {
-        title: "Postpartum Massage",
-        items: ["Postpartum pelvic correction & pain relief", "Promotion of lochia discharge & uterine recovery", "Detox slimming & body line recovery", "Relief of postpartum depression"],
+        title: "Intensive Pain Care",
+        items: ["Relief of back & pelvic pain", "Relief of shoulder & neck tension", "Prevention of stretch marks & maintenance of elasticity"],
+      },
+    ],
+  },
+  postpartum: {
+    badge: "POSTPARTUM",
+    title: "Postpartum Body Therapy",
+    description: "A professional recovery program that corrects the pelvis and body shape distorted after childbirth, and helps prevent postpartum wind and discharge lochia.",
+    images: ["/img/spa/after1.jpg", "/img/spa/after2.jpg", "/img/spa/after3.jpg", "/img/spa/after4.jpg", "/img/spa/after5.jpg", "/img/spa/after6.jpg"],
+    features: [
+      {
+        title: "Body Correction & Recovery",
+        items: ["Recovery of widened pelvis & diastasis recti", "Support for postpartum edema & weight loss", "Body line lifting"],
       },
       {
-        title: "Special Care",
-        items: ["Deep heat management using high-frequency devices", "Toxin elimination using thermal dome", "Personalized aroma blending"],
+        title: "Detox & Balance",
+        items: ["Promotion of lochia discharge & uterine recovery", "Relief of postpartum depression & hormone balance", "Deep heat toxin elimination using thermal dome"],
+      },
+    ],
+  },
+  breastCare: {
+    badge: "BREAST CARE",
+    title: "Breast Care",
+    description: "Professional breast care program for mothers preparing for breastfeeding and breastfeeding mothers. Helps mammary gland development and prevents mastitis.",
+    images: ["/img/spa/breast1.jpg", "/img/spa/breast2.jpg", "/img/spa/breast3.jpg", "/img/spa/breast4.jpg", "/img/spa/breast5.jpg"],
+    features: [
+      {
+        title: "Breastfeeding Prep & Pain Relief",
+        items: ["Promotion of mammary gland development & nipple care", "Prevention of mastitis & breast engorgement", "Correction of breastfeeding posture & pain relief"],
+      },
+      {
+        title: "Weaning Care",
+        items: ["Systematic management for healthy and beautiful weaning", "Prevention of breast sagging & recovery of elasticity", "Discharge of residual breast milk & toxin removal"],
       },
     ],
   },
