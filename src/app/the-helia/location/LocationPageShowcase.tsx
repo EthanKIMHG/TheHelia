@@ -3,13 +3,13 @@
 import { ScrollReveal } from "@/components/common/ScrollReveal";
 import type { Locale } from "@/components/header/types";
 import {
-    CalendarCheck,
-    CalendarClock,
-    CarFrontIcon,
-    MapPinIcon,
-    PhoneCall,
-    TrainFrontIcon,
-    type LucideIcon,
+  CalendarCheck,
+  CalendarClock,
+  CarFrontIcon,
+  MapPinIcon,
+  PhoneCall,
+  TrainFrontIcon,
+  type LucideIcon,
 } from "lucide-react";
 
 
@@ -60,77 +60,77 @@ function LocationHeroSection({ locale }: { locale: Locale }) {
 
   return (
     <ScrollReveal>
-    <section className="overflow-hidden rounded-3xl border border-border/50 bg-gradient-to-br from-background via-background/95 to-background mt-12">
-      <div className="grid gap-10 p-8 lg:grid-cols-2 lg:p-12 items-center">
-        <div className="flex flex-col gap-6 justify-center">
-          <div className="space-y-3">
-            <p className="text-sm font-semibold uppercase tracking-[0.3em] text-primary font-playfair italic">
-              {content.badge}
-            </p>
-            <h2 className="text-3xl font-semibold leading-tight text-secondary md:text-4xl font-serif">
-              {content.title}
-            </h2>
-            <p className="text-lg leading-relaxed text-secondary/75 md:text-xl">
-              {content.subtitle}
-            </p>
-          </div>
-          
-          <div className="flex flex-col gap-4">
-            <div className="flex items-center gap-4 rounded-2xl border border-border/40 bg-white/80 dark:bg-[#2A2928]/60 backdrop-blur-sm p-5 shadow-sm w-full transition hover:shadow-md">
-              <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-primary/10 dark:bg-[#333231] text-primary">
-                <CalendarCheck className="h-6 w-6" />
-              </div>
-              
-              <div className="space-y-1 w-full">
-                <p className="text-sm font-semibold text-primary/80 font-serif">
-                  {locale === "ko" ? "방문일정 예약하기" : "Book a Visit Schedule"}
-                </p>
-                <div className="flex flex-wrap items-center justify-between gap-3">
-                  <p className="text-lg font-semibold text-secondary">
-                    {locale === "ko" ? "온라인 예약하기" : "Online Reservation"}
+      <section className="overflow-hidden rounded-3xl border border-border/50 bg-gradient-to-br from-background via-background/95 to-background mt-12">
+        <div className="grid gap-10 p-8 lg:grid-cols-2 lg:p-12 items-center">
+          <div className="flex flex-col gap-3 justify-center">
+            <div className="space-y-3">
+              <p className="text-sm font-semibold uppercase tracking-[0.3em] text-primary font-playfair italic">
+                {content.badge}
+              </p>
+              <h2 className="text-3xl font-semibold leading-tight text-secondary md:text-4xl font-serif">
+                {content.title}
+              </h2>
+              <p className="text-lg leading-relaxed text-secondary/75 md:text-xl">
+                {content.subtitle}
+              </p>
+            </div>
+
+            <div className="flex flex-col gap-4">
+              <div className="flex items-center gap-4 rounded-2xl border border-border/40 bg-white/80 dark:bg-[#2A2928]/60 backdrop-blur-sm p-5 shadow-sm w-full transition hover:shadow-md">
+                <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-primary/10 dark:bg-[#333231] text-primary">
+                  <CalendarCheck className="h-6 w-6" />
+                </div>
+
+                <div className="space-y-1 w-full">
+                  <p className="text-sm font-semibold text-primary/80 font-serif">
+                    {locale === "ko" ? "방문일정 예약하기" : "Book a Visit Schedule"}
                   </p>
-                  <a
-                    href={BOOKING_URL}
-                    target="_blank"
-                    rel="noreferrer"
-                    className="inline-flex items-center justify-center rounded-xl bg-[#00DE5A] px-5 py-2.5 text-sm font-bold text-white shadow-sm transition-transform hover:scale-105 hover:bg-[#00c450]"
-                  >
-                    {content.buttonLabel}
-                  </a>
+                  <div className="flex flex-wrap items-center justify-between gap-3">
+                    <p className="text-lg font-semibold text-secondary">
+                      {locale === "ko" ? "온라인 예약하기" : "Online Reservation"}
+                    </p>
+                    <a
+                      href={BOOKING_URL}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="inline-flex items-center justify-center rounded-xl bg-[#00DE5A] px-5 py-4 text-sm font-bold text-white shadow-sm transition-transform hover:scale-105 hover:bg-[#00c450]"
+                    >
+                      {content.buttonLabel}
+                    </a>
+                  </div>
                 </div>
               </div>
+              <p className="text-xs text-secondary/50 px-2">
+                {locale === "ko" ? "* 네이버 예약하기 페이지로 이동합니다." : "* Redirects to Naver Reservation page."}
+              </p>
             </div>
-            <p className="text-xs text-secondary/50 px-2">
-              {locale === "ko" ? "* 네이버 예약하기 페이지로 이동합니다." : "* Redirects to Naver Reservation page."}
-            </p>
+          </div>
+
+          <div className="grid gap-8">
+            {content.highlights.map((item) => (
+              <div
+                key={item.id}
+                className="flex items-center gap-5 rounded-2xl border border-border/40 bg-white/80 dark:bg-[#2A2928]/60 backdrop-blur-sm p-6 shadow-sm transition hover:bg-white/90 dark:hover:bg-[#2A2928]/80 hover:shadow-md"
+              >
+                <div className="flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-xl bg-primary/10 dark:bg-[#333231]">
+                  <item.Icon className="h-6 w-6 text-primary" />
+                </div>
+                <div className="space-y-1">
+                  <p className="text-sm font-semibold text-primary/80 font-serif">
+                    {item.label}
+                  </p>
+                  <p className="text-xl font-semibold text-secondary">
+                    {item.value}
+                  </p>
+                  <p className="text-sm text-secondary/65">
+                    {item.description}
+                  </p>
+                </div>
+              </div>
+            ))}
           </div>
         </div>
-
-        <div className="grid gap-4">
-          {content.highlights.map((item) => (
-            <div
-              key={item.id}
-              className="flex items-center gap-5 rounded-2xl border border-border/40 bg-white/80 dark:bg-[#2A2928]/60 backdrop-blur-sm p-6 shadow-sm transition hover:bg-white/90 dark:hover:bg-[#2A2928]/80 hover:shadow-md"
-            >
-              <div className="flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-xl bg-primary/10 dark:bg-[#333231]">
-                <item.Icon className="h-6 w-6 text-primary" />
-              </div>
-              <div className="space-y-1">
-                <p className="text-sm font-semibold text-primary/80 font-serif">
-                  {item.label}
-                </p>
-                <p className="text-xl font-semibold text-secondary">
-                  {item.value}
-                </p>
-                <p className="text-sm text-secondary/65">
-                  {item.description}
-                </p>
-              </div>
-            </div>
-          ))}
-        </div>
-      </div>
-    </section>
+      </section>
     </ScrollReveal>
   );
 }
@@ -157,18 +157,16 @@ function LocationMapSection() {
 
 function LocationInfoSection({ locale }: { locale: Locale }) {
   const content = getHeroContent(locale);
-  
+
   return (
     <ScrollReveal>
       <section className="grid gap-6 md:grid-cols-3">
         {content.cards.map((card, index) => (
           <article
             key={card.id}
-            className={`flex flex-col gap-4 rounded-3xl border border-border/40 bg-white/80 dark:bg-[#2A2928]/60 backdrop-blur-md p-8 shadow-sm transition hover:shadow-lg hover:-translate-y-1 ${
-              index === 0 ? "md:col-span-3 md:flex-row md:items-center" : ""
-            }`}
+            className={`flex flex-col gap-4 rounded-3xl border border-border/40 bg-white/80 dark:bg-[#2A2928]/60 backdrop-blur-md p-8 shadow-sm transition hover:shadow-lg hover:-translate-y-1`}
           >
-            <div className={`flex items-center gap-4 text-secondary ${index === 0 ? "md:w-1/3" : ""}`}>
+            <div className={`flex items-center gap-4 text-secondary`}>
               <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-primary/10 dark:bg-[#333231]">
                 <card.Icon className="h-7 w-7 text-primary" />
               </div>
@@ -203,7 +201,7 @@ function getHeroContent(locale: Locale): LocationHeroContent {
   const isKo = locale === "ko";
 
   const highlights: HeroHighlight[] = [
-    
+
     {
       id: "contact",
       Icon: PhoneCall,
@@ -222,7 +220,7 @@ function getHeroContent(locale: Locale): LocationHeroContent {
         ? "주말·공휴일은 사전 예약 후 방문해 주세요."
         : "Weekends & holidays by reservation only.",
     },
-    
+
   ];
 
   const cards: HeroCard[] = [
@@ -244,7 +242,7 @@ function getHeroContent(locale: Locale): LocationHeroContent {
       value: isKo
         ? "홈플러스 서수원점에서 도보 5분 거리"
         : "5-minute walk from HomePlus West Suwon Branch"
-        ,
+      ,
       description: isKo
         ? "버스 13-1, 64-2, 200번 이용 시 ‘금곡동 주민센터’ 정류장에서 하차 후 도보 5분. (2028년 신분당선 개통 예정)"
         : "Buses 13-1, 64-2, 200 → alight at 'Geumgok-dong Community Center' and walk 5 minutes.",

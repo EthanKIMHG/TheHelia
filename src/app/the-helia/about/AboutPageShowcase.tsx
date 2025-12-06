@@ -12,6 +12,7 @@ import {
   ShieldCheck,
   Sparkles,
   Stethoscope,
+  Play,
 } from "lucide-react";
 import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
@@ -27,6 +28,7 @@ export function AboutPageShowcase({ locale }: AboutPageShowcaseProps) {
     <div className="space-y-32 pb-20">
       <PhilosophySection copy={copy.philosophy} />
       <VideoSection copy={copy.video} />
+      <VirtualTourSection copy={copy.virtualTour} />
       <SpacesSection copy={copy.spaces} />
       <CareSection copy={copy.care} />
       <DailyFlowSection copy={copy.dailyFlow} />
@@ -39,41 +41,39 @@ type PhilosophyCopy = ReturnType<typeof getAboutCopy>["philosophy"];
 function PhilosophySection({ copy }: { copy: PhilosophyCopy }) {
   return (
     <ScrollReveal>
-    <section className="overflow-hidden rounded-3xl border border-border/50 bg-gradient-to-br from-primary-5 via-primary/5 to-background/95">
-      <div className="space-y-8 p-8 md:p-12">
-        <header className="space-y-3">
-          <p className="text-sm font-semibold uppercase tracking-[0.3em] text-primary font-playfair italic">
-            {copy.badge}
-          </p>
-          <h2 className="text-2xl font-semibold text-foreground md:text-3xl font-serif">
-            {copy.title}
-          </h2>
-          <p className="text-base leading-relaxed text-foreground/70 md:text-lg">
-            {copy.subtitle}
-          </p>
-        </header>
-        <div className="grid gap-4 md:grid-cols-3">
-          {copy.pillars.map((pillar, index) => (
-            <article
-              key={pillar.title}
-              className={`flex h-full flex-col justify-between rounded-2xl border border-border/40 bg-white/80 dark:bg-[#2A2928]/60 backdrop-blur-md p-6 shadow-sm transition-all duration-300 hover:shadow-md ${
-                index === 0 ? "md:col-span-3 md:flex-row md:items-center md:gap-8" : ""
-              }`}
-            >
-              <div className={`flex items-center gap-3 text-foreground ${index === 0 ? "md:w-1/3" : ""}`}>
-                <div className="flex h-12 w-12 items-center justify-center rounded-full bg-primary/10 dark:bg-[#333231]">
-                  <pillar.icon className="h-6 w-6 text-primary" />
+      <section className="overflow-hidden rounded-3xl border border-border/50 bg-gradient-to-br from-primary-5 via-primary/5 to-background/95">
+        <div className="space-y-8 p-8 md:p-12">
+          <header className="space-y-3">
+            <p className="text-sm font-semibold uppercase tracking-[0.3em] text-primary font-playfair italic">
+              {copy.badge}
+            </p>
+            <h2 className="text-2xl font-semibold text-foreground md:text-3xl font-serif">
+              {copy.title}
+            </h2>
+            <p className="text-base leading-relaxed text-foreground/70 md:text-lg">
+              {copy.subtitle}
+            </p>
+          </header>
+          <div className="grid gap-4 md:grid-cols-3">
+            {copy.pillars.map((pillar, index) => (
+              <article
+                key={pillar.title}
+                className={`flex h-full flex-col justify-between rounded-2xl border border-border/40 bg-white/80 dark:bg-[#2A2928]/60 backdrop-blur-md p-6 shadow-sm transition-all duration-300 hover:shadow-md `}
+              >
+                <div className={`flex items-center gap-3 text-foreground `}>
+                  <div className="flex h-12 w-12 items-center justify-center rounded-full bg-primary/10 dark:bg-[#333231]">
+                    <pillar.icon className="h-6 w-6 text-primary" />
+                  </div>
+                  <h3 className="text-lg font-semibold font-serif">{pillar.title}</h3>
                 </div>
-                <h3 className="text-lg font-semibold font-serif">{pillar.title}</h3>
-              </div>
-              <p className={`mt-4 text-sm leading-relaxed text-foreground/70 ${index === 0 ? "md:mt-0 md:w-2/3 md:text-base" : ""}`}>
-                {pillar.body}
-              </p>
-            </article>
-          ))}
+                <p className={`mt-4 text-sm leading-relaxed text-foreground/70`}>
+                  {pillar.body}
+                </p>
+              </article>
+            ))}
+          </div>
         </div>
-      </div>
-    </section>
+      </section>
     </ScrollReveal>
   );
 }
@@ -83,63 +83,63 @@ type SpacesCopy = ReturnType<typeof getAboutCopy>["spaces"];
 function SpacesSection({ copy }: { copy: SpacesCopy }) {
   return (
     <ScrollReveal>
-    <section className="grid gap-8 md:grid-cols-[1.1fr_0.9fr]">
-      <div className="space-y-6 rounded-3xl border border-border/30 bg-background/95 p-8 shadow-sm">
-        <header className="space-y-3">
-          <p className="text-sm font-semibold uppercase tracking-[0.25em] text-primary font-playfair italic">
-            {copy.badge}
-          </p>
-          <h2 className="text-2xl font-semibold text-foreground md:text-3xl font-serif">
-            {copy.title}
-          </h2>
-          <p className="text-base leading-relaxed text-foreground/70 md:text-lg">
-            {copy.subtitle}
-          </p>
-        </header>
-        <div className="grid gap-4">
-          {copy.highlights.map((highlight) => (
-            <div
-              key={highlight.title}
-              className="group flex items-start gap-4 rounded-2xl border border-border/30 bg-white/80 dark:bg-[#2A2928]/60 backdrop-blur-sm p-5 shadow-sm transition-all hover:bg-white/90 dark:hover:bg-[#2A2928]/80 hover:shadow-md"
-            >
-              <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-primary/10 dark:bg-[#333231] transition-colors group-hover:bg-primary/20 dark:group-hover:bg-[#333231]/80">
-                <highlight.icon className="h-6 w-6 text-primary" />
+      <section className="grid gap-8 md:grid-cols-[1.1fr_0.9fr]">
+        <div className="space-y-6 rounded-3xl border border-border/30 bg-background/95 p-8 shadow-sm">
+          <header className="space-y-3">
+            <p className="text-sm font-semibold uppercase tracking-[0.25em] text-primary font-playfair italic">
+              {copy.badge}
+            </p>
+            <h2 className="text-2xl font-semibold text-foreground md:text-3xl font-serif">
+              {copy.title}
+            </h2>
+            <p className="text-base leading-relaxed text-foreground/70 md:text-lg">
+              {copy.subtitle}
+            </p>
+          </header>
+          <div className="grid gap-4">
+            {copy.highlights.map((highlight) => (
+              <div
+                key={highlight.title}
+                className="group flex items-start gap-4 rounded-2xl border border-border/30 bg-white/80 dark:bg-[#2A2928]/60 backdrop-blur-sm p-5 shadow-sm transition-all hover:bg-white/90 dark:hover:bg-[#2A2928]/80 hover:shadow-md"
+              >
+                <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-primary/10 dark:bg-[#333231] transition-colors group-hover:bg-primary/20 dark:group-hover:bg-[#333231]/80">
+                  <highlight.icon className="h-6 w-6 text-primary" />
+                </div>
+                <div className="space-y-2">
+                  <p className="text-lg font-semibold text-foreground font-serif">
+                    {highlight.title}
+                  </p>
+                  <p className="text-sm leading-relaxed text-foreground/70">
+                    {highlight.body}
+                  </p>
+                </div>
               </div>
-              <div className="space-y-2">
-                <p className="text-lg font-semibold text-foreground font-serif">
-                  {highlight.title}
-                </p>
-                <p className="text-sm leading-relaxed text-foreground/70">
-                  {highlight.body}
-                </p>
+            ))}
+          </div>
+        </div>
+
+        <div className="grid gap-6">
+          {copy.gallery.map((item) => (
+            <div
+              key={item.alt}
+              className="group relative h-64 overflow-hidden rounded-3xl border border-border/30 shadow-md md:h-full"
+            >
+              <Image
+                src={item.src}
+                alt={item.alt}
+                fill
+                className="object-cover transition-transform duration-500 group-hover:scale-105"
+                sizes="(min-width: 768px) 50vw, 100vw"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-black/10 to-black/0" />
+              <div className="absolute bottom-0 left-0 right-0 p-6 text-white">
+                <p className="text-lg font-semibold">{item.title}</p>
+                <p className="mt-1 text-sm text-white/80">{item.body}</p>
               </div>
             </div>
           ))}
         </div>
-      </div>
-
-      <div className="grid gap-6">
-        {copy.gallery.map((item) => (
-          <div
-            key={item.alt}
-            className="group relative h-64 overflow-hidden rounded-3xl border border-border/30 shadow-md md:h-full"
-          >
-            <Image
-              src={item.src}
-              alt={item.alt}
-              fill
-              className="object-cover transition-transform duration-500 group-hover:scale-105"
-              sizes="(min-width: 768px) 50vw, 100vw"
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-black/10 to-black/0" />
-            <div className="absolute bottom-0 left-0 right-0 p-6 text-white">
-              <p className="text-lg font-semibold">{item.title}</p>
-              <p className="mt-1 text-sm text-white/80">{item.body}</p>
-            </div>
-          </div>
-        ))}
-      </div>
-    </section>
+      </section>
     </ScrollReveal>
   );
 }
@@ -149,47 +149,47 @@ type CareCopy = ReturnType<typeof getAboutCopy>["care"];
 function CareSection({ copy }: { copy: CareCopy }) {
   return (
     <ScrollReveal>
-    <section className="overflow-hidden rounded-3xl border border-border/30 bg-gradient-to-br from-primary-5 via-primary/5 to-background/95 shadow">
-      <div className="space-y-8 p-8 md:p-12">
-        <header className="space-y-3">
-          <p className="text-sm font-semibold uppercase tracking-[0.3em] text-primary font-playfair italic">
-            {copy.badge}
-          </p>
-          <h2 className="text-2xl font-semibold text-foreground md:text-3xl font-serif">
-            {copy.title}
-          </h2>
-          <p className="text-base leading-relaxed text-foreground/70 md:text-lg">
-            {copy.subtitle}
-          </p>
-        </header>
-        <div className="grid gap-6 md:grid-cols-3">
-          {copy.cards.map((card, index) => (
-            <article
-              key={card.title}
-              className={`flex h-full flex-col gap-4 rounded-2xl border border-border/30 bg-white/80 dark:bg-[#2A2928]/60 backdrop-blur-md p-6 shadow-sm transition-all duration-500 hover:-translate-y-1 hover:shadow-lg`}
-            >
-              <div className="flex items-center gap-3 text-foreground">
-                <div className="flex h-12 w-12 items-center justify-center rounded-full bg-primary/10 dark:bg-[#333231]">
-                  <card.icon className="h-6 w-6 text-primary" />
+      <section className="overflow-hidden rounded-3xl border border-border/30 bg-gradient-to-br from-primary-5 via-primary/5 to-background/95 shadow">
+        <div className="space-y-8 p-8 md:p-12">
+          <header className="space-y-3">
+            <p className="text-sm font-semibold uppercase tracking-[0.3em] text-primary font-playfair italic">
+              {copy.badge}
+            </p>
+            <h2 className="text-2xl font-semibold text-foreground md:text-3xl font-serif">
+              {copy.title}
+            </h2>
+            <p className="text-base leading-relaxed text-foreground/70 md:text-lg">
+              {copy.subtitle}
+            </p>
+          </header>
+          <div className="grid gap-6 md:grid-cols-3">
+            {copy.cards.map((card, index) => (
+              <article
+                key={card.title}
+                className={`flex h-full flex-col gap-4 rounded-2xl border border-border/30 bg-white/80 dark:bg-[#2A2928]/60 backdrop-blur-md p-6 shadow-sm transition-all duration-500 hover:-translate-y-1 hover:shadow-lg`}
+              >
+                <div className="flex items-center gap-3 text-foreground">
+                  <div className="flex h-12 w-12 items-center justify-center rounded-full bg-primary/10 dark:bg-[#333231]">
+                    <card.icon className="h-6 w-6 text-primary" />
+                  </div>
+                  <h3 className="text-lg font-semibold font-serif">{card.title}</h3>
                 </div>
-                <h3 className="text-lg font-semibold font-serif">{card.title}</h3>
-              </div>
-              <p className="text-sm leading-relaxed text-foreground/70">
-                {card.body}
-              </p>
-              <ul className="mt-auto space-y-2 text-sm text-foreground/70">
-                {card.points.map((point) => (
-                  <li key={point} className="flex items-center gap-2">
-                    <span className="h-1.5 w-1.5 rounded-full bg-primary" />
-                    <span>{point}</span>
-                  </li>
-                ))}
-              </ul>
-            </article>
-          ))}
+                <p className="text-sm leading-relaxed text-foreground/70">
+                  {card.body}
+                </p>
+                <ul className="mt-auto space-y-2 text-sm text-foreground/70">
+                  {card.points.map((point) => (
+                    <li key={point} className="flex items-center gap-2">
+                      <span className="h-1.5 w-1.5 rounded-full bg-primary" />
+                      <span>{point}</span>
+                    </li>
+                  ))}
+                </ul>
+              </article>
+            ))}
+          </div>
         </div>
-      </div>
-    </section>
+      </section>
     </ScrollReveal>
   );
 }
@@ -199,79 +199,139 @@ type DailyFlowCopy = ReturnType<typeof getAboutCopy>["dailyFlow"];
 function DailyFlowSection({ copy }: { copy: DailyFlowCopy }) {
   return (
     <ScrollReveal>
-    <section className="rounded-3xl border border-border/30 bg-white/80 dark:bg-[#2A2928]/60 backdrop-blur-md p-8 shadow-sm md:p-12">
-      <header className="space-y-3 text-center mb-12">
-        <p className="text-sm font-semibold uppercase tracking-[0.3em] text-primary font-playfair italic">
-          {copy.badge}
-        </p>
-        <h2 className="text-3xl font-semibold text-foreground md:text-4xl font-serif">
-          {copy.title}
-        </h2>
-        <p className="text-base leading-relaxed text-foreground/70 md:text-lg">
-          {copy.subtitle}
-        </p>
-      </header>
-      <div className="relative mt-8">
-        {/* Connecting line for desktop */}
-        <div className="absolute top-12 left-0 w-full h-0.5 bg-primary/20 hidden md:block" />
-        
-        <div className="grid gap-8 md:grid-cols-3 relative z-10">
-          {copy.timeline.map((item, index) => (
-            <div
-              key={item.title}
-              className="group relative flex flex-col items-center text-center"
-            >
-              <div className="flex h-24 w-24 items-center justify-center rounded-full bg-background border-4 border-primary/10 dark:border-[#333231] shadow-sm mb-6 transition-transform group-hover:scale-110 group-hover:border-primary/30">
-                <CalendarCheck2 className="h-8 w-8 text-primary" />
+      <section className="rounded-3xl border border-border/30 bg-white/80 dark:bg-[#2A2928]/60 backdrop-blur-md p-8 shadow-sm md:p-12">
+        <header className="space-y-3 text-center mb-12">
+          <p className="text-sm font-semibold uppercase tracking-[0.3em] text-primary font-playfair italic">
+            {copy.badge}
+          </p>
+          <h2 className="text-3xl font-semibold text-foreground md:text-4xl font-serif">
+            {copy.title}
+          </h2>
+          <p className="text-base leading-relaxed text-foreground/70 md:text-lg">
+            {copy.subtitle}
+          </p>
+        </header>
+        <div className="relative mt-8">
+          {/* Connecting line for desktop */}
+          <div className="absolute top-12 left-0 w-full h-0.5 bg-primary/20 hidden md:block" />
+
+          <div className="grid gap-8 md:grid-cols-3 relative z-10">
+            {copy.timeline.map((item, index) => (
+              <div
+                key={item.title}
+                className="group relative flex flex-col items-center text-center"
+              >
+                <div className="flex h-24 w-24 items-center justify-center rounded-full bg-background border-4 border-primary/10 dark:border-[#333231] shadow-sm mb-6 transition-transform group-hover:scale-110 group-hover:border-primary/30">
+                  <CalendarCheck2 className="h-8 w-8 text-primary" />
+                </div>
+
+                <div className="rounded-2xl border border-border/30 bg-white/80 dark:bg-[#2A2928]/60 backdrop-blur-sm p-6 shadow-sm w-full transition-all group-hover:shadow-md group-hover:-translate-y-1">
+                  <p className="text-sm font-semibold uppercase tracking-[0.2em] text-primary/80 font-serif mb-2">
+                    {item.title}
+                  </p>
+                  <p className="text-lg font-semibold text-foreground mb-3 font-serif">
+                    {item.headline}
+                  </p>
+                  <ul className="space-y-2 text-sm text-foreground/70 text-left">
+                    {item.points.map((point) => (
+                      <li key={point} className="flex items-start gap-2">
+                        <span className="mt-1.5 h-1.5 w-1.5 flex-shrink-0 rounded-full bg-primary" />
+                        <span>{point}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
               </div>
-              
-              <div className="rounded-2xl border border-border/30 bg-white/80 dark:bg-[#2A2928]/60 backdrop-blur-sm p-6 shadow-sm w-full transition-all group-hover:shadow-md group-hover:-translate-y-1">
-                <p className="text-sm font-semibold uppercase tracking-[0.2em] text-primary/80 font-serif mb-2">
-                  {item.title}
-                </p>
-                <p className="text-lg font-semibold text-foreground mb-3 font-serif">
-                  {item.headline}
-                </p>
-                <ul className="space-y-2 text-sm text-foreground/70 text-left">
-                  {item.points.map((point) => (
-                    <li key={point} className="flex items-start gap-2">
-                      <span className="mt-1.5 h-1.5 w-1.5 flex-shrink-0 rounded-full bg-primary" />
-                      <span>{point}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
-      </div>
-    </section>
+      </section>
     </ScrollReveal>
   );
 }
 
+
+
+type VirtualTourCopy = ReturnType<typeof getAboutCopy>["virtualTour"];
+
+function VirtualTourSection({ copy }: { copy: VirtualTourCopy }) {
+  const [isLoaded, setIsLoaded] = useState(false);
+
+  return (
+    <ScrollReveal>
+      <section className="overflow-hidden rounded-3xl border border-border/30 bg-background/95 shadow-lg">
+        <div className="p-8 md:p-12 pb-6 md:pb-8 text-center space-y-4">
+          <p className="text-sm font-semibold uppercase tracking-[0.3em] text-primary font-playfair italic">
+            {copy.badge}
+          </p>
+          <h2 className="text-3xl font-semibold text-foreground md:text-4xl font-serif">
+            {copy.title}
+          </h2>
+          <p className="text-base leading-relaxed text-foreground/70 md:text-lg max-w-3xl mx-auto">
+            {copy.subtitle}
+          </p>
+        </div>
+
+        <div className="relative w-full h-[500px] md:h-[700px] bg-black group">
+          {!isLoaded ? (
+            <div className="absolute inset-0 flex flex-col items-center justify-center p-6 text-center">
+              <div className="absolute inset-0 bg-[url('/img/infant/infant1.jpg')] bg-cover bg-center opacity-30" />
+              <div className="absolute inset-0 bg-black/40 backdrop-blur-[2px]" />
+
+              <div className="relative z-10 flex flex-col items-center gap-6">
+                <button
+                  onClick={() => setIsLoaded(true)}
+                  className="group/btn flex h-20 w-20 items-center justify-center rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-white shadow-xl transition-all duration-300 hover:scale-110 hover:bg-white hover:text-black"
+                  aria-label="Start Virtual Tour"
+                >
+                  <Play className="h-8 w-8 ml-1 fill-current" />
+                </button>
+                <div className="space-y-1">
+                  <p className="text-lg font-medium text-white">
+                    {copy.startLabel}
+                  </p>
+                  <p className="text-sm text-white/60">
+                    Matterport 3D Tour
+                  </p>
+                </div>
+              </div>
+            </div>
+          ) : (
+            <iframe
+              src={copy.url}
+              className="w-full h-full animate-in fade-in duration-700"
+              allowFullScreen
+              loading="lazy"
+              allow="xr-spatial-tracking"
+            />
+          )}
+        </div>
+      </section>
+    </ScrollReveal>
+  );
+}
 
 type VideoCopy = ReturnType<typeof getAboutCopy>["video"];
 
 function VideoSection({ copy }: { copy: VideoCopy }) {
   return (
     <ScrollReveal>
-    <section className="overflow-hidden rounded-3xl shadow-2xl">
-      <div className="relative aspect-video w-full bg-black">
-        <VideoPlayer videoId={copy.youtubeId} />
-        <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-8 md:p-12 text-white">
-          <p className="text-sm font-semibold uppercase tracking-[0.3em] text-primary-foreground/80 font-playfair italic mb-2">
-            {copy.badge}
-          </p>
-          <h2 className="text-3xl font-semibold md:text-5xl font-serif mb-2">
-            {copy.title}
-          </h2>
-          <p className="text-base text-white/80 md:text-lg max-w-2xl">
-            {copy.subtitle}
-          </p>
+      <section className="overflow-hidden rounded-3xl shadow-2xl">
+        <div className="relative aspect-video w-full bg-black">
+          <VideoPlayer videoId={copy.youtubeId} />
+          <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-8 md:p-12 text-white">
+            <p className="text-sm font-semibold uppercase tracking-[0.3em] text-primary-foreground/80 font-playfair italic mb-2">
+              {copy.badge}
+            </p>
+            <h2 className="text-3xl font-semibold md:text-5xl font-serif mb-2">
+              {copy.title}
+            </h2>
+            <p className="text-base text-white/80 md:text-lg max-w-2xl">
+              {copy.subtitle}
+            </p>
+          </div>
         </div>
-      </div>
-    </section>
+      </section>
     </ScrollReveal>
   );
 }
@@ -429,10 +489,10 @@ function getAboutCopy(locale: Locale) {
           points: isKo
             ? ["24시간 간호 스테이션", "모유 수유, 회복 컨설팅", "필요 시 전문의 연계"]
             : [
-                "24-hour nursing station",
-                "Breastfeeding & recovery consultations",
-                "Direct link to specialists when needed",
-              ],
+              "24-hour nursing station",
+              "Breastfeeding & recovery consultations",
+              "Direct link to specialists when needed",
+            ],
         },
         {
           icon: Flower2,
@@ -443,10 +503,10 @@ function getAboutCopy(locale: Locale) {
           points: isKo
             ? ["산모 전용 릴리프 테라피", "바디 밸런스 스트레칭", "프리미엄 스파 설비"]
             : [
-                "Mother-focused relief therapies",
-                "Body balance stretching sessions",
-                "Premium spa facilities",
-              ],
+              "Mother-focused relief therapies",
+              "Body balance stretching sessions",
+              "Premium spa facilities",
+            ],
         },
         {
           icon: ChefHat,
@@ -457,10 +517,10 @@ function getAboutCopy(locale: Locale) {
           points: isKo
             ? ["계절 식재료 기반 맞춤 식단", "파트너 동반 티타임", "육아 클래스 & 홈케어 팁"]
             : [
-                "Seasonal, personalised menus",
-                "Partner-inclusive tea gatherings",
-                "Parenting classes & at-home tips",
-              ],
+              "Seasonal, personalised menus",
+              "Partner-inclusive tea gatherings",
+              "Parenting classes & at-home tips",
+            ],
         },
       ],
     },
@@ -476,45 +536,45 @@ function getAboutCopy(locale: Locale) {
           headline: isKo ? "사랑스러운 시작" : "A Gentle Beginning",
           points: isKo
             ? [
-                "맞춤 웨이크업 & 티타임",
-                "건강한 모닝 케어와 바이탈 체크",
-                "전담 간호사와 회복 컨설팅",
-              ]
+              "맞춤 웨이크업 & 티타임",
+              "건강한 모닝 케어와 바이탈 체크",
+              "전담 간호사와 회복 컨설팅",
+            ]
             : [
-                "Personalised wake-up & morning tea",
-                "Vital checks with gentle morning care",
-                "Recovery consultation with assigned nurse",
-              ],
+              "Personalised wake-up & morning tea",
+              "Vital checks with gentle morning care",
+              "Recovery consultation with assigned nurse",
+            ],
         },
         {
           title: isKo ? "낮" : "Afternoon",
           headline: isKo ? "돌봄과 힐링의 시간" : "Moments of Care & Healing",
           points: isKo
             ? [
-                "테라피 & 스파 프로그램",
-                "영양 식단과 프라이빗 티라운지",
-                "파트너와 함께하는 라운지 타임",
-              ]
+              "테라피 & 스파 프로그램",
+              "영양 식단과 프라이빗 티라운지",
+              "파트너와 함께하는 라운지 타임",
+            ]
             : [
-                "Therapy and spa programmes",
-                "Balanced meals & private tea lounge",
-                "Shared lounge time with partners",
-              ],
+              "Therapy and spa programmes",
+              "Balanced meals & private tea lounge",
+              "Shared lounge time with partners",
+            ],
         },
         {
           title: isKo ? "저녁" : "Evening",
           headline: isKo ? "포근한 마무리" : "A Warm Closing",
           points: isKo
             ? [
-                "베이비 나잇 케어 & 수유 지원",
-                "아로마 티와 취침 준비",
-                "다음 날 컨디션 점검 및 가정 돌봄 가이드",
-              ]
+              "베이비 나잇 케어 & 수유 지원",
+              "아로마 티와 취침 준비",
+              "다음 날 컨디션 점검 및 가정 돌봄 가이드",
+            ]
             : [
-                "Baby night care & feeding support",
-                "Aroma tea and bedtime preparation",
-                "Next-day check-in with at-home tips",
-              ],
+              "Baby night care & feeding support",
+              "Aroma tea and bedtime preparation",
+              "Next-day check-in with at-home tips",
+            ],
         },
       ],
     },
@@ -535,6 +595,15 @@ function getAboutCopy(locale: Locale) {
         ? "3D 시선을 따라 더헬리아의 공간과 동선을 미리 경험해 보세요."
         : "Explore The Helia’s suites and flow through a 3D walkthrough.",
       youtubeId: "LYfst6ZKr1E",
+    },
+    virtualTour: {
+      badge: isKo ? "가상 투어" : "Virtual Tour",
+      title: isKo ? "더 헬리아 가상 투어" : "The Helia Virtual Tour",
+      subtitle: isKo
+        ? "실제 산후조리원 공간을 생생하게 경험해보세요. 마우스나 터치를 사용하여 자유롭게 이동할 수 있습니다."
+        : "Experience the postnatal care center vividly through our virtual tour. Move around freely using your mouse or touch.",
+      url: "https://my.matterport.com/show/?m=R4vpe9ettqP",
+      startLabel: isKo ? "3D 투어 시작하기" : "Start Virtual Tour",
     },
   };
 }
