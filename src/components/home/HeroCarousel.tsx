@@ -25,7 +25,7 @@ const CAROUSEL_IMAGES: CarouselImage[] = [
 const TRANSITION = { duration: 1.5, ease: "easeInOut" as const };
 const AUTOPLAY_DELAY = 10000;
 
-export default function HeroCarousel() {
+export default function HeroCarousel({ onLoadComplete }: { onLoadComplete?: () => void }) {
   const images = CAROUSEL_IMAGES;
   const [index, setIndex] = useState(0);
 
@@ -75,6 +75,11 @@ export default function HeroCarousel() {
             placeholder="blur"
             blurDataURL={DEFAULT_BLUR_DATA_URL}
             className="h-full w-full object-cover"
+            onLoad={() => {
+                if (index === 0 && onLoadComplete) {
+                   onLoadComplete();
+                }
+            }}
           />
         </motion.div>
       </AnimatePresence>

@@ -1,4 +1,6 @@
 import { LocaleShell } from "@/components/LocaleShell";
+import { GlobalPageLoader } from "@/components/common/GlobalPageLoader";
+import { PageLoadProvider } from "@/components/common/PageLoadContext";
 import type { Locale } from "@/components/header/types";
 import { cookies } from "next/headers";
 import { notFound } from "next/navigation";
@@ -26,5 +28,12 @@ export default async function LocaleLayout({
       ? themeCookie.value
       : "light";
 
-  return <LocaleShell locale={locale} theme={theme}>{children}</LocaleShell>;
+  return (
+    <PageLoadProvider>
+        <LocaleShell locale={locale} theme={theme}>
+            {children}
+        </LocaleShell>
+        <GlobalPageLoader />
+    </PageLoadProvider>
+  );
 }

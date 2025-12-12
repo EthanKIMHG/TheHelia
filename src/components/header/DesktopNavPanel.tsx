@@ -1,8 +1,9 @@
+
 "use client";
 
+import { TransitionLink } from "@/components/common/TransitionLink";
 import clsx from "clsx";
 import Image from "next/image";
-import Link from "next/link";
 import type { Locale, NavItem, NavSubItem, PreviewData } from "./types";
 
 type DesktopNavPanelProps = {
@@ -44,7 +45,7 @@ export function DesktopNavPanel({
           className="flex justify-center gap-14 rounded-b-2xl border-[1px] border-t-0 border-border bg-background p-8 pb-9"
         >
           <div className="flex flex-col justify-between gap-6">
-            <h3 id="desktop-nav-heading" className="text-lg text-secondary">
+            <h3 id="desktop-nav-heading" className="text-lg text-foreground">
               {activeNav.label}
             </h3>
             <div className="flex-1">
@@ -55,7 +56,7 @@ export function DesktopNavPanel({
                     !!previewData && !!subItem.previewImage && previewData.src === subItem.previewImage.src;
                   const isActive = activePath || matchesPreview;
                   return (
-                    <Link
+                    <TransitionLink
                       key={subItem.id}
                       href={subItem.href}
                       onClick={onClose}
@@ -71,7 +72,7 @@ export function DesktopNavPanel({
                       >
                         {subItem.label}
                       </span>
-                    </Link>
+                    </TransitionLink>
                   );
                 })}
               </div>
