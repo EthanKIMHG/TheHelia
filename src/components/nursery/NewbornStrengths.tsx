@@ -13,7 +13,7 @@ const strengths = [
       ko: "전문 간호 인력이 아이 셋을 전담하여 세심하게 케어합니다. 언제든 투어를 통해 투명하게 운영되는 신생아실을 직접 확인하실 수 있습니다.", 
       en: "Dedicated nursing staff provides 1:3 care. Our transparent operation allows for open tours anytime, giving you peace of mind." 
     },
-    image: "/img/headerpreview/infantroom.png", 
+    image: "/img/infant/strength_infant1.jpg", 
   },
   {
     id: "spacing",
@@ -22,7 +22,7 @@ const strengths = [
       ko: "모든 베지넷 간격을 100cm 이상 유지하여 비말 감염 및 교차 감염을 철저히 예방합니다. 넓은 공간은 아기에게도 쾌적한 환경을 제공합니다.", 
       en: "We maintain a strict 100cm distance between bassinets to prevent droplet and cross-infection, providing a spacious and safe environment." 
     },
-    image: "/img/subhero/room&suite.jpg", 
+    image: "/img/infant/strength_infant2.png", 
   },
   {
     id: "diaper",
@@ -31,7 +31,7 @@ const strengths = [
       ko: "교차 감염 방지를 위해 모든 아기는 전용 기저귀 갈이대를 사용합니다. 작은 처치 하나에도 타협하지 않는 위생 기준을 적용합니다.", 
       en: "To prevent cross-infection, every baby has their own dedicated diaper changing station. We apply uncompromising hygiene standards to every detail." 
     },
-    image: "/img/headerpreview/babyspa.jpg", 
+    image: "/img/infant/strength_infant3.png", 
   },
   {
     id: "bath",
@@ -40,7 +40,7 @@ const strengths = [
       ko: "매일 아침, 전용 욕조에서 개별 목욕을 진행하여 청결과 위생을 최우선으로 합니다. 아기의 컨디션을 체크하며 하루를 상쾌하게 시작합니다.", 
       en: "We prioritize hygiene with daily baths in individual tubs. It's a refreshing start to the day, allowing us to closely check your baby's condition." 
     },
-    image: "/img/headerpreview/spa.png", 
+    image: "/img/infant/strength_infant4.png", 
   },
 ];
 
@@ -77,23 +77,31 @@ export function NewbornStrengths({ locale }: { locale: Locale }) {
                         />
                          {/* Decorative Border */}
                         <div className="absolute inset-0 rounded-[2rem] ring-1 ring-inset ring-white/20 pointer-events-none" />
-                    </div>
-                 </FadeInUp>
-              </div>
+                        
+                     </div>
+                  </FadeInUp>
+                  {/* AI Image Disclaimer - Moved outside FadeInUp for stable positioning */}
+                  <div className="absolute bottom-3 right-4 z-20 text-[10px] font-medium text-black/80 drop-shadow-md">
+                      * 이 사진은 생성형 AI 로 만든 이미지 입니다.
+                  </div>
+               </div>
 
               {/* Text Section */}
-              <div className="flex-1 space-y-6">
-                <FadeInUp delay={0.4}>
+              <div className="flex-1">
+                <FadeInUp
+                  delay={0.4}
+                  className="flex flex-col gap-6 md:gap-8"
+                >
                     <div className="flex items-center gap-3 text-primary/80">
                         <CheckCircle2 className="h-6 w-6" />
                         <span className="font-bold tracking-widest text-xs uppercase">
                             Strength 0{index + 1}
                         </span>
                     </div>
-                    <h3 className="font-serif text-3xl font-semibold leading-tight text-foreground md:text-4xl">
+                    <h3 className="font-serif text-2xl font-semibold leading-tight text-foreground md:text-3xl">
                     {item.title[locale]}
                     </h3>
-                    <p className="text-lg leading-relaxed text-secondary/90 md:text-xl">
+                    <p className="text-md leading-relaxed text-secondary/90 md:text-lg">
                     {item.desc[locale]}
                     </p>
                 </FadeInUp>

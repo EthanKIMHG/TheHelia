@@ -40,7 +40,7 @@ const steps = [
 export function NewbornProcess({ locale }: { locale: Locale }) {
   return (
     <section className="w-full bg-background px-6 py-24 md:py-32">
-        <div className="mx-auto max-w-7xl">
+        <div className="w-full max-w-[1450px] mx-auto">
             <FadeInUp>
                 <div className="text-center mb-20 md:mb-32">
                     <span className="block mb-4 font-sans text-sm font-bold tracking-[0.2em] text-primary uppercase">
