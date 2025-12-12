@@ -264,7 +264,7 @@ function NavigationPanelCard({
           <div className="flex items-center justify-between gap-3">
             <h3
               className={clsx(
-                'text-2xl uppercase tracking-[0.1em] text-white/80',
+                'text-xl uppercase tracking-[0.1em] text-white/80',
                 localeClassName(locale),
               )}
             >

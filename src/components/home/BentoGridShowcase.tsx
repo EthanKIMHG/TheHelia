@@ -78,15 +78,15 @@ function BentoCard({
         </div>
 
         <div className="mt-8 transform transition-transform duration-500 group-hover:-translate-y-2">
-          <h3 className="mb-3 font-serif text-3xl md:text-4xl font-semibold leading-tight">
+          <h3 className="mb-3 font-serif text-2xl md:text-3xl font-semibold leading-tight">
             {item.title}
           </h3>
-          <p className="mb-5 text-sm text-white/90 line-clamp-3 md:text-base font-light tracking-wide">
+          <p className="mb-5 text-sm text-foreground/90 line-clamp-3 md:text-base font-light tracking-wide">
             {item.description}
           </p>
           
           {/* Bullets */}
-          <ul className="hidden space-y-2 text-xs text-white/80 opacity-0 transition-opacity duration-500 group-hover:opacity-100 md:block">
+          <ul className="hidden space-y-2 text-md text-foreground/80 opacity-0 transition-opacity duration-500 group-hover:opacity-100 md:block">
             {item.bullets?.slice(0, 3).map((bullet) => (
               <li key={bullet} className="flex items-center gap-2">
                 <span className="h-1.5 w-1.5 rounded-full bg-accent" />

@@ -111,14 +111,14 @@ export function HomeExperienceStacked({
               {highlight.bullets.map((bullet) => (
                 <motion.li
                   key={bullet}
-                  className="inline-flex items-start gap-2"
+                  className="inline-flex items-start gap-2 "
                   initial={{ opacity: 0, x: -10 }}
                   whileInView={{ opacity: 1, x: 0 }}
                   viewport={{ once: true, amount: 0.5 }}
                   transition={{ duration: 0.5, ease: "easeOut" }}
                 >
                   <span className="mt-1 h-1.5 w-1.5 flex-shrink-0 rounded-full bg-primary" />
-                  <span>{bullet}</span>
+                  <span className="text-lg">{bullet}</span>
                 </motion.li>
               ))}
             </ul>
@@ -234,7 +234,7 @@ export function HomeExperienceTilted({
             viewport={{ once: true, amount: 0.5 }}
             transition={{ duration: 0.6, delay: 0.4 }}
           >
-            <span className="text-xs font-semibold uppercase tracking-[0.3em] text-primary">
+            <span className="text-sm font-semibold uppercase tracking-[0.3em] text-primary">
               {highlight.badge ?? highlight.meta}
             </span>
             <p className="text-sm text-secondary/80">{highlight.description}</p>

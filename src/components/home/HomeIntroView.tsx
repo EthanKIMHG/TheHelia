@@ -5,6 +5,7 @@ import { motion } from "framer-motion";
 
 import { useOptionalThemeLocale } from "@/context/theme-locale-context";
 import { DEFAULT_BLUR_DATA_URL } from "@/lib/blur-placeholder";
+import clsx from "clsx";
 import Image from "next/image";
 import { useCallback, useEffect, useState } from "react";
 import { BentoGridShowcase } from "./BentoGridShowcase";
@@ -99,12 +100,12 @@ function IntroHeroContent({ primary, secondary, theme }: IntroHeroContentProps) 
       <IntroTextReveal
         text={primary}
         scrub={false}
-        className="text-2xl md:text-5xl dark:text-white"
+        className="text-2xl md:text-5xl text-foreground"
         animationDuration={1}
       />
       <IntroTextReveal
         text={secondary}
-        className="max-w-3xl text-lg leading-relaxed md:text-[22px]"
+        className="max-w-3xl text-lg leading-relaxed md:text-[22px] text-secondary"
         scrub={false}
         scrollStart="top bottom"
         scrollEnd="center center"
@@ -139,7 +140,7 @@ function IntroTextReveal({
         duration: animationDuration, 
         ease: [0.22, 1, 0.36, 1] // Premium ease curve
       }}
-      className={className}
+      className={clsx("whitespace-pre-line", className)}
     >
       {text}
     </motion.div>
@@ -147,14 +148,14 @@ function IntroTextReveal({
 }
 
 const KOREAN_COPY = {
-  primaryText: "최고의 시설과 세심한 배려를 담아 잊지 못할 14일을 선사합니다.",
+  primaryText: "최고의 시설과 세심한 배려를 담아 \n잊지 못할 14일을 선사합니다.",
   secondaryText:
-    "더헬리아 산후조리원은 최고의 시설과 차별화된 신생아 케어, 격이 다른 고품격 산모 케어 서비스를 제공함과 동시에 합리적인 가격을 책정했습니다. 모든 것이 준비된 최고의 공간에서 기억에 남는 14일을 선사합니다.",
+    "더헬리아 산후조리원은 최고의 시설과 차별화된 신생아 케어, \n격이 다른 고품격 산모 케어 서비스를 제공함과 동시에 합리적인 가격을 책정했습니다. \n모든 것이 준비된 최고의 공간에서 기억에 남는 14일을 선사합니다.",
   grid: [
     {
       title: "프라이빗 객실",
       description:
-        "모든 객실은 독립형 스위트 구조로 설계되어 가족만의 시간을 온전히 지킬 수 있습니다. La Cloud 모션 베드와 헝가리산 구스 침구를 갖추어 편안한 14일의 여정을 완성합니다.",
+        "모든 객실은 독립형 스위트 구조로 설계되어 산모님의 프라이빗한 시간을 온전히 지킬 수 있습니다. 전 객실 La Cloud 모션베드 & Body Friend 안마의자 & Medela 유축기 구비",
       meta: "PRESTIGE · VVIP · VIP",
       image: { src: "/img/room/prestige1.jpg", alt: "프라이빗 객실 전경" },
       bullets: [

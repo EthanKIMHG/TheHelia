@@ -1,6 +1,6 @@
 "use client";
 
-import { Breathing } from "@/components/common/Breathing";
+
 import { TransitionLink } from "@/components/common/TransitionLink";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { ArrowDown } from "lucide-react";
@@ -71,7 +71,7 @@ export function CinematicHero({locale} : {locale: Locale}) {
 
       {/* 3. Breathing CTA: Floating organic position */}
       <div className="absolute bottom-12 right-6 md:bottom-16 md:right-16 z-30">
-        <Breathing>
+        
           <TransitionLink 
             href={`${locale}/reservation`}
             className="group relative flex items-center justify-center overflow-hidden rounded-[2rem] bg-white/10 backdrop-blur-xl border border-white/30 px-10 py-5 text-base text-white transition-all hover:bg-white/20"
@@ -80,7 +80,6 @@ export function CinematicHero({locale} : {locale: Locale}) {
               {locale === "ko" ? "예약하기" : "Book Now" }
             </span>
           </TransitionLink>
-        </Breathing>
       </div>
     </div>
   );
