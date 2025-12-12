@@ -67,7 +67,7 @@ export function NewbornProcess({ locale }: { locale: Locale }) {
 
                             {/* Card Content */}
                             <FadeInUp delay={index * 0.1}>
-                                <div className="h-full flex flex-row md:flex-col items-start md:items-center gap-6 md:gap-6 bg-white/60 backdrop-blur-md rounded-[2rem] p-8 border border-white/40 shadow-sm transition-all duration-300 hover:shadow-lg hover:-translate-y-2 hover:bg-white/80">
+                                <div className="h-full flex flex-row md:flex-col items-start md:items-center gap-6 md:gap-6 bg-primary/10 backdrop-blur-md rounded-[2rem] p-8 border border-white/40 shadow-sm transition-all duration-300 hover:shadow-lg hover:-translate-y-2 hover:bg-primary/5">
                                     {/* Mobile Icon */}
                                     <div className="md:hidden flex-shrink-0 w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center text-primary">
                                         <step.icon className="w-6 h-6" />
