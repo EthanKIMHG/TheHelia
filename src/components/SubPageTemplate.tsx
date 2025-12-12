@@ -1,6 +1,7 @@
 "use client";
 
 import { useOptionalThemeLocale } from "@/context/theme-locale-context";
+import clsx from "clsx";
 import { ReactNode, useMemo } from "react";
 import { ScrollReveal } from "./common/ScrollReveal";
 import { getMainPageContent, getSubPageContent } from "./header/nav-data";
@@ -11,12 +12,14 @@ interface SubPageTemplateProps {
   path: string;
   children?: ReactNode;
   localeOverride?: Locale;
+  fullWidth?: boolean;
 }
 
 export function SubPageTemplate({
   path,
   children,
   localeOverride,
+  fullWidth = false,
 }: SubPageTemplateProps) {
   const themeLocale = useOptionalThemeLocale();
   const contextLocale = themeLocale?.locale ?? "ko";
@@ -50,8 +53,13 @@ export function SubPageTemplate({
         imageAlt={main?.imageAlt ?? primary.imageAlt}
       />
 
-      <section className="mx-auto flex w-full max-w-6xl flex-col items-center gap-8 px-4 pt-20 text-secondary">
-        <div className="text-center">
+      <section
+        className={clsx(
+          "mx-auto flex w-full flex-col items-center gap-8 pt-20 text-secondary",
+          fullWidth ? "max-w-none px-0" : "max-w-6xl px-4",
+        )}
+      >
+        <div className="text-center px-4">
           <ScrollReveal>
             <h2 className="text-3xl font-semibold md:text-4xl font-serif text-foreground">
               {primary.title}
@@ -60,11 +68,14 @@ export function SubPageTemplate({
               {primary.copy ?? primary.description}
             </p>
           </ScrollReveal>
-          
         </div>
-
         {children ? (
-          <div className=" w-full max-w-7xl rounded-xl backdrop-blur ">
+          <div
+            className={clsx(
+              "w-full rounded-xl backdrop-blur",
+              fullWidth ? "max-w-none" : "max-w-7xl",
+            )}
+          >
             {children}
           </div>
         ) : null}

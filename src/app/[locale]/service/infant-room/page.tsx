@@ -13,7 +13,7 @@ export default async function InfantRoomPage({ params }: PageProps) {
   const normalizedLocale: Locale = locale === "en" ? "en" : "ko";
 
   return (
-    <SubPageTemplate path="/service/infant-room" localeOverride={normalizedLocale}>
+    <SubPageTemplate path="/service/infant-room" localeOverride={normalizedLocale} fullWidth>
       <NewbornPageContent locale={normalizedLocale} />
     </SubPageTemplate>
   );

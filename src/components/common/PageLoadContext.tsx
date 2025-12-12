@@ -12,6 +12,7 @@ type PageLoadContextType = {
   isLoading: boolean;
   setIsLoading: (loading: boolean) => void;
   setCriticalImageLoading: (loading: boolean) => void;
+  setNavigationPending: (pending: boolean) => void;
 };
 
 const PageLoadContext = createContext<PageLoadContextType | undefined>(undefined);
@@ -19,37 +20,47 @@ const PageLoadContext = createContext<PageLoadContextType | undefined>(undefined
 export function PageLoadProvider({ children }: { children: ReactNode }) {
   const [isLoading, setIsLoading] = useState(false);
   const [isCriticalImageLoading, setIsCriticalImageLoading] = useState(false);
-  
+  const [isNavigationPending, setIsNavigationPending] = useState(false);
+  const [minTimeElapsed, setMinTimeElapsed] = useState(false);
 
   // Trigger loading state handling
   useEffect(() => {
     if (isLoading) {
-       // Minimum load time + Critical Image check
-       const minLoadTime = 800;
+       // Reset minute time elapsed when loading starts
+       setMinTimeElapsed(false);
+       
+       const minLoadTime = 800; // Increased feel
        const timer = setTimeout(() => {
-           // We only turn off if no critical image is pending
-           // If critical image is pending, we wait for it (handled by effect below)
-           if (!isCriticalImageLoading) {
-               setIsLoading(false);
-           }
+           setMinTimeElapsed(true);
        }, minLoadTime);
        
        return () => clearTimeout(timer);
     }
-  }, [isLoading, isCriticalImageLoading]);
+  }, [isLoading]);
 
-  // Special safety timeout for critical images
+  // Main Dismiss Logic
   useEffect(() => {
-    if (isCriticalImageLoading) {
-        // Force disable loading after max 4 seconds to prevent hanging
+      // Only dismiss if:
+      // 1. Loading is active
+      // 2. Minimum time has passed
+      // 3. No navigation is pending (router has finished)
+      // 4. No critical image is loading
+      if (isLoading && minTimeElapsed && !isNavigationPending && !isCriticalImageLoading) {
+          setIsLoading(false);
+      }
+  }, [isLoading, minTimeElapsed, isNavigationPending, isCriticalImageLoading]);
+
+  // Special safety timeout
+  useEffect(() => {
+    if (isLoading) { // Use isLoading as the trigger, covering navigation hangs too
         const safety = setTimeout(() => {
             setIsLoading(false);
             setIsCriticalImageLoading(false); 
-        }, 4000);
+            setIsNavigationPending(false);
+        }, 5000); // 5s safety
         return () => clearTimeout(safety);
     }
-  }, [isCriticalImageLoading]);
-
+  }, [isLoading]);
 
   return (
     <PageLoadContext.Provider
@@ -57,6 +68,7 @@ export function PageLoadProvider({ children }: { children: ReactNode }) {
         isLoading,
         setIsLoading,
         setCriticalImageLoading: setIsCriticalImageLoading,
+        setNavigationPending: setIsNavigationPending,
       }}
     >
       {children}

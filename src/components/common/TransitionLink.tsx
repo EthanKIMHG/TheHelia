@@ -20,7 +20,7 @@ export function TransitionLink({
   ...props
 }: TransitionLinkProps) {
   const router = useRouter();
-  const { setIsLoading } = usePageLoad();
+  const { setIsLoading, setNavigationPending } = usePageLoad();
 
   const handleClick = (e: MouseEvent<HTMLButtonElement | HTMLAnchorElement>) => {
     e.preventDefault(); // Prevent standard navigation
@@ -30,7 +30,7 @@ export function TransitionLink({
         onClick(e);
     }
 
-    // 1. Show Loader Immediately
+    // 1. Start loading state
     setIsLoading(true);
 
     // 2. Perform Navigation

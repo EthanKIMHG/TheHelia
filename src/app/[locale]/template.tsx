@@ -5,12 +5,16 @@ import { motion } from "framer-motion";
 import { useEffect } from "react";
 
 export default function Template({ children }: { children: React.ReactNode }) {
-  const { setIsLoading, isLoading } = usePageLoad();
+  const { setIsLoading, isLoading, setNavigationPending, setCriticalImageLoading } = usePageLoad();
 
   useEffect(() => {
     // Trigger loading on every mount (route change)
     setIsLoading(true);
-  }, [setIsLoading]);
+    // Unblock navigation wait
+    setNavigationPending(false);
+    // Reset critical requirement (new page starts fresh)
+    setCriticalImageLoading(false);
+  }, [setIsLoading, setNavigationPending, setCriticalImageLoading]);
 
   return (
     <motion.div
