@@ -1,111 +1,81 @@
 @import "tailwindcss";
 
+/* 2. Custom Variants */
 @custom-variant dark (&:where([data-theme=dark], [data-theme=dark] *));
 
-@font-face {
-  font-family: "Source Serif Pro";
-  src: url("/font/source-serif-pro.regular.otf") format("opentype");
-  font-weight: 400;
-  font-style: normal;
-  font-display: swap;
+/* 3. Theme Configuration */
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-primary: var(--primary);
+  --color-secondary: var(--secondary);
+  --color-accent: var(--accent);
+  --color-border: var(--border);
+
+  --font-serif: var(--font-playfair), serif;
+  --font-sans: "Pretendard", -apple-system, sans-serif;
+
+  --radius-brand: 2rem;
 }
 
-@font-face {
-  font-family: "Source Serif Pro";
-  src: url("/font/source-serif-pro.semibold.otf") format("opentype");
-  font-weight: 600;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: "MaruBuri Regular";
-  src: url("/font/MaruBuri-Regular.otf") format("opentype");
-  font-weight: 400;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: "MaruBuri SemiBold";
-  src: url("/font/MaruBuri-SemiBold.otf") format("opentype");
-  font-weight: 600;
-  font-style: normal;
-  font-display: swap;
-}
-
+/* 4. CSS Variables */
 :root {
-  --background: #FDFBF9;
-  /* Creamy Warm White */
-  --foreground: #443735;
-  /* Dark Warm Brown (rgb 68, 55, 53) */
-  --primary: #8C6A5D;
-  /* Elegant Warm Rose-Brown */
-  --secondary: #70605D;
-  /* Medium Warm Brown */
-  --accent: #D4B8B1;
-  /* Soft Rose */
-  --border: #E6DCD9;
-  /* Warm Light Grey */
+  --background: #F5F2F0;
+  /* Warm Neutral Beige */
+  --foreground: #2D2A26;
+  /* Soft Black */
+  --primary: #556B2F;
+  /* Deep Sage Green */
+  --secondary: #8C8682;
+  /* Warm Grey */
+  --accent: #A3B18A;
+  /* Light Sage */
+  --border: #DBCDC6;
+  /* Warm Beige Border */
 }
 
 :root[data-theme="dark"] {
   --background: #1C1B1A;
   /* Warm Dark */
-  --foreground: #F0EBE0;
-  /* Cream Beige */
-  --primary: #9CACA9;
-  /* Lighter Sage for Dark Mode */
-  --secondary: #B0B0B0;
-  /* Light Grey for secondary text */
-  --accent: #DDBFB0;
-  /* Lighter Terracotta */
-  --border: #444444;
+  --foreground: #E8E6E3;
+  /* Off White */
+  --primary: #8F9E75;
+  /* Lighter Sage for Dark */
+  --secondary: #A09A96;
+  --accent: #5F6F50;
+  --border: #444240;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-maru: "MaruBuri SemiBold", serif;
-  --font-maru-semi: "MaruBuri SemiBold", serif;
-  --font-serif: "Source Serif Pro", "Times New Roman", serif;
-  --font-source: "Source Serif Pro", "Times New Roman", serif;
-  --font-source-semi: "Source Serif Pro", "Times New Roman", serif;
-  --color-primary: var(--primary);
-  --color-secondary: var(--secondary);
-  --color-accent: var(--accent);
-  --color-border: var(--border)
-}
-
-@media (prefers-color-scheme: dark) {
-  :root:not([data-theme="light"]) {
-    --background: #000000;
-    --foreground: #f5eee7;
-    --color-primary: var(--primary);
-    --color-secondary: var(--secondary);
-    --color--border: var(--border)
-  }
-}
-
+/* 5. Base Styles & Utilities */
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: "Source Serif Pro", "Times New Roman", serif;
-  transition: background-color 240ms ease, color 240ms ease;
+  font-family: var(--font-serif);
+  /* Default to Modern Serif */
+  transition: background-color 300ms ease, color 300ms ease;
   margin: 0;
   overflow-x: hidden;
   width: 100%;
+  position: relative;
+}
+
+/* Grain Texture Overlay */
+body::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 9999;
+  opacity: 0.04;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
 }
 
 @layer utilities {
-  .font-source {
-    font-family: "Source Serif Pro", "Times New Roman", serif;
-    font-weight: 400;
-  }
-
-  .font-source-semi {
-    font-family: "Source Serif Pro", "Times New Roman", serif;
-    font-weight: 600;
+  .text-balance {
+    text-wrap: balance;
   }
 }
 

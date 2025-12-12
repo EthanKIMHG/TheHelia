@@ -1,6 +1,6 @@
+import { DEFAULT_BLUR_DATA_URL } from "@/lib/blur-placeholder";
 import { motion } from "framer-motion";
 import Image, { type ImageProps } from "next/image";
-import { DEFAULT_BLUR_DATA_URL } from "@/lib/blur-placeholder";
 
 export type HomeExperienceHighlight = {
   meta: string;
@@ -39,7 +39,7 @@ export function HomeExperienceStacked({
     >
       <div className="mx-auto flex w-full max-w-6xl flex-col gap-12 md:grid md:grid-cols-[1.1fr_0.9fr]">
         <motion.div
-          className="relative h-[280px] w-full overflow-hidden rounded-[32px] border border-border bg-background shadow-2xl sm:h-[320px] md:h-[420px] lg:h-[520px]"
+          className="relative h-[280px] w-full overflow-hidden rounded-[2.5rem] border border-white/20 bg-background/50 backdrop-blur-xl shadow-2xl sm:h-[320px] md:h-[420px] lg:h-[520px]"
           initial={{ opacity: 0, scale: 0.92, y: 20 }}
           whileInView={{ opacity: 1, scale: 1, y: 0 }}
           viewport={{ once: true, amount: 0.5 }}
@@ -90,7 +90,7 @@ export function HomeExperienceStacked({
         </motion.div>
 
         <motion.div
-          className="flex flex-col gap-6 rounded-[32px] border border-border bg-background/80 px-8 py-10 backdrop-blur"
+          className="flex flex-col gap-6 rounded-[2.5rem] border border-white/20 bg-white/40 px-8 py-10 backdrop-blur-xl shadow-lg"
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.45 }}
@@ -100,7 +100,7 @@ export function HomeExperienceStacked({
           <span className="text-xs font-semibold uppercase tracking-[0.3em] text-primary/70">
             {highlight.meta}
           </span>
-          <h3 className="text-3xl font-semibold text-secondary md:text-4xl">
+          <h3 className="text-3xl font-serif font-semibold text-secondary md:text-5xl">
             {highlight.title}
           </h3>
           <p className="text-base leading-relaxed text-secondary/80 md:text-lg">
@@ -182,7 +182,7 @@ export function HomeExperienceTilted({
               {highlight.bullets.map((bullet, idx) => (
                 <motion.div
                   key={bullet}
-                  className="rounded-2xl border border-border bg-background/80 px-6 py-4 shadow-sm"
+                  className="rounded-3xl border border-white/30 bg-white/40 px-6 py-4 shadow-sm backdrop-blur-md"
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true, amount: 0.5 }}
@@ -211,7 +211,7 @@ export function HomeExperienceTilted({
             transition={{ delay: 0.3, duration: 0.6 }}
           />
           <motion.div
-            className="relative h-[360px] w-full rotate-[-4.5deg] overflow-hidden rounded-[36px] border border-border bg-background/80 shadow-2xl"
+            className="relative h-[360px] w-full rotate-[-4.5deg] overflow-hidden rounded-[3rem] border border-white/20 bg-background/50 backdrop-blur-xl shadow-2xl"
             initial={{ rotate: textFirst ? 8 : -8, y: 40 }}
             whileInView={{ rotate: textFirst ? -4.5 : 4.5, y: 0 }}
             viewport={{ once: true, amount: 0.5 }}
@@ -338,7 +338,7 @@ export function HomeExperienceGallery({
           style={{ order: textFirst ? 2 : 1 }}
         >
           <motion.div
-            className="col-span-1 h-[220px] overflow-hidden rounded-[32px] border border-border shadow-xl sm:col-span-2 sm:h-[260px] md:h-[300px]"
+            className="col-span-1 h-[220px] overflow-hidden rounded-[2.5rem] border border-white/20 shadow-xl sm:col-span-2 sm:h-[260px] md:h-[300px]"
             initial={{ opacity: 0, y: 40 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.45 }}

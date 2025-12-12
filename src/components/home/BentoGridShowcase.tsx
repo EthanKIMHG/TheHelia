@@ -51,9 +51,9 @@ function BentoCard({
 }) {
   return (
     <ScrollReveal
-      className={`group relative overflow-hidden rounded-3xl border border-border bg-white shadow-sm transition-all hover:shadow-md ${className}`}
+      className={`group relative overflow-hidden rounded-[2.5rem] border border-white/20 bg-white/5 backdrop-blur-2xl shadow-xl transition-all duration-500 hover:shadow-2xl hover:bg-white/10 ${className}`}
     >
-      {/* Image Background */}
+      {/* Image Background - Darker overlay for text contrast */}
       <div className="absolute inset-0 h-full w-full">
         <Image
           src={item.image}
@@ -67,29 +67,29 @@ function BentoCard({
       </div>
 
       {/* Content */}
-      <div className="relative flex h-full flex-col justify-end p-6 text-white md:p-8">
+      <div className="relative flex h-full flex-col justify-end p-8 text-white md:p-10">
         <div className="mb-auto flex justify-between">
-          <span className="inline-flex items-center rounded-full border border-white/30 bg-white/10 px-3 py-1 text-xs font-medium backdrop-blur-md">
+          <span className="inline-flex items-center rounded-full border border-white/30 bg-white/10 px-4 py-1.5 text-xs font-semibold uppercase tracking-widest backdrop-blur-md">
             {item.meta}
           </span>
-          <div className="flex h-8 w-8 items-center justify-center rounded-full bg-white/20 backdrop-blur-md transition-colors group-hover:bg-white group-hover:text-black">
-            <ArrowUpRight className="h-4 w-4" />
+          <div className="flex h-10 w-10 items-center justify-center rounded-full bg-white/20 backdrop-blur-md transition-colors group-hover:bg-white group-hover:text-black">
+            <ArrowUpRight className="h-5 w-5" />
           </div>
         </div>
 
         <div className="mt-8 transform transition-transform duration-500 group-hover:-translate-y-2">
-          <h3 className="mb-2 font-serif text-2xl font-medium md:text-3xl">
+          <h3 className="mb-3 font-serif text-3xl md:text-4xl font-semibold leading-tight">
             {item.title}
           </h3>
-          <p className="mb-4 text-sm text-white/80 line-clamp-3 md:text-base">
+          <p className="mb-5 text-sm text-white/90 line-clamp-3 md:text-base font-light tracking-wide">
             {item.description}
           </p>
           
-          {/* Bullets - visible on hover or large screens if space permits */}
-          <ul className="hidden space-y-1 text-xs text-white/70 opacity-0 transition-opacity duration-500 group-hover:opacity-100 md:block">
+          {/* Bullets */}
+          <ul className="hidden space-y-2 text-xs text-white/80 opacity-0 transition-opacity duration-500 group-hover:opacity-100 md:block">
             {item.bullets?.slice(0, 3).map((bullet) => (
               <li key={bullet} className="flex items-center gap-2">
-                <span className="h-1 w-1 rounded-full bg-accent" />
+                <span className="h-1.5 w-1.5 rounded-full bg-accent" />
                 {bullet}
               </li>
             ))}

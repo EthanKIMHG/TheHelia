@@ -19,19 +19,18 @@ export function ScrollReveal({
     offset: ["start end", "end start"],
   });
 
-  // 0 -> 0.2: Fade In & Move Up (Entry)
-  // 0.2 -> 0.8: Stay Visible
-  // 0.8 -> 1.0: Fade Out & Move Up (Exit)
+  // Slow Fade-in Up Scrollytelling
+  // 0 -> 0.3: Fade In & Rise (Entry)
   const opacity = useTransform(
     scrollYProgress,
-    [0, 0.2, 0.8, 1],
+    [0, 0.3, 0.8, 1],
     [0, 1, 1, 0]
   );
   
   const y = useTransform(
     scrollYProgress,
-    [0, 0.2, 0.8, 1],
-    [50, 0, 0, -50]
+    [0, 0.3, 0.8, 1],
+    [80, 0, 0, -50]
   );
 
   return (

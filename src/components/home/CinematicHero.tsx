@@ -1,5 +1,6 @@
 "use client";
 
+import { Breathing } from "@/components/common/Breathing";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { ArrowDown } from "lucide-react";
 import Link from "next/link";
@@ -9,61 +10,68 @@ import HeroCarousel from "./HeroCarousel";
 
 export function CinematicHero({locale} : {locale: Locale}) {
   const containerRef = useRef<HTMLDivElement>(null);
-  
   const { scrollY } = useScroll();
-  
-  const opacity = useTransform(scrollY, [0, 300], [1, 0]);
-  const y = useTransform(scrollY, [0, 300], [0, 100]);
+  const opacity = useTransform(scrollY, [0, 500], [1, 0]);
+  const y = useTransform(scrollY, [0, 500], [0, 150]);
 
   return (
-    <div ref={containerRef} className="relative h-screen w-full overflow-hidden bg-black">
-      {/* Hero Carousel Background */}
+    <div ref={containerRef} className="relative h-screen w-full overflow-hidden bg-black font-serif">
+      {/* 1. Fluid Background & Texture */}
       <div className="absolute inset-0 z-0">
         <HeroCarousel />
-        <div className="absolute inset-0 h-full w-full bg-neutral-900/40 z-10" />
+        <div className="absolute inset-0 z-10 h-full w-full bg-black/30 bg-grain" /> 
+        {/* Anti-Grid Fluid Shape Overlay */}
+        <div className="absolute -top-[20%] -left-[10%] w-[50vw] h-[50vw] bg-primary/20 blur-[120px] rounded-full mix-blend-overlay animate-pulse" />
       </div>
 
-      {/* Content Overlay */}
+      {/* 2. Anti-Grid Layout Content */}
       <motion.div 
         style={{ opacity, y }}
-        className="relative z-10 flex h-full flex-col items-center justify-center text-center text-white px-4"
+        className="relative z-20 h-full w-full max-w-[1920px] mx-auto p-6 md:p-12 lg:p-24"
       >
+        {/* Main Title: Bottom Left, Oversized */}
         <motion.h1 
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1, delay: 0.2 }}
-          className="font-serif text-5xl md:text-7xl lg:text-8xl mb-6 tracking-wide"
+          initial={{ opacity: 0, y: 100, rotate: 2 }}
+          animate={{ opacity: 1, y: 0, rotate: 0 }}
+          transition={{ duration: 1.5, ease: [0.16, 1, 0.3, 1] }}
+          className="absolute bottom-24 left-6 md:bottom-32 md:left-12 text-7xl md:text-9xl lg:text-[11rem] leading-none font-bold text-white tracking-widest mix-blend-overlay"
         >
-          The Helia
+          The <br/> Helia
         </motion.h1>
         
+        {/* Subtitle: High contrast, floating Top Right */}
         <motion.p 
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1, delay: 0.4 }}
-          className="font-sans text-lg md:text-xl font-light tracking-widest uppercase opacity-80 mb-12"
+          initial={{ opacity: 0, x: 20 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 1.2, delay: 0.5 }}
+          className="absolute top-32 right-6 md:top-48 md:right-24 text-right font-sans text-xl md:text-2xl font-light text-white/90 tracking-widest uppercase"
         >
-          Premium Postpartum Care
+          Organic Serenity <br/> & Smart Comfort
         </motion.p>
 
+        {/* Scroll Indicator */}
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{ duration: 1, delay: 0.8 }}
-          className="absolute bottom-12 animate-bounce"
+          transition={{ duration: 1, delay: 1 }}
+          className="absolute bottom-12 left-1/2 -translate-x-1/2"
         >
-          <ArrowDown className="w-6 h-6 text-white/50" />
+          <ArrowDown className="w-6 h-6 text-white/60 animate-bounce" />
         </motion.div>
       </motion.div>
 
-      {/* Sticky CTA */}
-      <div className="absolute bottom-8 right-8 z-20 ">
-        <Link 
-          href={`${locale}/reservation`}
-          className="group relative flex items-center justify-center overflow-hidden rounded-full bg-white/10 backdrop-blur-md border border-white/20 px-8 py-4 text-sm text-white transition-all hover:bg-white/20 hover:scale-105"
-        >
-          <span className="relative z-10 font-medium tracking-wider uppercase">{locale === "ko" ? "예약하기" : "Book Now" }</span>
-        </Link>
+      {/* 3. Breathing CTA: Floating organic position */}
+      <div className="absolute bottom-12 right-6 md:bottom-16 md:right-16 z-30">
+        <Breathing>
+          <Link 
+            href={`${locale}/reservation`}
+            className="group relative flex items-center justify-center overflow-hidden rounded-[2rem] bg-white/10 backdrop-blur-xl border border-white/30 px-10 py-5 text-base text-white transition-all hover:bg-white/20"
+          >
+            <span className="relative z-10 font-medium tracking-wider uppercase">
+              {locale === "ko" ? "예약하기" : "Book Now" }
+            </span>
+          </Link>
+        </Breathing>
       </div>
     </div>
   );
