@@ -20,29 +20,30 @@
 
 /* 4. CSS Variables */
 :root {
-  --background: #F5F2F0;
-  /* Warm Neutral Beige */
-  --foreground: #2D2A26;
-  /* Soft Black */
-  --primary: #556B2F;
-  /* Deep Sage Green */
-  --secondary: #8C8682;
-  /* Warm Grey */
-  --accent: #A3B18A;
-  /* Light Sage */
-  --border: #DBCDC6;
-  /* Warm Beige Border */
+  --background: #FAF9F6;
+  /* Warmer Off-White */
+  --foreground: #4A3B36;
+  /* Softer Warm Brown */
+  --primary: #A68B7C;
+  /* Deep Rosy Beige (Less Orange, More Clay) */
+  --secondary: #9E948D;
+  /* Warm Greige */
+  --accent: #D9C6BC;
+  /* Dusty Beige */
+  --border: #E6DBD4;
+  /* Pale Beige Border */
 }
 
 :root[data-theme="dark"] {
-  --background: #1C1B1A;
+  --background: #141313;
   /* Warm Dark */
-  --foreground: #E8E6E3;
-  /* Off White */
-  --primary: #8F9E75;
-  /* Lighter Sage for Dark */
-  --secondary: #A09A96;
-  --accent: #5F6F50;
+  --foreground: #FFFFFF;
+  /* Pure White for visibility */
+  --primary: #A8B5A0;
+  /* Lighter Sage/Beige for Dark */
+  --secondary: #E0E0E0;
+  /* Much lighter grey for secondary text */
+  --accent: #6C7A5E;
   --border: #444240;
 }
 

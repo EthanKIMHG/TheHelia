@@ -18,7 +18,7 @@ export function DesktopPrimaryNav({
   onNavClick,
 }: DesktopPrimaryNavProps) {
   return (
-    <nav className="hidden items-center justify-center md:flex md:gap-4 lg:gap-12">
+    <nav className="hidden items-center justify-center md:flex md:gap-8 lg:gap-12">
       {navItems.map((item) => {
         const active = activeNav?.id === item.id || isActivePath(item);
         if (item.href) {

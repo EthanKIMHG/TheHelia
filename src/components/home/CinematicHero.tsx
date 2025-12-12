@@ -34,7 +34,7 @@ export function CinematicHero({locale} : {locale: Locale}) {
           initial={{ opacity: 0, y: 100, rotate: 2 }}
           animate={{ opacity: 1, y: 0, rotate: 0 }}
           transition={{ duration: 1.5, ease: [0.16, 1, 0.3, 1] }}
-          className="absolute bottom-24 left-6 md:bottom-32 md:left-12 text-7xl md:text-9xl lg:text-[11rem] leading-none font-bold text-white tracking-widest mix-blend-overlay"
+          className="absolute bottom-24 left-6 md:bottom-32 md:left-12 text-7xl md:text-9xl lg:text-[11rem] text-white tracking-widest mix-blend-overlay"
         >
           The <br/> Helia
         </motion.h1>
