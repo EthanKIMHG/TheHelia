@@ -654,7 +654,7 @@ const SUITE_CONTENT: Record<
       nextLabel: "다음 이미지",
       carousel: [
         {
-          src: "/img/room/vvip1.jpg",
+          src: "/img/room/vvip4.jpg",
           alt: "VVIP 스위트 전경",
           caption: "프라이빗 라운지와 슬립 존이 자연스럽게 연결된 구조",
         },
@@ -665,11 +665,6 @@ const SUITE_CONTENT: Record<
         },
         {
           src: "/img/room/vvip3.jpg",
-          alt: "VVIP 스위트 전경",
-          caption: "프라이빗 라운지와 슬립 존이 자연스럽게 연결된 구조",
-        },
-        {
-          src: "/img/room/vvip4.jpg",
           alt: "VVIP 스위트 전경",
           caption: "프라이빗 라운지와 슬립 존이 자연스럽게 연결된 구조",
         },
@@ -685,6 +680,11 @@ const SUITE_CONTENT: Record<
         },
         {
           src: "/img/room/vvip7.jpg",
+          alt: "VVIP 스위트 전경",
+          caption: "프라이빗 라운지와 슬립 존이 자연스럽게 연결된 구조",
+        },
+        {
+          src: "/img/room/vvip8.jpg",
           alt: "VVIP 스위트 전경",
           caption: "프라이빗 라운지와 슬립 존이 자연스럽게 연결된 구조",
         },
@@ -794,7 +794,7 @@ const SUITE_CONTENT: Record<
       nextLabel: "Next image",
       carousel: [
         {
-          src: "/img/room/vvip.jpg",
+          src: "/img/room/vvip4.jpg",
           alt: "VVIP 스위트 전경",
           caption: "프라이빗 라운지와 슬립 존이 자연스럽게 연결된 구조",
         },
@@ -828,6 +828,16 @@ const SUITE_CONTENT: Record<
           alt: "VVIP 스위트 전경",
           caption: "프라이빗 라운지와 슬립 존이 자연스럽게 연결된 구조",
         },
+        {
+          src: "/img/room/vvip8.jpg",
+          alt: "VVIP 스위트 전경",
+          caption: "프라이빗 라운지와 슬립 존이 자연스럽게 연결된 구조",
+        },
+        {
+          src: "/img/room/medela.jpeg",
+          alt: "메델라 심포니 유축기",
+          caption: "메델라 심포니 유축기",
+        }
       ],
       featureGroups: [
         {
@@ -951,12 +961,22 @@ const SUITE_CONTENT: Record<
           caption: "프라이빗 라운지와 슬립 존이 자연스럽게 연결된 구조",
         },
         {
-          src: "/img/room/vvip4.jpg",
+          src: "/img/room/vvip5.jpg",
           alt: "VVIP 스위트 전경",
           caption: "프라이빗 라운지와 슬립 존이 자연스럽게 연결된 구조",
         },
         {
-          src: "/img/room/vvip5.jpg",
+          src: "/img/room/vvip6.jpg",
+          alt: "VVIP 스위트 전경",
+          caption: "프라이빗 라운지와 슬립 존이 자연스럽게 연결된 구조",
+        },
+        {
+          src: "/img/room/vvip7.jpg",
+          alt: "VVIP 스위트 전경",
+          caption: "프라이빗 라운지와 슬립 존이 자연스럽게 연결된 구조",
+        },
+        {
+          src: "/img/room/vvip8.jpg",
           alt: "VVIP 스위트 전경",
           caption: "프라이빗 라운지와 슬립 존이 자연스럽게 연결된 구조",
         },
@@ -1081,13 +1101,28 @@ const SUITE_CONTENT: Record<
           caption: "프라이빗 라운지와 슬립 존이 자연스럽게 연결된 구조",
         },
         {
-          src: "/img/room/vvip4.jpg",
+          src: "/img/room/vvip5.jpg",
           alt: "VVIP 스위트 전경",
           caption: "프라이빗 라운지와 슬립 존이 자연스럽게 연결된 구조",
         },
         {
-          src: "/img/room/vvip5.jpg",
+          src: "/img/room/vvip6.jpg",
           alt: "VVIP 스위트 전경",
+          caption: "프라이빗 라운지와 슬립 존이 자연스럽게 연결된 구조",
+        },
+        {
+          src: "/img/room/vvip7.jpg",
+          alt: "VVIP 스위트 전경",
+          caption: "프라이빗 라운지와 슬립 존이 자연스럽게 연결된 구조",
+        },
+        {
+          src: "/img/room/vvip8.jpg",
+          alt: "VVIP 스위트 전경",
+          caption: "프라이빗 라운지와 슬립 존이 자연스럽게 연결된 구조",
+        },
+        {
+          src: "/img/room/medela.jpeg",
+          alt: "메델라 심포니 유축기",
           caption: "프라이빗 라운지와 슬립 존이 자연스럽게 연결된 구조",
         },
       ],
