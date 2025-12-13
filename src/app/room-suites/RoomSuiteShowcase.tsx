@@ -4,20 +4,14 @@ import { ScrollReveal } from "@/components/common/ScrollReveal";
 import type { Locale } from "@/components/header/types";
 import { useOptionalThemeLocale } from "@/context/theme-locale-context";
 import {
-  Baby,
-  BedDouble,
-  CalendarClock,
-  ChevronLeft,
-  ChevronRight,
-  CupSoda,
-  Droplets,
-  Fan,
-  Heart,
-  Lamp,
-  LaptopMinimal,
-  Sofa,
-  Sparkles,
-  Wifi,
+    Baby,
+    BedDouble, ChevronLeft,
+    ChevronRight,
+    Clock,
+    Coffee, Heart, LaptopMinimal,
+    Sofa,
+    Sparkles,
+    Utensils
 } from "lucide-react";
 import Image from "next/image";
 import { useMemo, useState } from "react";
@@ -136,54 +130,66 @@ export function RoomSuiteShowcase({ suiteId, locale }: RoomSuiteShowcaseProps) {
       </ScrollReveal>
 
       <ScrollReveal>
-      <section className="grid gap-6 md:grid-cols-[1.1fr_0.9fr]">
-        <div className="space-y-6">
-          {copy.featureGroups.map((group) => (
+      <section className="grid gap-6 lg:grid-cols-[1.2fr_0.8fr]">
+        <div className="grid gap-6 sm:grid-cols-2">
+          {copy.featureGroups.map((group, idx) => (
             <article
               key={group.title}
-              className="rounded-3xl border border-border/30 bg-background/95 p-6 shadow-sm"
+              className={`rounded-[2rem] border border-stone-200/60 dark:border-white/5 bg-white/60 dark:bg-[#2A2928]/60 backdrop-blur-xl p-8 shadow-sm transition-all hover:shadow-md hover:-translate-y-1 group
+                ${idx === 0 ? 'sm:col-span-2 bg-gradient-to-br from-white/80 to-stone-50/50 dark:from-[#2A2928] dark:to-[#201F1E]' : ''}
+              `}
             >
-              <h4 className="text-lg font-semibold text-foreground">
+              <h4 className="flex items-center gap-2.5 text-lg font-bold text-foreground font-serif mb-5">
+                <span className="flex items-center justify-center w-8 h-8 rounded-full bg-primary/10 text-primary">
+                  {idx === 0 && <Sofa className="w-4 h-4" />}
+                  {idx === 1 && <LaptopMinimal className="w-4 h-4" />}
+                  {idx === 2 && <Baby className="w-4 h-4" />}
+                  {idx === 3 && <Sparkles className="w-4 h-4" />}
+                </span>
                 {group.title}
               </h4>
-              <ul className="mt-4 grid gap-3 text-sm text-foreground/70 sm:grid-cols-2">
+              <ul className={`grid gap-3 text-[15px] text-stone-600 dark:text-stone-300 ${idx === 0 ? 'sm:grid-cols-2' : ''}`}>
                 {group.items.map((item) => (
-                  <li key={item} className="flex items-start gap-2">
-                    <span className="mt-1 h-1.5 w-1.5 flex-shrink-0 rounded-full bg-primary" />
-                    <span>{item}</span>
+                  <li key={item} className="flex items-start gap-2.5 group/item">
+                    <div className="mt-1.5 w-1.5 h-1.5 rounded-full bg-primary/40 group-hover/item:bg-primary transition-colors flex-shrink-0" />
+                    <span className="leading-relaxed">{item}</span>
                   </li>
                 ))}
               </ul>
             </article>
           ))}
         </div>
-        <aside className="flex flex-col gap-4 rounded-3xl border border-border/30 bg-white/80 dark:bg-[#2A2928]/60 backdrop-blur-md p-6 shadow-sm">
-          <h4 className="text-sm font-semibold uppercase tracking-[0.3em] text-primary">
-            {copy.facts.badge}
-          </h4>
-          <ul className="space-y-4">
-            {copy.facts.items.map((fact) => (
-              <li key={fact.title} className="flex items-start gap-3 text-sm">
-                <div className="flex h-12 w-12 items-center justify-center rounded-full bg-primary/10 dark:bg-[#333231] text-primary">
-                  <fact.icon className="h-5 w-5" />
+        
+        <aside className="flex flex-col gap-6 rounded-[2.5rem] border border-primary/10 bg-[#FAF9F6] dark:bg-[#2A2928] p-8 shadow-sm h-fit sticky top-24">
+          <div>
+            <span className="inline-block px-3 py-1 rounded-full bg-primary/10 text-primary text-xs font-bold uppercase tracking-widest mb-4">
+              {copy.facts.badge}
+            </span>
+            <div className="space-y-5">
+               {copy.facts.items.map((fact) => (
+                <div key={fact.title} className="flex items-start gap-4 group">
+                  <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-white dark:bg-stone-800 shadow-sm text-primary group-hover:scale-110 transition-transform">
+                    <fact.icon className="h-5 w-5" />
+                  </div>
+                  <div>
+                    <p className="text-sm font-bold text-foreground font-serif mb-0.5">
+                      {fact.title}
+                    </p>
+                    <p className="text-sm text-stone-500 dark:text-stone-400 leading-snug">{fact.detail}</p>
+                  </div>
                 </div>
-                <div>
-                  <p className="text-sm font-semibold text-foreground">
-                    {fact.title}
-                  </p>
-                  <p className="text-xs text-foreground/60">{fact.detail}</p>
-                </div>
-              </li>
-            ))}
-          </ul>
-          <div className="mt-auto rounded-2xl border border-primary/30 bg-primary/5 p-4 text-sm text-foreground/70">
-            {copy.facts.note}
+               ))}
+            </div>
+          </div>
+          <div className="mt-auto rounded-2xl bg-white dark:bg-stone-800 border border-stone-100 dark:border-white/5 p-5 text-sm font-medium text-stone-500 dark:text-stone-400 leading-relaxed shadow-sm">
+            <span className="text-primary mr-1">*</span>{copy.facts.note}
           </div>
         </aside>
       </section>
       </ScrollReveal>
 
       <AmenitiesSection copy={copy.amenities} />
+      <PartnerBreakfastSection locale={activeLocale} />
     </div>
   );
 }
@@ -191,42 +197,109 @@ export function RoomSuiteShowcase({ suiteId, locale }: RoomSuiteShowcaseProps) {
 function AmenitiesSection({ copy }: { copy: SuiteCopy["amenities"] }) {
   return (
     <ScrollReveal>
-    <section className="overflow-hidden rounded-3xl border border-border/30 bg-white/80 dark:bg-[#2A2928]/60 backdrop-blur-md shadow">
-      <div className="space-y-6 p-8 md:p-12">
-        <header className="space-y-2">
-          <p className="text-sm font-semibold uppercase tracking-[0.3em] text-primary">
-            {copy.badge}
-          </p>
-          <h3 className="text-2xl font-semibold text-foreground md:text-3xl font-serif">
-            {copy.title}
-          </h3>
-          <p className="text-sm text-foreground/70 md:text-base">
-            {copy.subtitle}
-          </p>
-        </header>
-        <div className="grid gap-4 md:grid-cols-2">
-          {copy.groups.map((group) => (
-            <article
-              key={group.title}
-              className="rounded-2xl border border-border/30 bg-white/80 dark:bg-[#2A2928]/60 backdrop-blur-md p-6 shadow-sm transition-all hover:shadow-md"
-            >
-              <h4 className="text-lg font-semibold text-foreground">
-                {group.title}
-              </h4>
-              <ul className="mt-4 space-y-2 text-sm text-foreground/70">
-                {group.items.map((item) => (
-                  <li key={item} className="flex items-start gap-2">
-                    <Heart className="mt-1 h-4 w-4 flex-shrink-0 text-primary" />
-                    <span>{item}</span>
-                  </li>
-                ))}
-              </ul>
-            </article>
-          ))}
+      <section className="overflow-hidden rounded-[2.5rem] border border-stone-200/60 dark:border-white/5 bg-white/60 dark:bg-[#2A2928]/60 backdrop-blur-xl shadow-sm">
+        <div className="space-y-8 p-8 md:p-12">
+          <header className="space-y-4 text-center md:text-left">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 text-primary text-xs font-bold uppercase tracking-widest">
+               <Sparkles className="w-3 h-3" />
+               {copy.badge}
+            </div>
+            <div>
+              <h3 className="text-3xl font-bold text-foreground font-serif mb-2">
+                {copy.title}
+              </h3>
+              <p className="text-base text-stone-500 dark:text-stone-400 max-w-2xl leading-relaxed">
+                {copy.subtitle}
+              </p>
+            </div>
+          </header>
+          
+          <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+            {copy.groups.map((group) => (
+              <article
+                key={group.title}
+                className="group relative rounded-[2rem] border border-white/40 dark:border-white/5 bg-white/40 dark:bg-[#2A2928]/40 backdrop-blur-md p-8 shadow-[0_8px_30px_rgb(0,0,0,0.04)] hover:shadow-xl transition-all duration-500 hover:-translate-y-1"
+              >
+                <div className="absolute inset-0 bg-gradient-to-br from-white/40 to-transparent dark:from-white/5 dark:to-transparent rounded-[2rem] opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
+                
+                <h4 className="text-lg font-bold text-foreground mb-4 font-serif flex items-center gap-2">
+                  <span className="w-1.5 h-1.5 rounded-full bg-primary" />
+                  {group.title}
+                </h4>
+                <ul className="space-y-3">
+                  {group.items.map((item) => (
+                    <li key={item} className="flex items-start gap-2.5 text-[15px] leading-relaxed text-stone-600 dark:text-stone-300 group-hover:text-stone-800 dark:group-hover:text-stone-100 transition-colors">
+                      <Heart className="mt-1 h-3.5 w-3.5 flex-shrink-0 text-primary/40 group-hover:text-primary transition-colors" />
+                      <span>{item}</span>
+                    </li>
+                  ))}
+                </ul>
+              </article>
+            ))}
+          </div>
+          
+          <div className="pt-6 border-t border-dashed border-stone-200 dark:border-white/10">
+            <p className="text-xs font-medium text-stone-400 dark:text-stone-500 flex items-center gap-1.5">
+              <span className="inline-block w-3 h-3 rounded-full bg-stone-100 dark:bg-stone-800 text-stone-400 flex items-center justify-center text-[8px]">i</span>
+              {copy.notice}
+            </p>
+          </div>
         </div>
-        <p className="text-xs text-foreground/60">{copy.notice}</p>
-      </div>
-    </section>
+      </section>
+    </ScrollReveal>
+  );
+}
+
+function PartnerBreakfastSection({ locale }: { locale: Locale }) {
+  const isKo = locale === "ko";
+  
+  return (
+    <ScrollReveal>
+      <section className="rounded-[2.5rem] border border-primary/10 bg-[#FAF9F6] dark:bg-[#2A2928] p-8 md:p-12 shadow-sm overflow-hidden relative group">
+        <div className="absolute top-0 right-0 w-64 h-64 bg-primary/5 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2" />
+        
+        <div className="relative z-10 flex flex-col md:flex-row items-center gap-8 md:gap-12">
+          {/* Icon / Visual Side */}
+          <div className="shrink-0 relative">
+            <div className="w-24 h-24 rounded-full bg-white dark:bg-stone-800 shadow-md flex items-center justify-center text-primary relative z-10">
+               <Coffee className="w-10 h-10" strokeWidth={1.5} />
+            </div>
+            <div className="absolute inset-0 bg-primary/10 rounded-full animate-ping opacity-20" />
+            <div className="absolute -bottom-2 -right-2 w-10 h-10 rounded-full bg-primary text-white flex items-center justify-center shadow-lg border-2 border-white dark:border-[#2A2928]">
+              <Utensils className="w-5 h-5" />
+            </div>
+          </div>
+
+          {/* Content Side */}
+          <div className="flex-1 text-center md:text-left space-y-4">
+            <div className="space-y-2">
+              <span className="inline-block text-xs font-bold text-primary uppercase tracking-widest bg-primary/5 px-3 py-1 rounded-full">
+                {isKo ? "보호자 서비스" : "Partner Service"}
+              </span>
+              <h3 className="text-2xl md:text-3xl font-bold font-serif text-foreground">
+                {isKo ? "보호자를 위한 조식 서비스" : "Complimentary Partner Breakfast"}
+              </h3>
+            </div>
+            
+            <p className="text-stone-600 dark:text-stone-300 leading-relaxed text-lg">
+              {isKo 
+                ? "든든한 아침을 위해 토스트, 시리얼, 신선한 우유와 주스, 그리고 다양한 스낵바를 무료로 제공합니다."
+                : "Start your day with toast, cereal, fresh milk, juice, and a variety of snacks at our complimentary bar."}
+            </p>
+
+            <div className="flex flex-wrap items-center justify-center md:justify-start gap-4 pt-2">
+              <div className="flex items-center gap-2 px-4 py-2 rounded-xl bg-white dark:bg-stone-800 border border-stone-200 dark:border-white/5 shadow-sm text-sm font-medium text-stone-600 dark:text-stone-300">
+                <Clock className="w-4 h-4 text-primary" />
+                <span>{isKo ? "오전 7:00 ~ 오전 10:00" : "07:00 AM ~ 10:00 AM"}</span>
+              </div>
+              <div className="flex items-center gap-2 px-4 py-2 rounded-xl bg-white dark:bg-stone-800 border border-stone-200 dark:border-white/5 shadow-sm text-sm font-medium text-stone-600 dark:text-stone-300">
+                <Utensils className="w-4 h-4 text-primary" />
+                <span>{isKo ? "토스트 · 시리얼 · 스낵바" : "Toast · Cereal · Snack Bar"}</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
     </ScrollReveal>
   );
 }
@@ -302,158 +375,51 @@ const SUITE_CONTENT: Record<
       name: "PRESTIGE",
       hero: {
         badge: "PRESTIGE SUITE",
-        title: "프레스티지 스위트에서 누리는 가장 넓은 프라이빗 라운지",
-        subtitle:
-          "40㎡ 투룸 구성으로 설계된 프레스티지 스위트는 산모와 가족이 함께 머물기 충분한 여유를 제공합니다. 모션 베드, 아기 케어, 웰니스 설비까지 모든 순간을 위한 디테일을 담았습니다.",
+        title: "호텔 스위트보다 넓은 13평형 프라이빗 라운지",
+        subtitle: "투룸 구조로 가족과 함께 머물기에 이상적인 공간입니다. 최고급 모션 베드와 다이슨 풀 라인업, 단독 신생아실 케어로 완벽한 휴식을 선사합니다.",
         highlights: [
-          {
-            title: "객실 크기",
-            value: "약 12평 / 40㎡",
-            note: "투룸 구조, 여유로운 라운지와 슬립 존",
-          },
-          {
-            title: "베드 & 침구",
-            value: "La Cloud 모션 베드 (2)",
-            note: "헝가리산 구스 침구 세트",
-          },
-          {
-            title: "프리미엄 설비",
-            value: "LG 스탠바이미 · Dyson 라인업",
-            note: "네스프레소 & 정수기 상시 구비",
-          },
+          { title: "객실 크기", value: "13평 / 43㎡", note: "투룸 구조, 논밭뷰(Field View)" },
+          { title: "베드", value: "라클라우드 모션베드 S * 2", note: "트윈 베드 구성" },
+          { title: "신생아 케어", value: "2 : 1 케어", note: "단독 신생아실 이용" },
         ],
       },
       carouselBadge: "ROOM GALLERY",
-      carouselTitle: "프레스티지 스위트 미리보기",
-      carouselDescription:
-        "투룸 구조의 넉넉한 휴식 공간과 맞춤형 케어 설비를 3D 투어처럼 살펴보세요.",
+      carouselTitle: "프레스티지 스위트 둘러보기",
+      carouselDescription: "가족을 위한 여유로운 거실과 독립된 침실, 프리미엄 가전이 갖춰진 공간을 확인하세요.",
       thumbnailLabel: "프레스티지 이미지",
-      prevLabel: "이전 이미지",
-      nextLabel: "다음 이미지",
+      prevLabel: "이전",
+      nextLabel: "다음",
       carousel: [
-        {
-          src: "/img/room/prestige1.jpg",
-          alt: "프레스티지 스위트 전경",
-          caption: "투룸 구조로 구분된 라운지와 휴식 공간",
-        },
-        {
-          src: "/img/room/prestige2.jpg",
-          alt: "프레스티지 스위트 라운지",
-          caption: "가족이 함께하는 라운지 존",
-        },
-        {
-          src: "/img/room/prestige3.jpg",
-          alt: "프레스티지 스위트 침실",
-          caption: "모션 베드와 구스 침구로 완성한 심플한 휴식",
-        },
-        {
-          src: "/img/room/prestige4.jpg",
-          alt: "프레스티지 스위트 침실",
-          caption: "모션 베드와 구스 침구로 완성한 심플한 휴식",
-        },
-        {
-          src: "/img/room/prestige5.jpg",
-          alt: "프레스티지 스위트 침실",
-          caption: "모션 베드와 구스 침구로 완성한 심플한 휴식",
-        },
-        {
-          src: "/img/room/prestige6.jpg",
-          alt: "프레스티지 스위트 침실",
-          caption: "모션 베드와 구스 침구로 완성한 심플한 휴식",
-        },
-        {
-          src: "/img/room/prestige7.jpg",
-          alt: "프레스티지 스위트 침실",
-          caption: "모션 베드와 구스 침구로 완성한 심플한 휴식",
-        },
-        {
-          src: "/img/room/prestige8.jpg",
-          alt: "프레스티지 스위트 침실",
-          caption: "모션 베드와 구스 침구로 완성한 심플한 휴식",
-        },
-        {
-          src: "/img/room/prestige9.jpg",
-          alt: "프레스티지 스위트 침실",
-          caption: "모션 베드와 구스 침구로 완성한 심플한 휴식",
-        },
-        {
-          src: "/img/room/prestige10.jpg",
-          alt: "프레스티지 스위트 침실",
-          caption: "모션 베드와 구스 침구로 완성한 심플한 휴식",
-        },
+        { src: "/img/room/prestige1.jpg", alt: "프레스티지 거실", caption: "넓은 거실과 편안한 소파 공간" },
+         { src: "/img/room/prestige2.jpg", alt: "프레스티지 침실", caption: "독립된 침실 공간" },
+         { src: "/img/room/prestige3.jpg", alt: "프레스티지 침실", caption: "편안한 수면을 위한 프리미엄 침구" },
       ],
       featureGroups: [
         {
-          title: "객실 구성",
-          items: [
-            "12평(40㎡) 투룸 구성",
-            "La Cloud 슈퍼 싱글 모션 베드 2대",
-            "헝가리산 구스 침구 세트",
-            "스토케 아기 침대",
-          ],
+          title: "객실 컨디션",
+          items: ["13평형 투룸 구조 (43㎡)", "이중 통유리 창문 (논밭뷰)", "라클라우드 모션베드 싱글 2개", "바디프랜드 안마의자"],
         },
         {
-          title: "웰니스 & 케어",
-          items: [
-            "AMIGO 안마의자",
-            "메델라 심포니 유축기",
-            "좌욕기 & 비데",
-            "Dyson 에어랩 멀티 스타일러",
-          ],
+          title: "가구 & 가전을 갖춘 라운지",
+          items: ["LG 스탠바이미 + UHD TV", "다이슨 공기청정기 & 에어랩", "LG 스타일러 & 필립스 살균기", "캡슐 커피 머신 & 미니바"],
         },
         {
-          title: "엔터테인먼트 & 공조",
-          items: [
-            "LG UHD TV",
-            "LG 스탠바이미",
-            "Dyson 공기청정기",
-            "Philips 공기 살균기",
-          ],
+          title: "산모 & 아기 케어",
+          items: ["스토케(Stokke) 아기침대", "메델라 심포니 유축기 (퇴실 후 대여)", "좌욕기 & 비데 (자온 적외선)", "회음부 방석 & 수유 쿠션"],
         },
         {
-          title: "스낵 & 편의",
-          items: [
-            "네스프레소 머신",
-            "냉 · 온 정수기",
-            "LG 스타일러",
-            "프라이빗 미니바",
-          ],
+          title: "스페셜 서비스",
+          items: ["신생아 케어 2 : 1 (단독 신생아실)", "가슴 관리: 입실 기간 무제한 + 퇴실 후 3회", "헤드스파 3회 / 베이비 스파 2회", "병원 ↔ 조리원 리무진 의전"],
         },
       ],
       facts: {
         badge: "FAST FACTS",
-        note: "프레스티지 스위트는 사전 예약제로 운영됩니다.",
+        note: "프레스티지 룸은 단독 신생아실 케어가 제공되는 최상위 객실입니다.",
         items: [
-          {
-            icon: BedDouble,
-            title: "Room Type",
-            detail: "12평 투룸 · 라운지 + 슬립 존",
-          },
-          {
-            icon: CalendarClock,
-            title: "Stay Rhythm",
-            detail: "전담 케어팀이 24시간 상주",
-          },
-          {
-            icon: Sparkles,
-            title: "Signature Touch",
-            detail: "Dyson & LG 하이엔드 디바이스 풀 패키지",
-          },
-          {
-            icon: Sofa,
-            title: "Family Lounge",
-            detail: "가족 동반을 위한 독립 라운지 공간",
-          },
-          {
-            icon: CupSoda,
-            title: "Refreshments",
-            detail: "네스프레소 & 냉·온 정수기 상시 구비",
-          },
-          {
-            icon: Wifi,
-            title: "Connectivity",
-            detail: "전 객실 고속 Wi-Fi & 스탠바이미 스트리밍",
-          },
+           { icon: BedDouble, title: "Bed Type", detail: "라클라우드 모션베드 싱글 2개" },
+           { icon: Baby, title: "Care Ratio", detail: "2 : 1 프라이빗 케어" },
+           { icon: Sparkles, title: "Signature", detail: "다이슨 풀세트 & 의전 서비스" },
+           { icon: Utensils, title: "Special Meal", detail: "보호자 주말 식사 전체 제공 (12회)" },
         ],
       },
       amenities: buildAmenityCopy("ko"),
@@ -461,160 +427,53 @@ const SUITE_CONTENT: Record<
     en: {
       name: "PRESTIGE",
       hero: {
-        badge: "PRESTIGE SUITE",
-        title: "Expansive Private Prestige Suite",
-        subtitle:
-          "Designed as a 40㎡ two-room residence, the Prestige Suite offers generous space for mothers and family members, with motion beds, baby care, and wellness equipment ready for every moment.",
-        highlights: [
-          {
-            title: "Suite Size",
-            value: "Approx. 40㎡ Two-Room",
-            note: "Separate lounge and sleep zones for comfort",
-          },
-          {
-            title: "Beds & Bedding",
-            value: "Two La Cloud Motion Beds",
-            note: "Hungarian goose down bedding set",
-          },
-          {
-            title: "Premium Setup",
-            value: "LG StanbyME · Dyson lineup",
-            note: "Nespresso brewer & water purifier included",
-          },
-        ],
+         badge: "PRESTIGE SUITE",
+         title: "Expansive 13-Pyeong Private Lounge",
+         subtitle: "Ideal for families with a two-room layout. Offers perfect relaxation with premium motion beds, Dyson full lineup, and private newborn care.",
+         highlights: [
+            { title: "Size", value: "13 P / 43㎡", note: "Two-room, Field View" },
+            { title: "Bed", value: "La Cloud Motion Bed S x2", note: "Twin setup" },
+            { title: "Care", value: "2 : 1 Ratio", note: "Private Nursery Room" },
+         ],
       },
       carouselBadge: "ROOM GALLERY",
-      carouselTitle: "Preview the Prestige Suite",
-      carouselDescription:
-        "Explore the spacious layout and curated amenities through a gallery that feels like a 3D walkthrough.",
-      thumbnailLabel: "Prestige image",
-      prevLabel: "Previous image",
-      nextLabel: "Next image",
+      carouselTitle: "Preview Prestige Suite",
+      carouselDescription: "Explore the spacious living room, separate bedroom, and premium appliances.",
+      thumbnailLabel: "Prestige Image",
+      prevLabel: "Prev",
+      nextLabel: "Next",
       carousel: [
-        {
-          src: "/img/room/prestige1.jpg",
-          alt: "프레스티지 스위트 전경",
-          caption: "투룸 구조로 구분된 라운지와 휴식 공간",
-        },
-        {
-          src: "/img/room/prestige2.jpg",
-          alt: "프레스티지 스위트 라운지",
-          caption: "가족이 함께하는 라운지 존",
-        },
-        {
-          src: "/img/room/prestige3.jpg",
-          alt: "프레스티지 스위트 침실",
-          caption: "모션 베드와 구스 침구로 완성한 심플한 휴식",
-        },
-        {
-          src: "/img/room/prestige4.jpg",
-          alt: "프레스티지 스위트 침실",
-          caption: "모션 베드와 구스 침구로 완성한 심플한 휴식",
-        },
-        {
-          src: "/img/room/prestige5.jpg",
-          alt: "프레스티지 스위트 침실",
-          caption: "모션 베드와 구스 침구로 완성한 심플한 휴식",
-        },
-        {
-          src: "/img/room/prestige6.jpg",
-          alt: "프레스티지 스위트 침실",
-          caption: "모션 베드와 구스 침구로 완성한 심플한 휴식",
-        },
-        {
-          src: "/img/room/prestige7.jpg",
-          alt: "프레스티지 스위트 침실",
-          caption: "모션 베드와 구스 침구로 완성한 심플한 휴식",
-        },
-        {
-          src: "/img/room/prestige8.jpg",
-          alt: "프레스티지 스위트 침실",
-          caption: "모션 베드와 구스 침구로 완성한 심플한 휴식",
-        },
-        {
-          src: "/img/room/prestige9.jpg",
-          alt: "프레스티지 스위트 침실",
-          caption: "모션 베드와 구스 침구로 완성한 심플한 휴식",
-        },
-        {
-          src: "/img/room/prestige10.jpg",
-          alt: "프레스티지 스위트 침실",
-          caption: "모션 베드와 구스 침구로 완성한 심플한 휴식",
-        },
+        { src: "/img/room/prestige1.jpg", alt: "Living Room", caption: "Spacious Living Area" },
+        { src: "/img/room/prestige2.jpg", alt: "Bedroom", caption: "Separate Bedroom" },
+        { src: "/img/room/prestige3.jpg", alt: "Bedding", caption: "Premium Bedding" },
       ],
       featureGroups: [
-        {
-          title: "Room Composition",
-          items: [
-            "Approx. 40㎡ two-room layout",
-            "Two La Cloud motion beds",
-            "Hungarian goose down bedding",
-            "Stokke baby crib",
-          ],
-        },
-        {
-          title: "Wellness & Care",
-          items: [
-            "AMIGO massage chair",
-            "Medela Symphony breast pump",
-            "Bidet & sitz bath",
-            "Dyson Airwrap multi-styler",
-          ],
-        },
-        {
-          title: "Entertainment & Air Quality",
-          items: [
-            "LG UHD TV",
-            "LG StanbyME display",
-            "Dyson air purifier",
-            "Philips air steriliser",
-          ],
-        },
-        {
-          title: "In-Room Convenience",
-          items: [
-            "Nespresso machine",
-            "Hot & cold water purifier",
-            "LG Styler garment care",
-            "Thoughtfully stocked minibar",
-          ],
-        },
+         {
+            title: "Room Condition",
+            items: ["13 Pyeong Two-Room (43㎡)", "Double-glazed Windows (Field View)", "La Cloud Motion Bed S x2", "Bodyfriend Massage Chair"],
+         },
+         {
+            title: "Furniture & Device",
+            items: ["LG StanbyME + UHD TV", "Dyson Purifier & Airwrap", "LG Styler & Philips Sterilizer", "Capsule Coffee & Minibar"],
+         },
+         {
+            title: "Mother & Baby Care",
+            items: ["Stokke Baby Crib", "Medela Symphony Pump (Free Rental)", "Sitz Bath & Bidet", "Nursing Cushion & Pads"],
+         },
+         {
+            title: "Special Service",
+            items: ["Newborn Care 2:1 (Private Room)", "Unlimited Breast Care + 3x After", "Head Spa 3x / Baby Spa 2x", "Limousine Transfer Service"],
+         },
       ],
       facts: {
-        badge: "FAST FACTS",
-        note: "Prestige Suites are available by advance reservation.",
-        items: [
-          {
-            icon: BedDouble,
-            title: "Room Type",
-            detail: "Two-room layout with lounge & sleep zone",
-          },
-          {
-            icon: CalendarClock,
-            title: "Care Rhythm",
-            detail: "24-hour dedicated nursing team",
-          },
-          {
-            icon: Sparkles,
-            title: "Signature Touch",
-            detail: "Comprehensive Dyson & LG premium devices",
-          },
-          {
-            icon: Sofa,
-            title: "Family Lounge",
-            detail: "Dedicated lounge space for visiting family",
-          },
-          {
-            icon: CupSoda,
-            title: "Refreshments",
-            detail: "Nespresso brewer and hot & cold purifier",
-          },
-          {
-            icon: Wifi,
-            title: "Connectivity",
-            detail: "High-speed Wi-Fi & StanbyME streaming",
-          },
-        ],
+         badge: "FAST FACTS",
+         note: "Prestige includes private nursery care.",
+         items: [
+            { icon: BedDouble, title: "Bed Type", detail: "Two Motion Bed Singles" },
+            { icon: Baby, title: "Care Ratio", detail: "2 : 1 Private Care" },
+            { icon: Sparkles, title: "Signature", detail: "Dyson Full Set & Limousine" },
+            { icon: Utensils, title: "Special Meal", detail: "Partner Meals (All Weekends)" },
+         ],
       },
       amenities: buildAmenityCopy("en"),
     },
@@ -624,289 +483,104 @@ const SUITE_CONTENT: Record<
       name: "VVIP",
       hero: {
         badge: "VVIP SUITE",
-        title: "프라이빗 감각을 갖춘 VVIP 스위트",
-        subtitle:
-          "33㎡ 규모의 VVIP 스위트는 라운지와 슬립 존이 한 공간에 자연스럽게 이어져, 간결하면서도 프리미엄한 시간을 선사합니다.",
+        title: "10.5평의 넉넉하고 편안한 힐링 공간",
+        subtitle: "논밭뷰의 탁 트인 전망과 함께 안마의자, 모션베드 등 프리미엄 설비를 갖춘 가장 인기 있는 객실입니다.",
         highlights: [
-          {
-            title: "객실 크기",
-            value: "약 10평 / 33㎡",
-            note: "모노 스위트 플로우",
-          },
-          {
-            title: "베드 & 침구",
-            value: "La Cloud 퀸 모션 베드",
-            note: "친환경 옥수수솜 침구",
-          },
-          {
-            title: "베이비 케어",
-            value: "세이지폴 아기 침대",
-            note: "메델라 심포니 유축기 포함",
-          },
+          { title: "객실 크기", value: "10.5평 / 34㎡", note: "원룸형, 논밭뷰(Field View)" },
+          { title: "베드", value: "라클라우드 모션베드 Q", note: "퀸 사이즈" },
+          { title: "신생아 케어", value: "3.5 : 1 케어", note: "전문 케어팀 상주" },
         ],
       },
       carouselBadge: "ROOM GALLERY",
-      carouselTitle: "VVIP 스위트 미리보기",
-      carouselDescription:
-        "간결한 레이아웃과 프리미엄 편의 설비로 완성된 VVIP 룸을 둘러보세요.",
+      carouselTitle: "VVIP 스위트 둘러보기",
+      carouselDescription: "탁 트인 뷰와 여유로운 공간, 프리미엄 안마의자가 있는 VVIP 룸을 확인하세요.",
       thumbnailLabel: "VVIP 이미지",
-      prevLabel: "이전 이미지",
-      nextLabel: "다음 이미지",
+      prevLabel: "이전",
+      nextLabel: "다음",
       carousel: [
-        {
-          src: "/img/room/vvip4.jpg",
-          alt: "VVIP 스위트 전경",
-          caption: "프라이빗 라운지와 슬립 존이 자연스럽게 연결된 구조",
-        },
-        {
-          src: "/img/room/vvip2.jpg",
-          alt: "VVIP 스위트 전경",
-          caption: "프라이빗 라운지와 슬립 존이 자연스럽게 연결된 구조",
-        },
-        {
-          src: "/img/room/vvip3.jpg",
-          alt: "VVIP 스위트 전경",
-          caption: "프라이빗 라운지와 슬립 존이 자연스럽게 연결된 구조",
-        },
-        {
-          src: "/img/room/vvip5.jpg",
-          alt: "VVIP 스위트 전경",
-          caption: "프라이빗 라운지와 슬립 존이 자연스럽게 연결된 구조",
-        },
-        {
-          src: "/img/room/vvip6.jpg",
-          alt: "VVIP 스위트 전경",
-          caption: "프라이빗 라운지와 슬립 존이 자연스럽게 연결된 구조",
-        },
-        {
-          src: "/img/room/vvip7.jpg",
-          alt: "VVIP 스위트 전경",
-          caption: "프라이빗 라운지와 슬립 존이 자연스럽게 연결된 구조",
-        },
-        {
-          src: "/img/room/vvip8.jpg",
-          alt: "VVIP 스위트 전경",
-          caption: "프라이빗 라운지와 슬립 존이 자연스럽게 연결된 구조",
-        },
+        { src: "/img/room/vvip4.jpg", alt: "VVIP 전경", caption: "탁 트인 논밭뷰와 모션베드" },
+        { src: "/img/room/vvip2.jpg", alt: "VVIP 침실", caption: "안마의자와 휴식 공간" },
+        { src: "/img/room/vvip1.jpg", alt: "VVIP 라운지", caption: "쾌적한 실내 컨디션" },
       ],
       featureGroups: [
         {
-          title: "객실 구성",
-          items: [
-            "10평(33㎡) 단일 존 구성",
-            "La Cloud 퀸 사이즈 모션 베드",
-            "친환경 옥수수솜 침구",
-            "세이지폴 아기 침대",
-          ],
+          title: "객실 컨디션",
+          items: ["10.5평형 원룸 구조 (34㎡)", "이중 통유리 창문 (논밭뷰)", "라클라우드 모션베드 퀸(Q)", "바디프랜드 안마의자"],
         },
         {
-          title: "프리미엄 설비",
-          items: [
-            "AMIGO 안마의자",
-            "메델라 심포니 유축기",
-            "LG 스타일러",
-            "Dyson 헤어드라이어",
-          ],
+          title: "가구 & 가전",
+          items: ["LG 스탠바이미 + UHD TV", "다이슨 슈퍼소닉 드라이어", "LG 스타일러 & 필립스 살균기", "LG 공기청정기 & 정수기"],
         },
         {
-          title: "공기 & 위생 관리",
-          items: [
-            "LG 퓨리케어 공기청정기",
-            "Philips 공기 살균기",
-            "좌욕기 & 비데",
-            "손소독 티슈 스테이션",
-          ],
+          title: "산모 & 아기 케어",
+          items: ["세이지폴(Sagepole) 아기침대", "메델라 심포니 유축기 (퇴실 후 대여)", "좌욕기 & 비데 (자온 적외선)", "수유 쿠션 & 회음부 방석"],
         },
         {
-          title: "엔터테인먼트 & 편의",
-          items: [
-            "LG UHD TV",
-            "LG 스탠바이미",
-            "냉 · 온 정수기",
-            "미니 와인 & 티 셋업",
-          ],
+          title: "스페셜 서비스",
+          items: ["신생아 케어 3.5 : 1", "가슴 관리: 입실 기간 무제한", "헤드스파 2회 / 베이비 스파 1회", "보호자 식사 2회 (입실/토요일)"],
         },
       ],
       facts: {
-        badge: "FAST FACTS",
-        note: "VVIP 스위트는 개인 프라이버시에 최적화된 구조입니다.",
-        items: [
-          {
-            icon: BedDouble,
-            title: "Room Type",
-            detail: "10평 모노 스위트 레이아웃",
-          },
-          {
-            icon: Fan,
-            title: "Air Care",
-            detail: "LG 퓨리케어 + Philips 살균 시스템",
-          },
-          {
-            icon: Droplets,
-            title: "Wellness Touch",
-            detail: "좌욕기 · 시그니처 바스 케어",
-          },
-          {
-            icon: Sofa,
-            title: "Companion Comfort",
-            detail: "AMIGO 안마의자와 파트너 라운지 시트",
-          },
-          {
-            icon: CupSoda,
-            title: "Refreshments",
-            detail: "정수기와 미니 티·와인 셋업 제공",
-          },
-        ],
+         badge: "FAST FACTS",
+         note: "가장 많은 산모님들이 선택하는 베스트 객실입니다.",
+         items: [
+            { icon: BedDouble, title: "Bed Type", detail: "라클라우드 모션베드 퀸(Q)" },
+            { icon: Baby, title: "Care Ratio", detail: "3.5 : 1 케어" },
+            { icon: Sparkles, title: "Device", detail: "다이슨 드라이어 & 메델라 심포니" },
+            { icon: Utensils, title: "Partner Meal", detail: "입실 당일 + 토요일 특식" },
+         ],
       },
       amenities: buildAmenityCopy("ko"),
     },
     en: {
       name: "VVIP",
       hero: {
-        badge: "VVIP SUITE",
-        title: "Refined VVIP Suite with Private Flow",
-        subtitle:
-          "The 33㎡ VVIP suite offers a seamless flow between lounge and sleep zones, delivering a cozy yet premium retreat.",
-        highlights: [
-          {
-            title: "Suite Size",
-            value: "Approx. 33㎡",
-            note: "Open-concept private suite",
-          },
-          {
-            title: "Beds & Bedding",
-            value: "La Cloud Queen Motion Bed",
-            note: "Eco-friendly corn fiber bedding",
-          },
-          {
-            title: "Baby Care",
-            value: "SeiJiFold baby crib",
-            note: "Medela Symphony breast pump",
-          },
-        ],
+         badge: "VVIP SUITE",
+         title: "Spacious 10.5-Pyeong Healing Space",
+         subtitle: "Our most popular room featuring open field views, premium massage chair, and motion bed for ultimate comfort.",
+         highlights: [
+            { title: "Size", value: "10.5 P / 34㎡", note: "Studio, Field View" },
+            { title: "Bed", value: "La Cloud Motion Bed Q", note: "Queen Size" },
+            { title: "Care", value: "3.5 : 1 Ratio", note: "Professional Team" },
+         ],
       },
       carouselBadge: "ROOM GALLERY",
-      carouselTitle: "Preview the VVIP Suite",
-      carouselDescription:
-        "Take a look at the refined layout and premium amenities curated for the VVIP suite.",
-      thumbnailLabel: "VVIP image",
-      prevLabel: "Previous image",
-      nextLabel: "Next image",
+      carouselTitle: "Preview VVIP Suite",
+      carouselDescription: "Check out the open view, spacious room, and premium massage chair.",
+      thumbnailLabel: "VVIP Image",
+      prevLabel: "Prev",
+      nextLabel: "Next",
       carousel: [
-        {
-          src: "/img/room/vvip4.jpg",
-          alt: "VVIP 스위트 전경",
-          caption: "프라이빗 라운지와 슬립 존이 자연스럽게 연결된 구조",
-        },
-        {
-          src: "/img/room/vvip2.jpg",
-          alt: "VVIP 스위트 전경",
-          caption: "프라이빗 라운지와 슬립 존이 자연스럽게 연결된 구조",
-        },
-        {
-          src: "/img/room/vvip3.jpg",
-          alt: "VVIP 스위트 전경",
-          caption: "프라이빗 라운지와 슬립 존이 자연스럽게 연결된 구조",
-        },
-        {
-          src: "/img/room/vvip4.jpg",
-          alt: "VVIP 스위트 전경",
-          caption: "프라이빗 라운지와 슬립 존이 자연스럽게 연결된 구조",
-        },
-        {
-          src: "/img/room/vvip5.jpg",
-          alt: "VVIP 스위트 전경",
-          caption: "프라이빗 라운지와 슬립 존이 자연스럽게 연결된 구조",
-        },
-        {
-          src: "/img/room/vvip6.jpg",
-          alt: "VVIP 스위트 전경",
-          caption: "프라이빗 라운지와 슬립 존이 자연스럽게 연결된 구조",
-        },
-        {
-          src: "/img/room/vvip7.jpg",
-          alt: "VVIP 스위트 전경",
-          caption: "프라이빗 라운지와 슬립 존이 자연스럽게 연결된 구조",
-        },
-        {
-          src: "/img/room/vvip8.jpg",
-          alt: "VVIP 스위트 전경",
-          caption: "프라이빗 라운지와 슬립 존이 자연스럽게 연결된 구조",
-        },
-        {
-          src: "/img/room/medela.jpeg",
-          alt: "메델라 심포니 유축기",
-          caption: "메델라 심포니 유축기",
-        }
+        { src: "/img/room/vvip4.jpg", alt: "VVIP View", caption: "Open Field View & Motion Bed" },
+        { src: "/img/room/vvip2.jpg", alt: "VVIP Room", caption: "Massage Chair & Relax Zone" },
       ],
       featureGroups: [
-        {
-          title: "Room Composition",
-          items: [
-            "Approx. 33㎡ single-zone layout",
-            "La Cloud queen-size motion bed",
-            "Eco-friendly corn fiber bedding",
-            "Seiji Fold baby crib",
-          ],
-        },
-        {
-          title: "Premium Equipment",
-          items: [
-            "AMIGO massage chair",
-            "Medela Symphony breast pump",
-            "LG Styler garment care",
-            "Dyson hair dryer",
-          ],
-        },
-        {
-          title: "Air & Hygiene",
-          items: [
-            "LG PuriCare air purifier",
-            "Philips air steriliser",
-            "Bidet with sitz bath",
-            "Sanitising wipes station",
-          ],
-        },
-        {
-          title: "Entertainment & Convenience",
-          items: [
-            "LG UHD TV",
-            "LG StanbyME display",
-            "Hot & cold water purifier",
-            "Mini wine & tea setup",
-          ],
-        },
+         {
+            title: "Room Condition",
+            items: ["10.5 Pyeong Studio (34㎡)", "Double-glazed Windows (Field View)", "La Cloud Motion Bed Q", "Bodyfriend Massage Chair"],
+         },
+         {
+            title: "Furniture & Device",
+            items: ["LG StanbyME + UHD TV", "Dyson Supersonic Dryer", "LG Styler & Philips Sterilizer", "LG Purifier & Water Purifier"],
+         },
+         {
+            title: "Mother & Baby Care",
+            items: ["Sagepole Baby Crib", "Medela Symphony Pump (Free Rental)", "Sitz Bath & Bidet", "Nursing Cushion & Pads"],
+         },
+         {
+            title: "Special Service",
+            items: ["Newborn Care 3.5:1", "Unlimited Breast Care", "Head Spa 2x / Baby Spa 1x", "Partner Meal 2x"],
+         },
       ],
       facts: {
-        badge: "FAST FACTS",
-        note: "The VVIP suite is optimised for privacy and quiet moments.",
-        items: [
-          {
-            icon: BedDouble,
-            title: "Room Type",
-            detail: "33㎡ mono suite layout",
-          },
-          {
-            icon: Fan,
-            title: "Air Care",
-            detail: "LG PuriCare + Philips sterilising system",
-          },
-          {
-            icon: Droplets,
-            title: "Wellness Touch",
-            detail: "Sitz bath and signature bath care amenities",
-          },
-          {
-            icon: Sofa,
-            title: "Companion Comfort",
-            detail: "AMIGO massage chair & partner seating",
-          },
-          {
-            icon: CupSoda,
-            title: "Refreshments",
-            detail: "Water purifier with curated tea/wine selection",
-          },
-        ],
+         badge: "FAST FACTS",
+         note: "The most popular choice for mothers.",
+         items: [
+            { icon: BedDouble, title: "Bed Type", detail: "La Cloud Motion Bed Q" },
+            { icon: Baby, title: "Care Ratio", detail: "3.5 : 1 Ratio" },
+            { icon: Sparkles, title: "Device", detail: "Dyson Dryer & Medela Symphony" },
+            { icon: Utensils, title: "Partner Meal", detail: "Check-in Lunch + Sat Special" },
+         ],
       },
       amenities: buildAmenityCopy("en"),
     },
@@ -916,284 +590,103 @@ const SUITE_CONTENT: Record<
       name: "VIP",
       hero: {
         badge: "VIP SUITE",
-        title: "작지만 세심한 디테일이 살아있는 VIP 스위트",
-        subtitle:
-          "27㎡ 규모의 VIP 스위트는 가장 아늑한 스위트로, 산모가 집중적으로 회복할 수 있는 컴팩트하고 안정된 동선을 제공합니다.",
+        title: "8.5평의 실속 있고 아늑한 공간",
+        subtitle: "시티뷰를 배경으로 꼭 필요한 설비를 갖춘 합리적인 객실입니다. 라클라우드 모션베드와 바디프랜드 안마의자가 기본 제공됩니다.",
         highlights: [
-          {
-            title: "객실 크기",
-            value: "약 8평 / 27㎡",
-            note: "필수 동선만을 담은 컴팩트 구성",
-          },
-          {
-            title: "베드 & 침구",
-            value: "La Cloud 퀸 모션 베드",
-            note: "친환경 옥수수솜 침구 세트",
-          },
-          {
-            title: "케어 설비",
-            value: "프리미엄 원목 아기침대",
-            note: "메델라 락티나 유축기 상시 구비",
-          },
+          { title: "객실 크기", value: "8.5평 / 28㎡", note: "원룸형, 시티뷰(City View)" },
+          { title: "베드", value: "라클라우드 모션베드 Q", note: "퀸 사이즈" },
+          { title: "신생아 케어", value: "3.5 : 1 케어", note: "전문 케어팀 상주" },
         ],
       },
       carouselBadge: "ROOM GALLERY",
-      carouselTitle: "VIP 스위트 미리보기",
-      carouselDescription:
-        "산모 회복과 아기 돌봄에 필요한 요소만 담은 VIP 스위트를 이미지로 둘러보세요.",
+      carouselTitle: "VIP 스위트 둘러보기",
+      carouselDescription: "아늑한 분위기와 효율적인 동선을 갖춘 VIP 룸을 확인하세요.",
       thumbnailLabel: "VIP 이미지",
-      prevLabel: "이전 이미지",
-      nextLabel: "다음 이미지",
+      prevLabel: "이전",
+      nextLabel: "다음",
       carousel: [
-        {
-          src: "/img/room/vvip1.jpg",
-          alt: "VVIP 스위트 전경",
-          caption: "프라이빗 라운지와 슬립 존이 자연스럽게 연결된 구조",
-        },
-        {
-          src: "/img/room/vvip2.jpg",
-          alt: "VVIP 스위트 전경",
-          caption: "프라이빗 라운지와 슬립 존이 자연스럽게 연결된 구조",
-        },
-        {
-          src: "/img/room/vvip3.jpg",
-          alt: "VVIP 스위트 전경",
-          caption: "프라이빗 라운지와 슬립 존이 자연스럽게 연결된 구조",
-        },
-        {
-          src: "/img/room/vvip5.jpg",
-          alt: "VVIP 스위트 전경",
-          caption: "프라이빗 라운지와 슬립 존이 자연스럽게 연결된 구조",
-        },
-        {
-          src: "/img/room/vvip6.jpg",
-          alt: "VVIP 스위트 전경",
-          caption: "프라이빗 라운지와 슬립 존이 자연스럽게 연결된 구조",
-        },
-        {
-          src: "/img/room/vvip7.jpg",
-          alt: "VVIP 스위트 전경",
-          caption: "프라이빗 라운지와 슬립 존이 자연스럽게 연결된 구조",
-        },
-        {
-          src: "/img/room/vvip8.jpg",
-          alt: "VVIP 스위트 전경",
-          caption: "프라이빗 라운지와 슬립 존이 자연스럽게 연결된 구조",
-        },
+        { src: "/img/room/vvip1.jpg", alt: "VIP 전경", caption: "아늑한 시티뷰 객실" },
+        { src: "/img/room/vvip2.jpg", alt: "VIP 설비", caption: "안마의자와 모션베드" },
       ],
       featureGroups: [
         {
-          title: "객실 구성",
-          items: [
-            "8평(27㎡) 컴팩트 구성",
-            "La Cloud 퀸 사이즈 모션 베드",
-            "친환경 옥수수솜 침구",
-            "프리미엄 원목 아기침대",
-          ],
+          title: "객실 컨디션",
+          items: ["8.5평형 원룸 구조 (28㎡)", "이중 통유리 창문 (시티뷰)", "라클라우드 모션베드 퀸(Q)", "바디프랜드 안마의자"],
         },
         {
-          title: "필수 설비",
-          items: [
-            "AMIGO 안마의자",
-            "메델라 락티나 유축기",
-            "LG 스타일러",
-            "좌욕기 & 비데",
-          ],
+          title: "가구 & 가전",
+          items: ["LG UHD TV (43인치)", "필립스 드라이어", "LG 스타일러 & 필립스 살균기", "LG 공기청정기 & 정수기"],
         },
         {
-          title: "공기 & 편의",
-          items: [
-            "LG 퓨리케어 공기청정기",
-            "Philips 공기 살균기",
-            "냉 · 온 정수기",
-            "드라이어",
-          ],
+          title: "산모 & 아기 케어",
+          items: ["원목형 아기침대", "메델라 락티나 유축기 (할인 대여)", "좌욕기 & 비데 (자온 적외선)", "수유 쿠션 & 회음부 방석"],
         },
         {
-          title: "엔터테인먼트",
-          items: [
-            "LG UHD TV",
-            "따뜻한 무드 조명",
-            "프라이빗 오디오 시스템",
-            "간단한 티 & 스낵",
-          ],
+          title: "스페셜 서비스",
+          items: ["신생아 케어 3.5 : 1", "가슴 관리: 입실 기간 무제한", "헤드스파 1회 / 베이비 스파 1회", "보호자 식사 1회 (입실 당일)"],
         },
       ],
       facts: {
-        badge: "FAST FACTS",
-        note: "VIP 스위트는 산모 집중 회복을 위한 핵심 설비만 엄선했습니다.",
-        items: [
-          {
-            icon: BedDouble,
-            title: "Room Type",
-            detail: "8평 컴팩트 스위트",
-          },
-          {
-            icon: Fan,
-            title: "Air Care",
-            detail: "LG 퓨리케어 & Philips 살균 조합",
-          },
-          {
-            icon: LaptopMinimal,
-            title: "Essentials",
-            detail: "안마의자 · 정수기 · 유축기 풀세트",
-          },
-          {
-            icon: Lamp,
-            title: "Ambient Lighting",
-            detail: "무드조명과 프라이빗 오디오로 편안한 밤",
-          },
-          {
-            icon: Baby,
-            title: "Baby Comfort",
-            detail: "프리미엄 원목 아기침대와 케어 키트",
-          },
-        ],
+         badge: "FAST FACTS",
+         note: "합리적인 가격에 프리미엄 케어를 누릴 수 있습니다.",
+         items: [
+            { icon: BedDouble, title: "Bed Type", detail: "라클라우드 모션베드 퀸(Q)" },
+            { icon: Baby, title: "Care Ratio", detail: "3.5 : 1 케어" },
+            { icon: Sparkles, title: "Device", detail: "안마의자 & 유축기 기본 제공" },
+            { icon: Utensils, title: "Partner Meal", detail: "입실 당일 점심 제공" },
+         ],
       },
       amenities: buildAmenityCopy("ko"),
     },
     en: {
       name: "VIP",
       hero: {
-        badge: "VIP SUITE",
-        title: "Compact Yet Thoughtful VIP Suite",
-        subtitle:
-          "The 27㎡ VIP suite condenses everything a mother needs for focused recovery into a cozy, secure layout.",
-        highlights: [
-          {
-            title: "Suite Size",
-            value: "Approx. 27㎡",
-            note: "Compact layout with essential zones",
-          },
-          {
-            title: "Beds & Bedding",
-            value: "La Cloud queen motion bed",
-            note: "Eco-friendly corn fiber bedding set",
-          },
-          {
-            title: "Care Equipment",
-            value: "Premium wooden baby crib",
-            note: "Medela Lactina pump ready to use",
-          },
-        ],
+         badge: "VIP SUITE",
+         title: "Cozy 8.5-Pyeong Essential Space",
+         subtitle: "A practical choice with City View and essential premium amenities like Motion Bed and Massage Chair.",
+         highlights: [
+            { title: "Size", value: "8.5 P / 28㎡", note: "Studio, City View" },
+            { title: "Bed", value: "La Cloud Motion Bed Q", note: "Queen Size" },
+            { title: "Care", value: "3.5 : 1 Ratio", note: "Professional Team" },
+         ],
       },
       carouselBadge: "ROOM GALLERY",
-      carouselTitle: "Preview the VIP Suite",
-      carouselDescription:
-        "Take a closer look at the intimate VIP suite designed with essentials for mother and baby.",
-      thumbnailLabel: "VIP image",
-      prevLabel: "Previous image",
-      nextLabel: "Next image",
+      carouselTitle: "Preview VIP Suite",
+      carouselDescription: "Check out the cozy atmosphere and efficient layout of the VIP suite.",
+      thumbnailLabel: "VIP Image",
+      prevLabel: "Prev",
+      nextLabel: "Next",
       carousel: [
-        {
-          src: "/img/room/vvip1.jpg",
-          alt: "VVIP 스위트 전경",
-          caption: "프라이빗 라운지와 슬립 존이 자연스럽게 연결된 구조",
-        },
-        {
-          src: "/img/room/vvip2.jpg",
-          alt: "VVIP 스위트 전경",
-          caption: "프라이빗 라운지와 슬립 존이 자연스럽게 연결된 구조",
-        },
-        {
-          src: "/img/room/vvip3.jpg",
-          alt: "VVIP 스위트 전경",
-          caption: "프라이빗 라운지와 슬립 존이 자연스럽게 연결된 구조",
-        },
-        {
-          src: "/img/room/vvip5.jpg",
-          alt: "VVIP 스위트 전경",
-          caption: "프라이빗 라운지와 슬립 존이 자연스럽게 연결된 구조",
-        },
-        {
-          src: "/img/room/vvip6.jpg",
-          alt: "VVIP 스위트 전경",
-          caption: "프라이빗 라운지와 슬립 존이 자연스럽게 연결된 구조",
-        },
-        {
-          src: "/img/room/vvip7.jpg",
-          alt: "VVIP 스위트 전경",
-          caption: "프라이빗 라운지와 슬립 존이 자연스럽게 연결된 구조",
-        },
-        {
-          src: "/img/room/vvip8.jpg",
-          alt: "VVIP 스위트 전경",
-          caption: "프라이빗 라운지와 슬립 존이 자연스럽게 연결된 구조",
-        },
-        {
-          src: "/img/room/medela.jpeg",
-          alt: "메델라 심포니 유축기",
-          caption: "프라이빗 라운지와 슬립 존이 자연스럽게 연결된 구조",
-        },
+        { src: "/img/room/vvip1.jpg", alt: "VIP View", caption: "Cozy City View Room" },
+        { src: "/img/room/vvip2.jpg", alt: "VIP Room", caption: "Massage Chair & Motion Bed" },
       ],
       featureGroups: [
-        {
-          title: "Room Composition",
-          items: [
-            "Approx. 27㎡ compact layout",
-            "La Cloud queen-size motion bed",
-            "Eco-friendly corn fiber bedding",
-            "Premium wooden baby crib",
-          ],
-        },
-        {
-          title: "Essential Equipment",
-          items: [
-            "AMIGO massage chair",
-            "Medela Lactina breast pump",
-            "LG Styler garment care",
-            "Bidet with sitz bath",
-          ],
-        },
-        {
-          title: "Air & Convenience",
-          items: [
-            "LG PuriCare air purifier",
-            "Philips air steriliser",
-            "Hot & cold water purifier",
-            "Hair dryer",
-          ],
-        },
-        {
-          title: "Entertainment",
-          items: [
-            "LG UHD TV",
-            "Warm mood lighting",
-            "Private audio setup",
-            "Complimentary tea & snacks",
-          ],
-        },
+         {
+            title: "Room Condition",
+            items: ["8.5 Pyeong Studio (28㎡)", "Double-glazed Windows (City View)", "La Cloud Motion Bed Q", "Bodyfriend Massage Chair"],
+         },
+         {
+            title: "Furniture & Device",
+            items: ["LG UHD TV (43_inch)", "Philips Dryer", "LG Styler & Philips Sterilizer", "LG Purifier & Water Purifier"],
+         },
+         {
+            title: "Mother & Baby Care",
+            items: ["Wooden Baby Crib", "Medela Lactina Pump (Discount Rental)", "Sitz Bath & Bidet", "Nursing Cushion & Pads"],
+         },
+         {
+            title: "Special Service",
+            items: ["Newborn Care 3.5:1", "Unlimited Breast Care", "Head Spa 1x / Baby Spa 1x", "Partner Meal 1x"],
+         },
       ],
       facts: {
-        badge: "FAST FACTS",
-        note: "VIP suites provide a curated set of essentials for focused recovery.",
-        items: [
-          {
-            icon: BedDouble,
-            title: "Room Type",
-            detail: "Compact 27㎡ suite",
-          },
-          {
-            icon: Fan,
-            title: "Air Care",
-            detail: "LG PuriCare + Philips sterilising combo",
-          },
-          {
-            icon: LaptopMinimal,
-            title: "Essentials",
-            detail: "Massage chair, water purifier, Lactina pump included",
-          },
-          {
-            icon: Lamp,
-            title: "Ambient Lighting",
-            detail: "Soft mood lighting with private audio",
-          },
-          {
-            icon: Baby,
-            title: "Baby Comfort",
-            detail: "Premium wooden crib and care kit",
-          },
-        ],
+         badge: "FAST FACTS",
+         note: "Enjoy premium care at a rational price.",
+         items: [
+            { icon: BedDouble, title: "Bed Type", detail: "La Cloud Motion Bed Q" },
+            { icon: Baby, title: "Care Ratio", detail: "3.5 : 1 Ratio" },
+            { icon: Sparkles, title: "Device", detail: "Massage Chair & Pump Included" },
+            { icon: Utensils, title: "Partner Meal", detail: "Check-in Lunch Included" },
+         ],
       },
       amenities: buildAmenityCopy("en"),
     },
