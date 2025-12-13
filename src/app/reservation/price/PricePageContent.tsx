@@ -25,94 +25,177 @@ export function PricePageContent({ locale }: PricePageContentProps) {
 function PriceHeader({ isKo }: { isKo: boolean }) {
   return (
     <ScrollReveal>
-      <header className="text-center space-y-4 mt-12">
-        <p className="text-sm font-semibold uppercase tracking-[0.3em] text-primary font-playfair italic">
-          {isKo ? "이용 요금" : "Price List"}
-        </p>
-        <h2 className="text-3xl font-semibold text-foreground md:text-4xl font-serif">
-          {isKo ? "가격표" : "Price of The Helia"}
+      <header className="text-center space-y-6 mt-16 mb-20">
+        <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/5 border border-primary/10 text-primary text-xs font-bold uppercase tracking-[0.2em]">
+          <span className="relative flex h-2 w-2">
+            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
+            <span className="relative inline-flex rounded-full h-2 w-2 bg-primary"></span>
+          </span>
+          {isKo ? "2025 프로모션" : "2025 Promotion"}
+        </div>
+        <h2 className="text-5xl md:text-6xl lg:text-7xl font-bold text-foreground font-serif leading-tight tracking-tight">
+          {isKo ? (
+            <>
+              Premium <span className="text-primary italic font-light">Recovery</span>
+            </>
+          ) : (
+             <>
+              Premium <span className="text-primary italic font-light">Recovery</span>
+            </>
+          )}
         </h2>
-        <p className="text-base leading-relaxed text-foreground/70 md:text-lg max-w-2xl mx-auto">
+        <p className="text-lg md:text-xl leading-relaxed text-stone-500 dark:text-stone-400 max-w-2xl mx-auto font-medium">
           {isKo
-            ? "더헬리아의 모든 프로그램은 산모와 아기를 위한 최상의 케어를 포함하고 있습니다."
-            : "All The Helia programmes include premium care for both mother and baby."}
+            ? "가장 소중한 순간, 더헬리아가 선사하는 완벽한 휴식"
+            : "The most precious moment, perfect relaxation presented by The Helia."}
         </p>
       </header>
     </ScrollReveal>
   );
 }
 
-function MainPriceSection({ isKo }: { isKo: boolean }) {
-  const headers = isKo
-    ? ["구분 (2주)", "BABY CARE", "HEAD SPA", "BABY SPA", "보호자 식사", "가슴관리", "기타 혜택", "금액 (만원)"]
-    : ["Type (2 Weeks)", "Baby Care", "Head Spa", "Baby Spa", "Partner Meals", "Breast Care", "Benefits", "Price (10k KRW)"];
+import Link from "next/link";
+// ... (imports remain)
 
-  const rows = [
+// ... (PriceHeader remains)
+
+function MainPriceSection({ isKo }: { isKo: boolean }) {
+  const plans = [
     {
-      type: "PRESTIGE",
-      care: isKo ? "2 : 1\n(신생아실 별도 운영)" : "2 : 1\n(Separate Nursery)",
-      headSpa: isKo ? "산모 2회\n보호자 1회" : "Mom 2x\nPartner 1x",
-      babySpa: "2회",
-      meals: isKo ? "주말 식사 제공 / 12회" : "Weekend Meals / 12x",
-      breast: isKo ? "입실 기간 / FREE\n퇴실 이후 / 3회" : "During Stay / FREE\nAfter Stay / 3x",
-      benefits: isKo ? "퇴실 (병원 -> 조리원)\n퇴실 후 유축기 무상 대여" : "Transfer Service\nBreast Pump Rental",
-      price: "950",
+      type: "VIP",
+      price: "550",
+      desc: isKo ? "합리적인 가격의 프리미엄 케어" : "Rational Premium Care",
+      features: [
+        { label: isKo ? "신생아 케어 3.5 : 1" : "Baby Care 3.5 : 1", included: true },
+        { label: isKo ? "산모 헤드스파 1회" : "Mother Head Spa 1x", included: true },
+        { label: isKo ? "보호자 식사 (입실 당일 1회)" : "Partner Meal (Check-in 1x)", included: true },
+        { label: isKo ? "베이비 스파 1회" : "Baby Spa 1x", included: true },
+        { label: isKo ? "가슴 마사지 (입실 기간 무제한)" : "Breast Care (Unlimited)", included: true },
+        { label: isKo ? "퇴실 후 유축기 할인 대여" : "Pump Rental Discount", included: true },
+      ],
+      highlight: false,
     },
     {
       type: "VVIP",
-      care: "3.5 : 1",
-      headSpa: isKo ? "산모 1회\n보호자 1회" : "Mom 1x\nPartner 1x",
-      babySpa: "1회",
-      meals: isKo ? "입실 당일 점심 제공 / 1회\n토요일 특식 점심 제공 / 1회" : "Check-in Lunch / 1x\nSat Special Lunch / 1x",
-      breast: isKo ? "입실 기간 / FREE" : "During Stay / FREE",
-      benefits: isKo ? "퇴실 후 유축기 무상 대여" : "Breast Pump Rental",
       price: "650",
+      desc: isKo ? "가장 많은 분들이 선택한 베스트" : "Most Popular Choice",
+      features: [
+        { label: isKo ? "신생아 케어 3.5 : 1" : "Baby Care 3.5 : 1", included: true },
+        { label: isKo ? "산모 헤드스파 1회 + 보호자 1회" : "Mother Head Spa 1x + Partner 1x", included: true },
+        { label: isKo ? "보호자 식사 2회 (입실/토요일)" : "Partner Meal 2x", included: true },
+        { label: isKo ? "베이비 스파 1회" : "Baby Spa 1x", included: true },
+        { label: isKo ? "가슴 마사지 (입실 기간 무제한)" : "Breast Care (Unlimited)", included: true },
+        { label: isKo ? "퇴실 후 유축기 무상 대여" : "Free Pump Rental", included: true },
+      ],
+      highlight: true,
+      tag: isKo ? "MOST POPULAR" : "MOST POPULAR",
     },
     {
-      type: "VIP",
-      care: "3.5 : 1",
-      headSpa: isKo ? "산모 1회" : "Mom 1x",
-      babySpa: "1회",
-      meals: isKo ? "입실 당일 점심 제공 / 1회" : "Check-in Lunch / 1x",
-      breast: isKo ? "입실 기간 / FREE" : "During Stay / FREE",
-      benefits: isKo ? "퇴실 후 유축기 할인 대여" : "Pump Rental Discount",
-      price: "550",
+      type: "PRESTIGE",
+      price: "950",
+      desc: isKo ? "압도적인 럭셔리와 프라이빗 케어" : "Overwhelming Luxury & Private Care",
+      features: [
+        { label: isKo ? "신생아 케어 2 : 1 (단독 신생아실)" : "Baby Care 2 : 1 (Private Room)", included: true },
+        { label: isKo ? "산모 헤드스파 2회 + 보호자 1회" : "Mother Head Spa 2x + Partner 1x", included: true },
+        { label: isKo ? "보호자 주말 식사 전체 제공" : "Partner Meal (All Weekends)", included: true },
+        { label: isKo ? "베이비 스파 2회" : "Baby Spa 2x", included: true },
+        { label: isKo ? "가슴 관리 퇴실 후 3회 추가" : "Breast Care (+3x After)", included: true },
+        { label: isKo ? "병원 → 조리원 리무진 의전" : "Limousine Service", included: true },
+      ],
+      highlight: false,
+      isPremium: true
     },
   ];
 
   return (
     <ScrollReveal>
-      <section className="overflow-hidden rounded-3xl border border-border/40 bg-white/80 dark:bg-[#2A2928]/60 backdrop-blur-md shadow-sm">
-        <div className="overflow-x-auto">
-          <table className="w-full min-w-[1000px] text-sm md:text-base">
-            <thead className="bg-primary/10 dark:bg-[#333231] text-primary/90 dark:text-primary/90">
-              <tr>
-                {headers.map((header, i) => (
-                  <th key={i} className="px-6 py-4 font-serif font-semibold whitespace-nowrap text-center first:text-left">
-                    {header}
-                  </th>
+      <section className="grid md:grid-cols-3 gap-6 lg:gap-8 max-w-7xl mx-auto px-4 md:px-0">
+        {plans.map((plan) => {
+          // Color Logic based on User Image
+          const isPrestige = plan.isPremium;
+          const isVVIP = plan.highlight;
+          const isVIP = !isPrestige && !isVVIP;
+
+          return (
+            <div 
+              key={plan.type} 
+              className={`group relative rounded-[2.5rem] p-8 md:p-10 flex flex-col transition-all duration-500
+                ${isVVIP 
+                  ? 'bg-[#FAF9F6] border-2 border-[#D4C3B3] shadow-2xl shadow-[#D4C3B3]/20 z-10 md:scale-105' 
+                  : isPrestige
+                    ? 'bg-[#1C1C1C] text-white border border-white/5 shadow-xl'
+                    : 'bg-white border border-stone-200 shadow-lg hover:border-[#D4C3B3]/50'
+                }
+              `}
+            >
+              {plan.tag && (
+                <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2">
+                   <span className="bg-[#A48F79] text-white text-[10px] font-bold px-4 py-1.5 rounded-full shadow-md uppercase tracking-widest flex items-center gap-1">
+                     <Sparkles className="w-3 h-3 fill-white" />
+                     {plan.tag}
+                   </span>
+                </div>
+              )}
+              
+              <div className="mb-10">
+                <h3 className={`font-serif text-3xl font-bold mb-3 ${isPrestige ? 'text-white' : 'text-[#2C2C2C]'}`}>
+                  {plan.type}
+                </h3>
+                <p className={`text-sm mb-8 font-medium ${isPrestige ? 'text-white/60' : 'text-[#888888]'}`}>
+                  {plan.desc}
+                </p>
+                <div className="flex items-baseline gap-1.5">
+                  <span className={`text-5xl font-bold font-serif tracking-tight ${isPrestige ? 'text-white' : 'text-[#2C2C2C]'}`}>
+                    {plan.price}
+                  </span>
+                  <span className={`text-base font-medium ${isPrestige ? 'text-white/60' : 'text-[#888888]'}`}>
+                    {isKo ? "만원" : "0k KRW"}
+                    <span className="text-xs ml-1 font-normal opacity-70">
+                      {isKo ? "/ 2주" : "/ 2w"}
+                    </span>
+                  </span>
+                </div>
+              </div>
+
+              <ul className="space-y-5 mb-10 flex-1">
+                {plan.features.map((feature, i) => (
+                  <li key={i} className="flex items-start gap-3 text-[15px] leading-relaxed group/item">
+                    <div className={`mt-0.5 rounded-full p-0.5 shrink-0 
+                      ${isPrestige 
+                        ? 'bg-white/10 text-white' 
+                        : isVVIP 
+                          ? 'bg-[#A48F79]/10 text-[#A48F79]' 
+                          : 'bg-stone-100 text-stone-400'
+                      }
+                    `}>
+                      <Check className="w-3.5 h-3.5" />
+                    </div>
+                    <span className={`font-medium ${isPrestige ? 'text-white/80' : 'text-[#555555]'}`}>
+                      {feature.label}
+                    </span>
+                  </li>
                 ))}
-              </tr>
-            </thead>
-            <tbody className="divide-y divide-border/20">
-              {rows.map((row) => (
-                <tr key={row.type} className="hover:bg-primary/5 dark:hover:bg-[#333231]/50 transition-colors">
-                  <td className="px-6 py-6 font-serif font-semibold text-primary">{row.type}</td>
-                  <td className="px-6 py-6 text-center whitespace-pre-line text-foreground/80">{row.care}</td>
-                  <td className="px-6 py-6 text-center whitespace-pre-line text-foreground/80">{row.headSpa}</td>
-                  <td className="px-6 py-6 text-center text-foreground/80">{row.babySpa}</td>
-                  <td className="px-6 py-6 text-center whitespace-pre-line text-foreground/80">{row.meals}</td>
-                  <td className="px-6 py-6 text-center whitespace-pre-line text-foreground/80">{row.breast}</td>
-                  <td className="px-6 py-6 text-center whitespace-pre-line text-foreground/80">{row.benefits}</td>
-                  <td className="px-6 py-6 text-center font-semibold text-foreground">{row.price}</td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
-        <div className="mt-2 px-4 pb-4 text-right text-xs text-primary/60 md:hidden">
-          {isKo ? "* 좌우로 스크롤하여 확인하실 수 있습니다." : "* Scroll horizontally to view more."}
-        </div>
+              </ul>
+
+              <div className="pt-6 border-t border-dashed"
+                   style={{ borderColor: isPrestige ? "rgba(255,255,255,0.1)" : "rgba(0,0,0,0.06)" }}
+              >
+                 <Link href={`/${isKo ? 'ko' : 'en'}/reservation`} className="block w-full">
+                   <button className={`w-full py-4 rounded-xl font-bold text-sm tracking-wide transition-all duration-300
+                     ${isPrestige
+                       ? 'bg-white text-black hover:bg-stone-200'
+                       : isVVIP
+                         ? 'bg-[#A48F79] text-white hover:bg-[#8C7B6D] shadow-lg shadow-[#A48F79]/30'
+                         : 'bg-[#F5F5F5] text-[#666666] hover:bg-[#EAEAEA]'
+                     }
+                   `}>
+                     {isKo ? "상담 예약하기" : "Book Now"}
+                   </button>
+                 </Link>
+              </div>
+            </div>
+          );
+        })}
       </section>
     </ScrollReveal>
   );
@@ -121,74 +204,81 @@ function MainPriceSection({ isKo }: { isKo: boolean }) {
 function PromotionSection({ isKo }: { isKo: boolean }) {
   const promotions = isKo
     ? [
-        "당일 할인 이벤트로 기간 한정으로 20만원 할인 프로모션을 진행합니다. (* 조기 마감될 수 있습니다.)",
-        "제왕둔 검사 할인 이벤트로 기간 한정 10만원 할인 프로모션을 진행합니다. (* 조기 마감될 수 있습니다.)",
-        "당일 할인 및 재방문 감사 할인 이벤트는 2주 입실 예약에 한하여 적용됩니다.",
-        "SPA는 2주 입실 기준 총 4회 제공(산전 2회, 산후 2회 회당 60분)됩니다. (* Prestige, VVIP, VIP 객실 모두 동일하게 적용됩니다.)",
-        "Prestige 객실 예약 산모님들께는 의전 서비스 (병원->조리원) 1회 제공합니다.",
-        "Prestige, VVIP 객실 예약 산모님들께는 메델라 유축기 2주 무상 대여 진행합니다. (* 유축기 재고 현황에 따라 선착순으로 진행합니다.)",
+        "당일 할인 이벤트: 20만원 할인 (기간 한정)",
+        "제왕둔 검사 할인: 10만원 할인 (기간 한정)",
+        "당일 할인 및 재방문 할인은 2주 예약 시 적용",
+        "SPA: 산전 2회 + 산후 2회 (총 4회/60분)",
+        "Prestige: 병원→조리원 단독 의전 서비스",
+        "Prestige & VVIP: 메델라 유축기 2주 무상 대여",
       ]
     : [
-        "Limited time promotion: 200,000 KRW discount for same-day booking. (* May close early)",
-        "C-section check-up event: 100,000 KRW discount for limited time. (* May close early)",
-        "Same-day & Re-visit discounts apply only to 2-week bookings.",
-        "SPA: Total 4 sessions (2 pre-natal, 2 post-natal, 60 mins each) for 2-week stays. (* Applies to all room types)",
-        "Prestige booking includes 1-time transfer service (Hospital -> Center).",
-        "Prestige & VVIP bookings include 2-week free Medela breast pump rental. (* Subject to availability)",
+        "Same-day Booking: 200k KRW Discount",
+        "C-section Check: 100k KRW Discount",
+        "Discounts apply to 2-week bookings only",
+        "SPA: 2 Pre-natal + 2 Post-natal (60min)",
+        "Prestige: Private Transfer Service",
+        "Prestige & VVIP: Free Medela Pump Rental",
       ];
 
   const notes = isKo
     ? [
-        "식사 (1일 3식), 간식 (1일 3회)",
-        "보호자 식사: 15,000원 / 1식",
-        "PRESTIGE 객실의 보호자 식사는 주말 3식 모두 제공됩니다. (아침, 점심, 저녁)",
-        "동이추가: 90만원 / 1주",
-        "BABY SPA 추가: 15만원 / 1회",
-        "HEAD SPA 추가: 10만원 / 1회",
-        "신생아 케어, 산모 케어, 청소, 세탁, 산모/보호자교육 등이 포함되며, 기타 편의시설이 제공됩니다.",
-        "위 가격표는 스파와 바디케어가 포함된 2주 기준 이용 금액으로 입실 기간에 따라 금액 및 서비스가 변경될 수 있습니다.",
-        "무료로 제공되는 보호자 식사는 변경이 불가합니다.",
+        "식사 (1일 3식) 및 간식 (1일 3회) 제공",
+        "보호자 식사: 15,000원 / 1식 (Prestige 주말 무료)",
+        "쌍둥이 추가 비용: 90만원 / 1주",
+        "BABY SPA 추가: 15만원 / HEAD SPA 추가: 10만원",
+        "포함: 신생아/산모 케어, 청소/세탁, 교육 프로그램",
+        "입실 기간에 따라 금액 및 서비스가 변동될 수 있습니다.",
       ]
     : [
-        "Meals (3/day), Snacks (3/day)",
-        "Partner Meal: 15,000 KRW / meal",
-        "Prestige Partner Meals: All 3 weekend meals provided (Breakfast, Lunch, Dinner)",
+        "Meals (3/day) & Snacks (3/day) included",
+        "Partner Meal: 15,000 KRW (Free on Weekends for Prestige)",
         "Twin Surcharge: 900,000 KRW / week",
-        "Baby Spa Add-on: 150,000 KRW / session",
-        "Head Spa Add-on: 100,000 KRW / session",
-        "Includes newborn care, mother care, cleaning, laundry, education, and amenities.",
-        "Prices are based on a 2-week stay including spa/body care; rates/services may vary by duration.",
-        "Complimentary partner meals cannot be exchanged.",
+        "Add-ons: Baby Spa 150k / Head Spa 100k",
+        "Includes: Care, Cleaning, Laundry, Education",
+        "Rates/Services may vary by stay duration.",
       ];
 
   return (
     <ScrollReveal>
-      <section className="grid gap-8 md:grid-cols-2">
-        <div className="rounded-3xl border border-primary/20 bg-primary/10 dark:bg-[#2A2928]/40 p-8">
-          <div className="flex items-center gap-3 mb-6">
-            <Sparkles className="h-6 w-6 text-primary" />
-            <h3 className="text-xl font-semibold font-serif text-primary">
-              {isKo ? "프로모션" : "Promotions"}
-            </h3>
+      <section className="grid gap-8 md:grid-cols-2 max-w-7xl mx-auto">
+        <div className="group rounded-[2.5rem] border border-stone-200/60 dark:border-white/5 bg-white/60 dark:bg-[#2A2928]/60 backdrop-blur-xl p-8 md:p-10 shadow-[0_8px_30px_rgb(0,0,0,0.04)] hover:shadow-xl transition-all duration-500 hover:-translate-y-1">
+          <div className="flex items-center gap-4 mb-8">
+            <div className="p-3 rounded-2xl bg-primary/10 text-primary">
+               <Sparkles className="h-6 w-6" />
+            </div>
+            <div>
+              <span className="block text-xs font-bold text-primary uppercase tracking-widest mb-1">Benefit</span>
+              <h3 className="text-2xl font-bold font-serif text-foreground">
+                {isKo ? "프로모션 & 혜택" : "Special Promotions"}
+              </h3>
+            </div>
           </div>
           <ul className="space-y-4">
             {promotions.map((item, i) => (
-              <li key={i} className="flex items-start gap-3 text-sm leading-relaxed text-foreground/80">
-                <span className="mt-1.5 h-1.5 w-1.5 flex-shrink-0 rounded-full bg-primary" />
+              <li key={i} className="flex items-start gap-4 text-[15px] leading-relaxed text-stone-600 dark:text-stone-300 group/item">
+                <span className="mt-2 h-1.5 w-1.5 flex-shrink-0 rounded-full bg-primary/40 group-hover/item:bg-primary transition-colors" />
                 <span>{item}</span>
               </li>
             ))}
           </ul>
         </div>
 
-        <div className="rounded-3xl border border-border/40 bg-white/80 dark:bg-[#2A2928]/60 backdrop-blur-md p-8">
-          <h3 className="text-xl font-semibold font-serif text-foreground mb-6">
-            {isKo ? "이용 안내" : "Service Details"}
-          </h3>
-          <ul className="space-y-3">
+        <div className="group rounded-[2.5rem] border border-stone-200/60 dark:border-white/5 bg-white/40 dark:bg-[#2A2928]/40 backdrop-blur-md p-8 md:p-10 shadow-sm hover:shadow-lg transition-all duration-500 hover:-translate-y-1">
+          <div className="flex items-center gap-4 mb-8">
+            <div className="p-3 rounded-2xl bg-stone-100 dark:bg-stone-800 text-stone-500">
+               <Check className="h-6 w-6" />
+            </div>
+            <div>
+              <span className="block text-xs font-bold text-stone-500 uppercase tracking-widest mb-1">Check List</span>
+              <h3 className="text-2xl font-bold font-serif text-foreground">
+                {isKo ? "이용 안내" : "Service Details"}
+              </h3>
+            </div>
+          </div>
+          <ul className="space-y-4">
             {notes.map((item, i) => (
-              <li key={i} className="flex items-start gap-3 text-sm leading-relaxed text-foreground/70">
-                <Check className="h-4 w-4 text-primary/60 mt-0.5 flex-shrink-0" />
+              <li key={i} className="flex items-start gap-4 text-[15px] leading-relaxed text-stone-600 dark:text-stone-300">
+                <Check className="h-4 w-4 text-stone-400 mt-1 flex-shrink-0" />
                 <span>{item}</span>
               </li>
             ))}
@@ -223,37 +313,39 @@ function DetailRatesSection({ isKo }: { isKo: boolean }) {
   ];
 
   return (
-    <div className="space-y-12">
+    <div className="space-y-16">
       <ScrollReveal>
         <section>
-          <h3 className="text-xl font-semibold font-serif text-foreground mb-6 flex items-center gap-2">
-            <span className="h-6 w-1 bg-primary rounded-full" />
-            {isKo ? "객실 요금 상세" : "Room Rates Detail"}
-          </h3>
-          <div className="overflow-hidden rounded-3xl border border-border/30 bg-white/60 dark:bg-[#2A2928]/60 backdrop-blur-md shadow-sm">
-            <div className="overflow-x-auto">
-              <table className="w-full min-w-[600px] text-sm md:text-base">
-                <thead className="bg-primary/5 dark:bg-[#333231] text-primary/80 dark:text-primary/90">
+          <div className="flex items-center gap-3 mb-8 px-2">
+            <span className="h-8 w-1.5 bg-primary rounded-full" />
+            <h3 className="text-2xl font-bold font-serif text-foreground">
+              {isKo ? "객실 요금 상세" : "Room Rates Detail"}
+            </h3>
+          </div>
+          <div className="overflow-hidden rounded-[2.5rem] border border-stone-200/60 dark:border-white/5 bg-white/60 dark:bg-[#2A2928]/60 backdrop-blur-xl shadow-sm">
+            <div className="overflow-x-auto p-4 md:p-6">
+              <table className="w-full min-w-[600px] text-sm md:text-base border-collapse">
+                <thead className="bg-stone-50/50 dark:bg-white/5 rounded-xl">
                   <tr>
                     {roomHeaders.map((h, i) => (
-                      <th key={i} className="px-6 py-4 font-serif font-semibold text-center first:text-left">{h}</th>
+                      <th key={i} className="px-6 py-5 font-serif font-bold text-stone-600 dark:text-stone-300 text-center first:text-left first:rounded-l-xl last:rounded-r-xl">{h}</th>
                     ))}
                   </tr>
                 </thead>
-                <tbody className="divide-y divide-border/20">
+                <tbody className="divide-y divide-stone-100 dark:divide-white/5">
                   {roomRows.map((row) => (
-                    <tr key={row.type} className="hover:bg-primary/5 dark:hover:bg-[#333231]/50 transition-colors">
-                      <td className="px-6 py-4 font-serif font-semibold text-primary">{row.type}</td>
-                      <td className="px-6 py-4 text-center text-foreground/80">{row.w1}</td>
-                      <td className="px-6 py-4 text-center text-foreground/80">{row.d10}</td>
-                      <td className="px-6 py-4 text-center text-foreground/80">{row.w2}</td>
-                      <td className="px-6 py-4 text-center text-foreground/80">{row.w3}</td>
+                    <tr key={row.type} className="hover:bg-primary/5 dark:hover:bg-[#333231]/50 transition-colors group">
+                      <td className="px-6 py-6 font-serif font-bold text-primary text-lg">{row.type}</td>
+                      <td className="px-6 py-6 text-center text-stone-600 dark:text-stone-300 group-hover:text-foreground transition-colors">{row.w1}</td>
+                      <td className="px-6 py-6 text-center text-stone-600 dark:text-stone-300 group-hover:text-foreground transition-colors">{row.d10}</td>
+                      <td className="px-6 py-6 text-center font-bold text-foreground">{row.w2}</td>
+                      <td className="px-6 py-6 text-center text-stone-600 dark:text-stone-300 group-hover:text-foreground transition-colors">{row.w3}</td>
                     </tr>
                   ))}
                 </tbody>
               </table>
             </div>
-            <div className="mt-2 px-4 pb-4 text-right text-xs text-primary/60 md:hidden">
+            <div className="px-8 pb-6 text-right text-xs text-primary/60 md:hidden font-medium">
               {isKo ? "* 좌우로 스크롤하여 확인하실 수 있습니다." : "* Scroll horizontally to view more."}
             </div>
           </div>
@@ -262,33 +354,35 @@ function DetailRatesSection({ isKo }: { isKo: boolean }) {
 
       <ScrollReveal>
         <section>
-          <h3 className="text-xl font-semibold font-serif text-foreground mb-6 flex items-center gap-2">
-            <span className="h-6 w-1 bg-primary rounded-full" />
-            {isKo ? "스파 요금 상세" : "Spa Rates Detail"}
-          </h3>
-          <div className="overflow-hidden rounded-3xl border border-border/30 bg-white/60 dark:bg-[#2A2928]/60 backdrop-blur-md shadow-sm">
-            <div className="overflow-x-auto">
-              <table className="w-full min-w-[600px] text-sm md:text-base">
-                <thead className="bg-primary/5 dark:bg-[#333231] text-primary/80 dark:text-primary/90">
+          <div className="flex items-center gap-3 mb-8 px-2">
+            <span className="h-8 w-1.5 bg-primary rounded-full" />
+            <h3 className="text-2xl font-bold font-serif text-foreground">
+              {isKo ? "스파 요금 상세" : "Spa Rates Detail"}
+            </h3>
+          </div>
+          <div className="overflow-hidden rounded-[2.5rem] border border-stone-200/60 dark:border-white/5 bg-white/60 dark:bg-[#2A2928]/60 backdrop-blur-xl shadow-sm">
+            <div className="overflow-x-auto p-4 md:p-6">
+              <table className="w-full min-w-[600px] text-sm md:text-base border-collapse">
+                <thead className="bg-stone-50/50 dark:bg-white/5 rounded-xl">
                   <tr>
                     {spaHeaders.map((h, i) => (
-                      <th key={i} className="px-6 py-4 font-serif font-semibold text-center first:text-left">{h}</th>
+                      <th key={i} className="px-6 py-5 font-serif font-bold text-stone-600 dark:text-stone-300 text-center first:text-left first:rounded-l-xl last:rounded-r-xl">{h}</th>
                     ))}
                   </tr>
                 </thead>
-                <tbody className="divide-y divide-border/20">
+                <tbody className="divide-y divide-stone-100 dark:divide-white/5">
                   {spaRows.map((row) => (
-                    <tr key={row.type} className="hover:bg-primary/5 dark:hover:bg-[#333231]/50 transition-colors">
-                      <td className="px-6 py-4 font-serif font-semibold text-primary">{row.type}</td>
-                      <td className="px-6 py-4 text-center text-foreground/80">{row.reg}</td>
-                      <td className="px-6 py-4 text-center text-foreground/80">{row.pkg}</td>
-                      <td className="px-6 py-4 text-center text-foreground/80">{row.pre}</td>
+                    <tr key={row.type} className="hover:bg-primary/5 dark:hover:bg-[#333231]/50 transition-colors group">
+                      <td className="px-6 py-6 font-serif font-bold text-primary text-lg">{row.type}</td>
+                      <td className="px-6 py-6 text-center text-stone-400 line-through decoration-stone-400/50 decoration-2">{row.reg}</td>
+                      <td className="px-6 py-6 text-center text-stone-600 dark:text-stone-300 group-hover:text-foreground font-medium">{row.pkg}</td>
+                      <td className="px-6 py-6 text-center font-bold text-primary text-lg bg-primary/5 rounded-lg m-2 box-decoration-clone">{row.pre}</td>
                     </tr>
                   ))}
                 </tbody>
               </table>
             </div>
-            <div className="mt-2 px-4 pb-4 text-right text-xs text-primary/60 md:hidden">
+            <div className="px-8 pb-6 text-right text-xs text-primary/60 md:hidden font-medium">
               {isKo ? "* 좌우로 스크롤하여 확인하실 수 있습니다." : "* Scroll horizontally to view more."}
             </div>
           </div>
@@ -313,37 +407,39 @@ function RefundPolicySection({ isKo }: { isKo: boolean }) {
 
   return (
     <ScrollReveal>
-      <section>
-        <h3 className="text-xl font-semibold font-serif text-foreground mb-6 flex items-center gap-2">
-          <span className="h-6 w-1 bg-primary rounded-full" />
-          {isKo ? "환불 규정" : "Refund Policy"}
-        </h3>
-        <div className="overflow-hidden rounded-3xl border border-border/40 bg-white/80 dark:bg-[#2A2928]/60 backdrop-blur-md shadow-sm">
-          <div className="overflow-x-auto">
-            <table className="w-full min-w-[600px] text-sm md:text-base">
-              <thead className="bg-primary/10 dark:bg-[#333231] text-primary/90 dark:text-primary/90">
+      <section className="mb-20">
+        <div className="flex items-center gap-3 mb-8 px-2">
+            <span className="h-8 w-1.5 bg-primary rounded-full" />
+            <h3 className="text-2xl font-bold font-serif text-foreground">
+            {isKo ? "환불 규정" : "Refund Policy"}
+            </h3>
+        </div>
+        <div className="overflow-hidden rounded-[2.5rem] border border-stone-200/60 dark:border-white/5 bg-white/60 dark:bg-[#2A2928]/60 backdrop-blur-xl shadow-sm">
+          <div className="overflow-x-auto p-4 md:p-6">
+            <table className="w-full min-w-[600px] text-sm md:text-base border-collapse">
+              <thead className="bg-stone-50/50 dark:bg-white/5 rounded-xl">
                 <tr>
                   {headers.map((h, i) => (
-                    <th key={i} className="px-6 py-4 font-serif font-semibold text-center first:text-left">{h}</th>
+                    <th key={i} className="px-6 py-5 font-serif font-bold text-stone-600 dark:text-stone-300 text-center first:text-left first:rounded-l-xl last:rounded-r-xl">{h}</th>
                   ))}
                 </tr>
               </thead>
-              <tbody className="divide-y divide-border/20">
+              <tbody className="divide-y divide-stone-100 dark:divide-white/5">
                 <tr className="hover:bg-primary/5 dark:hover:bg-[#333231]/50 transition-colors">
-                  <td className="px-6 py-6 font-serif font-semibold text-primary">{row.type}</td>
-                  <td className="px-6 py-6 text-center text-foreground/80">{row.d31}</td>
+                  <td className="px-6 py-6 font-serif font-bold text-primary">{row.type}</td>
+                  <td className="px-6 py-6 text-center text-foreground/80 font-medium">{row.d31}</td>
                   <td className="px-6 py-6 text-center text-foreground/80">{row.d21}</td>
                   <td className="px-6 py-6 text-center text-foreground/80">{row.d10}</td>
-                  <td className="px-6 py-6 text-center text-foreground/80">{row.d9}</td>
+                  <td className="px-6 py-6 text-center text-stone-400">{row.d9}</td>
                 </tr>
               </tbody>
             </table>
           </div>
-          <div className="mt-2 px-4 pb-4 text-right text-xs text-primary/60 md:hidden">
+          <div className="px-8 pb-6 text-right text-xs text-primary/60 md:hidden font-medium">
             {isKo ? "* 좌우로 스크롤하여 확인하실 수 있습니다." : "* Scroll horizontally to view more."}
           </div>
         </div>
-        <p className="mt-4 text-xs text-foreground/60 leading-relaxed">
+        <p className="mt-6 text-xs text-stone-400 dark:text-stone-500 leading-relaxed px-4">
           {isKo
             ? "* 태아와 산모의 질환, 단순변심, 부적응 등은 총 이용금액에서 이용기간에 해당하는 요금을 공제하고 남은 금액에 대하여, 미이용금액의 10%를 공제한 잔액을 환급한다. (단, 이용기간 요금 공제시 할인가가 아닌 정상가로 한다.)"
             : "* For cancellations due to medical reasons, change of mind, or maladjustment, the refund will be calculated by deducting the usage fee from the total amount, and then deducting 10% of the remaining unused amount. (Usage fee is based on regular price, not discounted price.)"}

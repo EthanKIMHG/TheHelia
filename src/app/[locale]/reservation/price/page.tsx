@@ -1,3 +1,4 @@
+
 import { PricePageContent } from "@/app/reservation/price/PricePageContent";
 import { SubPageTemplate } from "@/components/SubPageTemplate";
 import { Locale } from "@/components/header/types";

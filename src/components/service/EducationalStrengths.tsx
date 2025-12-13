@@ -50,6 +50,10 @@ export function EducationalStrengths({ locale }: { locale: Locale }) {
                  />
                  {/* Gradient for text readability */}
                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
+                 {/* AI Image Disclaimer */}
+                 <div className="absolute bottom-3 right-4 z-20 text-[10px] font-medium text-white/40 drop-shadow-md">
+                   * 이 사진은 생성형 AI 로 만든 이미지 입니다.
+                 </div>
              </div>
 
              <div className="relative flex h-full flex-col justify-between p-8 md:p-12 z-10 text-white">
@@ -97,6 +101,10 @@ export function EducationalStrengths({ locale }: { locale: Locale }) {
                     className="object-cover opacity-80 group-hover:scale-105 transition-transform duration-700"
                  />
                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
+                 {/* AI Image Disclaimer */}
+                 <div className="absolute bottom-3 right-4 z-20 text-[10px] font-medium text-white/40 drop-shadow-md">
+                   * 이 사진은 생성형 AI 로 만든 이미지 입니다.
+                 </div>
              </div>
 
              <div className="relative z-10 p-8 h-full flex flex-col justify-between text-white">
@@ -127,6 +135,10 @@ export function EducationalStrengths({ locale }: { locale: Locale }) {
                     className="object-cover opacity-80 group-hover:scale-105 transition-transform duration-700"
                  />
                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
+                 {/* AI Image Disclaimer */}
+                 <div className="absolute bottom-3 right-4 z-20 text-[10px] font-medium text-white/40 drop-shadow-md">
+                   * 이 사진은 생성형 AI 로 만든 이미지 입니다.
+                 </div>
              </div>
 
              <div className="relative z-10 p-8 h-full flex flex-col justify-between text-white">
