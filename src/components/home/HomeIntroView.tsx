@@ -155,7 +155,7 @@ const KOREAN_COPY = {
     {
       title: "프라이빗 객실",
       description:
-        "모든 객실은 독립형 스위트 구조로 설계되어 산모님의 프라이빗한 시간을 온전히 지킬 수 있습니다. 전 객실 La Cloud 모션베드 & Body Friend 안마의자 & Medela 유축기 구비",
+        "모든 객실은 독립형 스위트 구조로 설계되어 산모님의 프라이빗한 시간을 온전히 지킬 수 있습니다. \n전 객실 La Cloud 모션베드 & Body Friend 안마의자 & Medela 유축기 구비",
       meta: "PRESTIGE · VVIP · VIP",
       image: { src: "/img/room/prestige1.jpg", alt: "프라이빗 객실 전경" },
       bullets: [

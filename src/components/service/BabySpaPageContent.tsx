@@ -3,6 +3,10 @@
 import { useOptionalThemeLocale } from "@/context/theme-locale-context";
 import { SpaServiceBento } from "./SpaServiceBento";
 
+import { ScrollReveal } from "@/components/common/ScrollReveal";
+import { Droplets, GraduationCap, MapPin, Sparkles } from "lucide-react";
+import Image from "next/image";
+
 export function BabySpaPageContent() {
   const themeLocale = useOptionalThemeLocale();
   const locale = themeLocale?.locale ?? "ko";
@@ -20,8 +24,105 @@ export function BabySpaPageContent() {
           images={copy.babySpa.images}
           features={copy.babySpa.features}
         />
+        
+        {/* Strengths Section */}
+        <BabySpaStrengths copy={copy.strengths} />
       </div>
     </div>
+  );
+}
+
+function BabySpaStrengths({ copy }: { copy: typeof KOREAN_COPY.strengths }) {
+  return (
+    <ScrollReveal>
+      <section className="space-y-12">
+        {/* Row 1: Experience & Exclusivity */}
+        <div className="grid gap-6 lg:grid-cols-2">
+           {/* Image Card */}
+           <div className="relative overflow-hidden rounded-[2.5rem] h-[360px] lg:h-auto shadow-sm group">
+             <Image
+               src="/img/babyspa/strength-babyspa1.png"
+               alt="Baby Spa Experience"
+               fill
+               className="object-cover transition-transform duration-700 group-hover:scale-105"
+             />
+             <div className="absolute inset-0 bg-black/5" />
+           </div>
+           
+           {/* Text Card */}
+           <div className="flex flex-col justify-center rounded-[2.5rem] bg-stone-100 dark:bg-[#2A2928] p-8 md:p-12 shadow-sm border border-stone-200/50 dark:border-white/5">
+              <div className="space-y-10">
+                 {/* Point 1 */}
+                 <div className="flex gap-5 items-start">
+                    <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-white dark:bg-[#333231] shadow-sm text-primary">
+                       <Droplets className="h-6 w-6" />
+                    </div>
+                    <div className="space-y-3">
+                       <h3 className="text-xl font-bold font-serif text-foreground">{copy.point1.title}</h3>
+                       <p className="text-muted-foreground leading-relaxed text-[15px]">{copy.point1.desc}</p>
+                    </div>
+                 </div>
+                 
+                 <div className="w-full h-px bg-stone-200 dark:bg-white/10" />
+
+                 {/* Point 2 */}
+                 <div className="flex gap-5 items-start">
+                    <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-white dark:bg-[#333231] shadow-sm text-primary">
+                       <MapPin className="h-6 w-6" />
+                    </div>
+                    <div className="space-y-3">
+                       <h3 className="text-xl font-bold font-serif text-foreground">{copy.point2.title}</h3>
+                       <p className="text-muted-foreground leading-relaxed text-[15px]">{copy.point2.desc}</p>
+                    </div>
+                 </div>
+              </div>
+           </div>
+        </div>
+
+        {/* Row 2: Quality & Education */}
+        <div className="grid gap-6 lg:grid-cols-2">
+           {/* Text Card */}
+           <div className="order-2 lg:order-1 flex flex-col justify-center rounded-[2.5rem] bg-stone-100 dark:bg-[#2A2928] p-8 md:p-12 shadow-sm border border-stone-200/50 dark:border-white/5">
+              <div className="space-y-10">
+                 {/* Point 3 */}
+                 <div className="flex gap-5 items-start">
+                    <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-white dark:bg-[#333231] shadow-sm text-primary">
+                       <Sparkles className="h-6 w-6" />
+                    </div>
+                    <div className="space-y-3">
+                       <h3 className="text-xl font-bold font-serif text-foreground">{copy.point3.title}</h3>
+                       <p className="text-muted-foreground leading-relaxed text-[15px]">{copy.point3.desc}</p>
+                    </div>
+                 </div>
+                 
+                 <div className="w-full h-px bg-stone-200 dark:bg-white/10" />
+
+                 {/* Point 4 */}
+                 <div className="flex gap-5 items-start">
+                    <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-white dark:bg-[#333231] shadow-sm text-primary">
+                       <GraduationCap className="h-6 w-6" />
+                    </div>
+                    <div className="space-y-3">
+                       <h3 className="text-xl font-bold font-serif text-foreground">{copy.point4.title}</h3>
+                       <p className="text-muted-foreground leading-relaxed text-[15px]">{copy.point4.desc}</p>
+                    </div>
+                 </div>
+              </div>
+           </div>
+
+           {/* Image Card */}
+           <div className="order-1 lg:order-2 relative overflow-hidden rounded-[2.5rem] h-[360px] lg:h-auto shadow-sm group">
+             <Image
+               src="/img/babyspa/strength-babyspa2.png"
+               alt="Baby Spa Education"
+               fill
+               className="object-cover transition-transform duration-700 group-hover:scale-105"
+             />
+             <div className="absolute inset-0 bg-black/5" />
+           </div>
+        </div>
+      </section>
+    </ScrollReveal>
   );
 }
 
@@ -55,6 +156,24 @@ const KOREAN_COPY = {
       },
     ],
   },
+  strengths: {
+    point1: {
+      title: "1:1 프라이빗 스파",
+      desc: "어디서도 경험할 수 없는 1:1 케어 시스템으로, 엄마 양수와 가장 유사한 환경에서 아이가 편안하게 유영하는 모습을 생생하게 볼 수 있습니다.",
+    },
+    point2: {
+      title: "수원 유일 베이비 스파",
+      desc: "수원 일대에서 유일하게 전문 베이비 스파 시설을 갖추고 있어, 더헬리아만의 특별한 프리미엄 서비스를 경험하실 수 있습니다.",
+    },
+    point3: {
+      title: "로하스베베 유기농 케어",
+      desc: "소중한 우리 아이 피부를 위해 호주 프리미엄 유기농 스킨케어 브랜드 '로하스베베(Lohas Bebe)' 제품만을 사용하여 마사지를 진행합니다.",
+    },
+    point4: {
+      title: "1:1 목욕 교육 & 실습",
+      desc: "스파 후 진행되는 1:1 목욕 교육을 통해, 단순히 보는 것을 넘어 전문가의 코칭 아래 직접 아이를 목욕시켜 보는 실습 기회를 제공합니다.",
+    },
+  },
 };
 
 const ENGLISH_COPY = {
@@ -86,5 +205,23 @@ const ENGLISH_COPY = {
         ],
       },
     ],
+  },
+  strengths: {
+    point1: {
+      title: "1:1 Private Spa",
+      desc: "Experience our exclusive 1:1 care system where you can watch your baby swim comfortably in an environment that mimics the mother's amniotic fluid.",
+    },
+    point2: {
+      title: "Exclusive in Suwon",
+      desc: "We are the only facility in the Suwon area with a specialized baby spa, offering a unique premium service available only at The Helia.",
+    },
+    point3: {
+      title: "Lohas Bebe Organic Care",
+      desc: "We only use premium Australian organic skincare products from 'Lohas Bebe' for massages to protect your baby's precious skin.",
+    },
+    point4: {
+      title: "1:1 Bathing Education",
+      desc: "After the spa, we provide 1:1 bathing education where you can directly practice bathing your baby under expert coaching.",
+    },
   },
 };

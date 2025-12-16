@@ -5,13 +5,13 @@ export const NAV_ITEMS: NavItemDefinition[] = [
     id: "the-helia",
     label: {
       en: "The Helia",
-      ko: "더 헬리아",
+      ko: "더헬리아",
     },
     previewImage: {
       src: "/img/subhero/thehelia.jpg",
       alt: {
         en: "The Helia",
-        ko: "더 헬리아"
+        ko: "더헬리아"
       }
     },
     sub: [
@@ -20,7 +20,7 @@ export const NAV_ITEMS: NavItemDefinition[] = [
         href: "/the-helia/about",
         label: {
           en: "About Helia",
-          ko: "더 헬리아",
+          ko: "더헬리아",
         },
         description: {
           en: "Meet the story behind The Helia and the people who welcome you with care.",
@@ -35,7 +35,7 @@ export const NAV_ITEMS: NavItemDefinition[] = [
         },
         previewCopy: {
           en: "Learn how Helia began and the craft behind every detail.",
-          ko: "헬리아의 시작과 섬세한 공간 연출을 만나보세요.",
+          ko: "더헬리아, 엄마와 아기를 위한 가장 완벽한 쉼표",
         },
       },
       {
@@ -272,7 +272,7 @@ export const NAV_ITEMS: NavItemDefinition[] = [
     },
     description: {
       en: "Plan your stay with tailored reservation support.",
-      ko: "맞춤 예약 안내와 절차를 확인하세요.",
+      ko: "조리원 예약 관련 내용을 확인하세요.",
     },
     previewImage: {
       src: "/img/subhero/reservation.jpg",
@@ -471,9 +471,9 @@ export function getLocalizedNavItems(locale: Locale): NavItem[] {
       baseHref: href,
       previewImage: previewImage
         ? {
-            src: previewImage.src,
-            alt: previewImage.alt[locale],
-          }
+          src: previewImage.src,
+          alt: previewImage.alt[locale],
+        }
         : undefined,
       sub: sub?.map(
         ({
@@ -490,9 +490,9 @@ export function getLocalizedNavItems(locale: Locale): NavItem[] {
           baseHref: subRest.href,
           previewImage: subPreviewImage
             ? {
-                src: subPreviewImage.src,
-                alt: subPreviewImage.alt[locale],
-              }
+              src: subPreviewImage.src,
+              alt: subPreviewImage.alt[locale],
+            }
             : undefined,
           previewCopy: previewCopy ? previewCopy[locale] : undefined,
         }),

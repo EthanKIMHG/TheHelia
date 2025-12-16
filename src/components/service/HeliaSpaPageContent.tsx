@@ -89,7 +89,7 @@ const KOREAN_COPY = {
     title: "프리미엄 헤드스파",
     description: "호르몬 변화로 예민해진 두피를 진정시키고, 깊은 이완을 통해 스트레스를 해소하는 더헬리아만의 시그니처 헤드스파입니다.",
     images: [
-      { src: "/img/spa/headspa1.jpg", alt: "헤드스파 메인", caption: "편안한 샴푸대에서의 두피 케어" },
+      { src: "/img/spa/headspa1.jpeg", alt: "헤드스파 메인", caption: "편안한 샴푸대에서의 두피 케어" },
       { src: "/img/spa/headspa2.jpg", alt: "헤드스파 메인2", caption: "편안한 샴푸대에서의 두피 케어" },
       { src: "/img/spa/headspa3.jpg", alt: "헤드스파 케어", caption: "전문 테라피스트의 섬세한 터치" },
       { src: "/img/spa/headspa4.jpg", alt: "헤드스파 릴랙싱", caption: "아로마와 함께하는 깊은 이완" },
@@ -195,7 +195,7 @@ const ENGLISH_COPY = {
     title: "Premium Head Spa",
     description: "The Helia's signature head spa soothes the scalp sensitive to hormonal changes and relieves stress through deep relaxation.",
     images: [
-      { src: "/img/spa/headspa1.jpg", alt: "Head Spa Main", caption: "Scalp care in a comfortable shampoo unit" },
+      { src: "/img/spa/headspa1.jpeg", alt: "Head Spa Main", caption: "Scalp care in a comfortable shampoo unit" },
       { src: "/img/spa/headspa2.jpg", alt: "Head Spa Care", caption: "Delicate touch of professional therapists" },
       { src: "/img/spa/headspa3.jpg", alt: "Head Spa Relaxing", caption: "Deep relaxation with aroma" },
       { src: "/img/spa/headspa4.jpg", alt: "Head Spa Facility", caption: "Private and cozy spa room" },

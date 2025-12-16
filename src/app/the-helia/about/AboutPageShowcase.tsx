@@ -9,10 +9,10 @@ import {
   Flower2,
   HeartHandshake,
   MoonStar,
+  Play,
   ShieldCheck,
   Sparkles,
   Stethoscope,
-  Play,
 } from "lucide-react";
 import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
@@ -484,10 +484,10 @@ function getAboutCopy(locale: Locale) {
           icon: Stethoscope,
           title: isKo ? "의료 연계 & 모니터링" : "Medical Monitoring",
           body: isKo
-            ? "상주 간호 인력과 협력 의료진이 회복 상황을 모니터링하며 건강 체크를 지원합니다."
+            ? "상주 간호 인력의 빈틈 없는 케어로 산모의 산후 회복을 약속합니다."
             : "Resident nurses and partner clinicians monitor recovery progress and guide health check-ins.",
           points: isKo
-            ? ["24시간 간호 스테이션", "모유 수유, 회복 컨설팅", "필요 시 전문의 연계"]
+            ? ["24시간 간호 스테이션", "모유 수유 컨설팅", "필요 시 전문의 연계"]
             : [
               "24-hour nursing station",
               "Breastfeeding & recovery consultations",
@@ -590,7 +590,7 @@ function getAboutCopy(locale: Locale) {
     },
     video: {
       badge: isKo ? "공간 미리보기" : "Sneak Preview",
-      title: isKo ? "더 헬리아 산후조리원 3D 소개 영상" : "The Helia 3D Introduction",
+      title: isKo ? "더헬리아 산후조리원 3D 소개 영상" : "The Helia 3D Introduction",
       subtitle: isKo
         ? "3D 시선을 따라 더헬리아의 공간과 동선을 미리 경험해 보세요."
         : "Explore The Helia’s suites and flow through a 3D walkthrough.",
@@ -598,7 +598,7 @@ function getAboutCopy(locale: Locale) {
     },
     virtualTour: {
       badge: isKo ? "가상 투어" : "Virtual Tour",
-      title: isKo ? "더 헬리아 가상 투어" : "The Helia Virtual Tour",
+      title: isKo ? "더헬리아 가상 투어" : "The Helia Virtual Tour",
       subtitle: isKo
         ? "실제 산후조리원 공간을 생생하게 경험해보세요. 마우스나 터치를 사용하여 자유롭게 이동할 수 있습니다."
         : "Experience the postnatal care center vividly through our virtual tour. Move around freely using your mouse or touch.",

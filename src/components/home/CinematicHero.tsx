@@ -49,14 +49,7 @@ export function CinematicHero({locale} : {locale: Locale}) {
         </motion.h1>
         
         {/* Subtitle: High contrast, floating Top Right */}
-        <motion.p 
-          initial={{ opacity: 0, x: 20 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 1.2, delay: 0.5 }}
-          className="absolute top-32 right-6 md:top-48 md:right-24 text-right font-sans text-xl md:text-2xl font-light text-white/90 tracking-widest uppercase"
-        >
-          Organic Serenity <br/> & Smart Comfort
-        </motion.p>
+        
 
         {/* Scroll Indicator */}
         <motion.div

@@ -140,7 +140,7 @@ export default function LocaleHomePage() {
         >
           <div className="px-12 py-12">
             <span className="text-4xl">
-              {locale === "ko" ? "더 헬리아와 함께하는 기업들" : "Our Partners"}
+              {locale === "ko" ? "더헬리아와 함께하는 기업들" : "Our Partners"}
             </span>
           </div>
           <PartnerLogoMarquee

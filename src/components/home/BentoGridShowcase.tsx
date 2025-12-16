@@ -81,7 +81,7 @@ function BentoCard({
           <h3 className="mb-3 font-serif text-2xl md:text-3xl font-semibold leading-tight">
             {item.title}
           </h3>
-          <p className="mb-5 text-sm text-white/90 line-clamp-3 md:text-base font-light tracking-wide">
+          <p className="mb-5 text-sm text-white/60 line-clamp-3 md:text-base whitespace-pre-line font-semibold tracking-wide">
             {item.description}
           </p>
           

@@ -19,7 +19,7 @@ export type FooterCopy = {
   description: string;
   linkLabel: {
     reservation: string;
-    location: string;   
+    location: string;
   }
   contact: {
     address: string;
@@ -49,7 +49,7 @@ export const FOOTER_CONTENT: Record<"ko" | "en", FooterCopy> = {
       address:
         "경기도 수원시 권선구 금곡로 197번길 18-39, 5,6층(금곡동, MS메디컬스퀘어)",
       phone: "010-5077-3962",
-      email: "pyrite1@naver.com",
+      email: "thesaintmom@naver.com",
       biz: "481-41-00935",
       instagram: "@thehelia_official"
     },
@@ -81,12 +81,12 @@ export const FOOTER_CONTENT: Record<"ko" | "en", FooterCopy> = {
     consultation: {
       weekday: {
         title: "평일 상담",
-        hours: "09:00 - 18:00",
+        hours: "10:00 - 19:00",
         note: "점심시간 12:00 - 13:00 (예약상담 우선)",
       },
       weekend: {
         title: "주말 · 공휴일",
-        hours: "10:00 - 16:00",
+        hours: "10:00 - 19:00",
         note: "사전 예약 후 방문 안내",
       },
     },
@@ -104,7 +104,7 @@ export const FOOTER_CONTENT: Record<"ko" | "en", FooterCopy> = {
       address:
         "18-39, Geumgok-ro 197beon-gil, Gwonseon-gu, Suwon-si, Gyeonggi-do, Republic of Korea",
       phone: "+82-10-5077-3962",
-      email: "pyrite1@naver.com",
+      email: "thesaintmom@naver.com",
       biz: "481-41-00935",
       instagram: "@thehelia_official"
     },
@@ -136,12 +136,12 @@ export const FOOTER_CONTENT: Record<"ko" | "en", FooterCopy> = {
     consultation: {
       weekday: {
         title: "Weekday Consultation",
-        hours: "09:00 - 18:00",
+        hours: "10:00 - 19:00",
         note: "Lunch 12:00 - 13:00 (Reservation priority)",
       },
       weekend: {
         title: "Weekend & Holidays",
-        hours: "10:00 - 16:00",
+        hours: "10:00 - 19:00",
         note: "Visits available only with reservation",
       },
     },

@@ -55,7 +55,7 @@ export function HomeNavigationGallery({
       locale === "ko"
         ? {
             badge: "HELIA NAVIGATION",
-            title: "더 헬리아의 다양한 모습 바로가기",
+            title: "더헬리아의 다양한 모습 바로가기",
             subtitle:
               "원하는 메뉴에 마우스를 올려 미리보기를 확인하고 바로 이동해 보세요.",
             cta: "바로가기",
@@ -97,7 +97,7 @@ function NavigationGalleryHeader({ copy }: { copy: NavigationCopy }) {
         {copy.badge}
       </p>
       <div className="flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
-        <h2 className="text-3xl  md:text-4xl">{copy.title}</h2>
+        <h2 className="text-3xl  md:text-4xl text-foreground">{copy.title}</h2>
         <p className="max-w-xl text-sm text-secondary/70 md:text-base">
           {copy.subtitle}
         </p>
@@ -308,11 +308,6 @@ function NavigationPanelCard({
                 >
                   {item.description ?? item.label}
                 </h3>
-                {item.sub?.length ? (
-                  <p className="mt-4 text-base text-white/80 line-clamp-3 md:text-lg">
-                    {item.sub[0].description}
-                  </p>
-                ) : null}
               </motion.div>
             ) : null}
           </AnimatePresence>

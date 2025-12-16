@@ -1,5 +1,6 @@
 "use client";
 
+import type { Locale } from "@/components/header/types";
 import {
   Building2,
   BusFrontIcon,
@@ -10,7 +11,6 @@ import {
   PhoneCall,
   TrainFrontIcon,
 } from "lucide-react";
-import type { Locale } from "@/components/header/types";
 
 type LocationDesignVariantProps = {
   locale: Locale;
@@ -183,7 +183,7 @@ function getLocalizedCopy(locale: Locale) {
       {
         icon: <Calendar1Icon className="h-10 w-10 rounded-full bg-primary/10 p-2 text-primary" />,
         title: isKo ? "평일 상담" : "Weekday Consultations",
-        hours: "09:00 - 18:00",
+        hours: "10:00 - 19:00",
         note: isKo
           ? "점심시간 12:00 - 13:00 (예약 우선)"
           : "Lunch break 12:00 - 13:00 · Reservation priority",
@@ -191,7 +191,7 @@ function getLocalizedCopy(locale: Locale) {
       {
         icon: <CalendarClock className="h-10 w-10 rounded-full bg-primary/10 p-2 text-primary" />,
         title: isKo ? "주말 · 공휴일" : "Weekends & Holidays",
-        hours: "10:00 - 16:00",
+        hours: "10:00 - 19:00",
         note: isKo
           ? "사전 예약 후 방문 가능"
           : "Visits available with reservation",
