@@ -82,10 +82,10 @@ export default async function LocaleLayout({
                "description": locale === "ko" 
                  ? "휴식과 회복, 그리고 가족의 시간을 담아내는 프리미엄 산후조리원" 
                  : "A premium sanctuary curated for recovery, rest, and cherished family moments.",
-               "url": `https://www.thehelia.com/${locale}`,
+               "url": `https://the-helia.vercel.app/${locale}`,
                "telephone": "+82-10-5077-3962",
                "email": "thesaintmom@naver.com",
-               "image": "https://www.thehelia.com/img/hero/hero-main.jpg",
+               "image": "https://the-helia.vercel.app/img/main/homepage_1.jpg",
                "address": {
                  "@type": "PostalAddress",
                  "streetAddress": locale === "ko" 
