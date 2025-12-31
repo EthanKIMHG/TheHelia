@@ -1,6 +1,7 @@
 "use client";
 
 import { usePageLoad } from "@/components/common/PageLoadContext";
+import { useLenis } from "lenis/react";
 import { useRouter } from "next/navigation";
 import { MouseEvent, ReactNode } from "react";
 
@@ -21,6 +22,7 @@ export function TransitionLink({
 }: TransitionLinkProps) {
   const router = useRouter();
   const { setIsLoading, setNavigationPending } = usePageLoad();
+  const lenis = useLenis();
 
   const handleClick = (e: MouseEvent<HTMLButtonElement | HTMLAnchorElement>) => {
     e.preventDefault(); // Prevent standard navigation
@@ -34,9 +36,7 @@ export function TransitionLink({
     setIsLoading(true);
 
     // 2. Perform Navigation
-    // Small timeout to allow the loader render cycle to start visually if main thread is heavy
-    // though usually not strictly necessary, it's safer.
-    // However, for maximum snappiness, we just push.
+    lenis?.scrollTo(0, { immediate: true });
     router.push(href);
   };
 

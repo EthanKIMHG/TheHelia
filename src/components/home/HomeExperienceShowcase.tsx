@@ -10,6 +10,7 @@ export type HomeExperienceHighlight = {
   imageAlt: string;
   bullets?: string[];
   badge?: string;
+  
 };
 
 type HomeShowcaseProps = {

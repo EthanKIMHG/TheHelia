@@ -63,6 +63,7 @@ export function HomeIntroView({
           imageAlt: item.image.alt,
           bullets: item.bullets,
           badge: item.badge,
+          
         }))}
         onSectionMount={registerSection}
       />
@@ -156,7 +157,7 @@ const KOREAN_COPY = {
       title: "프라이빗 객실",
       description:
         "모든 객실은 독립형 스위트 구조로 설계되어 산모님의 프라이빗한 시간을 온전히 지킬 수 있습니다. \n전 객실 La Cloud 모션베드 & Body Friend 안마의자 & Medela 유축기 구비",
-      meta: "PRESTIGE · VVIP · VIP",
+      meta: "VIP · VVIP · PRESTIGE",
       image: { src: "/img/room/prestige1.jpg", alt: "프라이빗 객실 전경" },
       bullets: [
         "독립형 투룸 구조와 라운지",
@@ -165,34 +166,35 @@ const KOREAN_COPY = {
         "파트너를 위한 라운지 케이터링",
       ],
       badge: "Signature Suites",
+      
     },
     {
       title: "신생아실 케어",
       description:
-        "전담 간호 인력이 24시간 상주하며 최신 살균 시스템과 맞춤 케어 프로토콜을 통해 아기의 컨디션을 세심하게 살핍니다. 모자동실 전환도 편안하게 이어집니다.",
+        "신생아실 간호 인력이 24시간 상주하며 아가들의 컨디션을 세심하게 살핍니다.",
       meta: "24H Nursery",
       image: { src: "/img/infantroom.jpg", alt: "더헬리아 신생아실" },
       bullets: [
-        "간호사 24시간 상주 & 1:3 케어 비율",
-        "스마트 모니터링 시스템으로 실시간 체크",
-        "UV 살균과 항균 공조 설비",
-        "모자동실 전환 프로그램",
+        "1:3 케어 비율",
+        "1 신생아 1 처치대 구비",
+        "배지넷 간격 100cm",
       ],
       badge: "Care Protocol",
+      
     },
     {
       title: "스파 & 웰니스",
       description:
-        "산전·산후 맞춤 테라피와 림프 케어 프로그램으로 회복에 집중할 수 있는 시간을 선사합니다. 전용 테라피 룸에서 조용한 힐링을 경험하세요.",
+        "산모 몸과 마음이 온전히 회복되는 시간을 선사합니다.",
       meta: "Helia Signature Spa",
       image: { src: "/img/spa/spa_1.png", alt: "스파 케어 공간" },
       bullets: [
-        "산전·산후 맞춤 바디 리커버리",
-        "림프 드레이닝 & 체형 밸런스 프로그램",
-        "천연 아로마 블렌딩 테라피",
-        "전용 테라피 라운지와 티 세션",
+        "산전 및 산후 맞춤 관리",
+        "두피 및 헤어 스파",
+        "페이셜 케어",
       ],
       badge: "Wellness Journey",
+      
     },
   ],
 };
