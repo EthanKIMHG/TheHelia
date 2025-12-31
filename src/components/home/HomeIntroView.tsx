@@ -105,7 +105,7 @@ function IntroHeroContent({ primary, secondary, theme }: IntroHeroContentProps) 
       />
       <IntroTextReveal
         text={secondary}
-        className="max-w-3xl text-lg leading-relaxed md:text-[22px] text-secondary"
+        className="max-w-3xl text-lg leading-relaxed md:text-[20px] text-secondary break-keep mx-auto"
         scrub={false}
         scrollStart="top bottom"
         scrollEnd="center center"
@@ -150,7 +150,7 @@ function IntroTextReveal({
 const KOREAN_COPY = {
   primaryText: "최고의 시설과 세심한 배려를 담아 \n잊지 못할 14일을 선사합니다.",
   secondaryText:
-    "더헬리아 산후조리원은 최고의 시설과 차별화된 신생아 케어, \n격이 다른 고품격 산모 케어 서비스를 제공함과 동시에 합리적인 가격을 책정했습니다. \n모든 것이 준비된 최고의 공간에서 기억에 남는 14일을 선사합니다.",
+    "더헬리아 산후조리원은 타협하지 않는 하이엔드 시설과 독보적인 신생아 케어 시스템, 그리고 산모님을 위한 격조 높은 서비스를 약속합니다. 모든 것이 완벽하게 준비된 최고의 공간에서, 가격 이상의 가치를 경험해 보세요. 당신의 기억 속에 영원히 남을 선물 같은 14일을 선사하겠습니다.",
   grid: [
     {
       title: "프라이빗 객실",

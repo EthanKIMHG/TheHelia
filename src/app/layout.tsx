@@ -1,4 +1,3 @@
-import { AIAgentFAB } from "@/components/common/AIAgentFAB";
 import { SmoothScroll } from "@/components/common/SmoothScroll";
 import { Playfair_Display } from "next/font/google";
 import "./globals.css";
@@ -18,7 +17,6 @@ export default function RootLayout({
     <html lang="ko">
       <body className={`antialiased text-black ${playfair.variable}`}>
         <SmoothScroll>{children}</SmoothScroll>
-        <AIAgentFAB />
       </body>
     </html>
   );

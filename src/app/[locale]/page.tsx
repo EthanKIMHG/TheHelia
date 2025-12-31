@@ -1,5 +1,6 @@
 "use client";
 
+import { TransitionLink } from "@/components/common/TransitionLink";
 import type { Locale } from "@/components/header/types";
 import { CinematicHero } from "@/components/home/CinematicHero";
 import { HomeIntroView } from "@/components/home/HomeIntroView";
@@ -111,6 +112,16 @@ export default function LocaleHomePage() {
       )}
     >
       <main className="flex w-full flex-col items-center overflow-x-hidden">
+        <div className="fixed bottom-12 right-6 md:bottom-16 md:right-16 z-30">
+            <TransitionLink
+              href={`${locale}/reservation`}
+              className="group relative flex items-center justify-center overflow-hidden rounded-[2rem] bg-black/20 backdrop-blur-xl border border-white/30 px-10 py-5 text-base text-white transition-all hover:bg-white/20 cursor-pointer"
+            >
+              <span className="relative z-10 font-medium tracking-wider uppercase">
+                {locale === "ko" ? "예약하기" : "Book Now" }
+              </span>
+            </TransitionLink>
+        </div>
         <section
           id="hero"
           ref={(node) => registerSection("hero", node)}

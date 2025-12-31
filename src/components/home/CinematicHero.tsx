@@ -1,7 +1,6 @@
 "use client";
 
 
-import { TransitionLink } from "@/components/common/TransitionLink";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { ArrowDown } from "lucide-react";
 import { useRef } from "react";
@@ -61,19 +60,6 @@ export function CinematicHero({locale} : {locale: Locale}) {
           <ArrowDown className="w-6 h-6 text-white/60 animate-bounce" />
         </motion.div>
       </motion.div>
-
-      {/* 3. Breathing CTA: Floating organic position */}
-      <div className="absolute bottom-12 right-6 md:bottom-16 md:right-16 z-30">
-        
-          <TransitionLink 
-            href={`${locale}/reservation`}
-            className="group relative flex items-center justify-center overflow-hidden rounded-[2rem] bg-white/10 backdrop-blur-xl border border-white/30 px-10 py-5 text-base text-white transition-all hover:bg-white/20"
-          >
-            <span className="relative z-10 font-medium tracking-wider uppercase">
-              {locale === "ko" ? "예약하기" : "Book Now" }
-            </span>
-          </TransitionLink>
-      </div>
     </div>
   );
 }
