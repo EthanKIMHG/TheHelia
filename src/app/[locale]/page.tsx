@@ -21,6 +21,9 @@ const co_op_logos = [
   { src: '/img/logo/Dyson.png', alt: 'Dyson' },
   { src: '/img/logo/JellyView.png', alt: 'Jelly View' },
   { src: '/img/logo/Libero.png', alt: 'Libero' },
+  { src: '/img/logo/Cesco.png', alt: 'Cesco' },
+  { src: '/img/logo/Secom.png', alt: 'Secom' },
+  { src: '/img/logo/Evian.png', alt: 'Evian' },
 ];
 
 export default function LocaleHomePage() {
