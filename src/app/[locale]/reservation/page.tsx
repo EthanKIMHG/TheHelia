@@ -1,4 +1,4 @@
-import { ReservationPageContent } from "@/app/reservation/ReservationPageContent";
+import { ReservationPageContent } from "@/components/pages/reservation/ReservationPageContent";
 import { SubPageTemplate } from "@/components/SubPageTemplate";
 import { Locale } from "@/components/header/types";
 

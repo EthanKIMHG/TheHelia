@@ -1,4 +1,4 @@
-import { NewbornPageContent } from "@/app/service/infant-room/NewbornPageContent";
+import { NewbornPageContent } from "@/components/pages/service/infant-room/NewbornPageContent";
 import { SubPageTemplate } from "@/components/SubPageTemplate";
 import { Locale } from "@/components/header/types";
 

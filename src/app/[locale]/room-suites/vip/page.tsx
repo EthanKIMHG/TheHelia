@@ -1,4 +1,4 @@
-import { RoomSuiteShowcase } from "@/app/room-suites/RoomSuiteShowcase";
+import { RoomSuiteShowcase } from "@/components/pages/room-suites/RoomSuiteShowcase";
 import { RoomSuiteTemplate } from "@/components/RoomSuiteTemplate";
 import { Locale } from "@/components/header/types";
 

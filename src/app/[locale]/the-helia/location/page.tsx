@@ -1,4 +1,4 @@
-import { LocationPageShowcase } from "@/app/the-helia/location/LocationPageShowcase";
+import { LocationPageShowcase } from "@/components/pages/the-helia/location/LocationPageShowcase";
 import { SubPageTemplate } from "@/components/SubPageTemplate";
 import { Locale } from "@/components/header/types";
 
