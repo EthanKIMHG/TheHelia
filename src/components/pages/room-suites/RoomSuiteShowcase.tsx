@@ -88,13 +88,13 @@ export function RoomSuiteShowcase({ suiteId, locale }: RoomSuiteShowcaseProps) {
           </div>
         </div>
         <div className="mt-6 overflow-hidden rounded-3xl border border-border/30">
-          <div className="relative h-64 w-full md:h-[420px]">
+          <div className="relative h-[320px] w-full md:h-[520px] lg:h-[620px]">
             <Image
               key={currentImage.src}
               src={currentImage.src}
               alt={currentImage.alt}
               fill
-              sizes="(min-width: 768px) 70vw, 100vw"
+              sizes="(min-width: 1280px) 76vw, (min-width: 768px) 78vw, 100vw"
               className="object-cover"
               priority
             />
@@ -103,13 +103,13 @@ export function RoomSuiteShowcase({ suiteId, locale }: RoomSuiteShowcaseProps) {
             </div>
           </div>
         </div>
-        <div className="mt-4 flex flex-wrap items-center gap-3">
+        <div className="mt-5 flex flex-wrap items-center gap-3">
           {copy.carousel.map((image, index) => (
             <button
               key={image.src + index}
               type="button"
               onClick={() => goToIndex(index)}
-              className={`relative h-16 w-24 overflow-hidden rounded-xl border transition ${
+              className={`relative h-[76px] w-[118px] overflow-hidden rounded-xl border transition md:h-20 md:w-32 ${
                 currentIndex === index
                   ? "border-primary shadow"
                   : "border-border/40 opacity-75 hover:opacity-100"
@@ -120,7 +120,7 @@ export function RoomSuiteShowcase({ suiteId, locale }: RoomSuiteShowcaseProps) {
                 src={image.src}
                 alt={image.alt}
                 fill
-                sizes="96px"
+                sizes="(min-width: 768px) 128px, 118px"
                 className="object-cover"
               />
             </button>
