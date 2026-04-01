@@ -13,6 +13,7 @@
   --color-border: var(--border);
 
   --font-serif: var(--font-playfair), serif;
+  --font-korean: var(--font-maru-buri), serif;
   --font-sans: "Pretendard", -apple-system, sans-serif;
 
   --radius-brand: 2rem;
@@ -77,6 +78,26 @@ body::before {
 @layer utilities {
   .text-balance {
     text-wrap: balance;
+  }
+
+  .font-locale-ko {
+    font-family: var(--font-korean);
+  }
+
+  .font-locale-ko .font-serif {
+    font-family: var(--font-korean);
+  }
+
+  .font-display-serif {
+    font-family: var(--font-serif);
+  }
+
+  .font-locale-ko .font-display-serif {
+    font-family: var(--font-serif) !important;
+  }
+
+  .font-locale-en {
+    font-family: var(--font-serif);
   }
 }
 

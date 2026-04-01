@@ -391,8 +391,15 @@ const SUITE_CONTENT: Record<
       nextLabel: "다음",
       carousel: [
         { src: "/img/room/prestige1.jpg", alt: "프레스티지 거실", caption: "넓은 거실과 편안한 소파 공간" },
-         { src: "/img/room/prestige2.jpg", alt: "프레스티지 침실", caption: "독립된 침실 공간" },
-         { src: "/img/room/prestige3.jpg", alt: "프레스티지 침실", caption: "편안한 수면을 위한 프리미엄 침구" },
+        { src: "/img/room/prestige2.jpg", alt: "프레스티지 침실", caption: "독립된 침실 공간" },
+        { src: "/img/room/prestige3.jpg", alt: "프레스티지 침실", caption: "편안한 수면을 위한 프리미엄 침구" },
+        { src: "/img/room/prestige4.jpg", alt: "프레스티지 파우더룸", caption: "프레스티지 스위트 파우더룸 디테일" },
+        { src: "/img/room/prestige5.jpg", alt: "프레스티지 라운지", caption: "프레스티지 스위트 라운지 디테일" },
+        { src: "/img/room/prestige6.jpg", alt: "프레스티지 객실", caption: "프레스티지 스위트 객실 전경" },
+        { src: "/img/room/prestige7.jpg", alt: "프레스티지 창가", caption: "프레스티지 스위트 창가 공간" },
+        { src: "/img/room/prestige8.jpg", alt: "프레스티지 침실 디테일", caption: "프레스티지 스위트 침실 디테일" },
+        { src: "/img/room/prestige9.jpg", alt: "프레스티지 휴식 공간", caption: "프레스티지 스위트 휴식 공간" },
+        { src: "/img/room/prestige10.jpg", alt: "프레스티지 인테리어", caption: "프레스티지 스위트 프리미엄 인테리어" },
       ],
       featureGroups: [
         {
@@ -446,6 +453,13 @@ const SUITE_CONTENT: Record<
         { src: "/img/room/prestige1.jpg", alt: "Living Room", caption: "Spacious Living Area" },
         { src: "/img/room/prestige2.jpg", alt: "Bedroom", caption: "Separate Bedroom" },
         { src: "/img/room/prestige3.jpg", alt: "Bedding", caption: "Premium Bedding" },
+        { src: "/img/room/prestige4.jpg", alt: "Powder Room", caption: "Powder Room Detail" },
+        { src: "/img/room/prestige5.jpg", alt: "Lounge Detail", caption: "Lounge Detail" },
+        { src: "/img/room/prestige6.jpg", alt: "Full Room View", caption: "Full Room View" },
+        { src: "/img/room/prestige7.jpg", alt: "Window-side Space", caption: "Window-side Space" },
+        { src: "/img/room/prestige8.jpg", alt: "Bedroom Detail", caption: "Bedroom Detail" },
+        { src: "/img/room/prestige9.jpg", alt: "Relaxation Corner", caption: "Relaxation Corner" },
+        { src: "/img/room/prestige10.jpg", alt: "Premium Interior", caption: "Premium Interior" },
       ],
       featureGroups: [
          {
@@ -498,9 +512,14 @@ const SUITE_CONTENT: Record<
       prevLabel: "이전",
       nextLabel: "다음",
       carousel: [
-        { src: "/img/room/vvip4.jpg", alt: "VVIP 전경", caption: "탁 트인 논밭뷰와 모션베드" },
+        { src: "/img/room/vvip1.jpg", alt: "VVIP 전경", caption: "탁 트인 논밭뷰와 모션베드" },
         { src: "/img/room/vvip2.jpg", alt: "VVIP 침실", caption: "안마의자와 휴식 공간" },
-        { src: "/img/room/vvip1.jpg", alt: "VVIP 라운지", caption: "쾌적한 실내 컨디션" },
+        { src: "/img/room/vvip3.jpg", alt: "VVIP 라운지", caption: "쾌적한 실내 컨디션" },
+        { src: "/img/room/vvip4.jpg", alt: "VVIP 객실", caption: "넓은 객실 동선" },
+        { src: "/img/room/vvip5.jpg", alt: "VVIP 침구", caption: "프리미엄 침구와 조명" },
+        { src: "/img/room/vvip6.jpg", alt: "VVIP 가전", caption: "객실 내 수납 및 가전" },
+        { src: "/img/room/vvip7.jpg", alt: "VVIP 창가", caption: "창가 휴식 코너" },
+        { src: "/img/room/vvip8.jpg", alt: "VVIP 인테리어", caption: "안정감 있는 인테리어 톤" },
       ],
       featureGroups: [
         {
@@ -551,8 +570,14 @@ const SUITE_CONTENT: Record<
       prevLabel: "Prev",
       nextLabel: "Next",
       carousel: [
-        { src: "/img/room/vvip4.jpg", alt: "VVIP View", caption: "Open Field View & Motion Bed" },
+        { src: "/img/room/vvip1.jpg", alt: "VVIP View", caption: "Open Field View & Motion Bed" },
         { src: "/img/room/vvip2.jpg", alt: "VVIP Room", caption: "Massage Chair & Relax Zone" },
+        { src: "/img/room/vvip3.jpg", alt: "VVIP Lounge", caption: "Comfortable Room Condition" },
+        { src: "/img/room/vvip4.jpg", alt: "VVIP Layout", caption: "Spacious In-room Layout" },
+        { src: "/img/room/vvip5.jpg", alt: "VVIP Bedding", caption: "Premium Bedding & Lighting" },
+        { src: "/img/room/vvip6.jpg", alt: "VVIP Appliances", caption: "Storage & Essential Appliances" },
+        { src: "/img/room/vvip7.jpg", alt: "VVIP Window Spot", caption: "Window-side Relaxation Corner" },
+        { src: "/img/room/vvip8.jpg", alt: "VVIP Interior", caption: "Balanced Interior Tone" },
       ],
       featureGroups: [
          {
@@ -607,6 +632,12 @@ const SUITE_CONTENT: Record<
       carousel: [
         { src: "/img/room/vvip1.jpg", alt: "VIP 전경", caption: "아늑한 시티뷰 객실" },
         { src: "/img/room/vvip2.jpg", alt: "VIP 설비", caption: "안마의자와 모션베드" },
+        { src: "/img/room/vvip3.jpg", alt: "VIP 객실", caption: "효율적인 객실 동선" },
+        { src: "/img/room/vvip4.jpg", alt: "VIP 침실", caption: "편안한 침실 무드" },
+        { src: "/img/room/vvip5.jpg", alt: "VIP 수납 공간", caption: "실용적인 수납 공간" },
+        { src: "/img/room/vvip6.jpg", alt: "VIP 가전", caption: "기본 가전이 갖춰진 공간" },
+        { src: "/img/room/vvip7.jpg", alt: "VIP 창가 코너", caption: "조용한 휴식 코너" },
+        { src: "/img/room/vvip8.jpg", alt: "VIP 인테리어", caption: "따뜻한 톤의 인테리어" },
       ],
       featureGroups: [
         {
@@ -659,6 +690,12 @@ const SUITE_CONTENT: Record<
       carousel: [
         { src: "/img/room/vvip1.jpg", alt: "VIP View", caption: "Cozy City View Room" },
         { src: "/img/room/vvip2.jpg", alt: "VIP Room", caption: "Massage Chair & Motion Bed" },
+        { src: "/img/room/vvip3.jpg", alt: "VIP Layout", caption: "Efficient In-room Layout" },
+        { src: "/img/room/vvip4.jpg", alt: "VIP Bedroom", caption: "Comfortable Bedroom Mood" },
+        { src: "/img/room/vvip5.jpg", alt: "VIP Storage", caption: "Practical Storage Space" },
+        { src: "/img/room/vvip6.jpg", alt: "VIP Appliances", caption: "Essential In-room Appliances" },
+        { src: "/img/room/vvip7.jpg", alt: "VIP Window Corner", caption: "Quiet Relaxation Corner" },
+        { src: "/img/room/vvip8.jpg", alt: "VIP Interior", caption: "Warm Interior Tone" },
       ],
       featureGroups: [
          {

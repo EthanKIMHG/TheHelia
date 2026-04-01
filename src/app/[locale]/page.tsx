@@ -110,12 +110,7 @@ export default function LocaleHomePage() {
   };
 
   return (
-    <div
-      className={clsx(
-        "font- min-h-screen",
-        locale === "ko" ? "font-maru-semi" : "font-source-semi",
-      )}
-    >
+    <div className="min-h-screen">
       <main className="flex w-full flex-col items-center overflow-x-hidden">
         <div className="fixed bottom-6 right-4 z-30 md:bottom-10 md:right-10">
           <TransitionLink

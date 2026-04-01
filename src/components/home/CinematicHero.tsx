@@ -3,12 +3,18 @@
 
 import { motion, useScroll, useTransform } from "framer-motion";
 import { ArrowDown } from "lucide-react";
+import { Playfair_Display } from "next/font/google";
 import { useRef } from "react";
 import { Locale } from "../header/types";
 import HeroCarousel from "./HeroCarousel";
 
 import { usePageLoad } from "@/components/common/PageLoadContext";
 import { useEffect } from "react";
+
+const playfairDisplay = Playfair_Display({
+  subsets: ["latin"],
+  display: "swap",
+});
 
 export function CinematicHero({locale} : {locale: Locale}) {
   const { setCriticalImageLoading } = usePageLoad();
@@ -23,7 +29,7 @@ export function CinematicHero({locale} : {locale: Locale}) {
   const y = useTransform(scrollY, [0, 500], [0, 150]);
 
   return (
-    <div ref={containerRef} className="relative h-screen w-full overflow-hidden bg-black font-serif">
+    <div ref={containerRef} className="relative h-screen w-full overflow-hidden bg-black">
       {/* 1. Fluid Background & Texture */}
       <div className="absolute inset-0 z-0">
         <HeroCarousel onLoadComplete={() => setCriticalImageLoading(false)} />
@@ -42,7 +48,7 @@ export function CinematicHero({locale} : {locale: Locale}) {
           initial={{ opacity: 0, y: 100, rotate: 2 }}
           animate={{ opacity: 1, y: 0, rotate: 0 }}
           transition={{ duration: 1.5, ease: [0.16, 1, 0.3, 1] }}
-          className="absolute bottom-24 left-6 md:bottom-32 md:left-12 text-7xl md:text-9xl lg:text-[11rem] text-white tracking-widest mix-blend-overlay"
+          className={`${playfairDisplay.className} absolute bottom-24 left-6 md:bottom-32 md:left-12 text-7xl md:text-9xl lg:text-[11rem] text-white tracking-widest mix-blend-overlay`}
         >
           The <br/> Helia
         </motion.h1>

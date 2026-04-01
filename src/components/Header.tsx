@@ -132,13 +132,7 @@ export default function Header() {
       initial={{ y: -20, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
       transition={{ duration: 0.5, ease: "easeOut" }}
-      className={clsx(
-        "sticky top-0 z-50 w-full border-b border-border bg-background/90 text-lg backdrop-blur supports-[backdrop-filter]:bg-background/70",
-        {
-          "font-maru-semi": locale === "ko",
-          "font-source-semi": locale === "en",
-        },
-      )}
+      className="sticky top-0 z-50 w-full border-b border-border bg-background/90 text-lg backdrop-blur supports-[backdrop-filter]:bg-background/70"
     >
       <div className="mx-auto flex h-16 max-w-7xl items-center px-4 md:grid md:grid-cols-[auto_1fr_auto] md:gap-10 md:px-6">
         <Link href={`/${locale}`} className="flex items-center">

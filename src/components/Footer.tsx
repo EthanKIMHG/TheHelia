@@ -1,6 +1,5 @@
 "use client";
 
-import clsx from "clsx";
 import Link from "next/link";
 import {
   Building,
@@ -18,15 +17,9 @@ import { FOOTER_CONTENT } from "./footer/footer-data";
 export function Footer() {
   const { locale } = useThemeLocale();
   const copy = FOOTER_CONTENT[locale];
-  const fontClass = locale === "ko" ? "font-maru" : "font-source-semi";
-  console.log(locale)
+
   return (
-    <footer
-      className={clsx(
-        "bg-[#191919] px-6 py-14 text-white md:px-12 md:py-20",
-        fontClass,
-      )}
-    >
+    <footer className="bg-[#191919] px-6 py-14 text-white md:px-12 md:py-20">
       <div className="mx-auto flex w-full max-w-7xl flex-col gap-12 ">
         <div className="flex flex-col xl:gap-32 md:gap-12 md:flex-row md:items-start md:justify-between gap-4">
           <div className="max-w-xl ">

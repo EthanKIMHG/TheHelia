@@ -14,20 +14,17 @@ interface LocaleShellProps {
 }
 
 export function LocaleShell({ locale, theme, children }: LocaleShellProps) {
-  const fontClass = locale === "ko" ? "font-maru-semi" : "font-source-semi";
+  const fontClass = locale === "ko" ? "font-locale-ko" : "font-locale-en";
 
   return (
     <ThemeLocaleProvider initialLocale={locale} initialTheme={theme}>
-      <Header />
-      <main
-        className={clsx(
-          "min-h-[calc(100dvh-4rem)] w-full transition-colors",
-          fontClass,
-        )}
-      >
-        <PageTransition>{children}</PageTransition>
-      </main>
-      <Footer />
+      <div className={clsx("min-h-dvh", fontClass)}>
+        <Header />
+        <main className="min-h-[calc(100dvh-4rem)] w-full transition-colors">
+          <PageTransition>{children}</PageTransition>
+        </main>
+        <Footer />
+      </div>
     </ThemeLocaleProvider>
   );
 }

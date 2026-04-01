@@ -293,7 +293,6 @@ function NavigationPanelCard({
               className={clsx(
                 'text-xl uppercase tracking-[0.1em] transition-colors duration-500',
                 active ? 'text-white' : 'text-white/72',
-                localeClassName(locale),
               )}
             >
               {item.label}
@@ -452,6 +451,3 @@ function NavigationPanelCard({
     </article>
   )
 }
-
-const localeClassName = (locale: Locale) =>
-  locale === 'ko' ? 'font-maru-semi' : 'font-source-semi'
