@@ -56,12 +56,12 @@ export function HomeReviews({ locale, onSectionMount }: HomeReviewsProps) {
     >
       <ScrollReveal>
         <div className="container mx-auto px-4">
-          <div className="flex flex-col items-center text-center mb-16">
+          <div className="mb-16 flex flex-col items-start text-left md:items-center md:text-center">
             <span className="inline-flex items-center justify-center px-4 py-1.5 rounded-full bg-primary/10 text-primary text-sm font-medium mb-6">
               <Star className="w-3.5 h-3.5 mr-1.5 fill-current" />
               {isKo ? "Reviews" : "Reviews"}
             </span>
-            <h2 className="text-3xl md:text-4xl lg:text-5xl font-serif font-semibold text-foreground leading-tight">
+            <h2 className="break-keep text-3xl font-serif font-semibold leading-tight text-foreground md:text-4xl lg:text-5xl">
               {isKo ? (
                 <>
                   실제 이용하신 분들의<br />
@@ -74,6 +74,11 @@ export function HomeReviews({ locale, onSectionMount }: HomeReviewsProps) {
                 </>
               )}
             </h2>
+            <p className="mt-5 max-w-[30ch] break-keep text-base leading-relaxed text-secondary/75 md:mx-auto md:max-w-2xl md:text-lg">
+              {isKo
+                ? "실제 이용 고객의 리뷰를 통해 더헬리아의 서비스와 회복 경험을 확인해 보세요."
+                : "Discover how families experienced The Helia through authentic guest reviews."}
+            </p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8">

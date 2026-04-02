@@ -15,11 +15,12 @@ export function ReservationPageContent({ locale }: ReservationPageContentProps) 
   const context = useOptionalThemeLocale();
   const activeLocale = locale ?? context?.locale ?? "ko";
   const copy = useMemo(() => getReservationCopy(activeLocale), [activeLocale]);
+  const isKo = activeLocale === "ko";
 
   return (
     <div className="space-y-24 pb-20">
       <ProcessSection copy={copy.process} />
-      <ContactSection copy={copy.contact} />
+      <ContactSection copy={copy.contact} isKo={isKo} />
       <NoticeSection copy={copy.notice} />
     </div>
   );
@@ -27,10 +28,16 @@ export function ReservationPageContent({ locale }: ReservationPageContentProps) 
 
 type ContactCopy = ReturnType<typeof getReservationCopy>["contact"];
 
-function ContactSection({ copy }: { copy: ContactCopy }) {
+function ContactSection({ copy, isKo }: { copy: ContactCopy; isKo: boolean }) {
+  const bookingChannel = copy.channels.find((channel) => channel.id === "booking");
+  const supportChannels = copy.channels.filter((channel) => channel.id !== "booking");
+  const bookingHighlights = isKo
+    ? ["24시간 예약 접수", "가용 일정 빠른 안내"]
+    : ["24/7 Reservation Intake", "Fast Availability Response"];
+
   return (
     <ScrollReveal>
-    <section className="rounded-3xl border border-border/30 bg-white/80 dark:bg-[#2A2928]/60 backdrop-blur-md p-6 shadow md:p-10">
+    <section className="rounded-3xl border border-border/30 bg-white/80 dark:bg-primary/10 backdrop-blur-md p-6 shadow-sm md:p-10">
       <header className="space-y-3">
         <p className="text-sm font-semibold uppercase tracking-[0.3em] text-primary font-playfair italic">
           {copy.badge}
@@ -38,52 +45,77 @@ function ContactSection({ copy }: { copy: ContactCopy }) {
         <h2 className="text-3xl font-semibold text-foreground md:text-3xl font-serif">
           {copy.title}
         </h2>
-        <p className="text-base leading-relaxed text-foreground/70 md:text-lg">
+        <p className="text-base leading-relaxed text-foreground/80 md:text-lg">
           {copy.subtitle}
         </p>
       </header>
-      <div className="mt-8 grid gap-6 md:grid-cols-2">
-        {copy.channels.map((channel) => (
-          <div
-            key={channel.label}
-            className={`rounded-2xl border border-border/30 p-6 shadow-sm transition-all ${
-              channel.id === "booking"
-                ? "bg-gradient-to-br from-primary/10 to-background border-primary/40 shadow-md"
-                : "bg-white/80 dark:bg-[#2A2928]/60 backdrop-blur-sm hover:bg-white/90 dark:hover:bg-[#2A2928]/80"
-            }`}
-          >
-            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-primary/80 font-serif">
-              {channel.label}
-            </p>
-            <div className="mt-3 flex items-center gap-2 text-lg font-semibold text-foreground">
-              <channel.icon className="h-5 w-5 text-primary" />
-              <span>{channel.value}</span>
+      <div className="mt-8 space-y-4">
+        {bookingChannel && (
+          <article className="rounded-2xl border border-primary/35 bg-gradient-to-br from-primary/15 via-background to-primary/5 p-5 shadow-md dark:from-primary/25 dark:via-primary/10 dark:to-primary/15 md:p-6">
+            <div className="flex items-start justify-between gap-4">
+              <div>
+                <p className="text-xs font-semibold uppercase tracking-[0.2em] text-primary/95 font-serif">
+                  {bookingChannel.label}
+                </p>
+                <div className="mt-2 flex items-center gap-2 text-lg font-semibold text-foreground">
+                  <bookingChannel.icon className="h-5 w-5 text-primary" />
+                  <span>{bookingChannel.value}</span>
+                </div>
+                <p className="mt-2 text-sm leading-relaxed text-foreground/80">
+                  {bookingChannel.note}
+                </p>
+              </div>
+              <div className="hidden rounded-xl border border-primary/30 bg-primary/10 p-3 text-primary md:flex">
+                <CalendarCheck className="h-5 w-5" />
+              </div>
             </div>
-            <p className="mt-2 text-sm text-foreground/65">{channel.note}</p>
-            
-            {channel.href && channel.id === "booking" ? (
-              
+            <div className="mt-4 flex flex-wrap gap-2 text-[11px] font-medium text-foreground/75">
+              {bookingHighlights.map((item) => (
+                <span key={item} className="rounded-full border border-primary/25 bg-background/80 px-2.5 py-1 dark:bg-primary/10">
+                  {item}
+                </span>
+              ))}
+            </div>
+            {bookingChannel.href && (
               <Link
-                href={channel.href}
+                href={bookingChannel.href}
                 target="_blank"
                 rel="noreferrer"
-                className="mt-4 inline-block items-center justify-center rounded-xl border border-primary/40 bg-[#00DE5A] hover:bg-[#00DE5A]/90 p-3 text-sm font-semibold text-black transition-colors"
+                className="mt-5 inline-flex w-full items-center justify-center rounded-xl border border-primary/50 bg-primary p-3 text-sm font-semibold text-background transition-colors hover:bg-primary/90 md:w-auto md:px-6"
               >
-                {channel.cta}
-              </Link>
-            ) : (
-              <Link
-                href={channel.href}
-                target="_blank"
-                rel="noreferrer"
-                className="mt-4 inline-flex items-center gap-2 rounded-xl border border-primary/40 bg-primary/10 dark:bg-[#333231] p-3 text-sm font-semibold text-primary transition hover:bg-primary hover:text-background"
-                
-              >
-                {channel.cta}
+                {bookingChannel.cta}
               </Link>
             )}
-          </div>
-        ))}
+          </article>
+        )}
+
+        <div className="grid gap-3 md:grid-cols-2">
+          {supportChannels.map((channel) => (
+            <Link
+              key={channel.label}
+              href={channel.href ?? "#"}
+              target="_blank"
+              rel="noreferrer"
+              className="group rounded-2xl border border-border/40 bg-background/85 p-5 shadow-sm transition-all duration-300 hover:-translate-y-0.5 hover:border-primary/35 hover:bg-primary/5 dark:bg-primary/10 dark:border-primary/25 dark:hover:bg-primary/15"
+            >
+              <div className="flex items-start justify-between gap-4">
+                <div>
+                  <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-primary/90">
+                    {channel.label}
+                  </p>
+                  <p className="mt-2 text-lg font-semibold text-foreground">{channel.value}</p>
+                  <p className="mt-1.5 text-sm leading-relaxed text-foreground/80">{channel.note}</p>
+                </div>
+                <div className="rounded-lg border border-primary/30 bg-primary/10 p-2 text-primary transition-colors group-hover:bg-primary group-hover:text-background">
+                  <channel.icon className="h-4 w-4" />
+                </div>
+              </div>
+              <div className="mt-4 inline-flex items-center rounded-lg border border-primary/30 bg-primary/10 px-2.5 py-1.5 text-xs font-semibold text-primary transition-colors group-hover:bg-primary group-hover:text-background">
+                {channel.cta}
+              </div>
+            </Link>
+          ))}
+        </div>
       </div>
     </section>
     </ScrollReveal>
@@ -97,30 +129,68 @@ type ProcessCopy = ReturnType<typeof getReservationCopy>["process"];
 function ProcessSection({ copy }: { copy: ProcessCopy }) {
   return (
     <ScrollReveal>
-      <section className="rounded-3xl border border-border/30 bg-white/80 dark:bg-[#2A2928]/60 backdrop-blur-md p-8 shadow-sm md:p-10">
-        <header className="space-y-3 text-center mb-10">
+      <section className="rounded-3xl border border-border/30 bg-white/80 dark:bg-[#2A2928]/60 backdrop-blur-md p-6 shadow-sm md:p-10">
+        <header className="mb-8 space-y-3 text-left md:mb-10 md:text-center">
           <p className="text-sm font-semibold uppercase tracking-[0.3em] text-primary font-playfair italic">
             {copy.badge}
           </p>
-          <h2 className="text-2xl font-semibold text-foreground md:text-3xl font-serif">
+          <h2 className="text-2xl font-semibold leading-[1.28] break-keep text-foreground md:text-3xl md:leading-tight font-serif">
             {copy.title}
           </h2>
-          <p className="text-base leading-relaxed text-foreground/70 md:text-lg">
+          <p className="max-w-[30ch] break-keep text-base leading-relaxed text-foreground/80 md:mx-auto md:max-w-2xl md:text-lg">
             {copy.subtitle}
           </p>
         </header>
-        <div className="grid gap-6 md:grid-cols-4">
+
+        <div className="md:hidden space-y-3">
           {copy.steps.map((step, index) => (
-            <div key={step.label} className="relative flex flex-col items-center text-center">
-              {index < copy.steps.length - 1 && (
-                <div className="absolute top-6 left-1/2 w-full h-px bg-border/50 hidden md:block" />
-              )}
-              <div className="relative z-10 flex h-12 w-12 items-center justify-center rounded-full bg-primary text-white font-serif text-lg shadow-md mb-4">
-                {index + 1}
+            <article
+              key={`${step.label}-mobile`}
+              className="relative rounded-2xl border border-primary/25 bg-background/90 p-4 pl-14 shadow-sm dark:bg-primary/10 dark:border-primary/35"
+            >
+              <div className="absolute left-2.5 top-3.5 z-10 flex h-7 w-7 items-center justify-center rounded-full bg-primary text-background font-serif text-[11px] font-semibold shadow-sm ring-4 ring-background dark:ring-[#2A2928]">
+                {String(index + 1).padStart(2, "0")}
               </div>
-              <h3 className="text-lg font-semibold text-foreground font-serif mb-2">{step.title}</h3>
-              <p className="text-sm text-foreground/70 leading-relaxed">{step.description}</p>
-            </div>
+              <p className="text-[10px] font-semibold uppercase tracking-[0.18em] text-primary/90">
+                {step.label}
+              </p>
+              <h3 className="mt-1 text-base font-semibold break-keep text-foreground font-serif">
+                {step.title}
+              </h3>
+              <p className="mt-1.5 text-sm leading-relaxed break-keep text-foreground/85">
+                {step.description}
+              </p>
+            </article>
+          ))}
+        </div>
+
+        <div className="hidden md:grid md:grid-cols-4 md:gap-5">
+          {copy.steps.map((step, index) => (
+            <article
+              key={`${step.label}-desktop`}
+              className="group relative rounded-2xl border border-primary/20 bg-background/90 p-5 shadow-sm transition-all duration-300 hover:border-primary/35 hover:bg-primary/5 dark:bg-primary/10 dark:border-primary/30 dark:hover:bg-primary/15"
+            >
+              {index < copy.steps.length - 1 && (
+                <div className="absolute top-10 left-[calc(100%-0.35rem)] h-px w-[calc(100%+0.7rem)] bg-gradient-to-r from-primary/35 to-primary/10" />
+              )}
+
+              <div className="relative z-10 flex flex-col items-center text-center">
+                <div className="relative mt-0.5 flex h-12 w-12 items-center justify-center rounded-full bg-primary text-background font-serif text-base shadow-md ring-4 ring-primary/15 dark:ring-primary/25">
+                  {String(index + 1).padStart(2, "0")}
+                </div>
+                <div className="mt-2.5">
+                  <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-primary/90">
+                    {step.label}
+                  </p>
+                  <h3 className="mt-1.5 mb-1.5 text-lg font-semibold break-keep text-foreground font-serif">
+                    {step.title}
+                  </h3>
+                  <p className="text-sm leading-relaxed break-keep text-foreground/85">
+                    {step.description}
+                  </p>
+                </div>
+              </div>
+            </article>
           ))}
         </div>
       </section>
@@ -134,15 +204,15 @@ type NoticeCopy = ReturnType<typeof getReservationCopy>["notice"];
 function NoticeSection({ copy }: { copy: NoticeCopy }) {
   return (
     <ScrollReveal>
-    <section className="rounded-3xl border border-dashed border-primary/40 bg-gradient-to-br from-primary/5 via-primary/5 to-background/95 p-6 text-primary/80 shadow md:p-8">
+    <section className="rounded-3xl border border-border/30 bg-primary/5 dark:bg-[#2A2928]/50 backdrop-blur-md p-6 text-foreground shadow-sm md:p-8">
       <div className="space-y-3">
-        <p className="text-sm font-semibold uppercase tracking-[0.3em] font-playfair italic">
+        <p className="text-sm font-semibold uppercase tracking-[0.3em] font-playfair italic text-primary/95">
           {copy.badge}
         </p>
-        <h2 className="text-2xl font-semibold text-secondary md:text-3xl font-serif">
+        <h2 className="text-2xl font-semibold text-foreground md:text-3xl font-serif">
           {copy.title}
         </h2>
-        <p className="text-sm leading-relaxed text-secondary md:text-base">
+        <p className="text-sm leading-relaxed text-foreground/85 md:text-base">
           {copy.subtitle}
         </p>
       </div>
@@ -150,9 +220,9 @@ function NoticeSection({ copy }: { copy: NoticeCopy }) {
         {copy.items.map((group) => (
           <article
             key={group.title}
-            className="rounded-2xl border border-primary/20 bg-white/80 dark:bg-[#2A2928]/60 backdrop-blur-sm p-5 text-secondary shadow-sm"
+            className="rounded-2xl border border-border/30 bg-background/90 dark:bg-[#2A2928]/70 backdrop-blur-sm p-5 text-foreground/85 shadow-sm"
           >
-            <h3 className="text-base font-semibold font-serif">{group.title}</h3>
+            <h3 className="text-base font-semibold font-serif text-foreground">{group.title}</h3>
             <ul className="mt-3 space-y-2 text-sm">
               {group.points.map((point) => (
                 <li key={point} className="flex items-start gap-2">

@@ -6,6 +6,7 @@ import {
   Baby,
   CalendarCheck2,
   ChefHat,
+  Clock3,
   Flower2,
   HeartHandshake,
   MoonStar,
@@ -197,17 +198,44 @@ function CareSection({ copy }: { copy: CareCopy }) {
 type DailyFlowCopy = ReturnType<typeof getAboutCopy>["dailyFlow"];
 
 function DailyFlowSection({ copy }: { copy: DailyFlowCopy }) {
+  const timelineStyles = [
+    {
+      icon: ChefHat,
+      iconWrap:
+        "border-[#E5CFB7] bg-gradient-to-br from-[#FFF8F1] to-[#F9EBDD] dark:border-[#4A3D31] dark:from-[#3A3028] dark:to-[#2D2621]",
+      panel:
+        "border-[#EAD8C6] bg-gradient-to-b from-[#FFFDF9] to-[#FDF6EE] dark:border-[#4A3D31] dark:from-[#2E2722] dark:to-[#26211D]",
+      badge: "bg-[#F1E0CF] text-[#7F5D3F] dark:bg-[#4B3B2E] dark:text-[#E8D8C8]",
+    },
+    {
+      icon: Stethoscope,
+      iconWrap:
+        "border-[#D6DDD2] bg-gradient-to-br from-[#F6FAF4] to-[#EAF3E6] dark:border-[#3A4738] dark:from-[#283126] dark:to-[#222C20]",
+      panel:
+        "border-[#DCE6D8] bg-gradient-to-b from-[#FBFDFB] to-[#EEF5EC] dark:border-[#3A4738] dark:from-[#253022] dark:to-[#1F2A1D]",
+      badge: "bg-[#DDEAD7] text-[#4A6A43] dark:bg-[#31442E] dark:text-[#CFE3C9]",
+    },
+    {
+      icon: MoonStar,
+      iconWrap:
+        "border-[#D7D5E6] bg-gradient-to-br from-[#F7F6FB] to-[#ECEAF7] dark:border-[#3D3B4F] dark:from-[#2B2A36] dark:to-[#23222E]",
+      panel:
+        "border-[#DFDDEE] bg-gradient-to-b from-[#FCFCFF] to-[#F1F0FA] dark:border-[#3D3B4F] dark:from-[#272532] dark:to-[#21202B]",
+      badge: "bg-[#E3E1F1] text-[#5D5782] dark:bg-[#38344D] dark:text-[#D8D4EC]",
+    },
+  ] as const;
+
   return (
     <ScrollReveal>
       <section className="rounded-3xl border border-border/30 bg-white/80 dark:bg-[#2A2928]/60 backdrop-blur-md p-8 shadow-sm md:p-12">
-        <header className="space-y-3 text-center mb-12">
-          <p className="text-sm font-semibold uppercase tracking-[0.3em] text-primary font-playfair italic">
+        <header className="mx-auto mb-12 max-w-4xl space-y-3 text-left md:text-center">
+          <p className="text-sm font-semibold uppercase tracking-[0.28em] text-primary font-playfair italic">
             {copy.badge}
           </p>
-          <h2 className="text-3xl font-semibold text-foreground md:text-4xl font-serif">
+          <h2 className="text-3xl font-semibold leading-[1.26] break-keep text-foreground md:text-4xl md:leading-tight font-serif">
             {copy.title}
           </h2>
-          <p className="text-base leading-relaxed text-foreground/70 md:text-lg">
+          <p className="max-w-[30ch] text-base leading-relaxed break-keep text-foreground/70 md:mx-auto md:max-w-3xl md:text-lg">
             {copy.subtitle}
           </p>
         </header>
@@ -216,34 +244,83 @@ function DailyFlowSection({ copy }: { copy: DailyFlowCopy }) {
           <div className="absolute top-12 left-0 w-full h-0.5 bg-primary/20 hidden md:block" />
 
           <div className="grid gap-8 md:grid-cols-3 relative z-10">
-            {copy.timeline.map((item, index) => (
-              <div
-                key={item.title}
-                className="group relative flex flex-col items-center text-center"
-              >
-                <div className="flex h-24 w-24 items-center justify-center rounded-full bg-background border-4 border-primary/10 dark:border-[#333231] shadow-sm mb-6 transition-transform group-hover:scale-110 group-hover:border-primary/30">
-                  <CalendarCheck2 className="h-8 w-8 text-primary" />
-                </div>
+            {copy.timeline.map((item, index) => {
+              const style = timelineStyles[index % timelineStyles.length];
+              const Icon = style.icon;
 
-                <div className="rounded-2xl border border-border/30 bg-white/80 dark:bg-[#2A2928]/60 backdrop-blur-sm p-6 shadow-sm w-full transition-all group-hover:shadow-md group-hover:-translate-y-1">
-                  <p className="text-sm font-semibold uppercase tracking-[0.2em] text-primary/80 font-serif mb-2">
-                    {item.title}
-                  </p>
-                  <p className="text-lg font-semibold text-foreground mb-3 font-serif">
-                    {item.headline}
-                  </p>
-                  <ul className="space-y-2 text-sm text-foreground/70 text-left">
-                    {item.points.map((point) => (
-                      <li key={point} className="flex items-start gap-2">
-                        <span className="mt-1.5 h-1.5 w-1.5 flex-shrink-0 rounded-full bg-primary" />
-                        <span>{point}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              </div>
-            ))}
+              return (
+                <article
+                  key={item.title}
+                  className="group relative flex flex-col items-center text-center"
+                >
+                  <div
+                    className={`mb-6 flex h-24 w-24 items-center justify-center rounded-full border-4 shadow-sm transition-transform group-hover:scale-110 ${style.iconWrap}`}
+                  >
+                    <Icon className="h-8 w-8 text-primary" />
+                  </div>
+
+                  <div
+                    className={`w-full rounded-2xl border p-6 shadow-sm transition-all group-hover:-translate-y-1 group-hover:shadow-md ${style.panel}`}
+                  >
+                    <p className="mb-2 text-sm font-semibold uppercase tracking-[0.2em] text-primary/80 font-serif">
+                      {item.title}
+                    </p>
+                    <p className="mb-4 text-lg font-semibold text-foreground font-serif">
+                      {item.headline}
+                    </p>
+
+                    {item.focus?.length ? (
+                      <div className="mb-4 flex flex-wrap justify-center gap-2">
+                        {item.focus.map((chip) => (
+                          <span
+                            key={chip}
+                            className={`rounded-full px-3 py-1 text-xs font-semibold tracking-wide ${style.badge}`}
+                          >
+                            {chip}
+                          </span>
+                        ))}
+                      </div>
+                    ) : null}
+
+                    <ul className="space-y-3 text-sm text-foreground/80 text-left">
+                      {item.points.map((point, pointIndex) => (
+                        <li key={point} className="flex items-start gap-3">
+                          <span
+                            className={`mt-0.5 inline-flex h-5 w-5 flex-shrink-0 items-center justify-center rounded-full text-[11px] font-semibold ${style.badge}`}
+                          >
+                            {pointIndex + 1}
+                          </span>
+                          <span>{point}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                </article>
+              );
+            })}
           </div>
+
+          {copy.notice?.length ? (
+            <div className="mt-10 rounded-2xl border border-border/40 bg-background/70 p-5 md:p-6">
+              <p className="mb-4 inline-flex items-center gap-2 text-sm font-semibold uppercase tracking-[0.18em] text-primary/80">
+                <Clock3 className="h-4 w-4" />
+                {copy.noticeTitle}
+              </p>
+              <div className="grid gap-3 md:grid-cols-3">
+                {copy.notice.map((note) => (
+                  <div
+                    key={note}
+                    className="rounded-xl border border-border/30 bg-white/70 dark:bg-[#2A2928]/60 p-4 text-sm text-foreground/75"
+                  >
+                    <div className="flex items-start gap-2">
+                      <CalendarCheck2 className="mt-0.5 h-4 w-4 flex-shrink-0 text-primary/80" />
+                      <span>{note}</span>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          ) : null}
         </div>
       </section>
     </ScrollReveal>
@@ -260,14 +337,14 @@ function VirtualTourSection({ copy }: { copy: VirtualTourCopy }) {
   return (
     <ScrollReveal>
       <section className="overflow-hidden rounded-3xl border border-border/30 bg-background/95 shadow-lg">
-        <div className="p-8 md:p-12 pb-6 md:pb-8 text-center space-y-4">
+        <div className="space-y-4 p-8 pb-6 text-left md:p-12 md:pb-8 md:text-center">
           <p className="text-sm font-semibold uppercase tracking-[0.3em] text-primary font-playfair italic">
             {copy.badge}
           </p>
-          <h2 className="text-3xl font-semibold text-foreground md:text-4xl font-serif">
+          <h2 className="text-3xl font-semibold leading-[1.26] break-keep text-foreground md:text-4xl md:leading-tight font-serif">
             {copy.title}
           </h2>
-          <p className="text-base leading-relaxed text-foreground/70 md:text-lg max-w-3xl mx-auto">
+          <p className="max-w-[30ch] text-base leading-relaxed break-keep text-foreground/70 md:mx-auto md:max-w-3xl md:text-lg">
             {copy.subtitle}
           </p>
         </div>
@@ -526,54 +603,77 @@ function getAboutCopy(locale: Locale) {
     },
     dailyFlow: {
       badge: isKo ? "하루의 리듬" : "Daily Rhythm",
-      title: isKo ? "더헬리아에서의 하루, 이렇게 흐릅니다" : "A Day at The Helia",
+      title: isKo ? "더 헬리아에서의 하루, 이렇게 흐릅니다" : "A Day at The Helia",
       subtitle: isKo
-        ? "휴식과 케어, 맛있는 식사와 가족의 시간을 조화롭게 담았습니다."
-        : "Each day balances rest, care, nourishing meals, and meaningful family moments.",
+        ? "식사, 모자동실, 케어 프로그램이 균형 있게 이어지는 하루 루틴을 안내드립니다."
+        : "Our daily routine balances meals, rooming-in sessions, and care programs throughout the day.",
+      noticeTitle: isKo ? "운영 안내" : "Operation Guide",
+      notice: isKo
+        ? [
+            "바디 마사지는 월~토, 10:00~17:00 운영됩니다.",
+            "가슴 마사지는 월·수·금, 10:00~13:30 운영됩니다.",
+            "교육은 원내 비치된 교육 일정표를 기준으로 참여합니다.",
+          ]
+        : [
+            "Body massage is available Monday to Saturday, 10:00-17:00.",
+            "Breast care is available Monday, Wednesday, and Friday, 10:00-13:30.",
+            "Classes follow the in-house education schedule board.",
+          ],
       timeline: [
         {
           title: isKo ? "아침" : "Morning",
-          headline: isKo ? "사랑스러운 시작" : "A Gentle Beginning",
+          headline: isKo ? "식사와 모자동실로 시작하는 시간" : "A Nourishing Start with Rooming-In",
+          focus: isKo
+            ? ["아침식사", "오전 모자동실", "오전간식"]
+            : ["Breakfast", "Morning Rooming-In", "Morning Snack"],
           points: isKo
             ? [
-              "맞춤 웨이크업 & 티타임",
-              "건강한 모닝 케어와 바이탈 체크",
-              "전담 간호사와 회복 컨설팅",
+              "아침 식사 후 오전 모자동실로 아기와 교감하는 시간을 가집니다.",
+              "오전 간식과 함께 컨디션을 점검하고 수유·유축 루틴을 정리합니다.",
+              "필요 시 간호사 상담으로 하루 케어 계획을 조율합니다.",
             ]
             : [
-              "Personalised wake-up & morning tea",
-              "Vital checks with gentle morning care",
-              "Recovery consultation with assigned nurse",
+              "After breakfast, mothers join a morning rooming-in session with their baby.",
+              "A morning snack supports energy while feeding and pumping routines are reviewed.",
+              "Nurses are available to align the day’s care plan as needed.",
             ],
         },
         {
-          title: isKo ? "낮" : "Afternoon",
-          headline: isKo ? "돌봄과 힐링의 시간" : "Moments of Care & Healing",
+          title: isKo ? "점심" : "Lunch & Afternoon",
+          headline: isKo ? "회복 프로그램이 이어지는 시간" : "Recovery Programs Through the Day",
+          focus: isKo
+            ? ["점심·오후간식", "유축·교육", "바디·가슴 마사지"]
+            : ["Lunch & Snack", "Pumping & Classes", "Body & Breast Care"],
           points: isKo
             ? [
-              "테라피 & 스파 프로그램",
-              "영양 식단과 프라이빗 티라운지",
-              "파트너와 함께하는 라운지 타임",
+              "점심 식사와 오후 간식이 제공되며 회복 리듬을 안정적으로 유지합니다.",
+              "자유시간에는 유축, 교육 수업, 바디 마사지, 가슴 마사지를 선택해 이용할 수 있습니다.",
+              "바디 마사지는 월~토(10:00~17:00), 가슴 마사지는 월·수·금(10:00~13:30) 운영됩니다.",
+              "교육 프로그램은 원내 비치된 교육 일정표를 기준으로 참여 가능합니다.",
             ]
             : [
-              "Therapy and spa programmes",
-              "Balanced meals & private tea lounge",
-              "Shared lounge time with partners",
+              "Lunch and an afternoon snack are served to keep your recovery rhythm steady.",
+              "During free blocks, mothers may choose pumping, classes, body massage, or breast care.",
+              "Body massage runs Monday to Saturday (10:00-17:00), and breast care runs Monday/Wednesday/Friday (10:00-13:30).",
+              "Class participation follows the in-house education schedule board.",
             ],
         },
         {
           title: isKo ? "저녁" : "Evening",
-          headline: isKo ? "포근한 마무리" : "A Warm Closing",
+          headline: isKo ? "모자동실과 휴식으로 마무리" : "Rooming-In and Rest to Close the Day",
+          focus: isKo
+            ? ["저녁식사", "저녁 모자동실", "저녁간식·취침준비"]
+            : ["Dinner", "Evening Rooming-In", "Snack & Bedtime Prep"],
           points: isKo
             ? [
-              "베이비 나잇 케어 & 수유 지원",
-              "아로마 티와 취침 준비",
-              "다음 날 컨디션 점검 및 가정 돌봄 가이드",
+              "저녁 식사 후 저녁 모자동실로 하루를 따뜻하게 마무리합니다.",
+              "저녁 간식은 모자동실 이후 또는 진행 중 편하게 드실 수 있도록 제공됩니다.",
+              "늦은 저녁은 자유 휴식과 취침 준비 시간으로 운영됩니다.",
             ]
             : [
-              "Baby night care & feeding support",
-              "Aroma tea and bedtime preparation",
-              "Next-day check-in with at-home tips",
+              "After dinner, an evening rooming-in session helps close the day with your baby.",
+              "An evening snack is provided for flexible timing after or during rooming-in.",
+              "Late evening is reserved for quiet free time and bedtime preparation.",
             ],
         },
       ],

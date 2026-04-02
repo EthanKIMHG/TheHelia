@@ -199,7 +199,7 @@ function AmenitiesSection({ copy }: { copy: SuiteCopy["amenities"] }) {
     <ScrollReveal>
       <section className="overflow-hidden rounded-[2.5rem] border border-stone-200/60 dark:border-white/5 bg-white/60 dark:bg-[#2A2928]/60 backdrop-blur-xl shadow-sm">
         <div className="space-y-8 p-8 md:p-12">
-          <header className="space-y-4 text-center md:text-left">
+          <header className="space-y-4 text-left">
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 text-primary text-xs font-bold uppercase tracking-widest">
                <Sparkles className="w-3 h-3" />
                {copy.badge}
@@ -271,7 +271,7 @@ function PartnerBreakfastSection({ locale }: { locale: Locale }) {
           </div>
 
           {/* Content Side */}
-          <div className="flex-1 text-center md:text-left space-y-4">
+          <div className="flex-1 space-y-4 text-left">
             <div className="space-y-2">
               <span className="inline-block text-xs font-bold text-primary uppercase tracking-widest bg-primary/5 px-3 py-1 rounded-full">
                 {isKo ? "보호자 서비스" : "Partner Service"}
@@ -287,7 +287,7 @@ function PartnerBreakfastSection({ locale }: { locale: Locale }) {
                 : "Start your day with toast, cereal, fresh milk, juice, and a variety of snacks at our complimentary bar."}
             </p>
 
-            <div className="flex flex-wrap items-center justify-center md:justify-start gap-4 pt-2">
+            <div className="flex flex-wrap items-center justify-start gap-4 pt-2">
               <div className="flex items-center gap-2 px-4 py-2 rounded-xl bg-white dark:bg-stone-800 border border-stone-200 dark:border-white/5 shadow-sm text-sm font-medium text-stone-600 dark:text-stone-300">
                 <Clock className="w-4 h-4 text-primary" />
                 <span>{isKo ? "오전 7:00 ~ 오전 10:00" : "07:00 AM ~ 10:00 AM"}</span>

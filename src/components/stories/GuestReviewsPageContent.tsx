@@ -94,14 +94,14 @@ export function GuestReviewsPageContent() {
   return (
     <div className="w-full pb-20">
       <FadeInUp>
-          <div className="mb-12 text-center md:mb-20">
+          <div className="mb-12 text-left md:mb-20 md:text-center">
               <span className="mb-4 block font-sans text-sm font-bold uppercase tracking-[0.2em] text-primary">
                   {isKo ? "생생한 이용 후기" : "Real Stories"}
               </span>
-              <h1 className="font-serif text-3xl font-bold text-foreground md:text-4xl">
+              <h1 className="font-serif text-3xl font-bold leading-[1.26] break-keep text-foreground md:text-4xl md:leading-tight">
                   {isKo ? "엄마들의 진솔한 이야기" : "Reviews from Families"}
               </h1>
-              <p className="mx-auto mt-6 max-w-2xl text-base leading-relaxed text-secondary/80 md:text-lg">
+              <p className="mt-6 max-w-[30ch] break-keep text-base leading-relaxed text-secondary/80 md:mx-auto md:max-w-2xl md:text-lg">
                   {isKo 
                    ? "헬리아와 함께한 소중한 경험들을 만나보세요. 산모님들의 편안한 회복이 저희의 가장 큰 보람입니다." 
                    : "Meet the precious experiences with The Helia. Mothers' comfortable recovery is our greatest reward."}

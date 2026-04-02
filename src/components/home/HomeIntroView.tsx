@@ -45,7 +45,7 @@ export function HomeIntroView({
         ref={(node) => registerSection("intro", node)}
         className="flex min-h-[60vh] w-full items-center justify-center bg-background px-6 py-12 text-secondary md:py-20"
       >
-        <ScrollReveal className="mx-auto flex w-full max-w-4xl flex-col items-center gap-12 text-center">
+        <ScrollReveal className="mx-auto flex w-full max-w-4xl flex-col items-start gap-12 text-left md:items-center md:text-center">
           <IntroHeroContent
             primary={copy.primaryText}
             secondary={copy.secondaryText}
@@ -84,7 +84,7 @@ function IntroHeroContent({ primary, secondary, theme }: IntroHeroContentProps) 
       : "/img/logo/page_logo.png";
 
   return (
-    <div className="flex flex-col items-center gap-10 text-center">
+    <div className="flex w-full flex-col items-start gap-10 text-left md:items-center md:text-center">
       <div className="relative">
         <Image
           src={logoSrc}
@@ -101,12 +101,12 @@ function IntroHeroContent({ primary, secondary, theme }: IntroHeroContentProps) 
       <IntroTextReveal
         text={primary}
         scrub={false}
-        className="text-2xl md:text-5xl text-foreground"
+        className="text-2xl leading-[1.28] break-keep text-foreground md:text-5xl md:leading-tight"
         animationDuration={1}
       />
       <IntroTextReveal
         text={secondary}
-        className="max-w-3xl text-lg leading-relaxed md:text-[20px] text-secondary break-keep mx-auto"
+        className="max-w-[30ch] text-lg leading-relaxed text-secondary break-keep md:mx-auto md:max-w-3xl md:text-[20px]"
         scrub={false}
         scrollStart="top bottom"
         scrollEnd="center center"

@@ -32,14 +32,14 @@ export function SpaBrandIntro({ copy }: SpaBrandIntroProps) {
     <ScrollReveal>
       <div className="rounded-[2.5rem] border border-border/30 bg-white/60 dark:bg-[#2A2928]/40 backdrop-blur-sm overflow-hidden shadow-sm">
         {/* Top Section: Philosophy Intro */}
-        <div className="text-center px-8 pt-16 pb-12 md:px-16 md:pt-20 md:pb-16 max-w-4xl mx-auto">
+        <div className="mx-auto max-w-4xl px-8 pb-12 pt-16 text-left md:px-16 md:pb-16 md:pt-20 md:text-center">
           <span className="inline-block px-4 py-1.5 rounded-full bg-primary/10 text-primary text-sm font-medium mb-6">
             {copy.badge}
           </span>
-          <h2 className="text-2xl md:text-2xl lg:text-3xl font-serif font-semibold text-foreground mb-6 leading-tight">
+          <h2 className="mb-6 whitespace-pre-line break-keep text-2xl font-serif font-semibold leading-[1.28] text-foreground md:text-2xl md:leading-tight lg:text-3xl">
             {copy.headline}
           </h2>
-          <p className="text-lg text-secondary/80 leading-relaxed whitespace-pre-line">
+          <p className="max-w-[30ch] whitespace-pre-line break-keep text-lg leading-relaxed text-secondary/80 md:mx-auto md:max-w-3xl">
             {copy.intro}
           </p>
         </div>
@@ -80,17 +80,17 @@ export function SpaBrandIntro({ copy }: SpaBrandIntroProps) {
           </div>
 
           <div className="max-w-5xl mx-auto p-8 md:p-12 lg:p-16">
-            <div className="flex flex-col items-center text-center mb-12">
+            <div className="mb-12 flex flex-col items-start text-left md:items-center md:text-center">
               <div className="flex items-center gap-3 mb-6">
                 <Waves className="w-8 h-8 text-primary" />
                 <h3 className="text-3xl font-serif font-semibold text-foreground">
                   THALAC
                 </h3>
               </div>
-              <h4 className="text-2xl md:text-3xl font-medium text-foreground mb-6 leading-snug">
+              <h4 className="mb-6 break-keep text-2xl font-medium leading-snug text-foreground md:text-3xl">
                 {copy.thalac.title}
               </h4>
-              <p className="text-secondary/80 leading-relaxed whitespace-pre-line text-base md:text-lg max-w-3xl">
+              <p className="max-w-[30ch] whitespace-pre-line break-keep text-base leading-relaxed text-secondary/80 md:mx-auto md:max-w-3xl md:text-lg">
                 {copy.thalac.description}
               </p>
             </div>
@@ -107,10 +107,10 @@ export function SpaBrandIntro({ copy }: SpaBrandIntroProps) {
                     <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center mb-4 mx-auto md:mx-0">
                       <Icon className="w-6 h-6 text-primary" />
                     </div>
-                    <h5 className="font-medium text-lg text-foreground mb-2 text-center md:text-left">
+                    <h5 className="mb-2 text-left text-lg font-medium break-keep text-foreground">
                       {feature.title}
                     </h5>
-                    <p className="text-sm text-secondary/70 leading-relaxed text-center md:text-left">
+                    <p className="text-left text-sm leading-relaxed break-keep text-secondary/70">
                       {feature.description}
                     </p>
                   </div>

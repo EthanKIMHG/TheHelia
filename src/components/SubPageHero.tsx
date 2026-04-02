@@ -28,11 +28,11 @@ export function SubPageHero({ title, imageSrc, imageAlt }: SubPageHeroProps) {
           className=" object-cover"
           
         />
-        <div className={clsx("absolute inset-0 flex flex-col items-center justify-center gap-3 px-6 text-center bg-black/20 text-white ", {
+        <div className={clsx("absolute inset-0 flex flex-col items-start justify-end gap-3 bg-black/20 px-6 pb-10 text-left text-white md:items-center md:justify-center md:pb-0 md:text-center", {
           "hidden": secondPath === "the-helia"
         })}>
           <ScrollReveal>
-            <span className={"text-2xl tracking-wider md:text-5xl font-serif"}>
+            <span className={"block max-w-[14ch] break-keep text-2xl font-serif leading-tight tracking-wider md:max-w-none md:text-5xl"}>
               {title}
             </span>
           </ScrollReveal>

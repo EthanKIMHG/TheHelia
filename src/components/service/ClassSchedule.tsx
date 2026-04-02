@@ -79,11 +79,11 @@ export function ClassSchedule({ locale }: { locale: Locale }) {
     <section className="w-full px-4 mb-20 text-secondary">
       <div className="mx-auto max-w-6xl">
          <FadeInUp>
-            <div className="mb-16 text-center">
-               <h2 className="font-serif text-2xl font-bold text-foreground md:text-3xl">
+            <div className="mb-16 text-left md:text-center">
+               <h2 className="font-serif text-2xl font-bold text-foreground break-keep md:text-3xl">
                   {isKo ? "The Helia Programs" : "The Helia Programs"}
                </h2>
-               <p className="mt-4 text-stone-500 max-w-2xl mx-auto leading-relaxed">
+               <p className="mt-4 max-w-[30ch] break-keep leading-relaxed text-stone-500 md:mx-auto md:max-w-2xl">
                   {isKo 
                    ? "산모님의 회복과 아기의 성장을 위해, 다채롭고 전문적인 프로그램들이 매일 준비되어 있습니다." 
                    : "Diverse professional programs are ready every day for your recovery and baby's growth."}
@@ -95,7 +95,7 @@ export function ClassSchedule({ locale }: { locale: Locale }) {
          <div className="grid grid-cols-2 gap-4 md:grid-cols-4 md:gap-6">
             {programs.map((item, idx) => (
                 <FadeInUp key={item.id} delay={idx * 0.05}>
-                    <div className="group flex flex-col items-center justify-center gap-4 rounded-[2rem] bg-white dark:bg-stone-900 p-6 md:p-8 text-center shadow-sm border border-stone-100 dark:border-white/5 transition-all hover:shadow-lg hover:-translate-y-1 hover:border-primary/20 dark:hover:border-white/20 aspect-video md:aspect-square">
+                    <div className="group flex aspect-video flex-col items-start justify-center gap-4 rounded-[2rem] border border-stone-100 bg-white p-6 text-left shadow-sm transition-all hover:-translate-y-1 hover:border-primary/20 hover:shadow-lg dark:border-white/5 dark:bg-stone-900 dark:hover:border-white/20 md:aspect-square md:items-center md:p-8 md:text-center">
                         <div className={`flex h-12 w-12 md:h-14 md:w-14 items-center justify-center rounded-2xl ${item.color} dark:bg-opacity-20 transition-transform duration-500 group-hover:scale-110 group-hover:rotate-3`}>
                             <item.icon className="h-6 w-6 md:h-7 md:w-7" />
                         </div>

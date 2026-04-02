@@ -42,11 +42,11 @@ export function NewbornProcess({ locale }: { locale: Locale }) {
     <section className="w-full bg-background px-6 py-24 md:py-32">
         <div className="w-full max-w-[1450px] mx-auto">
             <FadeInUp>
-                <div className="text-center mb-20 md:mb-32">
+                <div className="mb-20 text-left md:mb-32 md:text-center">
                     <span className="block mb-4 font-sans text-sm font-bold tracking-[0.2em] text-primary uppercase">
                         Process
                     </span>
-                    <h2 className="font-serif text-4xl font-bold text-foreground md:text-5xl">
+                    <h2 className="font-serif text-4xl font-bold leading-[1.25] break-keep text-foreground md:leading-tight md:text-5xl">
                         {locale === "ko" ? "체계적인 입소 프로세스" : "Systematic Admission Process"}
                     </h2>
                 </div>
@@ -80,10 +80,10 @@ export function NewbornProcess({ locale }: { locale: Locale }) {
                                     </div>
 
                                     <div className="flex-1 md:text-center">
-                                        <h3 className="font-serif text-lg font-bold text-secondary mb-3 leading-snug">
+                                        <h3 className="font-serif text-lg font-bold text-secondary mb-3 leading-snug break-keep">
                                             {step.title[locale]}
                                         </h3>
-                                        <p className="text-sm text-secondary/70 leading-relaxed word-keep-all">
+                                        <p className="text-sm text-secondary/70 leading-relaxed break-keep">
                                             {step.desc[locale]}
                                         </p>
                                     </div>

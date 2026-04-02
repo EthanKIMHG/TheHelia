@@ -19,15 +19,15 @@ export function EducationalStrengths({ locale }: { locale: Locale }) {
       <div className="mx-auto max-w-7xl">
         {/* Section Header */}
         <FadeInUp>
-          <div className="mb-16 md:mb-24 flex flex-col items-center text-center">
+          <div className="mb-16 flex flex-col items-start text-left md:mb-24 md:items-center md:text-center">
             <div className="mb-6 flex h-16 w-16 items-center justify-center rounded-full bg-primary/10 text-primary">
                 <Sparkles className="h-8 w-8" />
             </div>
-            <h2 className="font-serif text-3xl font-bold leading-tight md:text-4xl lg:text-5xl text-foreground">
+            <h2 className="font-serif text-3xl font-bold leading-[1.26] break-keep md:leading-tight md:text-4xl lg:text-5xl text-foreground">
               {isKo ? "새로운 영감을 주는" : "Inspiring"} <br />
               <span className="text-secondary/60">{isKo ? "헬리아의 교육" : "The Helia Class"}</span>
             </h2>
-            <p className="mt-8 max-w-2xl text-base leading-relaxed text-secondary/80 md:text-lg">
+            <p className="mt-8 max-w-[30ch] break-keep text-base leading-relaxed text-secondary/80 md:max-w-2xl md:text-lg">
               {isKo 
                ? "단순한 지식 전달을 넘어, 육아의 자신감을 채워주는 4가지 핵심 가치를 담았습니다." 
                : "Beyond knowledge, we deliver 4 core values to build your parenting confidence."}

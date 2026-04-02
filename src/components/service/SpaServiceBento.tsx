@@ -66,10 +66,10 @@ export function SpaServiceBento({
           <span className="inline-block px-4 py-1.5 rounded-full bg-primary/10 text-primary text-sm font-medium mb-6">
             {badge}
           </span>
-          <h3 className="text-3xl md:text-4xl font-serif font-semibold text-foreground mb-6">
+          <h3 className="mb-6 break-keep text-3xl font-serif font-semibold leading-[1.26] text-foreground md:text-4xl md:leading-tight">
             {title}
           </h3>
-          <p className="text-lg text-secondary/80 leading-relaxed whitespace-pre-line">
+          <p className="max-w-[34ch] whitespace-pre-line break-keep text-lg leading-relaxed text-secondary/80 md:max-w-3xl">
             {description}
           </p>
         </div>

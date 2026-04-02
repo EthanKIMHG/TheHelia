@@ -20,15 +20,15 @@ export function HomePrograms({ locale, onSectionMount }: HomeProgramsProps) {
     >
       <ScrollReveal>
         <div className="container mx-auto px-4">
-          <div className="flex flex-col items-center text-center mb-16">
+          <div className="mb-16 flex flex-col items-start text-left md:items-center md:text-center">
             <span className="inline-flex items-center justify-center px-4 py-1.5 rounded-full bg-primary/10 text-primary text-sm font-medium mb-6">
               <Sparkles className="w-3.5 h-3.5 mr-1.5 fill-current" />
               Programs
             </span>
-            <h2 className="text-3xl md:text-4xl lg:text-5xl font-serif font-semibold text-foreground leading-tight mb-4">
+            <h2 className="mb-4 break-keep text-3xl font-serif font-semibold leading-tight text-foreground md:text-4xl lg:text-5xl">
               {copy.title}
             </h2>
-            <p className="text-secondary/80 text-lg">
+            <p className="max-w-[30ch] break-keep text-lg text-secondary/80 md:mx-auto md:max-w-2xl">
               {copy.subtitle}
             </p>
           </div>

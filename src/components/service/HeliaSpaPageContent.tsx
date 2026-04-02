@@ -130,7 +130,7 @@ const KOREAN_COPY = {
     badge: "POSTPARTUM",
     title: "산후 바디 테라피",
     description: "출산 후 틀어진 골반과 체형을 바로잡고, 산후풍 예방과 오로 배출을 돕는 전문적인 회복 프로그램입니다.",
-    images: ["/img/spa/after1.jpg", "/img/spa/after2.jpg", "/img/spa/after3.jpg", "/img/spa/after4.jpg", "/img/spa/after5.jpg", "/img/spa/after6.jpg"],
+    images: ["/img/spa/after1.jpg", "/img/spa/after2.jpg", "/img/spa/after3.jpg", "/img/spa/after4.jpeg", "/img/spa/after5.jpg", "/img/spa/after6.jpg"],
     features: [
       {
         title: "체형 교정 & 회복",
@@ -235,7 +235,7 @@ const ENGLISH_COPY = {
     badge: "POSTPARTUM",
     title: "Postpartum Body Therapy",
     description: "A professional recovery program that corrects the pelvis and body shape distorted after childbirth, and helps prevent postpartum wind and discharge lochia.",
-    images: ["/img/spa/after1.jpg", "/img/spa/after2.jpg", "/img/spa/after3.jpg", "/img/spa/after4.jpg", "/img/spa/after5.jpg", "/img/spa/after6.jpg"],
+    images: ["/img/spa/after1.jpg", "/img/spa/after2.jpg", "/img/spa/after3.jpg", "/img/spa/after4.jpeg", "/img/spa/after5.jpg", "/img/spa/after6.jpg"],
     features: [
       {
         title: "Body Correction & Recovery",
