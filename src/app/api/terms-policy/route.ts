@@ -8,7 +8,7 @@ export async function GET(request: Request) {
   const locale = searchParams.get("locale") === "en" ? "en" : "ko";
   const fileName =
     locale === "en" ? "termsandpolicy.en.txt" : "termsandpolicy.txt";
-  const filePath = path.join(process.cwd(), "src/components/home", fileName);
+  const filePath = path.join(process.cwd(), "src/components", fileName);
 
   try {
     let termsAndPolicy: string;
@@ -17,7 +17,7 @@ export async function GET(request: Request) {
     } catch {
       const fallbackPath = path.join(
         process.cwd(),
-        "src/components/home/termsandpolicy.txt",
+        "src/components/termsandpolicy.txt",
       );
       termsAndPolicy = await readFile(fallbackPath, "utf8");
     }

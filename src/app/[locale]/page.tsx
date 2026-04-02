@@ -229,14 +229,14 @@ export default function LocaleHomePage() {
           </div>
           <PartnerLogoMarquee
             logos={co_op_logos}
-            speed={80}
+            speed={40}
             direction="left"
-            logoHeight={40}
-            gap={48}
+            logoHeight={60}
+            gap={60}
             pauseOnHover
             scaleOnHover
             ariaLabel="cooperation logos"
-            className="bg-[#f5eee7]"
+            className="bg-[#FAF9F6]"
           />
         </section>
       </main>

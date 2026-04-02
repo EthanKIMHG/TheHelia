@@ -162,7 +162,7 @@ const KOREAN_COPY = {
       bullets: [
         "독립형 투룸 구조와 라운지",
         "헝가리산 구스 침구 & La Cloud 모션 베드",
-        "Dyson, LG 하이엔드 공조 라인업",
+        "Dyson, LG 하이엔드 라인업",
         "파트너를 위한 라운지 케이터링",
       ],
       badge: "Signature Suites",

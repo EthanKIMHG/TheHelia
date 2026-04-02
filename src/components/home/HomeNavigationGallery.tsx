@@ -93,11 +93,13 @@ export function HomeNavigationGallery({
 function NavigationGalleryHeader({ copy }: { copy: NavigationCopy }) {
   return (
     <div className="mx-auto flex w-full flex-col gap-4 text-left">
-      <p className="text-xs  uppercase tracking-[0.4em] text-primary">
+      <p className="text-xs uppercase tracking-[0.4em] text-primary">
         {copy.badge}
       </p>
-      <div className="flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
-        <h2 className="text-3xl  md:text-4xl text-foreground">{copy.title}</h2>
+      <div className="flex flex-col gap-3 md:flex-row md:items-end md:justify-between font-serif">
+        <h2 className=" text-3xl md:text-4xl text-foreground">
+          {copy.title}
+        </h2>
         <p className="max-w-xl text-sm text-secondary/70 md:text-base">
           {copy.subtitle}
         </p>
@@ -288,10 +290,10 @@ function NavigationPanelCard({
         )}
       >
         <div>
-          <div className="flex items-center justify-between gap-3">
+          <div className="flex items-center justify-between gap-3 font-serif">
             <h3
               className={clsx(
-                'text-xl uppercase tracking-[0.1em] transition-colors duration-500',
+                'text-xl md:text-2xl uppercase tracking-[0.1em] transition-colors duration-500 font-semibold',
                 active ? 'text-white' : 'text-white/72',
               )}
             >
@@ -329,7 +331,7 @@ function NavigationPanelCard({
               >
                 <h3
                   className={clsx(
-                    'text-xl font-semibold leading-snug md:text-2xl',
+                    'text-xl leading-snug md:text-2xl font-serif transition-colors duration-500',
                     active ? 'text-white' : 'text-white/85',
                   )}
                 >

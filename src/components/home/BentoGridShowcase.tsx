@@ -30,10 +30,10 @@ export function BentoGridShowcase({ highlights, onSectionMount }: BentoGridShowc
               index={index}
               className={
                 index === 0
-                  ? "md:col-span-2 md:row-span-2" // First item (Suites) takes 2x2
+                  ? "min-h-[460px] md:min-h-[860px] md:col-span-2 md:row-span-2" // First item (Suites) takes 2x2
                   : index === 1
-                  ? "md:col-span-1 md:row-span-1" // Second item (Nursery) takes 1x1
-                  : "md:col-span-1 md:row-span-1" // Third item (Spa) takes 1x1
+                  ? "min-h-[360px] md:min-h-[430px] md:col-span-1 md:row-span-1" // Second item (Nursery) takes 1x1
+                  : "min-h-[360px] md:min-h-[430px] md:col-span-1 md:row-span-1" // Third item (Spa) takes 1x1
               }
             />
             
@@ -56,6 +56,7 @@ function BentoCard({
 }) {
   const params = useParams();
   const locale = params?.locale ?? "ko";
+  const isPrimaryCard = index === 0;
 
   const getHref = (idx: number) => {
     switch (idx) {
@@ -102,16 +103,32 @@ function BentoCard({
             </div>
           </div>
 
-          <div className="mt-8 transform transition-transform duration-500 group-hover:-translate-y-2">
-            <h3 className="mb-3 font-serif text-2xl md:text-3xl font-bold leading-tight">
+          <div
+            className={`relative my-4 transform transition-all duration-500 group-hover:-translate-y-2 md:group-hover:-translate-y-14`}
+          >
+            <h3
+              className={`mb-3 font-serif font-bold leading-tight ${
+                isPrimaryCard ? "text-2xl md:text-3xl" : "text-xl md:text-2xl"
+              }`}
+            >
               {item.title}
             </h3>
-            <p className="mb-5 text-sm text-white/80 line-clamp-3 md:text-base whitespace-pre-line font-bold tracking-wide">
+            <p
+              className={`text-white/80 whitespace-pre-line font-bold tracking-wide  ${
+                isPrimaryCard ? "text-sm md:text-base line-clamp-3" : "text-xs md:text-sm line-clamp-2"
+              }`}
+            >
               {item.description}
             </p>
 
             {/* Bullets */}
-            <ul className="hidden space-y-2 text-md text-white/80 transition-opacity duration-500 group-hover:opacity-100 md:block">
+            <ul
+              className={`mt-3 space-y-2 text-white/80 ${
+                isPrimaryCard ? "text-sm" : "text-xs"
+              } md:pointer-events-none md:absolute md:left-0 md:right-0 md:top-full md:mt-4 md:translate-y-3 md:opacity-0 md:transition-all md:duration-500 md:group-hover:translate-y-0 md:group-hover:opacity-100 ${
+                isPrimaryCard ? "md:text-md md:pb-8" : "md:text-sm md:pb-6"
+              }`}
+            >
               {item.bullets?.slice(0, 3).map((bullet) => (
                 <li key={bullet} className="flex items-center gap-2">
                   <span className="h-1.5 w-1.5 rounded-full bg-accent" />
@@ -125,4 +142,3 @@ function BentoCard({
     </ScrollReveal>
   );
 }
-
