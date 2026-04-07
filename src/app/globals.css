@@ -13,7 +13,7 @@
   --color-border: var(--border);
 
   --font-serif: var(--font-playfair), serif;
-  --font-korean: var(--font-nanum-myeongjo), serif;
+  --font-korean: var(--font-nanum-myeongjo, "Nanum Myeongjo"), serif;
   --font-sans: "Pretendard", -apple-system, sans-serif;
 
   --radius-brand: 2rem;

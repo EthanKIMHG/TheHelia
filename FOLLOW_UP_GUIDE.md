@@ -338,6 +338,20 @@ Last updated: 2026-04-07
   - Korean locale typography now applies more predictably across sections using different font utility classes.
   - `The Helia` hero title remains fixed to Playfair even on Korean pages.
 
+### 28) DevTools `var(--font-korean)` recognition check and scope hardening
+- Request: DevTools Elements showed `var(--font-korean)` not recognized; re-check root cause and harden font variable scope.
+- Change:
+  - Confirmed runtime HTML for `/ko` includes both font variable classes on `html`:
+    - `__variable_0a80b4` (`--font-playfair`)
+    - `__variable_88280c` (`--font-nanum-myeongjo`)
+  - Moved next/font variable class attachment from `<body>` to `<html>` in `src/app/layout.tsx` so root-scoped theme variables resolve in the same element scope.
+  - Added fallback in `--font-korean` declaration:
+    - `var(--font-nanum-myeongjo, "Nanum Myeongjo")`
+    to keep the variable resolvable even if class application timing differs during hydration/dev inspection.
+- Result:
+  - CSS variable chain is now stable at root scope and DevTools false-negative warnings are less likely.
+  - Korean locale + Playfair lock behavior remains unchanged functionally, but variable resolution is more robust.
+
 ## Files Changed
 - `src/components/home/BentoGridShowcase.tsx`
 - `src/components/pages/the-helia/about/AboutPageShowcase.tsx`
@@ -357,6 +371,7 @@ Last updated: 2026-04-07
 - `src/components/service/SpaServiceBento.tsx`
 - `src/components/service/SpaServiceCarousel.tsx`
 - `src/components/stories/GuestReviewsPageContent.tsx`
+- `src/app/layout.tsx`
 - `src/app/globals.css`
 - `src/components/home/CinematicHero.tsx`
 - `FOLLOW_UP_GUIDE.md`
