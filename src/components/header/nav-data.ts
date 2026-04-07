@@ -82,26 +82,26 @@ export const NAV_ITEMS: NavItemDefinition[] = [
     },
     sub: [
       {
-        id: "prestige",
-        href: "/room-suites/prestige",
+        id: "vip",
+        href: "/room-suites/vip",
         label: {
-          en: "PRESTIGE",
-          ko: "PRESTIGE",
+          en: "VIP",
+          ko: "VIP",
         },
         description: {
-          en: "Discover the Prestige Suite prepared for serene recovery.",
-          ko: "프레스티지 스위트에서의 고요한 회복 여정을 만나보세요.",
+          en: "Take a closer look at the calming VIP rooms.",
+          ko: "아늑함을 더한 VIP 객실을 살펴보세요.",
         },
         previewImage: {
-          src: "/img/headerpreview/prestige.jpg",
+          src: "/img/headerpreview/vip.jpg",
           alt: {
-            en: "Prestige suite interior",
-            ko: "프레스티지 스위트 인테리어",
+            en: "VIP room details",
+            ko: "VIP 객실 디테일",
           },
         },
         previewCopy: {
-          en: "Prestige suites offer quiet luxury for the first days together.",
-          ko: "프레스티지 스위트에서 조용한 럭셔리를 경험해 보세요.",
+          en: "VIP rooms balance soft light with calming amenities.",
+          ko: "VIP 객실에서 은은한 조명과 편안한 어메니티를 느껴보세요.",
         },
       },
       {
@@ -128,26 +128,26 @@ export const NAV_ITEMS: NavItemDefinition[] = [
         },
       },
       {
-        id: "vip",
-        href: "/room-suites/vip",
+        id: "prestige",
+        href: "/room-suites/prestige",
         label: {
-          en: "VIP",
-          ko: "VIP",
+          en: "PRESTIGE",
+          ko: "PRESTIGE",
         },
         description: {
-          en: "Take a closer look at the calming VIP rooms.",
-          ko: "아늑함을 더한 VIP 객실을 살펴보세요.",
+          en: "Discover the Prestige Suite prepared for serene recovery.",
+          ko: "프레스티지 스위트에서의 고요한 회복 여정을 만나보세요.",
         },
         previewImage: {
-          src: "/img/headerpreview/vip.jpg",
+          src: "/img/headerpreview/prestige.jpg",
           alt: {
-            en: "VIP room details",
-            ko: "VIP 객실 디테일",
+            en: "Prestige suite interior",
+            ko: "프레스티지 스위트 인테리어",
           },
         },
         previewCopy: {
-          en: "VIP rooms balance soft light with calming amenities.",
-          ko: "VIP 객실에서 은은한 조명과 편안한 어메니티를 느껴보세요.",
+          en: "Prestige suites offer quiet luxury for the first days together.",
+          ko: "프레스티지 스위트에서 조용한 럭셔리를 경험해 보세요.",
         },
       },
     ],
