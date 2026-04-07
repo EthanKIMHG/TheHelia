@@ -1,6 +1,6 @@
 # The Helia Frontend Improvement Log
 
-Last updated: 2026-04-02
+Last updated: 2026-04-07
 
 ## Project Goal
 - Build an informative postpartum care center website without DB, login, or signup features.
@@ -327,6 +327,17 @@ Last updated: 2026-04-02
 - Result:
   - Mobile steps now render as independent cards without connecting lines, matching the requested simpler style.
 
+### 27) Korean locale font application fix + CinematicHero Playfair lock
+- Request: Korean pages should apply `Nanum Myeongjo` consistently, while the hero title (`The Helia`) must stay fixed to Playfair.
+- Change:
+  - Strengthened locale font override rules in `globals.css` so Korean locale also overrides utility families beyond `font-serif`:
+    - added KO overrides for `font-sans`, `font-mono`, and `font-playfair` classes under `.font-locale-ko`.
+  - Added a dedicated utility class `font-force-playfair` using `--font-serif` with `!important` for explicit Playfair lock use-cases.
+  - Updated `CinematicHero` title `motion.h1` to use `font-force-playfair`, and removed component-local Playfair font import to avoid redundant font loading paths.
+- Result:
+  - Korean locale typography now applies more predictably across sections using different font utility classes.
+  - `The Helia` hero title remains fixed to Playfair even on Korean pages.
+
 ## Files Changed
 - `src/components/home/BentoGridShowcase.tsx`
 - `src/components/pages/the-helia/about/AboutPageShowcase.tsx`
@@ -346,6 +357,8 @@ Last updated: 2026-04-02
 - `src/components/service/SpaServiceBento.tsx`
 - `src/components/service/SpaServiceCarousel.tsx`
 - `src/components/stories/GuestReviewsPageContent.tsx`
+- `src/app/globals.css`
+- `src/components/home/CinematicHero.tsx`
 - `FOLLOW_UP_GUIDE.md`
 
 ## Follow-up Notes For Next AI

@@ -3,18 +3,11 @@
 
 import { motion, useScroll, useTransform } from "framer-motion";
 import { ArrowDown } from "lucide-react";
-import { Playfair_Display } from "next/font/google";
-import { useRef } from "react";
+import { useEffect, useRef } from "react";
 import { Locale } from "../header/types";
 import HeroCarousel from "./HeroCarousel";
 
 import { usePageLoad } from "@/components/common/PageLoadContext";
-import { useEffect } from "react";
-
-const playfairDisplay = Playfair_Display({
-  subsets: ["latin"],
-  display: "swap",
-});
 
 export function CinematicHero({locale} : {locale: Locale}) {
   const { setCriticalImageLoading } = usePageLoad();
@@ -48,7 +41,7 @@ export function CinematicHero({locale} : {locale: Locale}) {
           initial={{ opacity: 0, y: 100, rotate: 2 }}
           animate={{ opacity: 1, y: 0, rotate: 0 }}
           transition={{ duration: 1.5, ease: [0.16, 1, 0.3, 1] }}
-          className={`${playfairDisplay.className} absolute bottom-24 left-6 md:bottom-32 md:left-12 text-7xl md:text-9xl lg:text-[11rem] text-white tracking-widest mix-blend-overlay`}
+          className="font-force-playfair absolute bottom-24 left-6 text-7xl tracking-widest text-white mix-blend-overlay md:bottom-32 md:left-12 md:text-9xl lg:text-[11rem]"
           style={{ fontFamily: "'Playfair Display', 'Times New Roman', serif" }}
         >
           The <br/> Helia

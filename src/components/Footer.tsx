@@ -301,7 +301,7 @@ export function Footer() {
                 <p className="text-sm text-[#ffb4b4]">{policyLoadError}</p>
               ) : (
                 <pre
-                  className={`whitespace-pre-wrap break-words text-[13px] leading-[1.95] tracking-[0.01em] text-[#f3e7da]/90 md:text-[15px] ${locale === "ko" ? "font-maru-semi" : "font-source-semi"}`}
+                  className="font-serif whitespace-pre-wrap break-words text-[13px] leading-[1.95] tracking-[0.01em] text-[#f3e7da]/90 md:text-[15px]"
                 >
                   {policyText}
                 </pre>

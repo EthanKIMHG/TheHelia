@@ -93,7 +93,6 @@ const KOREAN_COPY = {
       { src: "/img/spa/headspa2.jpg", alt: "헤드스파 메인2", caption: "편안한 샴푸대에서의 두피 케어" },
       { src: "/img/spa/headspa3.jpg", alt: "헤드스파 케어", caption: "전문 테라피스트의 섬세한 터치" },
       { src: "/img/spa/headspa4.jpg", alt: "헤드스파 릴랙싱", caption: "아로마와 함께하는 깊은 이완" },
-      { src: "/img/spa/headspa5.jpg", alt: "헤드스파 시설", caption: "프라이빗하고 아늑한 스파 룸" },
     ],
     features: [
       {
