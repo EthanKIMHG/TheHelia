@@ -76,7 +76,7 @@ export function ClassSchedule({ locale }: { locale: Locale }) {
   ];
 
   return (
-    <section className="w-full px-4 mb-20 text-secondary">
+    <section className="w-full px-4 mb-20 text-foreground">
       <div className="mx-auto max-w-6xl">
          <FadeInUp>
             <div className="mb-16 text-left md:text-center">

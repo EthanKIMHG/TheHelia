@@ -106,7 +106,7 @@ export function RoomSuiteTemplate({
         imageAlt={main?.imageAlt ?? primary.imageAlt}
       />
 
-      <section className="mx-auto flex w-full max-w-6xl flex-col gap-8 px-4 pt-16 text-secondary">
+      <section className="mx-auto flex w-full max-w-6xl flex-col gap-8 px-4 pt-16 text-foreground">
         <div className="hidden items-start justify-between md:flex md:gap-6">
           {renderSwitchButton(otherSuites[0], { align: "left" })}
           <div className="text-center">
@@ -114,7 +114,7 @@ export function RoomSuiteTemplate({
               <h2 className="text-3xl font-semibold font-serif text-foreground">
                 {primary.title}
               </h2>
-              <p className="mt-4 text-base leading-relaxed text-secondary/80">
+              <p className="mt-4 text-base leading-relaxed text-foreground/85">
                 {primary.copy ?? primary.description}
               </p>
             </ScrollReveal>

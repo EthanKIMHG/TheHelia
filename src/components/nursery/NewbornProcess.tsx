@@ -80,10 +80,10 @@ export function NewbornProcess({ locale }: { locale: Locale }) {
                                     </div>
 
                                     <div className="flex-1 md:text-center">
-                                        <h3 className="font-serif text-lg font-bold text-secondary mb-3 leading-snug break-keep">
+                                        <h3 className="font-serif text-lg font-bold text-foreground mb-3 leading-snug break-keep">
                                             {step.title[locale]}
                                         </h3>
-                                        <p className="text-sm text-secondary/70 leading-relaxed break-keep">
+                                        <p className="text-sm text-foreground/70 leading-relaxed break-keep">
                                             {step.desc[locale]}
                                         </p>
                                     </div>

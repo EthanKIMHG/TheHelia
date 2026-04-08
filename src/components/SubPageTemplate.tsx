@@ -55,7 +55,7 @@ export function SubPageTemplate({
 
       <section
         className={clsx(
-          "mx-auto flex w-full flex-col items-center gap-8 pt-20 text-secondary",
+          "mx-auto flex w-full flex-col items-center gap-8 pt-20 text-foreground",
           fullWidth ? "max-w-none px-0" : "max-w-6xl px-4",
         )}
       >
@@ -64,7 +64,7 @@ export function SubPageTemplate({
             <h2 className="break-keep text-3xl font-serif font-semibold leading-[1.28] text-foreground md:text-4xl md:leading-tight">
               {primary.title}
             </h2>
-            <p className="mt-4 max-w-[30ch] break-keep text-base leading-relaxed text-secondary/80 md:mx-auto md:max-w-3xl md:text-lg">
+            <p className="mt-4 max-w-[30ch] break-keep text-base leading-relaxed text-foreground/85 md:mx-auto md:max-w-3xl md:text-lg">
               {primary.copy ?? primary.description}
             </p>
           </ScrollReveal>

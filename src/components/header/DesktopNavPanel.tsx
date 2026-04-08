@@ -94,11 +94,11 @@ export function DesktopNavPanel({
                   />
                 ) : null}
                 <div className="flex flex-1 flex-col items-start justify-center px-4 py-3">
-                  <span className="text-sm text-secondary">
+                  <span className="text-sm text-foreground">
                     {previewData?.label ??
                       (locale === "ko" ? "헬리아 미리보기" : "Helia Preview")}
                   </span>
-                  <span className="mt-1 text-xs text-secondary/70">
+                  <span className="mt-1 text-xs text-foreground/70">
                     {previewData?.copy ??
                       (locale === "ko"
                         ? "원하는 메뉴를 선택하면 소개가 제공돼요."

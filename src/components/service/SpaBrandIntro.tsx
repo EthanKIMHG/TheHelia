@@ -39,7 +39,7 @@ export function SpaBrandIntro({ copy }: SpaBrandIntroProps) {
           <h2 className="mb-6 whitespace-pre-line break-keep text-2xl font-serif font-semibold leading-[1.28] text-foreground md:text-2xl md:leading-tight lg:text-3xl">
             {copy.headline}
           </h2>
-          <p className="max-w-[30ch] whitespace-pre-line break-keep text-lg leading-relaxed text-secondary/80 md:mx-auto md:max-w-3xl">
+          <p className="max-w-[30ch] whitespace-pre-line break-keep text-lg leading-relaxed text-foreground/85 md:mx-auto md:max-w-3xl">
             {copy.intro}
           </p>
         </div>
@@ -90,7 +90,7 @@ export function SpaBrandIntro({ copy }: SpaBrandIntroProps) {
               <h4 className="mb-6 break-keep text-2xl font-medium leading-snug text-foreground md:text-3xl">
                 {copy.thalac.title}
               </h4>
-              <p className="max-w-[30ch] whitespace-pre-line break-keep text-base leading-relaxed text-secondary/80 md:mx-auto md:max-w-3xl md:text-lg">
+              <p className="max-w-[30ch] whitespace-pre-line break-keep text-base leading-relaxed text-foreground/85 md:mx-auto md:max-w-3xl md:text-lg">
                 {copy.thalac.description}
               </p>
             </div>
@@ -110,7 +110,7 @@ export function SpaBrandIntro({ copy }: SpaBrandIntroProps) {
                     <h5 className="mb-2 text-left text-lg font-medium break-keep text-foreground">
                       {feature.title}
                     </h5>
-                    <p className="text-left text-sm leading-relaxed break-keep text-secondary/70">
+                    <p className="text-left text-sm leading-relaxed break-keep text-foreground/70">
                       {feature.description}
                     </p>
                   </div>

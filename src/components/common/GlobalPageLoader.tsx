@@ -36,7 +36,7 @@ export function GlobalPageLoader() {
                 <span className="font-serif text-4xl md:text-5xl lg:text-6xl text-primary tracking-widest">
                     The Helia
                 </span>
-                <span className="mt-4 font-sans text-xs md:text-sm text-secondary/60 tracking-[0.3em] uppercase">
+                <span className="mt-4 font-sans text-xs md:text-sm text-foreground/85 tracking-[0.3em] uppercase">
                     Organic Serenity
                 </span>
             </motion.div>
