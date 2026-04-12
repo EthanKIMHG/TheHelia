@@ -168,7 +168,7 @@ export default function Header() {
           <button
             type="button"
             onClick={() => changeLocale(locale === "ko" ? "en" : "ko")}
-            className="hidden h-10 w-10 items-center justify-center text-secondary transition md:inline-flex cursor-pointer"
+            className="hidden h-10 w-10 items-center justify-center text-foreground transition md:inline-flex cursor-pointer"
             aria-label={locale === "ko" ? "Switch to English" : "한국어로 전환"}
           >
             {locale === "ko" ? <GlobeIcon className="h-5 w-5" /> : <Languages className="h-5 w-5" />}
@@ -177,14 +177,14 @@ export default function Header() {
           <button
             type="button"
             onClick={toggleTheme}
-            className="hidden h-10 w-10 items-center justify-center text-secondary transition md:inline-flex cursor-pointer"
+            className="hidden h-10 w-10 items-center justify-center text-foreground transition md:inline-flex cursor-pointer"
             aria-label={theme === "dark" ? "라이트 모드로 전환" : "다크 모드로 전환"}
           >
             {theme === "dark" ? <SunIcon className="h-5 w-5" /> : <MoonIcon className="h-5 w-5" />}
           </button>
 
           <button
-            className="inline-flex h-10 w-10 items-center justify-center rounded-md text-secondary md:hidden cursor-pointer"
+            className="inline-flex h-10 w-10 items-center justify-center rounded-md text-foreground md:hidden cursor-pointer"
             aria-label="메뉴 열기"
             onClick={() => setMobileOpen(true)}
           >

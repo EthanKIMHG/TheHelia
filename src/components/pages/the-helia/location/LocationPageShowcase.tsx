@@ -67,10 +67,10 @@ function LocationHeroSection({ locale }: { locale: Locale }) {
               <p className="text-sm font-semibold uppercase tracking-[0.3em] text-primary font-playfair italic">
                 {content.badge}
               </p>
-              <h2 className="text-3xl font-semibold leading-tight text-secondary md:text-4xl font-serif">
+              <h2 className="text-3xl font-semibold leading-tight text-foreground md:text-4xl font-serif">
                 {content.title}
               </h2>
-              <p className="text-lg leading-relaxed text-secondary/75 md:text-xl">
+              <p className="text-lg leading-relaxed text-foreground/75 md:text-xl">
                 {content.subtitle}
               </p>
             </div>
@@ -86,7 +86,7 @@ function LocationHeroSection({ locale }: { locale: Locale }) {
                     {locale === "ko" ? "방문일정 예약하기" : "Book a Visit Schedule"}
                   </p>
                   <div className="flex flex-wrap items-center justify-between gap-3">
-                    <p className="text-lg font-semibold text-secondary">
+                    <p className="text-lg font-semibold text-foreground">
                       {locale === "ko" ? "온라인 예약하기" : "Online Reservation"}
                     </p>
                     <a
@@ -100,7 +100,7 @@ function LocationHeroSection({ locale }: { locale: Locale }) {
                   </div>
                 </div>
               </div>
-              <p className="text-xs text-secondary/50 px-2">
+              <p className="text-xs text-foreground/50 px-2">
                 {locale === "ko" ? "* 네이버 예약하기 페이지로 이동합니다." : "* Redirects to Naver Reservation page."}
               </p>
             </div>
@@ -119,10 +119,10 @@ function LocationHeroSection({ locale }: { locale: Locale }) {
                   <p className="text-sm font-semibold text-primary/80 font-serif">
                     {item.label}
                   </p>
-                  <p className="text-xl font-semibold text-secondary">
+                  <p className="text-xl font-semibold text-foreground">
                     {item.value}
                   </p>
-                  <p className="text-sm text-secondary/65">
+                  <p className="text-sm text-foreground/65">
                     {item.description}
                   </p>
                 </div>
@@ -147,7 +147,7 @@ function LocationMapSection() {
           referrerPolicy="no-referrer-when-downgrade"
           allowFullScreen
         />
-        <div className="absolute top-4 right-4 bg-white/90 backdrop-blur-md px-4 py-2 rounded-full text-xs font-semibold shadow-sm text-secondary pointer-events-none">
+        <div className="absolute top-4 right-4 bg-white/90 backdrop-blur-md px-4 py-2 rounded-full text-xs font-semibold shadow-sm text-foreground pointer-events-none">
           MS Medical Square 5F-6F
         </div>
       </section>
@@ -166,7 +166,7 @@ function LocationInfoSection({ locale }: { locale: Locale }) {
             key={card.id}
             className={`flex flex-col gap-4 rounded-3xl border border-border/40 bg-white/80 dark:bg-[#2A2928]/60 backdrop-blur-md p-8 shadow-sm transition hover:shadow-lg hover:-translate-y-1`}
           >
-            <div className={`flex items-center gap-4 text-secondary`}>
+            <div className={`flex items-center gap-4 text-foreground`}>
               <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-primary/10 dark:bg-[#333231]">
                 <card.Icon className="h-7 w-7 text-primary" />
               </div>
@@ -175,10 +175,10 @@ function LocationInfoSection({ locale }: { locale: Locale }) {
               </p>
             </div>
             <div className={index === 0 ? "md:w-2/3" : ""}>
-              <div className="text-xl font-semibold leading-relaxed text-secondary mb-2">
+              <div className="text-xl font-semibold leading-relaxed text-foreground mb-2">
                 {renderMultiline(card.value)}
               </div>
-              <p className="text-base leading-relaxed text-secondary/65">
+              <p className="text-base leading-relaxed text-foreground/65">
                 {card.description}
               </p>
             </div>

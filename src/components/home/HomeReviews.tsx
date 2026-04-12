@@ -74,7 +74,7 @@ export function HomeReviews({ locale, onSectionMount }: HomeReviewsProps) {
                 </>
               )}
             </h2>
-            <p className="mt-5 max-w-[30ch] break-keep text-base leading-relaxed text-secondary/75 md:mx-auto md:max-w-2xl md:text-lg">
+            <p className="mt-5 max-w-[30ch] break-keep text-base leading-relaxed text-foreground/75 md:mx-auto md:max-w-2xl md:text-lg">
               {isKo
                 ? "실제 이용 고객의 리뷰를 통해 더헬리아의 서비스와 회복 경험을 확인해 보세요."
                 : "Discover how families experienced The Helia through authentic guest reviews."}
@@ -108,7 +108,7 @@ export function HomeReviews({ locale, onSectionMount }: HomeReviewsProps) {
                       <p className="font-bold text-foreground text-lg mb-1">
                         {isKo ? review.author.ko : review.author.en}
                       </p>
-                      <p className="text-secondary/60 text-sm">
+                      <p className="text-foreground/85 text-sm">
                         {review.date}
                       </p>
                     </div>

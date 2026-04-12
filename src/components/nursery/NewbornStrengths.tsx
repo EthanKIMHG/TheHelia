@@ -101,7 +101,7 @@ export function NewbornStrengths({ locale }: { locale: Locale }) {
                     <h3 className="font-serif text-2xl font-semibold leading-tight text-foreground md:text-3xl">
                     {item.title[locale]}
                     </h3>
-                    <p className="text-md leading-relaxed text-secondary/90 md:text-lg">
+                    <p className="text-md leading-relaxed text-foreground/90 md:text-lg">
                     {item.desc[locale]}
                     </p>
                 </FadeInUp>

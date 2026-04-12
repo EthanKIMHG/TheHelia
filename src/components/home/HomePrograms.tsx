@@ -28,7 +28,7 @@ export function HomePrograms({ locale, onSectionMount }: HomeProgramsProps) {
             <h2 className="mb-4 break-keep text-3xl font-serif font-semibold leading-tight text-foreground md:text-4xl lg:text-5xl">
               {copy.title}
             </h2>
-            <p className="max-w-[30ch] break-keep text-lg text-secondary/80 md:mx-auto md:max-w-2xl">
+            <p className="max-w-[30ch] break-keep text-lg text-foreground/85 md:mx-auto md:max-w-2xl">
               {copy.subtitle}
             </p>
           </div>
@@ -52,7 +52,7 @@ export function HomePrograms({ locale, onSectionMount }: HomeProgramsProps) {
                   <h3 className="text-xl font-bold text-foreground mb-3">
                     {program.title}
                   </h3>
-                  <p className="text-secondary/80 leading-relaxed">
+                  <p className="text-foreground/85 leading-relaxed">
                     {program.description}
                   </p>
                 </div>

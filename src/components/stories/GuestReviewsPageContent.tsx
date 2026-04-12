@@ -101,7 +101,7 @@ export function GuestReviewsPageContent() {
               <h1 className="font-serif text-3xl font-bold leading-[1.26] break-keep text-foreground md:text-4xl md:leading-tight">
                   {isKo ? "엄마들의 진솔한 이야기" : "Reviews from Families"}
               </h1>
-              <p className="mt-6 max-w-[30ch] break-keep text-base leading-relaxed text-secondary/80 md:mx-auto md:max-w-2xl md:text-lg">
+              <p className="mt-6 max-w-[30ch] break-keep text-base leading-relaxed text-foreground/85 md:mx-auto md:max-w-2xl md:text-lg">
                   {isKo 
                    ? "헬리아와 함께한 소중한 경험들을 만나보세요. 산모님들의 편안한 회복이 저희의 가장 큰 보람입니다." 
                    : "Meet the precious experiences with The Helia. Mothers' comfortable recovery is our greatest reward."}

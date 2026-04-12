@@ -1,6 +1,6 @@
 # The Helia Frontend Improvement Log
 
-Last updated: 2026-04-02
+Last updated: 2026-04-07
 
 ## Project Goal
 - Build an informative postpartum care center website without DB, login, or signup features.
@@ -327,6 +327,31 @@ Last updated: 2026-04-02
 - Result:
   - Mobile steps now render as independent cards without connecting lines, matching the requested simpler style.
 
+### 27) Korean locale font application fix + CinematicHero Playfair lock
+- Request: Korean pages should apply `Nanum Myeongjo` consistently, while the hero title (`The Helia`) must stay fixed to Playfair.
+- Change:
+  - Strengthened locale font override rules in `globals.css` so Korean locale also overrides utility families beyond `font-serif`:
+    - added KO overrides for `font-sans`, `font-mono`, and `font-playfair` classes under `.font-locale-ko`.
+  - Added a dedicated utility class `font-force-playfair` using `--font-serif` with `!important` for explicit Playfair lock use-cases.
+  - Updated `CinematicHero` title `motion.h1` to use `font-force-playfair`, and removed component-local Playfair font import to avoid redundant font loading paths.
+- Result:
+  - Korean locale typography now applies more predictably across sections using different font utility classes.
+  - `The Helia` hero title remains fixed to Playfair even on Korean pages.
+
+### 28) DevTools `var(--font-korean)` recognition check and scope hardening
+- Request: DevTools Elements showed `var(--font-korean)` not recognized; re-check root cause and harden font variable scope.
+- Change:
+  - Confirmed runtime HTML for `/ko` includes both font variable classes on `html`:
+    - `__variable_0a80b4` (`--font-playfair`)
+    - `__variable_88280c` (`--font-nanum-myeongjo`)
+  - Moved next/font variable class attachment from `<body>` to `<html>` in `src/app/layout.tsx` so root-scoped theme variables resolve in the same element scope.
+  - Added fallback in `--font-korean` declaration:
+    - `var(--font-nanum-myeongjo, "Nanum Myeongjo")`
+    to keep the variable resolvable even if class application timing differs during hydration/dev inspection.
+- Result:
+  - CSS variable chain is now stable at root scope and DevTools false-negative warnings are less likely.
+  - Korean locale + Playfair lock behavior remains unchanged functionally, but variable resolution is more robust.
+
 ### 27) Refund policy day-window realignment (Section 7 sync)
 - Request: Update `RefundPolicySection` day windows to match `termsandpolicy.txt` Section 7.
 - Change:
@@ -360,6 +385,9 @@ Last updated: 2026-04-02
 - `src/components/service/SpaServiceBento.tsx`
 - `src/components/service/SpaServiceCarousel.tsx`
 - `src/components/stories/GuestReviewsPageContent.tsx`
+- `src/app/layout.tsx`
+- `src/app/globals.css`
+- `src/components/home/CinematicHero.tsx`
 - `FOLLOW_UP_GUIDE.md`
 
 ## Follow-up Notes For Next AI

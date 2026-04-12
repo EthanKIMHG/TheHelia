@@ -32,7 +32,7 @@ export function HomeExperienceStacked({
     <motion.section
       id={id}
       ref={sectionRef}
-      className="flex min-h-screen w-full items-center justify-center bg-background px-6 py-16 text-secondary md:py-24"
+      className="flex min-h-screen w-full items-center justify-center bg-background px-6 py-16 text-foreground md:py-24"
       initial={{ opacity: 0, y: 32 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, amount: 0.55 }}
@@ -101,14 +101,14 @@ export function HomeExperienceStacked({
           <span className="text-xs font-semibold uppercase tracking-[0.3em] text-primary/70">
             {highlight.meta}
           </span>
-          <h3 className="text-3xl font-serif font-semibold text-secondary md:text-5xl">
+          <h3 className="text-3xl font-serif font-semibold text-foreground md:text-5xl">
             {highlight.title}
           </h3>
-          <p className="text-base leading-relaxed text-secondary/80 md:text-lg">
+          <p className="text-base leading-relaxed text-foreground/85 md:text-lg">
             {highlight.description}
           </p>
           {highlight.bullets?.length ? (
-            <ul className="grid gap-3 text-sm text-secondary/70 md:grid-cols-2">
+            <ul className="grid gap-3 text-sm text-foreground/70 md:grid-cols-2">
               {highlight.bullets.map((bullet) => (
                 <motion.li
                   key={bullet}
@@ -142,7 +142,7 @@ export function HomeExperienceTilted({
     <motion.section
       id={id}
       ref={sectionRef}
-      className="flex min-h-screen w-full items-center justify-center bg-background px-6 py-16 text-secondary md:py-24"
+      className="flex min-h-screen w-full items-center justify-center bg-background px-6 py-16 text-foreground md:py-24"
       initial={{ opacity: 0, y: 32 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, amount: 0.55 }}
@@ -170,7 +170,7 @@ export function HomeExperienceTilted({
             {highlight.title}
           </motion.h3>
           <motion.p
-            className="text-base leading-relaxed text-secondary/80 md:text-lg"
+            className="text-base leading-relaxed text-foreground/85 md:text-lg"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.5 }}
@@ -179,7 +179,7 @@ export function HomeExperienceTilted({
             {highlight.description}
           </motion.p>
           {highlight.bullets?.length ? (
-            <div className="grid gap-4 text-sm text-secondary/70">
+            <div className="grid gap-4 text-sm text-foreground/70">
               {highlight.bullets.map((bullet, idx) => (
                 <motion.div
                   key={bullet}
@@ -238,7 +238,7 @@ export function HomeExperienceTilted({
             <span className="text-sm font-semibold uppercase tracking-[0.3em] text-primary">
               {highlight.badge ?? highlight.meta}
             </span>
-            <p className="text-sm text-secondary/80">{highlight.description}</p>
+            <p className="text-sm text-foreground/85">{highlight.description}</p>
           </motion.div>
         </motion.div>
       </div>
@@ -258,7 +258,7 @@ export function HomeExperienceGallery({
     <motion.section
       id={id}
       ref={sectionRef}
-      className="relative flex min-h-screen w-full items-center justify-center px-6 py-16 text-secondary md:py-28"
+      className="relative flex min-h-screen w-full items-center justify-center px-6 py-16 text-foreground md:py-28"
       initial={{ opacity: 0, y: 40 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, amount: 0.55 }}
@@ -284,7 +284,7 @@ export function HomeExperienceGallery({
             {highlight.meta}
           </span>
           <motion.h3
-            className="text-3xl font-semibold text-secondary md:text-5xl"
+            className="text-3xl font-semibold text-foreground md:text-5xl"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.4 }}
@@ -293,7 +293,7 @@ export function HomeExperienceGallery({
             {highlight.title}
           </motion.h3>
           <motion.p
-            className="text-base leading-relaxed text-secondary/80 md:text-lg"
+            className="text-base leading-relaxed text-foreground/85 md:text-lg"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.45 }}
@@ -303,7 +303,7 @@ export function HomeExperienceGallery({
           </motion.p>
           {highlight.bullets?.length ? (
             <motion.ul
-              className="grid gap-3 text-sm text-secondary/70"
+              className="grid gap-3 text-sm text-foreground/70"
               initial="hidden"
               whileInView="visible"
               viewport={{ once: true, amount: 0.5 }}
@@ -365,7 +365,7 @@ export function HomeExperienceGallery({
           >
             <div className="absolute inset-0 bg-gradient-to-br from-primary/15 via-transparent to-transparent" />
             <motion.div
-              className="absolute left-5 top-5 flex flex-col gap-2 text-sm text-secondary"
+              className="absolute left-5 top-5 flex flex-col gap-2 text-sm text-foreground"
               initial={{ opacity: 0, y: -20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, amount: 0.4 }}
@@ -374,7 +374,7 @@ export function HomeExperienceGallery({
               <span className="text-xs font-semibold uppercase tracking-[0.3em] text-primary/80">
                 Signature
               </span>
-              <p className="max-w-[220px] text-secondary/75">
+              <p className="max-w-[220px] text-foreground/75">
                 {highlight.description}
               </p>
             </motion.div>

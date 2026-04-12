@@ -507,7 +507,7 @@ function DetailRatesSection({ isKo }: { isKo: boolean }) {
                       return (
                         <div key={`${row.type}-${field.key}`} className={`flex items-center justify-between rounded-lg px-3 py-2 ${isPreBooking ? "bg-primary/10" : "bg-primary/5 dark:bg-primary/10"}`}>
                           <dt className="text-[11px] font-medium text-foreground/75">{field.label}</dt>
-                          <dd className={`text-sm font-semibold ${isPreBooking ? "text-primary" : isRegular ? "text-secondary/75 line-through" : "text-foreground"}`}>
+                          <dd className={`text-sm font-semibold ${isPreBooking ? "text-primary" : isRegular ? "text-foreground/75 line-through" : "text-foreground"}`}>
                             {value}
                           </dd>
                         </div>
@@ -531,7 +531,7 @@ function DetailRatesSection({ isKo }: { isKo: boolean }) {
                   {spaRows.map((row) => (
                     <tr key={row.type} className="hover:bg-primary/5 transition-colors group">
                       <td className="px-6 py-6 font-serif font-bold text-primary text-lg">{row.type}</td>
-                      <td className="px-6 py-6 text-center text-secondary/75 line-through decoration-secondary/50 decoration-2">{row.reg}</td>
+                      <td className="px-6 py-6 text-center text-foreground/75 line-through decoration-secondary/50 decoration-2">{row.reg}</td>
                       <td className="px-6 py-6 text-center text-foreground/80 group-hover:text-foreground font-medium">{row.pkg}</td>
                       <td className="px-6 py-6 text-center font-bold text-primary text-lg bg-primary/10 rounded-lg m-2 box-decoration-clone">{row.pre}</td>
                     </tr>

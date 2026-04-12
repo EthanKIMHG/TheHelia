@@ -13,7 +13,7 @@
   --color-border: var(--border);
 
   --font-serif: var(--font-playfair), serif;
-  --font-korean: var(--font-maru-buri), serif;
+  --font-korean: var(--font-nanum-myeongjo, "Nanum Myeongjo"), serif;
   --font-sans: "Pretendard", -apple-system, sans-serif;
 
   --radius-brand: 2rem;
@@ -84,7 +84,10 @@ body::before {
     font-family: var(--font-korean);
   }
 
-  .font-locale-ko .font-serif {
+  .font-locale-ko .font-serif,
+  .font-locale-ko .font-sans,
+  .font-locale-ko .font-mono,
+  .font-locale-ko .font-playfair {
     font-family: var(--font-korean);
   }
 
@@ -93,6 +96,10 @@ body::before {
   }
 
   .font-locale-ko .font-display-serif {
+    font-family: var(--font-korean) !important;
+  }
+
+  .font-force-playfair {
     font-family: var(--font-serif) !important;
   }
 

@@ -69,7 +69,7 @@ export function SpaServiceBento({
           <h3 className="mb-6 break-keep text-3xl font-serif font-semibold leading-[1.26] text-foreground md:text-4xl md:leading-tight">
             {title}
           </h3>
-          <p className="max-w-[34ch] whitespace-pre-line break-keep text-lg leading-relaxed text-secondary/80 md:max-w-3xl">
+          <p className="max-w-[34ch] whitespace-pre-line break-keep text-lg leading-relaxed text-foreground/85 md:max-w-3xl">
             {description}
           </p>
         </div>
@@ -197,7 +197,7 @@ export function SpaServiceBento({
                 </div>
                 <ul className="space-y-3">
                   {feature.items.map((item, idx) => (
-                    <li key={idx} className="flex items-start gap-3 text-secondary/80 text-sm">
+                    <li key={idx} className="flex items-start gap-3 text-foreground/85 text-sm">
                       <div className="mt-1 w-4 h-4 rounded-full bg-primary/20 flex items-center justify-center flex-shrink-0">
                         <Check className="w-2.5 h-2.5 text-primary" />
                       </div>

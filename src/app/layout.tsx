@@ -1,6 +1,5 @@
 import { SmoothScroll } from "@/components/common/SmoothScroll";
-import { Playfair_Display } from "next/font/google";
-import localFont from "next/font/local";
+import { Nanum_Myeongjo, Playfair_Display } from "next/font/google";
 import "./globals.css";
 
 const playfair = Playfair_Display({ 
@@ -9,20 +8,10 @@ const playfair = Playfair_Display({
   display: "swap",
 });
 
-const maruBuri = localFont({
-  src: [
-    {
-      path: "../../public/font/MaruBuri-Regular.otf",
-      weight: "400",
-      style: "normal",
-    },
-    {
-      path: "../../public/font/MaruBuri-SemiBold.otf",
-      weight: "600",
-      style: "normal",
-    },
-  ],
-  variable: "--font-maru-buri",
+const nanumMyeongjo = Nanum_Myeongjo({
+  subsets: ["latin"],
+  weight: ["400", "700", "800"],
+  variable: "--font-nanum-myeongjo",
   display: "swap",
 });
 
@@ -32,10 +21,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="ko">
-      <body
-        className={`antialiased text-black ${playfair.variable} ${maruBuri.variable}`}
-      >
+    <html lang="ko" className={`${playfair.variable} ${nanumMyeongjo.variable}`}>
+      <body className="antialiased text-black">
         <SmoothScroll>{children}</SmoothScroll>
       </body>
     </html>

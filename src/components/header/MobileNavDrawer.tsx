@@ -92,7 +92,7 @@ export function MobileNavDrawer({
                   <button
                     type="button"
                     onClick={() => onLocaleChange(locale === "ko" ? "en" : "ko")}
-                    className="flex-1 rounded-lg px-3 py-2 text-sm text-secondary cursor-pointer"
+                    className="flex-1 rounded-lg px-3 py-2 text-sm text-foreground cursor-pointer"
                   >
                     {locale === "ko" ? (
                       <div className="flex items-center justify-center gap-2">
@@ -108,7 +108,7 @@ export function MobileNavDrawer({
                   <button
                     type="button"
                     onClick={onToggleTheme}
-                    className="flex-1 rounded-lg px-3 py-2 text-sm text-secondary transition cursor-pointer"
+                    className="flex-1 rounded-lg px-3 py-2 text-sm text-foreground transition cursor-pointer"
                   >
                     {theme === "dark" ? (
                       <div className="flex items-center justify-center gap-2">
@@ -121,7 +121,7 @@ export function MobileNavDrawer({
                     )}
                   </button>
                   <button
-                    className="inline-flex h-9 w-9 items-center justify-center rounded-md text-secondary cursor-pointer"
+                    className="inline-flex h-9 w-9 items-center justify-center rounded-md text-foreground cursor-pointer"
                     aria-label="메뉴 닫기"
                     onClick={onClose}
                   >
@@ -145,7 +145,7 @@ export function MobileNavDrawer({
                           <button
                             type="button"
                             onClick={() => onToggleSection(item.id)}
-                            className="flex w-full items-center justify-between rounded-lg px-3 py-2 text-left text-secondary transition hover:bg-black/5 cursor-pointer"
+                            className="flex w-full items-center justify-between rounded-lg px-3 py-2 text-left text-foreground transition hover:bg-black/5 cursor-pointer"
                           >
                             <span className="text-base font-medium">{item.label}</span>
                             <ChevronDown
@@ -178,8 +178,8 @@ export function MobileNavDrawer({
                                           className={clsx(
                                             "flex items-center rounded-md px-3 py-2 text-sm transition",
                                             active
-                                              ? "bg-primary/10 text-secondary"
-                                              : "text-secondary/70 hover:bg-black/5 hover:text-secondary",
+                                              ? "bg-primary/10 text-foreground"
+                                              : "text-foreground/70 hover:bg-black/5 hover:text-foreground",
                                           )}
                                         >
                                           {subItem.label}
@@ -199,8 +199,8 @@ export function MobileNavDrawer({
                           className={clsx(
                             "flex items-center justify-between rounded-lg px-3 py-2 text-base transition",
                             normalizedPath.startsWith(item.baseHref ?? "")
-                              ? "bg-black/5 text-secondary"
-                              : "text-secondary/70 hover:bg-black/5 hover:text-secondary",
+                              ? "bg-black/5 text-foreground"
+                              : "text-foreground/70 hover:bg-black/5 hover:text-foreground",
                           )}
                         >
                           {item.label}

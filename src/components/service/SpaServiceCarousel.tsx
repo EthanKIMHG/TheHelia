@@ -57,7 +57,7 @@ export function SpaServiceCarousel({
               <h3 className="mt-2 break-keep text-2xl font-serif font-semibold leading-[1.26] text-foreground md:text-3xl md:leading-tight">
                 {title}
               </h3>
-              <p className="mt-2 max-w-[34ch] whitespace-pre-line break-keep text-sm leading-relaxed text-secondary/80 md:max-w-2xl md:text-base">
+              <p className="mt-2 max-w-[34ch] whitespace-pre-line break-keep text-sm leading-relaxed text-foreground/85 md:max-w-2xl md:text-base">
                 {description}
               </p>
             </div>
@@ -136,7 +136,7 @@ export function SpaServiceCarousel({
               </h4>
               <ul className="space-y-3">
                 {group.items.map((item) => (
-                  <li key={item} className="flex items-start gap-2.5 text-sm text-secondary">
+                  <li key={item} className="flex items-start gap-2.5 text-sm text-foreground">
                     <div className="w-1.5 h-1.5 rounded-full bg-primary/60 mt-2" />
                     <span className="leading-relaxed">{item}</span>
                   </li>

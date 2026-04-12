@@ -74,7 +74,7 @@ export function HomeNavigationGallery({
     <section
       id={sectionId}
       ref={onSectionMount}
-      className="w-full bg-background px-4 py-16 text-secondary sm:px-6 md:py-20 lg:px-12"
+      className="w-full bg-background px-4 py-16 text-foreground sm:px-6 md:py-20 lg:px-12"
       style={{ minHeight: isDesktop ? "80vh" : undefined }}
     >
       <NavigationGalleryHeader copy={copy} />
@@ -100,7 +100,7 @@ function NavigationGalleryHeader({ copy }: { copy: NavigationCopy }) {
         <h2 className=" text-3xl md:text-4xl text-foreground">
           {copy.title}
         </h2>
-        <p className="max-w-xl text-sm text-secondary/70 md:text-base">
+        <p className="max-w-xl text-sm text-foreground/70 md:text-base">
           {copy.subtitle}
         </p>
       </div>
