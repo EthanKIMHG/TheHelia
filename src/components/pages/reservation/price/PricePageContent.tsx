@@ -548,36 +548,36 @@ function DetailRatesSection({ isKo }: { isKo: boolean }) {
 
 function RefundPolicySection({ isKo }: { isKo: boolean }) {
   const headers = isKo
-    ? ["구분", "31일 전", "21일 ~ 30일 사이", "10일 ~ 20일 사이", "9일 전"]
-    : ["Type", "31+ Days Before", "21-30 Days Before", "10-20 Days Before", "9 Days Before"];
+    ? ["구분", "91일 이상 또는 계약 후 24시간 이내", "61일 ~ 90일 사이", "31일 ~ 60일 사이", "30일 이내"]
+    : ["Type", "91+ Days Before or Within 24 Hours of Contract", "61-90 Days Before", "31-60 Days Before", "30 Days or Less Before"];
 
   const row = {
     type: isKo ? "계약금" : "Deposit",
-    d31: isKo ? "100% 환급" : "100% Refund",
-    d21: isKo ? "60% 환급" : "60% Refund",
-    d10: isKo ? "30% 환급" : "30% Refund",
-    d9: isKo ? "미환급" : "No Refund",
+    d91: isKo ? "100% 환급" : "100% Refund",
+    d61: isKo ? "60% 환급" : "60% Refund",
+    d31: isKo ? "30% 환급" : "30% Refund",
+    d30: isKo ? "미환급" : "No Refund",
   };
 
   const mobileRefundCards = [
     {
-      period: isKo ? "31일 전" : "31+ Days",
-      value: row.d31,
+      period: isKo ? "91일 이상 / 계약 후 24시간 이내" : "91+ Days / Within 24H",
+      value: row.d91,
       tone: "bg-primary/20 border-primary/40 text-foreground dark:bg-primary/30 dark:border-primary/50 dark:text-foreground",
     },
     {
-      period: isKo ? "21일 ~ 30일" : "21-30 Days",
-      value: row.d21,
+      period: isKo ? "61일 ~ 90일" : "61-90 Days",
+      value: row.d61,
       tone: "bg-primary/15 border-primary/35 text-foreground/90 dark:bg-primary/25 dark:border-primary/45 dark:text-foreground/90",
     },
     {
-      period: isKo ? "10일 ~ 20일" : "10-20 Days",
-      value: row.d10,
+      period: isKo ? "31일 ~ 60일" : "31-60 Days",
+      value: row.d31,
       tone: "bg-primary/10 border-primary/30 text-foreground/85 dark:bg-primary/20 dark:border-primary/40 dark:text-foreground/85",
     },
     {
-      period: isKo ? "9일 전" : "9 Days",
-      value: row.d9,
+      period: isKo ? "30일 이내" : "30 Days or Less",
+      value: row.d30,
       tone: "bg-primary/5 border-primary/25 text-foreground/80 dark:bg-primary/15 dark:border-primary/35 dark:text-foreground/80",
     },
   ];
@@ -619,10 +619,10 @@ function RefundPolicySection({ isKo }: { isKo: boolean }) {
               <tbody className="divide-y divide-border/50">
                 <tr className="hover:bg-primary/5 transition-colors dark:hover:bg-primary/10">
                   <td className="px-6 py-6 font-serif font-bold text-primary">{row.type}</td>
-                  <td className="px-6 py-6 text-center text-foreground/90 font-medium">{row.d31}</td>
-                  <td className="px-6 py-6 text-center text-foreground/85">{row.d21}</td>
-                  <td className="px-6 py-6 text-center text-foreground/80">{row.d10}</td>
-                  <td className="px-6 py-6 text-center text-foreground/75">{row.d9}</td>
+                  <td className="px-6 py-6 text-center text-foreground/90 font-medium">{row.d91}</td>
+                  <td className="px-6 py-6 text-center text-foreground/85">{row.d61}</td>
+                  <td className="px-6 py-6 text-center text-foreground/80">{row.d31}</td>
+                  <td className="px-6 py-6 text-center text-foreground/75">{row.d30}</td>
                 </tr>
               </tbody>
             </table>

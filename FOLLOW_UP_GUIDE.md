@@ -327,6 +327,20 @@ Last updated: 2026-04-02
 - Result:
   - Mobile steps now render as independent cards without connecting lines, matching the requested simpler style.
 
+### 27) Refund policy day-window realignment (Section 7 sync)
+- Request: Update `RefundPolicySection` day windows to match `termsandpolicy.txt` Section 7.
+- Change:
+  - Replaced refund period labels from the old windows (`31+`, `21-30`, `10-20`, `9`) to the current policy windows:
+    - `91+ days or within 24 hours of contract`
+    - `61-90 days`
+    - `31-60 days`
+    - `30 days or less`
+  - Renamed internal row keys in `RefundPolicySection` from `d31/d21/d10/d9` to `d91/d61/d31/d30` for semantic clarity.
+  - Updated both desktop table headers and mobile comparison cards with the same new timing windows.
+- Result:
+  - Refund UI now matches the official contract text in `termsandpolicy.txt`.
+  - Desktop and mobile show consistent cancellation windows and refund percentages.
+
 ## Files Changed
 - `src/components/home/BentoGridShowcase.tsx`
 - `src/components/pages/the-helia/about/AboutPageShowcase.tsx`
