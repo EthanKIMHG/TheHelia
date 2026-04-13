@@ -1,4 +1,6 @@
 import { SmoothScroll } from "@/components/common/SmoothScroll";
+import { Analytics } from "@vercel/analytics/next";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 import { Nanum_Myeongjo, Playfair_Display } from "next/font/google";
 import "./globals.css";
 
@@ -19,11 +21,13 @@ export default function RootLayout({
   children,
 }: {
   children: React.ReactNode;
-}) {
+}): React.JSX.Element {
   return (
     <html lang="ko" className={`${playfair.variable} ${nanumMyeongjo.variable}`}>
       <body className="antialiased text-black">
         <SmoothScroll>{children}</SmoothScroll>
+        <Analytics />
+        <SpeedInsights />
       </body>
     </html>
   );
