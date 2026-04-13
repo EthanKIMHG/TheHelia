@@ -1,6 +1,6 @@
 # The Helia Frontend Improvement Log
 
-Last updated: 2026-04-07
+Last updated: 2026-04-13
 
 ## Project Goal
 - Build an informative postpartum care center website without DB, login, or signup features.
@@ -365,6 +365,26 @@ Last updated: 2026-04-07
 - Result:
   - Refund UI now matches the official contract text in `termsandpolicy.txt`.
   - Desktop and mobile show consistent cancellation windows and refund percentages.
+
+### 29) Stories guest-reviews real blog review curation (6 links)
+- Request: Replace `stories/guest-reviews` cards with real blog-review-based summaries and ensure each review card opens the matching source link.
+- Change:
+  - Replaced all 6 review entries in `src/components/stories/GuestReviewsPageContent.tsx` with blog-based data only (no cafe links).
+  - Updated each card with:
+    - actual blog URL (`link`) for click-through.
+    - updated `date` from post publish timing.
+    - rewritten `content.ko` / `content.en` summaries based on reviewed post content.
+    - author/initial labels aligned to each blog source.
+  - Applied the following source links:
+    - `https://blog.naver.com/wodllove2/224199420109`
+    - `https://blog.naver.com/jjcokoboolhj/223630616760`
+    - `https://blog.naver.com/kkodaejang/224247014451`
+    - `https://blog.naver.com/dongkozip/223828057989`
+    - `https://blog.naver.com/taetae_1201/224179921722`
+    - `https://blog.naver.com/rlorxya/224158217705`
+- Result:
+  - `stories/guest-reviews` now shows 6 real blog-derived review cards.
+  - Every card is clickable and opens the corresponding original blog post in a new tab.
 
 ## Files Changed
 - `src/components/home/BentoGridShowcase.tsx`
