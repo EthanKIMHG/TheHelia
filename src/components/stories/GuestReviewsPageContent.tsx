@@ -84,6 +84,32 @@ const REVIEWS = [
     platform: "blog",
     thumbnail: "/img/infant/strength_infant1.jpg"
   },
+  {
+    id: 7,
+    author: { ko: "serrri 님", en: "Serrri" },
+    date: "2025.12",
+    content: {
+      ko: "VIP 2주 이용과 베이비스파 중심 후기로, 모자동실 대응·신생아실 수유콜 지원·젤리캠 접근성, 식사 만족도와 목욕교육 경험을 구체적으로 정리한 글입니다.",
+      en: "A VIP 2-week review centered on baby spa, covering rooming-in support, nursery call response, JellyCam access, meal satisfaction, and hands-on bathing education.",
+    },
+    initial: "세",
+    link: "https://blog.naver.com/serrri/224106408914",
+    platform: "blog",
+    thumbnail: "/img/headerpreview/infantroom.png"
+  },
+  {
+    id: 8,
+    author: { ko: "fullcart 님", en: "Fullcart" },
+    date: "2026.02",
+    content: {
+      ko: "VVIP 2주 후기에서 객실 비품(원목 아기침대·메델라 유축기·좌욕기), 매일 청소/산모복 관리, 신생아실 관찰·수유콜 동선, 산후마사지 체감까지 실사용 관점으로 소개합니다.",
+      en: "This VVIP 2-week review details room amenities, daily cleaning and gown care, nursery visibility with flexible call flow, and practical postpartum massage outcomes.",
+    },
+    initial: "풀",
+    link: "https://blog.naver.com/fullcart/224186390662",
+    platform: "blog",
+    thumbnail: "/img/room/vvip6.jpg"
+  },
 ];
 
 export function GuestReviewsPageContent() {

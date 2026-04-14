@@ -1,6 +1,6 @@
 # The Helia Frontend Improvement Log
 
-Last updated: 2026-04-13
+Last updated: 2026-04-14
 
 ## Project Goal
 - Build an informative postpartum care center website without DB, login, or signup features.
@@ -385,6 +385,18 @@ Last updated: 2026-04-13
 - Result:
   - `stories/guest-reviews` now shows 6 real blog-derived review cards.
   - Every card is clickable and opens the corresponding original blog post in a new tab.
+
+### 30) Stories guest-reviews expansion (+2 additional blog reviews)
+- Request: Add two more blog reviews to the existing `stories/guest-reviews` card list.
+- Change:
+  - Added 2 new review entries (`id: 7`, `id: 8`) to `src/components/stories/GuestReviewsPageContent.tsx`.
+  - Wrote Korean/English card summaries from each post’s key points:
+    - `https://blog.naver.com/serrri/224106408914` (VIP + 베이비스파 중심 후기)
+    - `https://blog.naver.com/fullcart/224186390662` (VVIP 2주 + 산후마사지 후기)
+  - Set both cards to open original blog links on click and aligned date/author/initial metadata with the source posts.
+- Result:
+  - `stories/guest-reviews` now includes 8 real blog-based review cards.
+  - Newly added 2 cards are fully clickable and consistent with existing review card UX.
 
 ## Files Changed
 - `src/components/home/BentoGridShowcase.tsx`
