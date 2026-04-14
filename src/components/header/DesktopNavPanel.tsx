@@ -62,7 +62,7 @@ export function DesktopNavPanel({
                       onClick={onClose}
                       onMouseEnter={() => handlePreview(subItem)}
                       onFocus={() => handlePreview(subItem)}
-                      className="inline-flex py-1 text-left text-base text-primary transition"
+                      className="inline-flex py-1 text-left text-base text-foreground transition"
                     >
                       <span
                         className={clsx(

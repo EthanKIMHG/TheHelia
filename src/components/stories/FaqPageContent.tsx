@@ -210,7 +210,7 @@ export function FaqPageContent() {
                     >
                       <div className="px-6 pb-6 pt-0">
                         <div className="h-px w-full bg-primary/10 mb-6" />
-                        <p className="text-foreground/85 leading-relaxed whitespace-pre-line">
+                        <p className="text-foreground leading-relaxed whitespace-pre-line">
                           {isKo ? item.answer.ko : item.answer.en}
                         </p>
                       </div>
