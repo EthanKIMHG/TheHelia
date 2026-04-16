@@ -26,7 +26,7 @@ export function buildLodgingBusinessStructuredData(
   return {
     '@context': 'https://schema.org',
     '@type': 'LodgingBusiness',
-    name: isKo ? '더헬리아 산후조리원' : 'The Helia Postpartum Care Center',
+    name: isKo ? '더 헬리아 산후조리원' : 'The Helia Postpartum Care Center',
     description: isKo
       ? '휴식과 회복, 그리고 가족의 시간을 담아내는 프리미엄 산후조리원'
       : 'A premium sanctuary curated for recovery, rest, and cherished family moments.',

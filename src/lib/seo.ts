@@ -156,7 +156,7 @@ export function buildPageMetadata({
       title,
       description,
       url: localizedPath,
-      siteName: locale === 'ko' ? '더헬리아' : 'The Helia',
+      siteName: locale === 'ko' ? '더 헬리아 산후조리원' : 'The Helia Postpartum Care Center',
       locale,
       type: 'website',
       images: [
@@ -176,20 +176,28 @@ export function buildPageMetadata({
 }
 
 export function buildHomePageMetadata(locale: Locale): Metadata {
-  return buildPageMetadata({
-    locale,
-    path: '/',
-    title: locale === 'ko' ? '프리미엄 산후조리원' : 'Premium Postpartum Care Center',
-    description:
-      locale === 'ko'
-        ? '더헬리아는 산모와 아기를 위한 프리미엄 산후케어 공간으로, 회복과 휴식 그리고 가족의 첫 시간을 세심하게 준비합니다.'
-        : 'The Helia is a premium postpartum care center crafted for recovery, rest, and the first days your family shares together.',
-    imageUrl: '/img/main/homepage_1.jpg',
-    imageAlt:
-      locale === 'ko'
-        ? '더헬리아 산후조리원 메인 공간 전경'
-        : 'Main space view of The Helia postpartum care center',
-  })
+  const title =
+    locale === 'ko' ? '더 헬리아 산후조리원' : 'The Helia Postpartum Care Center'
+
+  return {
+    ...buildPageMetadata({
+      locale,
+      path: '/',
+      title,
+      description:
+        locale === 'ko'
+          ? '더 헬리아 산후조리원은 산모와 아기를 위한 프리미엄 산후케어 공간으로, 회복과 휴식 그리고 가족의 첫 시간을 세심하게 준비합니다.'
+          : 'The Helia is a premium postpartum care center crafted for recovery, rest, and the first days your family shares together.',
+      imageUrl: '/img/main/homepage_1.jpg',
+      imageAlt:
+        locale === 'ko'
+          ? '더헬리아 산후조리원 메인 공간 전경'
+          : 'Main space view of The Helia postpartum care center',
+    }),
+    title: {
+      absolute: title,
+    },
+  }
 }
 
 export function buildSubPageMetadata(locale: Locale, path: string): Metadata {
@@ -199,7 +207,9 @@ export function buildSubPageMetadata(locale: Locale, path: string): Metadata {
   return buildPageMetadata({
     locale,
     path,
-    title: pageContent?.title ?? (locale === 'ko' ? '더헬리아' : 'The Helia'),
+    title:
+      pageContent?.title ??
+      (locale === 'ko' ? '더 헬리아 산후조리원' : 'The Helia Postpartum Care Center'),
     description:
       pageContent?.copy ??
       pageContent?.description ??

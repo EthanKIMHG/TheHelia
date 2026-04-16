@@ -550,6 +550,26 @@ Last updated: 2026-04-16
   - This should help Search Console stop surfacing stale legacy-domain URL examples after the next re-fetch.
   - `pnpm build` passes after the update.
 
+### 37) SEO step 6: home search title signal changed to brand-first naming
+- Request: The Google result for the homepage was showing a generic title such as `프리미엄 산후조리원` instead of the brand-led name the user wants.
+- Change:
+  - Updated the Korean homepage metadata in `src/lib/seo.ts` so the home route now emits the absolute title `더 헬리아 산후조리원`.
+  - Updated SEO-facing Korean brand signals in:
+    - `src/app/[locale]/layout.tsx`
+      - title default
+      - title template
+      - keywords
+      - Open Graph `siteName`
+    - `src/lib/seo.ts`
+      - Open Graph `siteName`
+      - Korean fallback brand title
+    - `src/lib/structured-data.ts`
+      - `LodgingBusiness.name`
+- Result:
+  - The homepage now sends a stronger brand-first title signal for Korean search results.
+  - Metadata, Open Graph, and structured data all align on `더 헬리아 산후조리원` instead of mixing generic-title and no-space brand variants.
+  - Google can still rewrite titles, but the source signals are now materially closer to the requested SERP naming.
+
 ## SEO Follow-up Priorities
 
 - Completed in this step:
@@ -560,6 +580,7 @@ Last updated: 2026-04-16
   - structured data scope refinement for home and FAQ
   - first-pass image SEO improvements
   - legacy-host redirect for domain consolidation
+  - brand-first home search title signal
 
 ### Priority 0) Align sitemap entries with real published routes [Completed]
 - Previous state:
