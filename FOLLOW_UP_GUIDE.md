@@ -536,6 +536,20 @@ Last updated: 2026-04-16
   - The image SEO baseline is stronger without breaking existing page components that still pass legacy image arrays.
   - `pnpm build` passes after the update.
 
+### 36) SEO step 5: legacy-host redirect for sitemap/domain consolidation
+- Request: Investigate a Search Console sitemap error that still referenced `https://the-helia.vercel.app/...` URLs even after the production domain migration.
+- Verification:
+  - `src/app/sitemap.ts` already generated `https://thehelia.co.kr/...` URLs.
+  - The live `https://thehelia.co.kr/sitemap.xml` response also already served `https://thehelia.co.kr/...` URLs.
+  - The Search Console error examples therefore pointed to stale legacy-host signals rather than a remaining sitemap code issue.
+- Change:
+  - Added `src/middleware.ts` to issue a `308` redirect from the legacy production alias host `the-helia.vercel.app` to `https://thehelia.co.kr`, preserving path and query string.
+- Result:
+  - Requests to the legacy Vercel production alias now consolidate onto the canonical domain.
+  - Sitemap, robots, and page URLs on the legacy host no longer compete with the primary domain.
+  - This should help Search Console stop surfacing stale legacy-domain URL examples after the next re-fetch.
+  - `pnpm build` passes after the update.
+
 ## SEO Follow-up Priorities
 
 - Completed in this step:
@@ -545,6 +559,7 @@ Last updated: 2026-04-16
   - home-route metadata split
   - structured data scope refinement for home and FAQ
   - first-pass image SEO improvements
+  - legacy-host redirect for domain consolidation
 
 ### Priority 0) Align sitemap entries with real published routes [Completed]
 - Previous state:
@@ -635,11 +650,14 @@ Last updated: 2026-04-16
 ### Priority 7) Submit and monitor the updated sitemap in Search Console
 - Current state:
   - `robots.txt` and `sitemap.xml` now point to the production domain.
+  - The legacy production alias `the-helia.vercel.app` is now redirected to `https://thehelia.co.kr` so Google receives a single canonical host signal.
 - Why:
   - After a domain-level SEO change, sitemap submission and indexing monitoring should follow immediately.
 - Next action:
   - Verify `https://thehelia.co.kr` in Google Search Console.
   - Submit `/sitemap.xml`.
+  - Remove or ignore any old sitemap submissions tied to the legacy Vercel host if they still appear in Search Console.
+  - Re-submit the production sitemap or request a refresh if Search Console continues to show stale old-domain examples.
   - Monitor indexing, canonical selection, and enhancement reports after deployment.
 
 ## Files Changed
@@ -679,6 +697,7 @@ Last updated: 2026-04-16
 - `src/components/service/EducationalStrengths.tsx`
 - `src/components/stories/GuestReviewsPageContent.tsx`
 - `FOLLOW_UP_GUIDE.md`
+- `src/middleware.ts`
 
 ## Follow-up Notes For Next AI
 - Keep app scope static/content-driven (no auth, no DB).
