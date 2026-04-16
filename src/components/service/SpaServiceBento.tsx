@@ -12,11 +12,16 @@ type ServiceFeature = {
   items: string[];
 };
 
+type ServiceImage = {
+  src: string;
+  alt: string;
+};
+
 type SpaServiceBentoProps = {
   badge: string;
   title: string;
   description: string;
-  images: string[];
+  images: Array<string | ServiceImage>;
   features: ServiceFeature[];
   reversed?: boolean;
 };
@@ -52,7 +57,15 @@ export function SpaServiceBento({
   reversed = false,
 }: SpaServiceBentoProps) {
   const [[page, direction], setPage] = useState([0, 0]);
-  const imageIndex = wrap(0, images.length, page);
+  const normalizedImages = images.map((image) =>
+    typeof image === "string"
+      ? {
+          src: image,
+          alt: title,
+        }
+      : image,
+  );
+  const imageIndex = wrap(0, normalizedImages.length, page);
 
   const paginate = (newDirection: number) => {
     setPage([page + newDirection, newDirection]);
@@ -110,8 +123,8 @@ export function SpaServiceBento({
                 className="absolute inset-0 w-full h-full cursor-grab active:cursor-grabbing"
               >
                 <Image
-                  src={images[imageIndex]}
-                  alt={title}
+                  src={normalizedImages[imageIndex].src}
+                  alt={normalizedImages[imageIndex].alt}
                   fill
                   className="object-cover"
                   priority
@@ -157,7 +170,7 @@ export function SpaServiceBento({
 
             {/* Indicators */}
             <div className="absolute bottom-6 left-1/2 -translate-x-1/2 flex gap-2 z-10">
-              {images.map((_, idx) => (
+              {normalizedImages.map((_, idx) => (
                 <div 
                   key={idx}
                   className={cn(

@@ -1,16 +1,20 @@
-import { RoomSuiteShowcase } from "@/components/pages/room-suites/RoomSuiteShowcase";
-import { RoomSuiteTemplate } from "@/components/RoomSuiteTemplate";
-import { Locale } from "@/components/header/types";
+import type { Metadata } from 'next'
 
-type PageProps = {
-  params: Promise<{
-    locale: string;
-  }>;
-};
+import { RoomSuiteShowcase } from '@/components/pages/room-suites/RoomSuiteShowcase'
+import { RoomSuiteTemplate } from '@/components/RoomSuiteTemplate'
+import { buildSubPageMetadata, normalizeLocale, type LocalePageProps } from '@/lib/seo'
 
-export default async function PrestigeSuitePage({ params }: PageProps) {
-  const { locale } = await params;
-  const normalizedLocale: Locale = locale === "en" ? "en" : "ko";
+export async function generateMetadata({ params }: LocalePageProps): Promise<Metadata> {
+  const { locale } = await params
+
+  return buildSubPageMetadata(normalizeLocale(locale), '/room-suites/prestige')
+}
+
+export default async function PrestigeSuitePage({
+  params,
+}: LocalePageProps): Promise<React.JSX.Element> {
+  const { locale } = await params
+  const normalizedLocale = normalizeLocale(locale)
 
   return (
     <RoomSuiteTemplate
@@ -20,5 +24,5 @@ export default async function PrestigeSuitePage({ params }: PageProps) {
     >
       <RoomSuiteShowcase suiteId="prestige" locale={normalizedLocale} />
     </RoomSuiteTemplate>
-  );
+  )
 }

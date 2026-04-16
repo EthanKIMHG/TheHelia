@@ -89,10 +89,10 @@ const KOREAN_COPY = {
     title: "프리미엄 헤드스파",
     description: "호르몬 변화로 예민해진 두피를 진정시키고, 깊은 이완을 통해 스트레스를 해소하는 더헬리아만의 시그니처 헤드스파입니다.",
     images: [
-      { src: "/img/spa/headspa1.jpeg", alt: "헤드스파 메인", caption: "편안한 샴푸대에서의 두피 케어" },
-      { src: "/img/spa/headspa2.jpg", alt: "헤드스파 메인2", caption: "편안한 샴푸대에서의 두피 케어" },
-      { src: "/img/spa/headspa3.jpg", alt: "헤드스파 케어", caption: "전문 테라피스트의 섬세한 터치" },
-      { src: "/img/spa/headspa4.jpg", alt: "헤드스파 릴랙싱", caption: "아로마와 함께하는 깊은 이완" },
+      { src: "/img/spa/headspa1.jpeg", alt: "편안한 샴푸대에서 진행되는 더헬리아 헤드스파 케어", caption: "편안한 샴푸대에서의 두피 케어" },
+      { src: "/img/spa/headspa2.jpg", alt: "두피 진정 케어가 진행되는 더헬리아 헤드스파 공간", caption: "편안한 샴푸대에서의 두피 케어" },
+      { src: "/img/spa/headspa3.jpg", alt: "전문 테라피스트의 손길로 진행되는 헤드스파 관리", caption: "전문 테라피스트의 섬세한 터치" },
+      { src: "/img/spa/headspa4.jpg", alt: "아로마와 함께 휴식을 돕는 더헬리아 헤드스파 룸", caption: "아로마와 함께하는 깊은 이완" },
     ],
     features: [
       {
@@ -113,7 +113,13 @@ const KOREAN_COPY = {
     badge: "PRENATAL",
     title: "산전 바디 테라피",
     description: "임신 중기부터 말기까지, 급격한 신체 변화로 인한 통증과 부종을 완화하고 엄마와 태아의 교감을 돕는 릴랙싱 케어입니다.",
-    images: ["/img/spa/pre1.jpg", "/img/spa/pre2.jpg", "/img/spa/pre3.jpg", "/img/spa/pre4.jpg", "/img/spa/pre5.jpg"],
+    images: [
+      { src: "/img/spa/pre1.jpg", alt: "더헬리아 산전 바디 테라피 케어 공간" },
+      { src: "/img/spa/pre2.jpg", alt: "산전 순환 케어가 진행되는 더헬리아 스파 룸" },
+      { src: "/img/spa/pre3.jpg", alt: "임산부를 위한 더헬리아 바디 테라피 장면" },
+      { src: "/img/spa/pre4.jpg", alt: "산전 부종 완화를 돕는 더헬리아 테라피 공간" },
+      { src: "/img/spa/pre5.jpg", alt: "편안한 회복을 위한 더헬리아 산전 관리 환경" },
+    ],
     features: [
       {
         title: "순환 & 부종 관리",
@@ -129,7 +135,14 @@ const KOREAN_COPY = {
     badge: "POSTPARTUM",
     title: "산후 바디 테라피",
     description: "출산 후 틀어진 골반과 체형을 바로잡고, 산후풍 예방과 오로 배출을 돕는 전문적인 회복 프로그램입니다.",
-    images: ["/img/spa/after1.jpg", "/img/spa/after2.jpg", "/img/spa/after3.jpg", "/img/spa/after4.jpeg", "/img/spa/after5.jpg", "/img/spa/after6.jpg"],
+    images: [
+      { src: "/img/spa/after1.jpg", alt: "더헬리아 산후 바디 테라피 프로그램 대표 이미지" },
+      { src: "/img/spa/after2.jpg", alt: "산후 회복을 위한 더헬리아 바디 케어 장면" },
+      { src: "/img/spa/after3.jpg", alt: "산후 순환 관리를 돕는 더헬리아 스파 룸" },
+      { src: "/img/spa/after4.jpeg", alt: "산모 회복을 위한 더헬리아 바디 테라피 공간" },
+      { src: "/img/spa/after5.jpg", alt: "산후 체형 회복을 지원하는 더헬리아 테라피 장면" },
+      { src: "/img/spa/after6.jpg", alt: "더헬리아 산후 케어 프로그램 디테일 이미지" },
+    ],
     features: [
       {
         title: "체형 교정 & 회복",
@@ -145,7 +158,13 @@ const KOREAN_COPY = {
     badge: "BREAST CARE",
     title: "가슴 마사지",
     description: "모유 수유를 준비하는 산모님과 수유 중인 산모님을 위한 전문적인 가슴 관리 프로그램입니다. 유선 발달을 돕고 젖몸살을 예방합니다.",
-    images: ["/img/spa/breast1.jpg", "/img/spa/breast2.jpg", "/img/spa/breast3.jpg", "/img/spa/breast4.jpg", "/img/spa/breast5.jpg"],
+    images: [
+      { src: "/img/spa/breast1.jpg", alt: "더헬리아 가슴 관리 프로그램 대표 이미지" },
+      { src: "/img/spa/breast2.jpg", alt: "수유 준비를 돕는 더헬리아 가슴 케어 장면" },
+      { src: "/img/spa/breast3.jpg", alt: "더헬리아 전문 가슴 관리 프로그램 공간" },
+      { src: "/img/spa/breast4.jpg", alt: "모유 수유를 위한 더헬리아 케어 디테일" },
+      { src: "/img/spa/breast5.jpg", alt: "산모 유방 컨디션 관리를 위한 더헬리아 서비스 이미지" },
+    ],
     features: [
       {
         title: "수유 준비 & 통증 완화",
@@ -194,10 +213,10 @@ const ENGLISH_COPY = {
     title: "Premium Head Spa",
     description: "The Helia's signature head spa soothes the scalp sensitive to hormonal changes and relieves stress through deep relaxation.",
     images: [
-      { src: "/img/spa/headspa1.jpeg", alt: "Head Spa Main", caption: "Scalp care in a comfortable shampoo unit" },
-      { src: "/img/spa/headspa2.jpg", alt: "Head Spa Care", caption: "Delicate touch of professional therapists" },
-      { src: "/img/spa/headspa3.jpg", alt: "Head Spa Relaxing", caption: "Deep relaxation with aroma" },
-      { src: "/img/spa/headspa4.jpg", alt: "Head Spa Facility", caption: "Private and cozy spa room" },
+      { src: "/img/spa/headspa1.jpeg", alt: "The Helia head spa care in a comfortable shampoo unit", caption: "Scalp care in a comfortable shampoo unit" },
+      { src: "/img/spa/headspa2.jpg", alt: "Soothing head spa treatment room at The Helia", caption: "Delicate touch of professional therapists" },
+      { src: "/img/spa/headspa3.jpg", alt: "Professional therapist performing The Helia head spa", caption: "Deep relaxation with aroma" },
+      { src: "/img/spa/headspa4.jpg", alt: "Private and cozy head spa room at The Helia", caption: "Private and cozy spa room" },
     ],
     features: [
       {
@@ -218,7 +237,13 @@ const ENGLISH_COPY = {
     badge: "PRENATAL",
     title: "Prenatal Body Therapy",
     description: "Relaxing care that relieves pain and edema caused by rapid physical changes from mid to late pregnancy and helps communion between mother and fetus.",
-    images: ["/img/spa/pre1.jpg", "/img/spa/pre2.jpg", "/img/spa/pre3.jpg", "/img/spa/pre4.jpg", "/img/spa/pre5.jpg"],
+    images: [
+      { src: "/img/spa/pre1.jpg", alt: "Prenatal body therapy space at The Helia" },
+      { src: "/img/spa/pre2.jpg", alt: "Prenatal circulation care room at The Helia" },
+      { src: "/img/spa/pre3.jpg", alt: "Relaxing prenatal body therapy at The Helia" },
+      { src: "/img/spa/pre4.jpg", alt: "Prenatal edema care environment at The Helia" },
+      { src: "/img/spa/pre5.jpg", alt: "Comfort-focused prenatal care setting at The Helia" },
+    ],
     features: [
       {
         title: "Circulation & Edema Care",
@@ -234,7 +259,14 @@ const ENGLISH_COPY = {
     badge: "POSTPARTUM",
     title: "Postpartum Body Therapy",
     description: "A professional recovery program that corrects the pelvis and body shape distorted after childbirth, and helps prevent postpartum wind and discharge lochia.",
-    images: ["/img/spa/after1.jpg", "/img/spa/after2.jpg", "/img/spa/after3.jpg", "/img/spa/after4.jpeg", "/img/spa/after5.jpg", "/img/spa/after6.jpg"],
+    images: [
+      { src: "/img/spa/after1.jpg", alt: "Postpartum body therapy program at The Helia" },
+      { src: "/img/spa/after2.jpg", alt: "Postpartum recovery care at The Helia" },
+      { src: "/img/spa/after3.jpg", alt: "Circulation-focused postpartum therapy room at The Helia" },
+      { src: "/img/spa/after4.jpeg", alt: "Body recovery treatment space at The Helia" },
+      { src: "/img/spa/after5.jpg", alt: "Postpartum care detail at The Helia" },
+      { src: "/img/spa/after6.jpg", alt: "The Helia postpartum wellness program image" },
+    ],
     features: [
       {
         title: "Body Correction & Recovery",
@@ -250,7 +282,13 @@ const ENGLISH_COPY = {
     badge: "BREAST CARE",
     title: "Breast Care",
     description: "Professional breast care program for mothers preparing for breastfeeding and breastfeeding mothers. Helps mammary gland development and prevents mastitis.",
-    images: ["/img/spa/breast1.jpg", "/img/spa/breast2.jpg", "/img/spa/breast3.jpg", "/img/spa/breast4.jpg", "/img/spa/breast5.jpg"],
+    images: [
+      { src: "/img/spa/breast1.jpg", alt: "Breast care program at The Helia" },
+      { src: "/img/spa/breast2.jpg", alt: "Breastfeeding support care at The Helia" },
+      { src: "/img/spa/breast3.jpg", alt: "Professional breast care setting at The Helia" },
+      { src: "/img/spa/breast4.jpg", alt: "Breast care service detail for postpartum mothers" },
+      { src: "/img/spa/breast5.jpg", alt: "The Helia breast care treatment image" },
+    ],
     features: [
       {
         title: "Breastfeeding Prep & Pain Relief",

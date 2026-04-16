@@ -14,12 +14,12 @@ type CarouselImage = {
 const IMAGE_PATH = "/img/main";
 
 const CAROUSEL_IMAGES: CarouselImage[] = [
-  { src: `${IMAGE_PATH}/homepage_1.jpg`, alt: "더헬리아 메인 이미지 1" , quality: 100},
-  { src: `${IMAGE_PATH}/homepage_2.jpg`, alt: "더헬리아 메인 이미지 2", quality: 100 },
-  { src: `${IMAGE_PATH}/homepage_3.jpg`, alt: "더헬리아 메인 이미지 3", quality: 100 },
-  { src: `${IMAGE_PATH}/homepage_4.jpg`, alt: "더헬리아 메인 이미지 4", quality: 100 },
-  { src: `${IMAGE_PATH}/homepage_5.jpg`, alt: "더헬리아 메인 이미지 5", quality: 100 },
-  { src: `${IMAGE_PATH}/homepage_6.jpg`, alt: "더헬리아 메인 이미지 6", quality: 100 }
+  { src: `${IMAGE_PATH}/homepage_1.jpg`, alt: "더헬리아 산후조리원 메인 공간 전경", quality: 100},
+  { src: `${IMAGE_PATH}/homepage_2.jpg`, alt: "더헬리아 프리미엄 공간 디테일", quality: 100 },
+  { src: `${IMAGE_PATH}/homepage_3.jpg`, alt: "더헬리아 산모 휴식 공간 이미지", quality: 100 },
+  { src: `${IMAGE_PATH}/homepage_4.jpg`, alt: "더헬리아 산후케어 공간 전경", quality: 100 },
+  { src: `${IMAGE_PATH}/homepage_5.jpg`, alt: "더헬리아 프로그램 및 서비스 이미지", quality: 100 },
+  { src: `${IMAGE_PATH}/homepage_6.jpg`, alt: "더헬리아 브랜드 무드 이미지", quality: 100 }
 ];
 
 const TRANSITION = { duration: 1.5, ease: "easeInOut" as const };

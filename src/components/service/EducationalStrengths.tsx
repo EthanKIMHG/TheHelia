@@ -44,7 +44,7 @@ export function EducationalStrengths({ locale }: { locale: Locale }) {
              <div className="absolute inset-0">
                  <Image 
                     src="/img/momclass/strength-momclass1.png"
-                    alt="Education"
+                    alt={isKo ? "더헬리아 산모 교육 프로그램 대표 이미지" : "Mothers education program at The Helia"}
                     fill
                     className="object-cover opacity-90 group-hover:scale-105 transition-transform duration-700"
                  />
@@ -96,7 +96,7 @@ export function EducationalStrengths({ locale }: { locale: Locale }) {
              <div className="absolute inset-0">
                  <Image 
                     src="/img/momclass/strength-momclass2.png"
-                    alt="Medical"
+                    alt={isKo ? "소아과 전문의 회진과 안전 교육을 상징하는 이미지" : "Image representing pediatric rounds and safety education"}
                     fill
                     className="object-cover opacity-80 group-hover:scale-105 transition-transform duration-700"
                  />
@@ -130,7 +130,7 @@ export function EducationalStrengths({ locale }: { locale: Locale }) {
              <div className="absolute inset-0">
                  <Image 
                     src="/img/momclass/strength-momclass3.png"
-                    alt="Recovery"
+                    alt={isKo ? "산후 회복 교육과 필라테스를 상징하는 이미지" : "Image representing postpartum recovery education and pilates"}
                     fill
                     className="object-cover opacity-80 group-hover:scale-105 transition-transform duration-700"
                  />
@@ -167,7 +167,7 @@ export function EducationalStrengths({ locale }: { locale: Locale }) {
                 <div className="absolute inset-0 opacity-20 dark:opacity-40 group-hover:scale-105 transition-transform duration-700 mix-blend-overlay">
                      <Image 
                         src="/img/headerpreview/vip.jpg"
-                        alt="Hybrid Class"
+                        alt={isKo ? "하이브리드 산모 교육을 상징하는 이미지" : "Image representing hybrid learning for mothers"}
                         fill
                         className="object-cover grayscale"
                      />

@@ -1,37 +1,39 @@
-import type { MetadataRoute } from 'next';
+import type { MetadataRoute } from 'next'
+
+import { SITE_URL } from '@/lib/site'
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = 'https://the-helia.vercel.app'; //도메인 변경 해야함.
-
   const routes = [
     '',
     '/the-helia/about',
     '/the-helia/location',
-    '/room-suites',
     '/reservation',
-    '/service/massage',
-    '/service/spa',
+    '/reservation/price',
+    '/room-suites/vip',
+    '/room-suites/vvip',
+    '/room-suites/prestige',
+    '/service/helia-spa',
+    '/service/baby-spa',
     '/service/infant-room',
     '/service/moms-class',
     '/stories/faq',
-    '/stories/guest-reviews'
+    '/stories/guest-reviews',
+  ] as const
 
-  ];
+  const locales = ['ko', 'en']
 
-  const locales = ['ko', 'en'];
-
-  const sitemapEntries: MetadataRoute.Sitemap = [];
+  const sitemapEntries: MetadataRoute.Sitemap = []
 
   locales.forEach((locale) => {
     routes.forEach((route) => {
       sitemapEntries.push({
-        url: `${baseUrl}/${locale}${route}`,
+        url: `${SITE_URL}/${locale}${route}`,
         lastModified: new Date(),
         changeFrequency: 'weekly',
         priority: route === '' ? 1 : 0.8,
-      });
-    });
-  });
+      })
+    })
+  })
 
-  return sitemapEntries;
+  return sitemapEntries
 }

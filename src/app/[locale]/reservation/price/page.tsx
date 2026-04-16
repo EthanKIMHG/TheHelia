@@ -1,21 +1,22 @@
+import type { Metadata } from 'next'
 
-import { PricePageContent } from "@/components/pages/reservation/price/PricePageContent";
-import { SubPageTemplate } from "@/components/SubPageTemplate";
-import { Locale } from "@/components/header/types";
+import { PricePageContent } from '@/components/pages/reservation/price/PricePageContent'
+import { SubPageTemplate } from '@/components/SubPageTemplate'
+import { buildSubPageMetadata, normalizeLocale, type LocalePageProps } from '@/lib/seo'
 
-type PageProps = {
-  params: Promise<{
-    locale: string;
-  }>;
-};
+export async function generateMetadata({ params }: LocalePageProps): Promise<Metadata> {
+  const { locale } = await params
 
-export default async function PricePage({ params }: PageProps) {
-  const { locale } = await params;
-  const normalizedLocale: Locale = locale === "en" ? "en" : "ko";
+  return buildSubPageMetadata(normalizeLocale(locale), '/reservation/price')
+}
+
+export default async function PricePage({ params }: LocalePageProps): Promise<React.JSX.Element> {
+  const { locale } = await params
+  const normalizedLocale = normalizeLocale(locale)
 
   return (
     <SubPageTemplate path="/reservation/price" localeOverride={normalizedLocale}>
       <PricePageContent locale={normalizedLocale} />
     </SubPageTemplate>
-  );
+  )
 }

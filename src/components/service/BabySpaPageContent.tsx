@@ -42,7 +42,7 @@ function BabySpaStrengths({ copy }: { copy: typeof KOREAN_COPY.strengths }) {
            <div className="relative overflow-hidden rounded-[2.5rem] h-[360px] lg:h-auto shadow-sm group">
              <Image
                src="/img/babyspa/strength-babyspa1.png"
-               alt="Baby Spa Experience"
+               alt={copy.point1.title}
                fill
                className="object-cover transition-transform duration-700 group-hover:scale-105"
              />
@@ -114,7 +114,7 @@ function BabySpaStrengths({ copy }: { copy: typeof KOREAN_COPY.strengths }) {
            <div className="order-1 lg:order-2 relative overflow-hidden rounded-[2.5rem] h-[360px] lg:h-auto shadow-sm group">
              <Image
                src="/img/babyspa/strength-babyspa2.png"
-               alt="Baby Spa Education"
+               alt={copy.point4.title}
                fill
                className="object-cover transition-transform duration-700 group-hover:scale-105"
              />
@@ -132,10 +132,10 @@ const KOREAN_COPY = {
     title: "베이비 스파",
     description: "엄마의 양수와 가장 유사한 환경에서 진행되는 아기만을 위한 특별한 물놀이 시간입니다. 아기의 정서적 안정과 신체 발달을 돕습니다.",
     images: [
-      "/img/babyspa/babyspa1.jpg",
-      "/img/babyspa/babyspa2.jpg",
-      "/img/babyspa/babyspa3.jpg",
-      "/img/babyspa/babyspa4.jpg",
+      { src: "/img/babyspa/babyspa1.jpg", alt: "더헬리아 베이비 스파 프로그램 전경" },
+      { src: "/img/babyspa/babyspa2.jpg", alt: "더헬리아 베이비 스파 수중 케어 장면" },
+      { src: "/img/babyspa/babyspa3.jpg", alt: "더헬리아 베이비 스파 이용 공간 디테일" },
+      { src: "/img/babyspa/babyspa4.jpg", alt: "아기와 보호자를 위한 더헬리아 베이비 스파 이미지" },
     ],
     features: [
       {
@@ -182,10 +182,10 @@ const ENGLISH_COPY = {
     title: "Baby Spa",
     description: "A special water play time just for babies in an environment most similar to the mother's amniotic fluid. It helps the baby's emotional stability and physical development.",
     images: [
-      "/img/babyspa/babyspa1.jpg",
-      "/img/babyspa/babyspa2.jpg",
-      "/img/babyspa/babyspa3.jpg",
-      "/img/babyspa/babyspa4.jpg",
+      { src: "/img/babyspa/babyspa1.jpg", alt: "Baby spa program image at The Helia" },
+      { src: "/img/babyspa/babyspa2.jpg", alt: "Water-based baby care at The Helia" },
+      { src: "/img/babyspa/babyspa3.jpg", alt: "Baby spa facility detail at The Helia" },
+      { src: "/img/babyspa/babyspa4.jpg", alt: "The Helia baby spa care image for infants and families" },
     ],
     features: [
       {

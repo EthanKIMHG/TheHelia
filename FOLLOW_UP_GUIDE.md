@@ -1,6 +1,6 @@
 # The Helia Frontend Improvement Log
 
-Last updated: 2026-04-14
+Last updated: 2026-04-16
 
 ## Project Goal
 - Build an informative postpartum care center website without DB, login, or signup features.
@@ -398,6 +398,250 @@ Last updated: 2026-04-14
   - `stories/guest-reviews` now includes 8 real blog-based review cards.
   - Newly added 2 cards are fully clickable and consistent with existing review card UX.
 
+### 31) SEO base domain alignment (`thehelia.co.kr`)
+- Request: The site domain changed from the Vercel preview domain to the production domain and SEO-related references needed to be updated accordingly.
+- Change:
+  - Added a shared site constant module in `src/lib/site.ts`:
+    - `SITE_URL = 'https://thehelia.co.kr'`
+    - `SITE_IMAGE_URL = 'https://thehelia.co.kr/img/main/homepage_1.jpg'`
+  - Updated locale layout metadata in `src/app/[locale]/layout.tsx`:
+    - `openGraph.url` now uses the production domain.
+    - JSON-LD `LodgingBusiness.url` now uses the production domain.
+    - JSON-LD `image` now uses the production image URL derived from `SITE_IMAGE_URL`.
+  - Updated technical SEO route handlers:
+    - `src/app/robots.ts` sitemap URL now points to `https://thehelia.co.kr/sitemap.xml`
+    - `src/app/sitemap.ts` URL generation now uses the production domain for every localized route.
+  - Removed obsolete “도메인 변경 해야함” placeholder comments from SEO-related files.
+- Result:
+  - Structured data, Open Graph URL, `robots.txt`, and `sitemap.xml` now point to the same canonical production domain.
+  - The site no longer mixes preview-domain and production-domain signals across core SEO surfaces.
+  - `pnpm build` passes after the update.
+
+### 32) SEO step 1: sitemap route cleanup + `metadataBase`
+- Request: Start the SEO follow-up work step by step, beginning with the most foundational technical items.
+- Change:
+  - Updated `src/app/sitemap.ts` to include only the actual published localized routes:
+    - kept: home, about, location, reservation, reservation price, infant room, moms class, FAQ, guest reviews
+    - added concrete detail pages:
+      - `/room-suites/vip`
+      - `/room-suites/vvip`
+      - `/room-suites/prestige`
+      - `/service/helia-spa`
+      - `/service/baby-spa`
+    - removed legacy/non-canonical entries:
+      - `/room-suites`
+      - `/service/massage`
+      - `/service/spa`
+  - Updated `src/app/layout.tsx` to define:
+    - `metadataBase: new URL('https://thehelia.co.kr')`
+  - This ensures relative metadata fields such as canonicals and localized alternates resolve against the production domain.
+- Result:
+  - The sitemap now reflects the real public route inventory instead of stale placeholder URLs.
+  - Canonical/alternate metadata now has a correct absolute URL base at the root layout level.
+  - `pnpm build` passes after the update.
+
+### 33) SEO step 2: route-level metadata rollout for published subpages
+- Request: Continue the SEO follow-up step by step by splitting metadata at the page level instead of relying only on locale layout defaults.
+- Change:
+  - Added a reusable helper in `src/lib/seo.ts`:
+    - `normalizeLocale()`
+    - `buildSubPageMetadata()`
+  - `buildSubPageMetadata()` now derives page-specific metadata from existing navigation content in `src/components/header/nav-data.ts`:
+    - title
+    - description / preview copy
+    - canonical
+    - localized alternates (`ko`, `en`)
+    - Open Graph image
+    - Twitter card image
+  - Added `generateMetadata()` to the published subpages:
+    - `the-helia/about`
+    - `the-helia/location`
+    - `reservation`
+    - `reservation/price`
+    - `room-suites/vip`
+    - `room-suites/vvip`
+    - `room-suites/prestige`
+    - `service/helia-spa`
+    - `service/baby-spa`
+    - `service/infant-room`
+    - `service/moms-class`
+    - `stories/faq`
+    - `stories/guest-reviews`
+  - Updated pages that were relying on context fallback only so `localeOverride` is passed explicitly where needed.
+- Result:
+  - Published subpages now emit route-specific metadata instead of sharing only locale-level defaults.
+  - Canonical and `hreflang` links are now generated consistently at the page level for the localized routes above.
+  - Open Graph and Twitter previews now use page-representative images from navigation preview assets for these routes.
+  - `pnpm build` passes after the update.
+
+### 34) SEO step 3: home-route metadata split + page-scoped structured data
+- Request: Continue with the next SEO pass by separating home-route metadata and refining structured data so it only appears on pages where the content truly matches.
+- Change:
+  - Refactored the locale home route:
+    - moved the existing client-side home implementation from `src/app/[locale]/page.tsx` into `src/components/home/HomePageContent.tsx`
+    - converted `src/app/[locale]/page.tsx` into a server wrapper so it can export route-level metadata
+  - Added dedicated home metadata in `src/lib/seo.ts` via `buildHomePageMetadata()`:
+    - home-specific title
+    - home-specific description
+    - canonical / localized alternates
+    - Open Graph / Twitter image metadata
+  - Fixed the floating reservation CTA on the home page to use an absolute localized path:
+    - `/${locale}/reservation`
+  - Extracted FAQ source content into `src/components/stories/faq-data.ts` so it can be reused by both the page UI and structured data generation.
+  - Added `src/lib/structured-data.ts` with:
+    - `buildLodgingBusinessStructuredData()`
+    - `buildFaqPageStructuredData()`
+  - Applied page-scoped JSON-LD:
+    - home page now emits `LodgingBusiness`
+    - FAQ page now emits `FAQPage`
+  - Removed the old global `LodgingBusiness` script from `src/app/[locale]/layout.tsx` so business schema is no longer emitted on every localized route.
+- Result:
+  - The home page now has its own route-level metadata rather than inheriting only locale-layout defaults.
+  - `LodgingBusiness` schema is now limited to a page where the business context is appropriate.
+  - `FAQPage` schema is now backed by real visible Q&A content.
+  - The site no longer emits the same business structured data on unrelated subpages.
+  - `pnpm build` passes after the update.
+
+### 35) SEO step 4: image SEO pass (representative images + descriptive alt text)
+- Request: Continue the next SEO step with an image-focused pass that improves how search engines interpret representative images and key content visuals.
+- Change:
+  - Updated `src/lib/seo.ts` with route-level representative image overrides for major pages:
+    - `about`
+    - `location`
+    - `reservation`
+    - `reservation/price`
+    - `room-suites/*`
+    - `service/*`
+    - `stories/*`
+  - This replaces weaker generic preview selection in metadata with more page-relevant OG/Twitter images where possible.
+  - Improved home hero carousel alt text in `src/components/home/HeroCarousel.tsx` so the six home slides no longer use numeric placeholder-style alt values.
+  - Improved image alt quality in service/story components:
+    - `src/components/service/HeliaSpaPageContent.tsx`
+      - replaced generic head spa labels such as `Head Spa Main` with descriptive scene-based alt text
+      - added per-image alt text for prenatal / postpartum / breast care galleries
+    - `src/components/service/BabySpaPageContent.tsx`
+      - added descriptive per-image alt text for baby spa gallery images
+      - replaced generic strength image alt text with content-based titles
+    - `src/components/service/EducationalStrengths.tsx`
+      - replaced one-word alt values (`Education`, `Medical`, `Recovery`) with descriptive image intent
+    - `src/components/stories/GuestReviewsPageContent.tsx`
+      - replaced generic `Review Thumbnail` alt text with review-author-based thumbnail descriptions
+  - Updated `src/components/service/SpaServiceBento.tsx` to support both:
+    - legacy string image arrays
+    - new `{ src, alt }` image objects
+  - This kept existing pages compatible while allowing more descriptive alt metadata where available.
+- Result:
+  - Metadata-level representative images are now more closely aligned with the actual content of each major page.
+  - Several high-visibility image groups no longer rely on generic or repeated alt strings.
+  - The image SEO baseline is stronger without breaking existing page components that still pass legacy image arrays.
+  - `pnpm build` passes after the update.
+
+## SEO Follow-up Priorities
+
+- Completed in this step:
+  - Priority 0) sitemap route alignment
+  - Priority 1) root `metadataBase`
+  - Priority 2) route-level metadata rollout for published subpages
+  - home-route metadata split
+  - structured data scope refinement for home and FAQ
+  - first-pass image SEO improvements
+
+### Priority 0) Align sitemap entries with real published routes [Completed]
+- Previous state:
+  - `src/app/sitemap.ts` still contains legacy paths such as:
+    - `/room-suites`
+    - `/service/massage`
+    - `/service/spa`
+  - The current published route structure includes concrete detail pages such as:
+    - `/room-suites/vip`
+    - `/room-suites/vvip`
+    - `/room-suites/prestige`
+    - `/service/helia-spa`
+    - `/service/baby-spa`
+- Why:
+  - A sitemap should list the canonical URLs you actually want indexed.
+  - Listing stale URLs while omitting real landing pages weakens crawl quality and can delay or distort indexing.
+- Completed action:
+  - Replaced legacy route entries with the current published page set.
+- Ongoing note:
+  - Re-check sitemap coverage whenever nav structure changes.
+
+### Priority 1) Add `metadataBase` in root layout [Completed]
+- Previous state:
+  - `src/app/layout.tsx` defines icons and manifest, but does not define `metadataBase`.
+  - `src/app/[locale]/layout.tsx` uses relative `alternates.canonical` values such as `/${locale}`.
+- Why:
+  - In Next.js App Router, `metadataBase` is the standard way to turn relative canonical / alternate / OG image paths into fully-qualified URLs at the app level.
+- Completed action:
+  - Set `metadataBase: new URL('https://thehelia.co.kr')` in `src/app/layout.tsx`.
+
+### Priority 2) Split metadata by route, not only by locale [Completed for published subpages]
+- Previous state:
+  - Metadata generation exists in `src/app/[locale]/layout.tsx`, but route-level `generateMetadata` or `metadata` exports are not present for the major subpages.
+- Why:
+  - Right now many pages are likely sharing the same title/description pattern, which weakens title relevance and snippet quality for search.
+- Completed action:
+  - Added route-specific metadata to the published subpages under `the-helia`, `reservation`, `room-suites`, `service`, and `stories`.
+- Ongoing note:
+  - The locale root home page still relies on locale layout defaults and can be split into its own server wrapper later if a distinct home-only title/description strategy is needed.
+  - That home-only server wrapper has now been added.
+
+### Priority 3) Add page-specific Open Graph images [Mostly completed]
+- Current state:
+  - Published subpages now use page-representative preview images from nav metadata.
+  - The home route now has its own route-level image metadata as well.
+  - Major routes now also use explicit representative-image overrides where stronger page-specific assets were available.
+- Why:
+  - Search and social previews are stronger when each key landing page has a representative image instead of a generic shared asset.
+- Next action:
+  - Review whether each current route override is the best long-term SERP/social asset.
+  - Expand custom OG image selection beyond static file choices if more polished branded share visuals are needed.
+
+### Priority 4) Strengthen multilingual SEO (`hreflang` completeness)
+- Current state:
+  - Locale alternates are defined for `ko` and `en`, but the setup should be extended consistently at the page level.
+- Why:
+  - Each localized page should clearly point to its corresponding language variant so search engines understand the relationship between `/ko/...` and `/en/...`.
+- Next action:
+  - Ensure each major route emits consistent localized alternates.
+  - Consider adding an `x-default` handling strategy if the root route is intended as a language selector / redirect entry.
+
+### Priority 5) Expand structured data only where the content truly matches [Partially completed]
+- Current state:
+  - `LodgingBusiness` has been moved off the locale-wide layout and scoped to the home page.
+  - `FAQPage` structured data has been added to the FAQ route.
+- Why:
+  - Structured data is useful only when it accurately reflects the visible content of the page.
+  - Additional schema can help, but only when it matches the page type and content one-to-one.
+- Next action:
+  - Decide whether `LodgingBusiness` should also be emitted on the `about` and `location` pages.
+  - Consider page-specific schema only where appropriate:
+    - `WebPage` + `primaryImageOfPage` for strong image landing pages.
+    - Additional business properties such as geo coordinates, postal code, and sameAs only if verified.
+
+### Priority 6) Improve image SEO [Partially completed]
+- Current state:
+  - A first pass has been completed for route-level representative metadata images and several obvious generic alt strings.
+  - Some image-heavy sections still likely contain alt text that can be refined further in a deeper audit.
+- Why:
+  - Image discovery and result quality depend on crawlable image markup, descriptive alt text, and strong landing-page metadata.
+- Next action:
+  - Continue a deeper audit of remaining hero/section images for:
+    - descriptive `alt` text
+    - representative filenames
+    - consistent use of crawlable image elements
+  - Consider extending sitemap coverage if important image assets are not being discovered reliably.
+
+### Priority 7) Submit and monitor the updated sitemap in Search Console
+- Current state:
+  - `robots.txt` and `sitemap.xml` now point to the production domain.
+- Why:
+  - After a domain-level SEO change, sitemap submission and indexing monitoring should follow immediately.
+- Next action:
+  - Verify `https://thehelia.co.kr` in Google Search Console.
+  - Submit `/sitemap.xml`.
+  - Monitor indexing, canonical selection, and enhancement reports after deployment.
+
 ## Files Changed
 - `src/components/home/BentoGridShowcase.tsx`
 - `src/components/pages/the-helia/about/AboutPageShowcase.tsx`
@@ -420,8 +664,23 @@ Last updated: 2026-04-14
 - `src/app/layout.tsx`
 - `src/app/globals.css`
 - `src/components/home/CinematicHero.tsx`
+- `src/app/[locale]/layout.tsx`
+- `src/app/robots.ts`
+- `src/app/sitemap.ts`
+- `src/lib/site.ts`
+- `src/lib/seo.ts`
+- `src/lib/structured-data.ts`
+- `src/components/home/HomePageContent.tsx`
+- `src/components/home/HeroCarousel.tsx`
+- `src/components/stories/faq-data.ts`
+- `src/components/service/SpaServiceBento.tsx`
+- `src/components/service/HeliaSpaPageContent.tsx`
+- `src/components/service/BabySpaPageContent.tsx`
+- `src/components/service/EducationalStrengths.tsx`
+- `src/components/stories/GuestReviewsPageContent.tsx`
 - `FOLLOW_UP_GUIDE.md`
 
 ## Follow-up Notes For Next AI
 - Keep app scope static/content-driven (no auth, no DB).
 - Continue improvements based on new user directives and append each change under `Completed Improvements`.
+- SEO next pass should focus on deeper remaining image-alt audit, optional business schema extension to `about/location`, and Search Console submission.

@@ -117,6 +117,12 @@ export function GuestReviewsPageContent() {
   const locale = themeLocale?.locale ?? "ko";
   const isKo = locale === "ko";
 
+  const getReviewThumbnailAlt = (review: (typeof REVIEWS)[number]): string => {
+    return isKo
+      ? `${review.author.ko} 후기 대표 이미지`
+      : `Representative image from ${review.author.en}'s review`
+  }
+
   return (
     <div className="w-full pb-20">
       <FadeInUp>
@@ -147,7 +153,7 @@ export function GuestReviewsPageContent() {
                     <div className="relative h-48 w-full overflow-hidden mb-6 rounded-2xl">
                         <NextImage 
                             src={review.thumbnail} 
-                            alt="Review Thumbnail" 
+                            alt={getReviewThumbnailAlt(review)}
                             fill 
                             className="object-cover transition-transform duration-700 group-hover:scale-110"
                         />
