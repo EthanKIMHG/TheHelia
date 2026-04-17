@@ -2,26 +2,26 @@
 
 ## Purpose
 
-이 저장소의 작업 기준 문서는 이 파일이다. Codex 또는 다른 에이전트가 레포를 수정할 때 먼저 이 문서를 따르고, 아래 보조 문서들을 목적에 맞게 함께 참고한다.
+This file is the primary instruction document for work in this repository. When Codex or any other agent modifies the repo, follow this file first and use the supporting documents below for their intended purposes.
 
 ### Instruction precedence
 
-우선순위는 다음과 같다.
+Use the following precedence order.
 
-1. 현재 디렉터리 기준 가장 가까운 `AGENTS.md`
-2. 루트 [AGENTS.md](/Users/ethan/Desktop/thehelia/AGENTS.md)
+1. The closest `AGENTS.md` in the current directory tree
+2. The root [AGENTS.md](/Users/ethan/Desktop/thehelia/AGENTS.md)
 3. [Design_System.md](/Users/ethan/Desktop/thehelia/Design_System.md) for The Helia design system
 4. [FOLLOW_UP_GUIDE.md](/Users/ethan/Desktop/thehelia/FOLLOW_UP_GUIDE.md) for recent implementation context
 5. `codex-template/` documents and skills as template source material
 
-문서 간 충돌이 있으면 실행 규칙은 `AGENTS.md`, 디자인 방향은 `Design_System.md`, 과거 변경 맥락은 `FOLLOW_UP_GUIDE.md`를 기준으로 해석한다.
+If these documents conflict, use `AGENTS.md` for execution rules, `Design_System.md` for design direction, and `FOLLOW_UP_GUIDE.md` for historical implementation context.
 
 ## Repository context
 
-- 이 프로젝트는 The Helia 산후조리원 웹사이트다
-- DB, 로그인, 회원가입이 없는 정보 중심 사이트를 전제로 한다
-- 목표는 높은 시각 완성도, 명확한 카피, 전환 친화적인 화면 흐름이다
-- 신규 구축보다 리팩토링 성격이 강하므로, 기존 로직과 사용자 흐름 보존이 우선이다
+- This project is The Helia postpartum care center website
+- It is an information-first website without a database, login, or signup flows
+- The goals are strong visual quality, clear copy, and conversion-friendly page flow
+- This is primarily a refactor, so preserving existing logic and user flow takes priority
 
 ## Working style
 
@@ -114,7 +114,7 @@
 
 ## The Helia design system
 
-현재 디자인 시스템 원문은 [Design_System.md](/Users/ethan/Desktop/thehelia/Design_System.md)에 있다. 시각 작업이나 리팩토링은 아래 원칙을 기본으로 따른다.
+The current design system source of truth is [Design_System.md](/Users/ethan/Desktop/thehelia/Design_System.md). Use the following principles as the baseline for visual work and refactoring.
 
 ### Refactoring protocol
 
@@ -139,19 +139,19 @@
 
 ## Skills
 
-루트 `.agents/skills`를 실제 작업용 스킬 경로로 사용한다. `codex-template/.agents/skills`는 원본 템플릿이며, 현재 레포에서는 아래 루트 스킬을 우선 사용한다.
+Use the root `.agents/skills` directory as the active skill path for this repository. `codex-template/.agents/skills` is the template source, but in this repo the root skills below take precedence.
 
 ### Available repo skills
 
-- `.agents/skills/frontend-bugfix`: UI 버그, 렌더링 결함, hydration mismatch, 소규모 프론트엔드 이상 수정
-- `.agents/skills/api-contract-update`: request or response schema, DTO, validator, typed client, route contract 변경
-- `.agents/skills/repo-safety-check`: schema, infra, auth, billing, secrets, deployment 같은 고위험 변경 전 점검
+- `.agents/skills/frontend-bugfix`: use for UI bugs, rendering defects, hydration mismatches, and small frontend behavior fixes
+- `.agents/skills/api-contract-update`: use for request or response schema changes, DTOs, validators, typed clients, and route contract updates
+- `.agents/skills/repo-safety-check`: use before high-risk changes involving schema, infrastructure, auth, billing, secrets, or deployment
 
-다음 기준으로 사용한다.
+Use them with the following intent.
 
-- UI 버그 수정은 `frontend-bugfix`
-- 계약 또는 타입 경계 변경은 `api-contract-update`
-- 배포, 인증, 결제, 스키마, 시크릿 관련 작업은 `repo-safety-check`
+- Use `frontend-bugfix` for UI bug fixes
+- Use `api-contract-update` for contract or type-boundary changes
+- Use `repo-safety-check` for deployment, auth, billing, schema, or secret-related work
 
 ## Communication
 
