@@ -1,6 +1,6 @@
 # The Helia Frontend Improvement Log
 
-Last updated: 2026-04-16
+Last updated: 2026-04-17
 
 ## Project Goal
 - Build an informative postpartum care center website without DB, login, or signup features.
@@ -570,6 +570,79 @@ Last updated: 2026-04-16
   - Metadata, Open Graph, and structured data all align on `더 헬리아 산후조리원` instead of mixing generic-title and no-space brand variants.
   - Google can still rewrite titles, but the source signals are now materially closer to the requested SERP naming.
 
+### 38) HomePrograms UX simplification with modal detail flow
+- Request: Reduce reading fatigue in the homepage program section by showing only key messages first, then revealing detailed information in a dialog or modal when the user clicks. Mobile optimization was required.
+- Change:
+  - Updated `src/components/home/HomePrograms.tsx` so each program card now shows:
+    - concise eyebrow
+    - short title
+    - one-line summary
+    - clear `자세히 보기` / `View details` CTA
+  - Replaced the always-visible long descriptions with a detail dialog:
+    - desktop: centered modal
+    - mobile: bottom-sheet style modal
+  - Added detail bullets per program so users can open only the topic they care about instead of scanning all text in the default layout.
+  - Added interaction/accessibility behavior:
+    - body scroll lock while modal is open
+    - close on overlay click
+    - close on `Escape`
+    - explicit dialog labeling
+  - Kept the review-backed program themes but rewrote the section subtitle to explain the lighter scan-first reading pattern.
+- Result:
+  - Default homepage scanning is lighter and more conversion-friendly because the section no longer front-loads all explanatory text.
+  - Mobile users now get a more natural tap-to-expand experience without reading through six dense cards in sequence.
+  - The section still preserves depth for users who want more detail, but only on demand.
+
+### 39) HomePrograms motion pass for calmer interaction
+- Request: Add softer transitions so the simplified HomePrograms UX feels smoother when users interact with it.
+- Change:
+  - Updated `src/components/home/HomePrograms.tsx` to use `framer-motion` for the interaction layer.
+  - Added card-level motion refinement:
+    - subtle lift on hover
+    - softer CTA arrow movement
+    - calmer shadow/border transition timing
+  - Added modal animation flow:
+    - overlay fade in/out
+    - dialog scale + slide entrance/exit
+    - detail header content fade/translate entrance
+    - staggered reveal for detail bullets
+  - Added reduced-motion guards with `useReducedMotion` so the section does not force animation where motion should be minimized.
+- Result:
+  - The program cards now feel less abrupt during hover and tap interaction.
+  - The modal/bottom-sheet detail flow opens and closes with a more premium, calmer rhythm aligned to the site tone.
+  - Motion remains scoped to this section and does not require broader layout or animation-system changes.
+
+### 40) HomePrograms modal copy tone refined to brand voice
+- Request: The modal detail text felt too analytical and AI-written. Rewrite the copy so it reads more like The Helia’s own strengths rather than review analysis.
+- Change:
+  - Updated the detailed modal copy in `src/components/home/HomePrograms.tsx`:
+    - rewrote Korean detail bullets from report-like sentences into shorter brand-benefit phrases
+    - adjusted Korean detail descriptions above the bullets to feel warmer and more direct
+    - aligned English detail copy to the same more brand-forward tone so locale behavior stays consistent
+- Result:
+  - The modal now reads more like on-site brand messaging and less like a review summary.
+  - Key strengths are presented more directly, with less hedging and less analytical framing.
+
+### 41) Home quick-fit section added above Programs
+- Request: Add one more section above `HomePrograms` because first-touch homepage information felt too light, but avoid repeating the same strengths content in another summary block.
+- Change:
+  - Added `src/components/home/HomeFitGuide.tsx`.
+  - Inserted the section in `src/components/home/HomePageContent.tsx` between:
+    - `HomeIntroView`
+    - `HomePrograms`
+  - Designed the section around user fit instead of feature explanation:
+    - `병원과 가까운 조리원을 찾는 분`
+    - `신생아실 운영을 꼼꼼히 보는 분`
+    - `회복 설비와 객실 컨디션을 중요하게 보는 분`
+    - `초산모도 편안한 분위기를 원하는 분`
+  - Used a split layout:
+    - left intro panel for framing
+    - right card grid for quick self-selection
+  - Kept copy intentionally short so users can decide quickly whether to keep reading.
+- Result:
+  - The homepage now gives users a faster “is this for me?” checkpoint before entering the deeper strengths section.
+  - The new section complements `HomePrograms` instead of duplicating it, because it frames the content from the visitor’s perspective rather than the brand’s feature perspective.
+
 ## SEO Follow-up Priorities
 
 - Completed in this step:
@@ -710,6 +783,7 @@ Last updated: 2026-04-16
 - `src/lib/seo.ts`
 - `src/lib/structured-data.ts`
 - `src/components/home/HomePageContent.tsx`
+- `src/components/home/HomeFitGuide.tsx`
 - `src/components/home/HeroCarousel.tsx`
 - `src/components/stories/faq-data.ts`
 - `src/components/service/SpaServiceBento.tsx`

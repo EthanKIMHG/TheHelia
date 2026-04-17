@@ -8,6 +8,7 @@ import { useEffect, useRef, useState } from 'react'
 import { TransitionLink } from '@/components/common/TransitionLink'
 import type { Locale } from '@/components/header/types'
 import { CinematicHero } from '@/components/home/CinematicHero'
+import { HomeFitGuide } from '@/components/home/HomeFitGuide'
 import { HomeIntroView } from '@/components/home/HomeIntroView'
 import { HomeNavigationGallery } from '@/components/home/HomeNavigationGallery'
 import { HomePrograms } from '@/components/home/HomePrograms'
@@ -209,6 +210,11 @@ export default function HomePageContent({
         </section>
 
         <HomeIntroView onSectionMount={registerSection} />
+
+        <HomeFitGuide
+          locale={locale}
+          onSectionMount={(node) => registerSection('fit-guide', node)}
+        />
 
         <HomePrograms
           locale={locale}
