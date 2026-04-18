@@ -8,10 +8,10 @@ export const NAV_ITEMS: NavItemDefinition[] = [
       ko: "더헬리아",
     },
     previewImage: {
-      src: "/img/subhero/thehelia.jpg",
+      src: "/img/main/homepage_2.jpg",
       alt: {
-        en: "The Helia",
-        ko: "더헬리아"
+        en: "Family lounge area at The Helia",
+        ko: "더헬리아 가족 전용 라운지 전경"
       }
     },
     sub: [
@@ -27,10 +27,10 @@ export const NAV_ITEMS: NavItemDefinition[] = [
           ko: "더헬리아의 따뜻한 이야기와 함께하는 사람들을 만나보세요.",
         },
         previewImage: {
-          src: "/img/main/homepage_1.jpg",
+          src: "/img/main/homepage_2.jpg",
           alt: {
-            en: "Lobby view of The Helia",
-            ko: "더헬리아 로비 전경",
+            en: "Family lounge area at The Helia",
+            ko: "더헬리아 가족 전용 라운지 전경",
           },
         },
         previewCopy: {
@@ -50,10 +50,10 @@ export const NAV_ITEMS: NavItemDefinition[] = [
           ko: "방문 전 가장 편안한 길 안내와 도착 팁을 확인하세요.",
         },
         previewImage: {
-          src: "/img/headerpreview/location.png",
+          src: "/img/location2.png",
           alt: {
-            en: "Map to The Helia",
-            ko: "더헬리아 위치 안내 지도",
+            en: "Exterior of MS Medical Square where The Helia is located",
+            ko: "더헬리아 산후조리원이 위치한 MS메디컬스퀘어 외관",
           },
         },
         previewCopy: {

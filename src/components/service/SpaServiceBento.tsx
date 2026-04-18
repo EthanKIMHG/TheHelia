@@ -201,20 +201,20 @@ export function SpaServiceBento({
                 className="flex-1 bg-white dark:bg-[#2A2928] rounded-[2rem] p-8 border border-border/50 shadow-sm hover:shadow-md transition-all hover:-translate-y-1 group"
               >
                 <div className="flex items-center justify-between mb-4">
-                  <h4 className="text-xl font-serif font-medium text-foreground">
+                  <h4 className="text-[1.45rem] font-serif font-medium leading-snug text-foreground md:text-[1.55rem]">
                     {feature.title}
                   </h4>
                   <div className="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
                     <ArrowUpRight className="w-4 h-4 text-primary" />
                   </div>
                 </div>
-                <ul className="space-y-3">
+                <ul className="space-y-4">
                   {feature.items.map((item, idx) => (
-                    <li key={idx} className="flex items-start gap-3 text-foreground/85 text-sm">
+                    <li key={idx} className="flex items-start gap-3 text-[15px] leading-[1.8] text-foreground/85 md:text-base">
                       <div className="mt-1 w-4 h-4 rounded-full bg-primary/20 flex items-center justify-center flex-shrink-0">
                         <Check className="w-2.5 h-2.5 text-primary" />
                       </div>
-                      <span className="leading-relaxed">{item}</span>
+                      <span>{item}</span>
                     </li>
                   ))}
                 </ul>

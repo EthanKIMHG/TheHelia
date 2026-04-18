@@ -526,7 +526,9 @@ function getAboutCopy(locale: Locale) {
       gallery: [
         {
           src: "/img/private.jpg",
-          alt: isKo ? "더헬리아 라운지" : "The Helia lounge",
+          alt: isKo
+            ? "더헬리아 산후조리원 가족 전용 라운지 전경"
+            : "Family lounge area at The Helia postpartum care center",
           title: isKo ? "조용한 프라이빗 존" : "Quiet Private Zone",
           body: isKo
             ? "자연광과 따뜻한 톤으로 완성한 라운지 존은 가족끼리만 사용하는 회유 공간으로 마련했습니다."
@@ -534,7 +536,9 @@ function getAboutCopy(locale: Locale) {
         },
         {
           src: "/img/infantroom.jpg",
-          alt: isKo ? "신생아실" : "Newborn nursery",
+          alt: isKo
+            ? "더헬리아 산후조리원 신생아실 전경"
+            : "Nursery room at The Helia postpartum care center",
           title: isKo ? "신생아실" : "Newborn Suite",
           body: isKo
             ? "따뜻한 조도와 안심 살균 시스템을 갖춘 신생아실에서 아기의 첫 시간을 전문적으로 돌봅니다."
@@ -542,7 +546,9 @@ function getAboutCopy(locale: Locale) {
         },
         {
           src: "/img/headerpreview/prestige.jpg",
-          alt: isKo ? "프라이빗 스위트" : "Private suite",
+          alt: isKo
+            ? "더헬리아 산후조리원 프라이빗 스위트 객실 전경"
+            : "Private suite room at The Helia postpartum care center",
           title: isKo ? "프라이빗 스위트" : "Private Suite",
           body: isKo
             ? "조용한 휴식을 위해 모든 객실은 독립형 구조와 맞춤형 서비스를 제공합니다."

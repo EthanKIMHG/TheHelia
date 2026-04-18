@@ -30,96 +30,78 @@ const ICON_MAP = {
 export function SpaBrandIntro({ copy }: SpaBrandIntroProps) {
   return (
     <ScrollReveal>
-      <div className="rounded-[2.5rem] border border-border/30 bg-white/60 dark:bg-[#2A2928]/40 backdrop-blur-sm overflow-hidden shadow-sm">
-        {/* Top Section: Philosophy Intro */}
-        <div className="mx-auto max-w-4xl px-8 pb-12 pt-16 text-left md:px-16 md:pb-16 md:pt-20 md:text-center">
-          <span className="inline-block px-4 py-1.5 rounded-full bg-primary/10 text-primary text-sm font-medium mb-6">
-            {copy.badge}
-          </span>
-          <h2 className="mb-6 whitespace-pre-line break-keep text-2xl font-serif font-semibold leading-[1.28] text-foreground md:text-2xl md:leading-tight lg:text-3xl">
-            {copy.headline}
-          </h2>
-          <p className="max-w-[30ch] whitespace-pre-line break-keep text-lg leading-relaxed text-foreground/85 md:mx-auto md:max-w-3xl">
-            {copy.intro}
-          </p>
-        </div>
-
-        {/* Bottom Section: THALAC Brand Story */}
-        <div className="relative w-full bg-white/40 dark:bg-black/5 border-t border-border/10">
-          {/* Image Grid (Merged from SpaImageBento) */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-0 h-[400px] md:h-[500px] p-4">
-            {/* Left: THALAC Products */}
-            <div className="relative overflow-hidden group rounded-t-xl md:rounded-l-xl">
-              <Image
-                src="/img/spa/thalac.png"
-                alt="THALAC Premium Products"
-                fill
-                className="object-cover transition-transform duration-700 group-hover:scale-105"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent" />
-              <div className="absolute bottom-8 left-8 text-white">
-                <p className="text-sm font-medium uppercase tracking-wider mb-2 opacity-80">Premium Aesthetic</p>
-                <h3 className="text-2xl font-serif">THALAC</h3>
-              </div>
+      <section className="overflow-hidden rounded-[2.5rem] border border-border/30 bg-gradient-to-br from-primary/10 via-background to-background/95 shadow-sm">
+        <div className="grid gap-8 p-6 md:p-8 lg:grid-cols-[0.9fr_1.1fr] lg:p-10">
+          <div className="space-y-6 text-left">
+            <div className="space-y-4">
+              <span className="inline-flex rounded-full bg-primary/10 px-4 py-1.5 text-sm font-medium text-primary">
+                {copy.badge}
+              </span>
+              <h2 className="whitespace-pre-line break-keep text-3xl font-serif font-semibold leading-[1.24] text-foreground md:text-4xl md:leading-tight">
+                {copy.headline}
+              </h2>
+              <p className="max-w-[34ch] whitespace-pre-line break-keep text-sm leading-[1.9] text-foreground/78 md:max-w-[42ch] md:text-base">
+                {copy.intro}
+              </p>
             </div>
 
-            {/* Right: Spa Main Atmosphere */}
-            <div className="relative overflow-hidden group rounded-b-xl md:rounded-r-xl">
-              <Image
-                src="/img/spa/thalac2.jpg"
-                alt="Helia Spa Atmosphere"
-                fill
-                className="object-cover transition-transform duration-700 group-hover:scale-105"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent" />
-              <div className="absolute bottom-8 left-8 text-white">
-                <p className="text-sm font-medium uppercase tracking-wider mb-2 opacity-80">Relaxation</p>
-                <h3 className="text-2xl font-serif">Signature Spa</h3>
+            <div className="rounded-[1.75rem] border border-border/30 bg-white/82 p-6 shadow-sm backdrop-blur-sm dark:bg-[#2A2928]/60">
+              <div className="flex items-center gap-3">
+                <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-primary/10 text-primary dark:bg-[#333231]">
+                  <Waves className="h-6 w-6" />
+                </div>
+                <div>
+                  <p className="text-xs font-semibold uppercase tracking-[0.18em] text-primary/80">
+                    THALAC
+                  </p>
+                  <h3 className="mt-1 break-keep text-2xl font-semibold leading-snug text-foreground font-serif">
+                    {copy.thalac.title}
+                  </h3>
+                </div>
               </div>
-            </div>
-          </div>
-
-          <div className="max-w-5xl mx-auto p-8 md:p-12 lg:p-16">
-            <div className="mb-12 flex flex-col items-start text-left md:items-center md:text-center">
-              <div className="flex items-center gap-3 mb-6">
-                <Waves className="w-8 h-8 text-primary" />
-                <h3 className="text-3xl font-serif font-semibold text-foreground">
-                  THALAC
-                </h3>
-              </div>
-              <h4 className="mb-6 break-keep text-2xl font-medium leading-snug text-foreground md:text-3xl">
-                {copy.thalac.title}
-              </h4>
-              <p className="max-w-[30ch] whitespace-pre-line break-keep text-base leading-relaxed text-foreground/85 md:mx-auto md:max-w-3xl md:text-lg">
+              <p className="mt-4 whitespace-pre-line break-keep text-sm leading-[1.85] text-foreground/74 md:text-base">
                 {copy.thalac.description}
               </p>
             </div>
-            
-            {/* Feature Grid */}
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          </div>
+
+          <div className="space-y-6">
+            <div className="">
+              <div className="relative h-72 overflow-hidden rounded-[2rem] border border-border/30 shadow-sm md:h-[420px]">
+                <Image
+                  src="/img/spa/thalac.png"
+                  alt="THALAC premium spa products used at The Helia"
+                  fill
+                  className="object-cover"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-black/5 to-transparent" />
+              </div>
+            </div>
+
+            <div className="grid gap-4 md:grid-cols-3">
               {copy.thalac.features.map((feature, index) => {
                 const Icon = ICON_MAP[feature.icon];
                 return (
-                  <div 
-                    key={index} 
-                    className="bg-white/80 dark:bg-white/5 p-6 rounded-3xl border border-primary/5 shadow-sm hover:shadow-md transition-all hover:-translate-y-1"
+                  <article
+                    key={index}
+                    className="rounded-[1.75rem] border border-border/30 bg-white/82 p-5 text-left shadow-sm backdrop-blur-sm dark:bg-[#2A2928]/60"
                   >
-                    <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center mb-4 mx-auto md:mx-0">
-                      <Icon className="w-6 h-6 text-primary" />
+                    <div className="flex h-11 w-11 items-center justify-center rounded-2xl bg-primary/10 text-primary dark:bg-[#333231]">
+                      <Icon className="h-5 w-5" />
                     </div>
-                    <h5 className="mb-2 text-left text-lg font-medium break-keep text-foreground">
+                    <h4 className="mt-4 break-keep text-lg font-medium text-foreground">
                       {feature.title}
-                    </h5>
-                    <p className="text-left text-sm leading-relaxed break-keep text-foreground/70">
+                    </h4>
+                    <p className="mt-2 break-keep text-sm leading-[1.8] text-foreground/70">
                       {feature.description}
                     </p>
-                  </div>
+                  </article>
                 );
               })}
             </div>
           </div>
         </div>
-      </div>
+      </section>
     </ScrollReveal>
   );
 }

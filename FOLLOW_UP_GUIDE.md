@@ -643,6 +643,66 @@ Last updated: 2026-04-17
   - The homepage now gives users a faster “is this for me?” checkpoint before entering the deeper strengths section.
   - The new section complements `HomePrograms` instead of duplicating it, because it frames the content from the visitor’s perspective rather than the brand’s feature perspective.
 
+### 42) SEO step 7: about/location structured data expansion + deeper image-alt pass
+- Request: Continue the SEO follow-up with page-scoped schema on facility-introduction routes and clean up the most generic remaining image alt text.
+- Change:
+  - Added `WebPage` structured data to:
+    - `/[locale]/the-helia/about`
+    - `/[locale]/the-helia/location`
+  - Included `primaryImageOfPage` in the new page schema so each route exposes a representative crawlable image signal tied to its own metadata.
+  - Emitted the existing `LodgingBusiness` entity on those pages as well, but gave it a stable localized home-page `@id` and kept its `url` on the locale root so the business entity stays anchored to the main site instead of shifting to a subpage URL.
+  - Extracted shared subpage SEO content into `getSubPageSeoContent()` so route metadata and JSON-LD use the same localized title, description, representative image, and image alt inputs.
+  - Updated representative metadata images:
+    - `about` now uses `/img/private.jpg`
+    - `location` now uses `/img/location2.png`
+  - Refined several remaining overly generic alt strings in:
+    - `src/components/pages/the-helia/about/AboutPageShowcase.tsx`
+    - `src/components/home/HomeIntroView.tsx`
+    - `src/components/service/SpaBrandIntro.tsx`
+- Result:
+  - The `about` and `location` pages now expose cleaner page-specific schema while still referencing the same business entity consistently.
+  - Representative metadata images and visible alt text better match the actual content of those routes, which should strengthen image interpretation and landing-page relevance.
+
+### 43) Manual the-helia navigation preview image reassignment
+- Request: Keep the user-edited `the-helia` navigation image updates as-is and record the adjustment without changing the code again.
+- Change:
+  - In `src/components/header/nav-data.ts`, the main `the-helia` preview image was manually changed from `/img/subhero/thehelia.jpg` to `/img/main/homepage_2.jpg`.
+  - The `about` submenu preview image was also aligned to `/img/main/homepage_2.jpg`.
+  - The `the-helia` main and `about` preview alt text was updated to:
+    - `en`: `Family lounge area at The Helia`
+    - `ko`: `더헬리아 가족 전용 라운지 전경`
+  - The `location` submenu preview image remains pointed at `/img/location2.png` with exterior-focused alt text.
+- Result:
+  - The recorded follow-up state now matches the current user-authored `nav-data.ts` image mapping for the `the-helia` section.
+
+### 44) Helia Spa page refactor to design-system editorial flow
+- Request: Refactor `/service/helia-spa` so the page feels closer to the design system while keeping the existing photo assets, improving section arrangement, and paying closer attention to text alignment.
+- Change:
+  - Rebuilt `src/components/service/HeliaSpaPageContent.tsx` around a clearer editorial sequence:
+    - added a top program-overview section with direct anchors to each treatment block
+    - kept the existing service photos and core detail sections
+    - added a calmer bottom CTA tied to the reservation path
+  - Reworked `src/components/service/SpaBrandIntro.tsx` to better match the warm-neutral brand system:
+    - replaced the earlier center-heavy composition with a left-led editorial split layout
+    - kept the existing THALAC product and spa-room images
+    - moved supporting benefit cards into a more readable bento-style row
+  - Tightened long-form copy alignment so Korean body text stays easier to scan, especially on smaller screens.
+- Result:
+  - The Helia Spa page now reads more like a premium care guide and less like a loose sequence of standalone blocks.
+  - Information hierarchy is clearer before users enter the detailed service galleries, while the original imagery remains intact.
+
+### 45) Helia Spa feature-card density pass (prenatal / postpartum / breast care)
+- Request: Reduce the large empty space inside the benefit cards for prenatal body therapy, postpartum body therapy, and breast care by either enlarging type or adding more visible benefit points.
+- Change:
+  - Updated `src/components/service/SpaServiceBento.tsx` so feature-card titles and list text render slightly larger with a roomier bullet rhythm.
+  - Expanded the benefit lists in `src/components/service/HeliaSpaPageContent.tsx` for:
+    - prenatal body therapy
+    - postpartum body therapy
+    - breast care
+  - Applied the same information-density update to both Korean and English copy so locale behavior remains aligned.
+- Result:
+  - The three treatment sections now fill their feature cards more naturally, with less dead space and stronger first-glance readability.
+
 ## SEO Follow-up Priorities
 
 - Completed in this step:
@@ -717,13 +777,16 @@ Last updated: 2026-04-17
 
 ### Priority 5) Expand structured data only where the content truly matches [Partially completed]
 - Current state:
-  - `LodgingBusiness` has been moved off the locale-wide layout and scoped to the home page.
+  - `LodgingBusiness` has been moved off the locale-wide layout and is now emitted only on content-matching pages:
+    - home
+    - `about`
+    - `location`
   - `FAQPage` structured data has been added to the FAQ route.
+  - `about` and `location` now also emit page-scoped `WebPage` structured data with `primaryImageOfPage`.
 - Why:
   - Structured data is useful only when it accurately reflects the visible content of the page.
   - Additional schema can help, but only when it matches the page type and content one-to-one.
 - Next action:
-  - Decide whether `LodgingBusiness` should also be emitted on the `about` and `location` pages.
   - Consider page-specific schema only where appropriate:
     - `WebPage` + `primaryImageOfPage` for strong image landing pages.
     - Additional business properties such as geo coordinates, postal code, and sameAs only if verified.
@@ -731,6 +794,7 @@ Last updated: 2026-04-17
 ### Priority 6) Improve image SEO [Partially completed]
 - Current state:
   - A first pass has been completed for route-level representative metadata images and several obvious generic alt strings.
+  - A deeper pass has now been applied to the `about` route gallery, the home intro cards, and the spa brand section.
   - Some image-heavy sections still likely contain alt text that can be refined further in a deeper audit.
 - Why:
   - Image discovery and result quality depend on crawlable image markup, descriptive alt text, and strong landing-page metadata.
@@ -777,6 +841,8 @@ Last updated: 2026-04-17
 - `src/app/globals.css`
 - `src/components/home/CinematicHero.tsx`
 - `src/app/[locale]/layout.tsx`
+- `src/app/[locale]/the-helia/about/page.tsx`
+- `src/app/[locale]/the-helia/location/page.tsx`
 - `src/app/robots.ts`
 - `src/app/sitemap.ts`
 - `src/lib/site.ts`
@@ -797,4 +863,4 @@ Last updated: 2026-04-17
 ## Follow-up Notes For Next AI
 - Keep app scope static/content-driven (no auth, no DB).
 - Continue improvements based on new user directives and append each change under `Completed Improvements`.
-- SEO next pass should focus on deeper remaining image-alt audit, optional business schema extension to `about/location`, and Search Console submission.
+- SEO next pass should focus on the remaining deeper image-alt audit, optional geo/sameAs schema enrichment only if verified, and Search Console submission/monitoring.

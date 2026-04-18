@@ -158,7 +158,10 @@ const KOREAN_COPY = {
       description:
         "모든 객실은 독립형 스위트 구조로 설계되어 산모님의 프라이빗한 시간을 온전히 지킬 수 있습니다. \n전 객실 La Cloud 모션베드 & Body Friend 안마의자 & Medela 유축기 구비",
       meta: "VIP · VVIP · PRESTIGE",
-      image: { src: "/img/room/prestige1.jpg", alt: "프라이빗 객실 전경" },
+      image: {
+        src: "/img/room/prestige1.jpg",
+        alt: "더헬리아 프레스티지 스위트 객실 전경",
+      },
       bullets: [
         "독립형 투룸 구조와 라운지",
         "헝가리산 구스 침구 & La Cloud 모션 베드",
@@ -173,7 +176,10 @@ const KOREAN_COPY = {
       description:
         "신생아실 간호 인력이 24시간 상주하며 아가들의 컨디션을 세심하게 살핍니다.",
       meta: "24H Nursery",
-      image: { src: "/img/infantroom.jpg", alt: "더헬리아 신생아실" },
+      image: {
+        src: "/img/infantroom.jpg",
+        alt: "더헬리아 산후조리원 신생아실 케어 공간",
+      },
       bullets: [
         "1:3 케어 비율",
         "1 신생아 1 처치대 구비",
@@ -187,7 +193,10 @@ const KOREAN_COPY = {
       description:
         "산모 몸과 마음이 온전히 회복되는 시간을 선사합니다.",
       meta: "Helia Signature Spa",
-      image: { src: "/img/spa/spa_1.png", alt: "스파 케어 공간" },
+      image: {
+        src: "/img/spa/spa_1.png",
+        alt: "더헬리아 산모 스파 케어 공간",
+      },
       bullets: [
         "산전 및 산후 맞춤 관리",
         "두피 및 헤어 스파",
@@ -210,7 +219,10 @@ const ENGLISH_COPY = {
       description:
         "Independent suite layouts safeguard precious family time. La Cloud motion beds and Hungarian down bedding ensure deep rest throughout your stay.",
       meta: "PRESTIGE · VVIP · VIP",
-      image: { src: "/img/room/prestige1.jpg", alt: "Private suite view" },
+      image: {
+        src: "/img/room/prestige1.jpg",
+        alt: "Prestige suite room at The Helia postpartum care center",
+      },
       bullets: [
         "Two-room layouts with dedicated lounge zone",
         "Hungarian goose bedding & La Cloud motion beds",
@@ -224,7 +236,10 @@ const ENGLISH_COPY = {
       description:
         "Round-the-clock nursing staff oversee each newborn with advanced sterilisation and tailored protocols, keeping rooming-in transitions seamless.",
       meta: "24H Nursery",
-      image: { src: "/img/infantroom.jpg", alt: "Nursery facility" },
+      image: {
+        src: "/img/infantroom.jpg",
+        alt: "Nursery care room at The Helia postpartum care center",
+      },
       bullets: [
         "24-hour nurse presence with 1:3 care ratio",
         "Smart monitoring with real-time updates",
@@ -238,7 +253,10 @@ const ENGLISH_COPY = {
       description:
         "Pre- and postnatal therapies, lymphatic programs, and private treatment rooms offer a serene healing experience tailored to each mother.",
       meta: "Helia Signature Spa",
-      image: { src: "/img/spa/spa_1.png", alt: "Spa and therapy room" },
+      image: {
+        src: "/img/spa/spa_1.png",
+        alt: "Spa care room for mothers at The Helia postpartum care center",
+      },
       bullets: [
         "Prenatal & postpartum body recovery blends",
         "Lymphatic drainage and posture balance work",

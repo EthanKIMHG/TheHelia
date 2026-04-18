@@ -29,6 +29,8 @@ export function DesktopNavPanel({
     return null;
   }
 
+  const shouldBypassOptimization = previewData?.src.startsWith('/') ?? false
+
   const handlePreview = (subItem?: NavSubItem) => {
     onPreviewChange(buildPreviewData(subItem));
   };
@@ -85,11 +87,14 @@ export function DesktopNavPanel({
               <div className="relative flex h-[300px] w-full flex-col overflow-hidden rounded-2xl border-[1px] border-border/40 bg-background">
                 {previewData ? (
                   <Image
+                    key={previewData.src}
                     src={previewData.src}
                     alt={previewData.alt}
                     width={260}
                     height={210}
                     sizes="(min-width: 768px) 260px, 100vw"
+                    priority
+                    unoptimized={shouldBypassOptimization}
                     className="h-[210px] w-full object-cover"
                   />
                 ) : null}

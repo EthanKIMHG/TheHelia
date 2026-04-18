@@ -1,3 +1,5 @@
+'use client'
+
 import { ScrollReveal } from "@/components/common/ScrollReveal";
 import clsx from "clsx";
 import Image from "next/image";
@@ -13,6 +15,7 @@ type SubPageHeroProps = {
 
 export function SubPageHero({ title, imageSrc, imageAlt }: SubPageHeroProps) {
   const secondPath = usePathname().split("/")[2];
+  const shouldBypassOptimization = imageSrc.startsWith('/')
   
   
   return (
@@ -24,6 +27,8 @@ export function SubPageHero({ title, imageSrc, imageAlt }: SubPageHeroProps) {
           quality={100}
           fill
           priority
+          unoptimized={shouldBypassOptimization}
+          sizes="100vw"
           
           className=" object-cover"
           

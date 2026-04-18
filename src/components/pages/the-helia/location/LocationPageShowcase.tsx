@@ -175,12 +175,12 @@ function LocationHeroSection({
                   href={BOOKING_URL}
                   target="_blank"
                   rel="noreferrer"
-                  className="inline-flex items-center justify-center gap-2 rounded-full bg-primary px-6 py-3 text-sm font-semibold text-background transition-colors hover:bg-primary/90 md:justify-self-start"
+                  className="inline-flex items-center justify-center gap-2 rounded-xl bg-primary px-6 py-3 text-sm font-semibold text-background transition-colors hover:bg-primary/90 md:justify-self-start"
                 >
                   {content.buttonLabel}
                   <ArrowUpRight className="h-4 w-4" />
                 </a>
-                <p className="max-w-[28ch] break-keep text-[11px] leading-[1.7] text-foreground/55 md:justify-self-end md:text-right md:text-xs">
+                <p className=" break-keep text-[11px] leading-[1.7] text-foreground/55 md:justify-self-end md:text-right md:text-xs">
                   {content.reservationNote}
                 </p>
               </div>
@@ -189,7 +189,7 @@ function LocationHeroSection({
             <FactCard
               fact={buildingFact}
               className="h-full bg-primary/5"
-              valueClassName="text-[1.8rem] md:text-[2rem] leading-[1.22]"
+              valueClassName="text-xl leading-[1.22]"
               descriptionClassName="max-w-[32ch]"
             />
 
@@ -197,13 +197,13 @@ function LocationHeroSection({
               <FactCard
                 fact={contactFact}
                 className="h-full"
-                valueClassName="font-sans text-[1.9rem] leading-none tracking-[-0.045em] whitespace-nowrap tabular-nums md:text-[2.1rem]"
+                valueClassName="font-sans text-lg leading-none tracking-[-0.045em] whitespace-nowrap tabular-nums md:text-xl"
                 descriptionClassName="max-w-[26ch]"
               />
               <FactCard
                 fact={hoursFact}
                 className="h-full"
-                valueClassName="font-sans text-[1.65rem] leading-[1.08] tracking-[-0.035em] whitespace-nowrap tabular-nums md:text-[1.82rem]"
+                valueClassName="font-sans text-lg leading-[1.08] tracking-[-0.035em] whitespace-nowrap tabular-nums md:text-xl"
                 descriptionClassName="max-w-[26ch]"
               />
             </div>

@@ -24,19 +24,26 @@ type RouteImageOverride = {
   alt: Record<Locale, string>
 }
 
+export type PageSeoContent = {
+  title: string
+  description: string
+  imageUrl: string
+  imageAlt: string
+}
+
 const PAGE_IMAGE_OVERRIDES: Partial<Record<string, RouteImageOverride>> = {
   '/the-helia/about': {
-    src: '/img/main/homepage_1.jpg',
+    src: '/img/private.jpg',
     alt: {
-      ko: '더헬리아 산후조리원 메인 라운지 전경',
-      en: 'Main lounge view of The Helia postpartum care center',
+      ko: '더헬리아 산후조리원 가족 전용 라운지 전경',
+      en: 'Family lounge area at The Helia postpartum care center',
     },
   },
   '/the-helia/location': {
-    src: '/img/headerpreview/location.png',
+    src: '/img/location2.png',
     alt: {
-      ko: '더헬리아 산후조리원 위치 안내 이미지',
-      en: 'Location guide image for The Helia postpartum care center',
+      ko: '더헬리아 산후조리원이 위치한 MS메디컬스퀘어 외관',
+      en: 'Exterior of MS Medical Square where The Helia is located',
     },
   },
   '/reservation': {
@@ -200,23 +207,33 @@ export function buildHomePageMetadata(locale: Locale): Metadata {
   }
 }
 
-export function buildSubPageMetadata(locale: Locale, path: string): Metadata {
+export function getSubPageSeoContent(locale: Locale, path: string): PageSeoContent {
   const pageContent = getSubPageContent(path, locale)
   const imageOverride = PAGE_IMAGE_OVERRIDES[path]
+  const title =
+    pageContent?.title ??
+    (locale === 'ko' ? '더 헬리아 산후조리원' : 'The Helia Postpartum Care Center')
+  const description =
+    pageContent?.copy ??
+    pageContent?.description ??
+    (locale === 'ko'
+      ? '더헬리아 산후조리원의 공간과 프로그램을 확인해 보세요.'
+      : 'Explore the spaces and programs at The Helia postpartum care center.')
+
+  return {
+    title,
+    description,
+    imageUrl: imageOverride?.src ?? pageContent?.imageSrc ?? SITE_IMAGE_URL,
+    imageAlt: imageOverride?.alt[locale] ?? pageContent?.imageAlt ?? title,
+  }
+}
+
+export function buildSubPageMetadata(locale: Locale, path: string): Metadata {
+  const seoContent = getSubPageSeoContent(locale, path)
 
   return buildPageMetadata({
     locale,
     path,
-    title:
-      pageContent?.title ??
-      (locale === 'ko' ? '더 헬리아 산후조리원' : 'The Helia Postpartum Care Center'),
-    description:
-      pageContent?.copy ??
-      pageContent?.description ??
-      (locale === 'ko'
-        ? '더헬리아 산후조리원의 공간과 프로그램을 확인해 보세요.'
-        : 'Explore the spaces and programs at The Helia postpartum care center.'),
-    imageUrl: imageOverride?.src ?? pageContent?.imageSrc ?? SITE_IMAGE_URL,
-    imageAlt: imageOverride?.alt[locale] ?? pageContent?.imageAlt ?? pageContent?.title,
+    ...seoContent,
   })
 }

@@ -17,20 +17,35 @@ function normalizeStructuredDataText(value: string): string {
     .join('\n')
 }
 
-export function buildLodgingBusinessStructuredData(
-  locale: Locale,
-  path: string = '',
-): Record<string, unknown> {
+function buildAbsoluteImageUrl(imageUrl: string): string {
+  return new URL(imageUrl, SITE_URL).toString()
+}
+
+export function getLodgingBusinessStructuredDataId(locale: Locale): string {
+  return `${buildLocalizedAbsoluteUrl(locale)}#lodging-business`
+}
+
+type WebPageStructuredDataInput = {
+  path: string
+  title: string
+  description: string
+  imageUrl: string
+  imageAlt: string
+  aboutId?: string
+}
+
+export function buildLodgingBusinessStructuredData(locale: Locale): Record<string, unknown> {
   const isKo = locale === 'ko'
 
   return {
     '@context': 'https://schema.org',
     '@type': 'LodgingBusiness',
+    '@id': getLodgingBusinessStructuredDataId(locale),
     name: isKo ? '더 헬리아 산후조리원' : 'The Helia Postpartum Care Center',
     description: isKo
       ? '휴식과 회복, 그리고 가족의 시간을 담아내는 프리미엄 산후조리원'
       : 'A premium sanctuary curated for recovery, rest, and cherished family moments.',
-    url: buildLocalizedAbsoluteUrl(locale, path),
+    url: buildLocalizedAbsoluteUrl(locale),
     telephone: '+82-10-5077-3962',
     email: 'thesaintmom@naver.com',
     image: [SITE_IMAGE_URL],
@@ -42,6 +57,39 @@ export function buildLodgingBusinessStructuredData(
       addressLocality: isKo ? '수원시' : 'Suwon-si',
       addressRegion: isKo ? '경기도' : 'Gyeonggi-do',
       addressCountry: 'KR',
+    },
+  }
+}
+
+export function buildWebPageStructuredData(
+  locale: Locale,
+  {
+    path,
+    title,
+    description,
+    imageUrl,
+    imageAlt,
+    aboutId,
+  }: WebPageStructuredDataInput,
+): Record<string, unknown> {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'WebPage',
+    url: buildLocalizedAbsoluteUrl(locale, path),
+    name: title,
+    description,
+    inLanguage: locale === 'ko' ? 'ko-KR' : 'en',
+    ...(aboutId
+      ? {
+          about: {
+            '@id': aboutId,
+          },
+        }
+      : {}),
+    primaryImageOfPage: {
+      '@type': 'ImageObject',
+      contentUrl: buildAbsoluteImageUrl(imageUrl),
+      caption: imageAlt,
     },
   }
 }
