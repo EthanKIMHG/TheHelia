@@ -31,13 +31,13 @@ export function SpaBrandIntro({ copy }: SpaBrandIntroProps) {
   return (
     <ScrollReveal>
       <section className="overflow-hidden rounded-[2.5rem] border border-border/30 bg-gradient-to-br from-primary/10 via-background to-background/95 shadow-sm">
-        <div className="grid gap-8 p-6 md:p-8 lg:grid-cols-[0.9fr_1.1fr] lg:p-10">
-          <div className="space-y-6 text-left">
-            <div className="space-y-4">
+        <div className="grid gap-8 p-6 md:p-8 lg:grid-cols-[0.9fr_1.1fr] lg:p-8">
+          <div className="space-y-8 text-left">
+            <div className="space-y-8">
               <span className="inline-flex rounded-full bg-primary/10 px-4 py-1.5 text-sm font-medium text-primary">
                 {copy.badge}
               </span>
-              <h2 className="whitespace-pre-line break-keep text-3xl font-serif font-semibold leading-[1.24] text-foreground md:text-4xl md:leading-tight">
+              <h2 className="whitespace-pre-line break-keep text-3xl font-serif leading-[1.24] text-foreground md:text-4xl md:leading-tight">
                 {copy.headline}
               </h2>
               <p className="max-w-[34ch] whitespace-pre-line break-keep text-sm leading-[1.9] text-foreground/78 md:max-w-[42ch] md:text-base">
@@ -67,7 +67,7 @@ export function SpaBrandIntro({ copy }: SpaBrandIntroProps) {
 
           <div className="space-y-6">
             <div className="">
-              <div className="relative h-72 overflow-hidden rounded-[2rem] border border-border/30 shadow-sm md:h-[420px]">
+              <div className="relative h-60 overflow-hidden rounded-[2rem] border border-border/30 shadow-sm md:h-[420px]">
                 <Image
                   src="/img/spa/thalac.png"
                   alt="THALAC premium spa products used at The Helia"
@@ -89,7 +89,7 @@ export function SpaBrandIntro({ copy }: SpaBrandIntroProps) {
                     <div className="flex h-11 w-11 items-center justify-center rounded-2xl bg-primary/10 text-primary dark:bg-[#333231]">
                       <Icon className="h-5 w-5" />
                     </div>
-                    <h4 className="mt-4 break-keep text-lg font-medium text-foreground">
+                    <h4 className="mt-4 break-keep text-lg font-semibold text-foreground">
                       {feature.title}
                     </h4>
                     <p className="mt-2 break-keep text-sm leading-[1.8] text-foreground/70">

@@ -216,7 +216,7 @@ function SpaProgramOverview({
               <p className="text-sm font-semibold uppercase tracking-[0.3em] text-primary font-playfair italic">
                 {copy.badge}
               </p>
-              <h2 className="max-w-[14ch] break-keep text-3xl font-semibold leading-[1.2] text-foreground md:max-w-[12ch] md:text-5xl md:leading-[1.12] font-serif">
+              <h2 className="max-w-[14ch] break-keep text-3xl leading-[1.2] text-foreground md:max-w-[12ch] md:text-4xl md:leading-[1.12] font-serif">
                 {copy.title}
               </h2>
               <p className="max-w-[34ch] break-keep text-sm leading-[1.9] text-foreground/75 md:max-w-[42ch] md:text-base">
@@ -250,7 +250,7 @@ function SpaProgramOverview({
                   </span>
                 </div>
 
-                <h3 className="mt-5 max-w-[16ch] break-keep text-2xl font-semibold leading-[1.24] text-foreground font-serif">
+                <h3 className="mt-5 max-w-[16ch] break-keep text-xl font-semibold leading-[1.24] text-foreground font-serif">
                   {title}
                 </h3>
                 <p className="mt-3 break-keep text-sm leading-[1.8] text-foreground/72">

@@ -101,7 +101,7 @@ export function HomeExperienceStacked({
           <span className="text-xs font-semibold uppercase tracking-[0.3em] text-primary/70">
             {highlight.meta}
           </span>
-          <h3 className="text-3xl font-serif font-semibold text-foreground md:text-5xl">
+          <h3 className="text-3xl font-serif font-semibold text-foreground md:text-4xl">
             {highlight.title}
           </h3>
           <p className="text-base leading-relaxed text-foreground/85 md:text-lg">
@@ -284,7 +284,7 @@ export function HomeExperienceGallery({
             {highlight.meta}
           </span>
           <motion.h3
-            className="text-3xl font-semibold text-foreground md:text-5xl"
+            className="text-3xl font-semibold text-foreground md:text-4xl"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.4 }}

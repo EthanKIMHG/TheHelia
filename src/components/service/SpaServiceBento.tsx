@@ -88,11 +88,11 @@ export function SpaServiceBento({
         </div>
 
         {/* Bento Grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 h-auto lg:h-[600px]">
+        <div className="grid grid-cols-1 gap-6 lg:grid-cols-12">
           {/* Main Image Card (Carousel) */}
           <div
             className={cn(
-              "relative rounded-[2.5rem] overflow-hidden group min-h-[400px] lg:min-h-0 bg-gray-100 dark:bg-gray-800",
+              "relative rounded-[2.5rem] overflow-hidden group min-h-[400px] bg-gray-100 dark:bg-gray-800 lg:h-full lg:min-h-0",
               reversed ? "lg:col-span-7 lg:order-2" : "lg:col-span-7 lg:order-1"
             )}
           >
@@ -198,7 +198,7 @@ export function SpaServiceBento({
             {features.map((feature, index) => (
               <div
                 key={index}
-                className="flex-1 bg-white dark:bg-[#2A2928] rounded-[2rem] p-8 border border-border/50 shadow-sm hover:shadow-md transition-all hover:-translate-y-1 group"
+                className="bg-white dark:bg-[#2A2928] rounded-[2rem] p-8 border border-border/50 shadow-sm hover:shadow-md transition-all hover:-translate-y-1 group"
               >
                 <div className="flex items-center justify-between mb-4">
                   <h4 className="text-[1.45rem] font-serif font-medium leading-snug text-foreground md:text-[1.55rem]">

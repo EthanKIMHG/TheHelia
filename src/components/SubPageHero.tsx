@@ -37,7 +37,7 @@ export function SubPageHero({ title, imageSrc, imageAlt }: SubPageHeroProps) {
           "hidden": secondPath === "the-helia"
         })}>
           <ScrollReveal>
-            <span className={"block max-w-[14ch] break-keep text-2xl font-serif leading-tight tracking-wider md:max-w-none md:text-5xl"}>
+            <span className={"block max-w-[14ch] break-keep text-2xl font-serif leading-tight tracking-wider md:max-w-none md:text-4xl"}>
               {title}
             </span>
           </ScrollReveal>

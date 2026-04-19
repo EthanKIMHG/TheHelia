@@ -53,7 +53,7 @@ export function NewbornStrengths({ locale }: { locale: Locale }) {
                 <span className="block mb-4 font-sans text-sm font-bold tracking-[0.2em] text-primary uppercase">
                     {locale === "ko" ? "더헬리아 스탠다드" : "The Helia Standard"}
                 </span>
-                <h2 className="font-serif text-4xl font-bold leading-[1.25] break-keep text-foreground md:leading-tight md:text-5xl">
+                <h2 className="font-serif text-4xl font-bold leading-[1.25] break-keep text-foreground md:leading-tight md:text-4xl">
                     {locale === "ko" ? "타협하지 않는 프리미엄 케어" : "Uncompromising Premium Care"}
                 </h2>
              </div>

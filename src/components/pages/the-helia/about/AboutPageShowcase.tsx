@@ -400,7 +400,7 @@ function VideoSection({ copy }: { copy: VideoCopy }) {
             <p className="text-sm font-semibold uppercase tracking-[0.3em] text-primary-foreground/80 font-playfair italic mb-2">
               {copy.badge}
             </p>
-            <h2 className="text-3xl font-semibold md:text-5xl font-serif mb-2">
+            <h2 className="text-3xl font-semibold md:text-4xl font-serif mb-2">
               {copy.title}
             </h2>
             <p className="text-base text-white/80 md:text-lg max-w-2xl">

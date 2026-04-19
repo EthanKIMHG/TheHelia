@@ -116,7 +116,7 @@ function LocationHeroSection({
               <p className="text-sm font-semibold uppercase tracking-[0.3em] text-primary font-playfair italic">
                 {content.heroBadge}
               </p>
-              <h2 className="max-w-[13ch] text-balance break-keep text-3xl font-semibold leading-[1.18] text-foreground md:text-5xl md:leading-[1.12] font-serif">
+              <h2 className="max-w-[13ch] text-balance break-keep text-3xl leading-[1.18] text-foreground md:text-5xl md:leading-[1.12] font-serif">
                 {content.heroTitle}
               </h2>
               <p className="max-w-[54ch] text-balance break-keep text-sm leading-[1.85] text-foreground/75 md:text-base">
@@ -160,10 +160,10 @@ function LocationHeroSection({
                     <p className="text-sm font-semibold uppercase tracking-[0.18em] text-primary/80">
                       {content.reservationEyebrow}
                     </p>
-                    <p className="max-w-[16ch] text-balance break-keep text-2xl font-semibold leading-[1.24] text-foreground md:text-[2rem]">
+                    <p className="max-w-[16ch] text-balance break-keep text-2xl font-semibold leading-[1.24] text-foreground md:text-[1.7rem]">
                       {content.reservationTitle}
                     </p>
-                    <p className="max-w-[40ch] break-keep text-[13px] leading-[1.78] text-foreground/70 md:text-sm">
+                    <p className="max-w-[40ch] break-keep text-[13px] leading-[1.78] text-foreground/70 md:text-base">
                       {content.reservationDescription}
                     </p>
                   </div>
@@ -422,7 +422,7 @@ function getLocationContent(locale: Locale): LocationPageContent {
   return {
     heroBadge: isKo ? '방문 안내' : 'Visit & Arrival',
     heroTitle: isKo
-      ? '더헬리아 방문 상담을 더 편안하게 준비하세요'
+      ? '더 헬리아 방문 상담을 더 편안하게 준비하세요'
       : 'Plan a calm and confident visit to The Helia',
     heroSubtitle: isKo
       ? '사전 예약부터 도착 동선까지, 처음 방문하시는 분도 부담 없이 오실 수 있도록 핵심 정보만 정리했습니다.'

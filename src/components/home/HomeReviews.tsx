@@ -61,7 +61,7 @@ export function HomeReviews({ locale, onSectionMount }: HomeReviewsProps) {
               <Star className="w-3.5 h-3.5 mr-1.5 fill-current" />
               {isKo ? "Reviews" : "Reviews"}
             </span>
-            <h2 className="break-keep text-3xl font-serif font-semibold leading-tight text-foreground md:text-4xl lg:text-5xl">
+            <h2 className="break-keep text-3xl font-serif font-semibold leading-tight text-foreground md:text-4xl lg:text-4xl">
               {isKo ? (
                 <>
                   실제 이용하신 분들의<br />

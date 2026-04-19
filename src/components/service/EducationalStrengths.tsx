@@ -23,7 +23,7 @@ export function EducationalStrengths({ locale }: { locale: Locale }) {
             <div className="mb-6 flex h-16 w-16 items-center justify-center rounded-full bg-primary/10 text-primary">
                 <Sparkles className="h-8 w-8" />
             </div>
-            <h2 className="font-serif text-3xl font-bold leading-[1.26] break-keep md:leading-tight md:text-4xl lg:text-5xl text-foreground">
+            <h2 className="font-serif text-3xl font-bold leading-[1.26] break-keep md:leading-tight md:text-4xl lg:text-4xl text-foreground">
               {isKo ? "새로운 영감을 주는" : "Inspiring"} <br />
               <span className="text-foreground/85">{isKo ? "헬리아의 교육" : "The Helia Class"}</span>
             </h2>

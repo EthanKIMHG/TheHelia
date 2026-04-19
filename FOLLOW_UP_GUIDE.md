@@ -703,6 +703,89 @@ Last updated: 2026-04-17
 - Result:
   - The three treatment sections now fill their feature cards more naturally, with less dead space and stronger first-glance readability.
 
+### 46) Helia Spa locale-safe feature-card height fix
+- Request: Fix the broken desktop layout on `/service/helia-spa` where Korean and English text-length differences caused the spa feature cards to overflow into the CTA area.
+- Change:
+  - Updated `src/components/service/SpaServiceBento.tsx` to remove the fixed desktop section height that had been locking the image-and-card grid to `600px`.
+  - Kept the image panel visually substantial by converting the old fixed height into a desktop `min-height` on the carousel card instead of a hard section cap.
+  - Removed the equal-height `flex-1` behavior from the feature cards so each locale can expand naturally based on its own copy length.
+- Result:
+  - The prenatal, postpartum, and breast-care sections now handle longer English lines and denser Korean copy without overlapping the CTA block below.
+  - Layout behavior is more stable across locales while preserving the same image assets and overall visual structure.
+
+### 47) Helia Spa desktop image-height sync with feature cards
+- Request: Make the prenatal, postpartum, and breast-care image panel match the combined height of the two feature cards on desktop instead of keeping its own separate fixed visual height.
+- Change:
+  - Updated `src/components/service/SpaServiceBento.tsx` so the desktop bento grid uses the grid row's default stretch behavior again.
+  - Changed the image panel from a desktop fixed/min-height approach to `lg:h-full lg:min-h-0`, allowing it to inherit the actual height created by the adjacent feature-card column.
+- Result:
+  - The left image and right feature stack now stay visually aligned in height on desktop, which makes the spa sections feel more balanced across both Korean and English layouts.
+
+### 48) Baby Spa page refactor to design-system care-guide flow
+- Request: Improve `/service/baby-spa` so it feels more aligned with the current design system, while keeping the existing photo assets and making text alignment more intentional.
+- Change:
+  - Rebuilt `src/components/service/BabySpaPageContent.tsx` into a clearer sequence:
+    - added a top overview section with quick navigation cards
+    - kept the existing baby-spa gallery and core benefit bento
+    - added a bottom consultation CTA connected to the reservation path
+  - Reworked the old strengths area into a more editorial two-part layout:
+    - a first block focused on the private one-to-one experience and the Suwon-only positioning
+    - a second block focused on organic care products and hands-on bathing education
+  - Kept the existing baby-spa and strength images, but moved them into warmer split layouts with stronger left-aligned reading rhythm and cleaner section hierarchy.
+  - Refined Korean and English copy so both locales support the same care-guide tone and section structure.
+- Result:
+  - The Baby Spa page now reads more like a premium family-care guide instead of a short service summary.
+  - Information flow, text alignment, and CTA structure are more consistent with the Helia Spa refactor and the broader The Helia design system.
+
+### 49) Global floating reservation CTA rollout
+- Request: Apply the floating reservation CTA that had been used on the homepage to the entire site so users can jump to the reservation page from anywhere.
+- Change:
+  - Extracted the homepage floating reservation button into `src/components/common/FloatingReservationCta.tsx`.
+  - Mounted the shared CTA in `src/components/LocaleShell.tsx` so it appears across locale pages instead of only inside the home page content.
+  - Removed the old homepage-only CTA block from `src/components/home/HomePageContent.tsx` to avoid duplicate floating buttons.
+- Result:
+  - The same floating reservation entry point now stays available across the site with the existing light/dark styling and locale-aware label copy.
+  - Homepage behavior is preserved visually, but the CTA is now managed from one shared location.
+
+### 50) Guest reviews page refactor to design-system editorial layout
+- Request: Improve `/stories/guest-reviews` so it feels more aligned with the current design system while preserving the real guest-review source links.
+- Change:
+  - Rebuilt `src/components/stories/GuestReviewsPageContent.tsx` into a calmer editorial sequence:
+    - added a top overview section that explains how to read the curated reviews
+    - surfaced summary stats for review count, coverage area, and stay types
+    - split the page into a featured-review section and a broader review archive section
+  - Replaced the previous masonry-style card layout with a more stable grid so the page feels less like a review platform and more like a premium care guide.
+  - Enriched each review card with:
+    - a short headline
+    - category label
+    - highlight chips for faster scanning
+    - a clearer original-review CTA while preserving the external source links
+  - Kept the existing review sources and thumbnails, but restyled the cards with warmer token-based surfaces, stronger left-aligned typography, and more consistent hierarchy.
+- Result:
+  - The guest reviews page now feels more in-family with the Helia/Baby Spa refactors and the overall The Helia design system.
+  - Users can scan review themes faster without losing access to the original blog posts.
+
+### 51) Guest reviews overview whitespace balance pass
+- Request: Improve the overly empty top overview area on `/stories/guest-reviews`, where the stat cards felt too tall and sparse.
+- Change:
+  - Updated the `ReviewsOverview` layout in `src/components/stories/GuestReviewsPageContent.tsx` so the outer split section no longer visually forces the stat area into tall empty columns.
+  - Reworked the right-side summary area into a more balanced two-column composition:
+    - first two stat cards stay compact
+    - the last stat card spans wider instead of growing tall
+    - the review-curation note moved into its own wide supporting card beneath the stats
+  - Slightly tightened the left-side title width so the introductory block and the summary cards feel more proportionate.
+- Result:
+  - The guest reviews overview now uses the space more intentionally and feels less vertically empty while keeping the same content.
+  - The section reads more like a designed editorial introduction and less like a stretched dashboard summary.
+
+### 52) Guest reviews featured-story priority change
+- Request: In the `먼저 읽어보면 좋은 후기` section, surface the `serrri` and `fullcart` blog reviews first.
+- Change:
+  - Updated the featured-review selection logic in `src/components/stories/GuestReviewsPageContent.tsx` so the featured section now explicitly pulls review `id: 7` and `id: 8` instead of using the first two array items.
+  - The remaining reviews continue to render in the archive grid without changing their source data.
+- Result:
+  - The featured guest-review area now prioritizes the requested two blog posts while preserving the rest of the review page structure.
+
 ## SEO Follow-up Priorities
 
 - Completed in this step:

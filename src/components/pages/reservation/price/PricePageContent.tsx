@@ -33,7 +33,7 @@ function PriceHeader({ isKo }: { isKo: boolean }) {
           </span>
           {isKo ? "2025 프로모션" : "2025 Promotion"}
         </div>
-        <h2 className="text-5xl font-bold font-serif leading-[1.16] break-keep tracking-tight text-foreground md:text-6xl md:leading-tight lg:text-7xl dark:text-foreground">
+        <h2 className="text-4xl font-bold font-serif leading-[1.16] break-keep tracking-tight text-foreground md:text-6xl md:leading-tight lg:text-7xl dark:text-foreground">
           {isKo ? (
             <>
               Premium <span className="text-primary italic font-light">Recovery</span>
@@ -228,7 +228,7 @@ function MainPriceSection({ isKo }: { isKo: boolean }) {
                     {plan.desc}
                   </p>
                   <div className="flex items-baseline gap-1.5">
-                    <span className={`text-5xl font-bold font-serif tracking-tight ${isPrestige ? "text-background dark:text-foreground" : "text-foreground dark:text-foreground"}`}>
+                    <span className={`text-4xl font-bold font-serif tracking-tight ${isPrestige ? "text-background dark:text-foreground" : "text-foreground dark:text-foreground"}`}>
                       {plan.price}
                     </span>
                     <span className={`text-base font-medium ${isPrestige ? "text-background/80 dark:text-foreground/85" : "text-foreground/80 dark:text-foreground/85"}`}>

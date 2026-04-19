@@ -46,7 +46,7 @@ export function NewbornProcess({ locale }: { locale: Locale }) {
                     <span className="block mb-4 font-sans text-sm font-bold tracking-[0.2em] text-primary uppercase">
                         Process
                     </span>
-                    <h2 className="font-serif text-4xl font-bold leading-[1.25] break-keep text-foreground md:leading-tight md:text-5xl">
+                    <h2 className="font-serif text-4xl font-bold leading-[1.25] break-keep text-foreground md:leading-tight md:text-4xl">
                         {locale === "ko" ? "체계적인 입소 프로세스" : "Systematic Admission Process"}
                     </h2>
                 </div>

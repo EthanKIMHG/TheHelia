@@ -90,7 +90,7 @@ export function HomePrograms({
                 <Sparkles className="mr-1.5 h-3.5 w-3.5 fill-current" />
                 {copy.badgeLabel}
               </span>
-              <h2 className="mb-4 break-keep text-3xl font-serif font-semibold leading-tight text-foreground md:text-4xl lg:text-5xl">
+              <h2 className="mb-4 break-keep text-3xl font-serif leading-tight text-foreground md:text-4xl lg:text-4xl">
                 {copy.title}
               </h2>
               <p className="max-w-[32ch] break-keep text-lg text-foreground/85 md:mx-auto md:max-w-3xl">

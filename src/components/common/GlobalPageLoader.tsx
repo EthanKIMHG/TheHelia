@@ -33,7 +33,7 @@ export function GlobalPageLoader() {
                 transition={{ duration: 0.8, ease: "easeOut" }}
                 className="flex flex-col items-center"
             >
-                <span className="font-serif text-4xl md:text-5xl lg:text-6xl text-primary tracking-widest">
+                <span className="font-serif text-4xl md:text-4xl lg:text-6xl text-primary tracking-widest">
                     The Helia
                 </span>
                 <span className="mt-4 font-sans text-xs md:text-sm text-foreground/85 tracking-[0.3em] uppercase">

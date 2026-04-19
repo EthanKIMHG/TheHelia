@@ -50,7 +50,7 @@ export function HomeFitGuide({
               {copy.badgeLabel}
             </span>
 
-            <h2 className="max-w-[11ch] break-keep text-3xl font-serif font-semibold leading-[1.2] text-foreground md:max-w-[10ch] md:text-5xl">
+            <h2 className="max-w-[11ch] break-keep text-3xl font-serif font-semibold leading-[1.2] text-foreground md:max-w-[10ch] md:text-4xl">
               {copy.title}
             </h2>
 
