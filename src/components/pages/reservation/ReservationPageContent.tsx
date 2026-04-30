@@ -246,7 +246,7 @@ function getReservationCopy(locale: Locale) {
       badge: isKo ? "상담 예약 안내" : "Reservation Guidance",
       title: isKo ? "방문 상담은 사전 예약제로 진행됩니다" : "Consultations Are By Appointment Only",
       subtitle: isKo
-        ? "전화 또는 카카오톡으로 편안하게 문의를 남겨 주세요. 담당 매니저가 빠르게 도와드립니다."
+        ? "네이버 플레이스를 통해 투어 상담 예약을 해주세요. 관련 문의는 전화 또는 카카오톡으로 남겨주세요."
         : "Reach out by phone or KakaoTalk—our concierge team gets back to you promptly with available slots.",
       channels: [
         {
@@ -293,8 +293,8 @@ function getReservationCopy(locale: Locale) {
           label: isKo ? "Step 1" : "Step 1",
           title: isKo ? "문의 접수" : "Initial Inquiry",
           description: isKo
-            ? "전화 또는 카카오톡으로 희망 일정을 알려주세요."
-            : "Share your preferred consultation date via phone or KakaoTalk.",
+            ? "네이버 플레이스를 통해 방문하고자 하는 일자와 시간을 선택 후 예약해주세요.."
+            : "Please choose your preferred visit date and time through Naver Place to make a reservation.",
           tips: isKo
             ? ["산모 성함과 출산 예정일을 함께 알려주세요.", "상담 목적(투어, 가격 문의 등)을 남겨주세요."]
             : ["Provide mother’s name and expected due date.", "Let us know your focus—tour, pricing, or care details."],
@@ -303,8 +303,8 @@ function getReservationCopy(locale: Locale) {
           label: isKo ? "Step 2" : "Step 2",
           title: isKo ? "일정 확정" : "Schedule Confirmation",
           description: isKo
-            ? "담당 매니저가 가능 일정을 확인 후 확정 안내 드립니다."
-            : "Our manager confirms availability and locks in your visit.",
+            ? "담당자가 예약내역 확인후 예약확정 안내 드립니다."
+            : "Our team reviews your reservation details and confirms your booking.",
           tips: isKo
             ? ["원하시는 시간대를 말씀해 주세요.", "방문 인원과 동반 가족 여부를 알려주세요."]
             : ["Share preferred time windows.", "Tell us who will accompany you on the visit."],
@@ -313,8 +313,8 @@ function getReservationCopy(locale: Locale) {
           label: isKo ? "Step 3" : "Step 3",
           title: isKo ? "방문 상담" : "On-Site Consultation",
           description: isKo
-            ? "1층 안내 데스크에서 등록 후, 라운지에서 프라이빗 상담이 진행됩니다."
-            : "Check in at the ground-floor desk; a private lounge consultation follows.",
+            ? "5층 입구에서 소독 및 위생복 착용 후 조리원 시설 내부 투어 및 상담을 진행합니다."
+            : "After sanitizing and putting on protective clothing at the 5th-floor entrance, you will tour the center and have a consultation.",
           tips: isKo
             ? ["예약 시간 10분 전에 도착해 주세요.", "필요시 아기와 동행 여부를 미리 알려주세요."]
             : ["Arrive about 10 minutes early.", "Let us know if baby or family will come along."],

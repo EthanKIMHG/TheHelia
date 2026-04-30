@@ -3,10 +3,10 @@
 import { ScrollReveal } from '@/components/common/ScrollReveal'
 import type { Locale } from '@/components/header/types'
 import {
+  Baby,
   BedDouble,
+  BookUser,
   Handshake,
-  Route,
-  ShieldCheck,
   Sparkles,
   type LucideIcon,
 } from 'lucide-react'
@@ -109,31 +109,31 @@ const KOREAN_COPY: FitGuideCopy = {
     '위 항목이 중요하시다면, 이어지는 섹션에서 더헬리아의 강점을 더 자세히 살펴보셔도 좋습니다.',
   items: [
     {
-      label: '회복 동선',
-      title: '병원과 가까운 조리원을 찾는 분',
+      label: '부모 준비',
+      title: '부모가 되기 위한 배움을 찾는분',
       description:
-        '퇴원 직후 이동부터 산후 검진까지, 몸이 힘든 시기에 동선이 편안한 곳을 중요하게 보신다면.',
-      icon: Route,
+        '분유 조유, 트름시키기, 기저귀갈이 등 신생아 케어에 필요한 기본적인 교육을 원하신다면.',
+      icon: BookUser,
     },
     {
       label: '신생아 케어',
-      title: '신생아실 운영을 꼼꼼히 보는 분',
+      title: '위생적인 신생아실을 찾는 분',
       description:
-        '초기 관찰과 위생 시스템, 분리 운영처럼 아기 케어의 기본 구조를 가장 먼저 확인하신다면.',
-      icon: ShieldCheck,
+        '사전 관찰실 운영, 개별 처치대 사용, 개별 욕조 사용 등 위생적으로 우리 아가를 케어하는 공간을 원하신다면.',
+      icon: Baby,
     },
     {
       label: '객실·회복',
-      title: '회복 설비와 객실 컨디션을 중요하게 보는 분',
+      title: '프라이빗한 회복공간을 찾는 분',
       description:
-        '모션베드와 객실 편의성, 가슴관리와 산후 케어까지 머무는 동안의 회복감을 중요하게 생각하신다면.',
+        '산후 회복에 필수적인 비품이 구비되어 있으며, 가슴관리 및 산후케어까지 온전한 쉼에 집중하고 싶으시다면.',
       icon: BedDouble,
     },
     {
       label: '분위기',
-      title: '초산모도 편안한 분위기를 원하는 분',
+      title: '편안한 분위기를 원하시는 분',
       description:
-        '과한 분위기보다는 차분한 안내와 따뜻한 응대, 편안하게 적응할 수 있는 환경을 원하신다면.',
+        '북적이고 어수선하지 않은 공간에서 차분하고 따뜻한 쉼을 원하신다면',
       icon: Handshake,
     },
   ],
@@ -148,31 +148,31 @@ const ENGLISH_COPY: FitGuideCopy = {
     'If these points feel important, the next section will show The Helia’s strengths in more detail.',
   items: [
     {
-      label: 'Recovery Flow',
-      title: 'You want a center close to the hospital',
+      label: 'Parent Preparation',
+      title: 'You are looking for practical preparation for parenthood',
       description:
-        'Especially if easy movement after discharge and simpler follow-up visits matter to you during early recovery.',
-      icon: Route,
+        'If you want foundational education for newborn care, including formula preparation, burping, and diaper changes.',
+      icon: BookUser,
     },
     {
       label: 'Nursery Care',
-      title: 'You look closely at nursery operation',
+      title: 'You are looking for a hygienic nursery',
       description:
-        'Especially if observation flow, hygiene standards, and newborn care structure are the first things you check.',
-      icon: ShieldCheck,
+        'If you want a hygienic space for your baby, with a preliminary observation room, individual treatment stations, and individual bathtubs.',
+      icon: Baby,
     },
     {
-      label: 'Room Comfort',
-      title: 'You care about room quality and recovery setup',
+      label: 'Room & Recovery',
+      title: 'You are looking for a private recovery space',
       description:
-        'Especially if motion beds, in-room comfort, and recovery care shape how you evaluate the full stay experience.',
+        'If you want essential postpartum recovery amenities, plus breast care and postpartum care, so you can focus fully on rest.',
       icon: BedDouble,
     },
     {
       label: 'Atmosphere',
-      title: 'You want a calm environment for first-time motherhood',
+      title: 'You want a comfortable atmosphere',
       description:
-        'Especially if you prefer gentle guidance, warm care, and a space that feels supportive without being overwhelming.',
+        'If you want calm, warm rest in a space that does not feel crowded or hectic.',
       icon: Handshake,
     },
   ],
