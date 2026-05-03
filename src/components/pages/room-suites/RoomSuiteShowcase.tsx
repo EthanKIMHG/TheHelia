@@ -4,14 +4,14 @@ import { ScrollReveal } from "@/components/common/ScrollReveal";
 import type { Locale } from "@/components/header/types";
 import { useOptionalThemeLocale } from "@/context/theme-locale-context";
 import {
-    Baby,
-    BedDouble, ChevronLeft,
-    ChevronRight,
-    Clock,
-    Coffee, Heart, LaptopMinimal,
-    Sofa,
-    Sparkles,
-    Utensils
+  Baby,
+  BedDouble, ChevronLeft,
+  ChevronRight,
+  Clock,
+  Coffee, Heart, LaptopMinimal,
+  Sofa,
+  Sparkles,
+  Utensils
 } from "lucide-react";
 import Image from "next/image";
 import { useMemo, useState } from "react";
@@ -746,14 +746,12 @@ function buildAmenityCopy(locale: Locale) {
         title: isKo ? "웰컴 & 굿바이 기프트" : "Welcome & Goodbye Gifts",
         items: isKo
           ? [
-              "웰컴 드링크 (논알콜 칵테일) 2잔",
-              "웰컴 기프트 (머그 텀블러, 생리대, 수유패드, 베베숲 물티슈, 호두강정 등)",
-              "굿바이 기프트 (아기 욕조, 젖병, 아기 이불, 리베로 기저귀, 배꼽 소독제 등)",
+              "웰컴 기프트 (머그 텀블러, 생리대, 베베숲 물티슈, 호두강정 등)",
+              "굿바이 기프트 (아기 욕조, 젖병, 아기 이불, 가재손수건 등)",
             ]
           : [
-              "Welcome drinks (two non-alcohol mocktails)",
-              "Welcome gift set (mug tumbler, sanitary pads, nursing pads, wet wipes, walnut sweets)",
-              "Goodbye gift set (baby bathtub, bottle, baby blanket, Libero diapers, navel antiseptic)",
+              "Welcome gift set (mug tumbler, sanitary pads, wet wipes, walnut sweets)",
+              "Goodbye gift set (baby bathtub, bottle, baby blanket, baby towel)",
             ],
       },
       {
@@ -764,28 +762,29 @@ function buildAmenityCopy(locale: Locale) {
               "수건 4장 (발수건 1장 포함)",
               "수유 쿠션 & 회음부 방석",
               "산모복 2벌, 남편 생활복 1벌",
+              "실내용 슬리퍼"
             ]
           : [
               "Molton Brown four-piece amenity set",
               "Four towels including one bath mat",
               "Nursing cushion & perineal pillow",
               "Two sets of mother wear & one partner loungewear",
+              "Indoor Slipers"
             ],
       },
       {
         title: isKo ? "케어 & 위생" : "Care & Hygiene",
         items: isKo
           ? [
-              "수유패드 · 회음부 케어 키트",
+              
               "손 소독제 및 티슈",
-              "산모 전용 워시 키트",
-              "수유 기록 노트 & 필기 도구",
+              
+              
             ]
           : [
-              "Nursing pads & perineal care kit",
+              
               "Hand sanitiser and wipes",
-              "Mother-exclusive cleansing kit",
-              "Nursing journal & stationery",
+              
             ],
       },
     ],

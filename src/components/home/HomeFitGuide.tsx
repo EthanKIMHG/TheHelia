@@ -109,19 +109,20 @@ const KOREAN_COPY: FitGuideCopy = {
     '위 항목이 중요하시다면, 이어지는 섹션에서 더헬리아의 강점을 더 자세히 살펴보셔도 좋습니다.',
   items: [
     {
-      label: '부모 준비',
-      title: '부모가 되기 위한 배움을 찾는분',
-      description:
-        '분유 조유, 트름시키기, 기저귀갈이 등 신생아 케어에 필요한 기본적인 교육을 원하신다면.',
-      icon: BookUser,
-    },
-    {
       label: '신생아 케어',
       title: '위생적인 신생아실을 찾는 분',
       description:
         '사전 관찰실 운영, 개별 처치대 사용, 개별 욕조 사용 등 위생적으로 우리 아가를 케어하는 공간을 원하신다면.',
       icon: Baby,
     },
+    {
+      label: '부모 준비',
+      title: '부모가 되기 위한 배움을 찾는분',
+      description:
+        '분유 조유, 트름시키기, 기저귀갈이 등 신생아 케어에 필요한 기본적인 교육을 원하신다면.',
+      icon: BookUser,
+    },
+    
     {
       label: '객실·회복',
       title: '프라이빗한 회복공간을 찾는 분',
@@ -148,19 +149,20 @@ const ENGLISH_COPY: FitGuideCopy = {
     'If these points feel important, the next section will show The Helia’s strengths in more detail.',
   items: [
     {
-      label: 'Parent Preparation',
-      title: 'You are looking for practical preparation for parenthood',
-      description:
-        'If you want foundational education for newborn care, including formula preparation, burping, and diaper changes.',
-      icon: BookUser,
-    },
-    {
       label: 'Nursery Care',
       title: 'You are looking for a hygienic nursery',
       description:
         'If you want a hygienic space for your baby, with a preliminary observation room, individual treatment stations, and individual bathtubs.',
       icon: Baby,
     },
+    {
+      label: 'Parent Preparation',
+      title: 'You are looking for practical preparation for parenthood',
+      description:
+        'If you want foundational education for newborn care, including formula preparation, burping, and diaper changes.',
+      icon: BookUser,
+    },
+    
     {
       label: 'Room & Recovery',
       title: 'You are looking for a private recovery space',

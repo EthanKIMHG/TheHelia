@@ -148,9 +148,8 @@ export function HeliaSpaPageContent() {
 
   return (
     <div className="flex w-full flex-col gap-16 pb-24">
-      <SpaProgramOverview copy={copy.overview} cards={programCards} />
-
       <SpaBrandIntro copy={copy} />
+      <SpaProgramOverview copy={copy.overview} cards={programCards} />
 
       <div className="mt-4 flex flex-col gap-24">
         <div id="head-spa" className="scroll-mt-28">
@@ -210,31 +209,16 @@ function SpaProgramOverview({
   return (
     <ScrollReveal>
       <section className="overflow-hidden rounded-[2.5rem] border border-border/30 bg-gradient-to-br from-primary/10 via-background to-background/95 shadow-sm">
-        <div className="grid gap-8 p-6 md:p-8 lg:grid-cols-[0.88fr_1.12fr] lg:p-10">
-          <div className="space-y-6 text-left">
-            <div className="space-y-4">
-              <p className="text-sm font-semibold uppercase tracking-[0.3em] text-primary font-playfair italic">
-                {copy.badge}
-              </p>
-              <h2 className="max-w-[14ch] break-keep text-3xl leading-[1.2] text-foreground md:max-w-[12ch] md:text-4xl md:leading-[1.12] font-serif">
-                {copy.title}
-              </h2>
-              <p className="max-w-[34ch] break-keep text-sm leading-[1.9] text-foreground/75 md:max-w-[42ch] md:text-base">
-                {copy.description}
-              </p>
-            </div>
-
-            <div className="rounded-[1.75rem] border border-border/30 bg-white/80 p-5 shadow-sm backdrop-blur-sm dark:bg-[#2A2928]/60">
-              <p className="text-sm font-semibold uppercase tracking-[0.18em] text-primary/80">
-                {copy.noteTitle}
-              </p>
-              <p className="mt-3 break-keep text-sm leading-[1.85] text-foreground/75 md:text-base">
-                {copy.noteBody}
-              </p>
-            </div>
-          </div>
-
-          <div className="grid gap-4 md:grid-cols-2">
+        <div className="p-6 md:p-8 lg:p-10">
+          <p className="text-sm font-semibold uppercase tracking-[0.28em] text-primary font-playfair italic">
+            {copy.badge}
+          </p>
+          <h2 className="mt-3 break-keep text-3xl leading-[1.24] text-foreground md:text-3xl md:leading-tight font-serif">
+            {copy.title}
+          </h2>
+        </div>
+        <div className="grid gap-8 p-6 md:p-8 lg:flex lg:p-10">
+          <div className="grid grid-cols-2 md:flex gap-4 ">
             {cards.map(({ id, Icon, badge, title, description }) => (
               <a
                 key={id}
