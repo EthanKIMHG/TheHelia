@@ -59,12 +59,12 @@ export function SubPageTemplate({
           fullWidth ? "max-w-none px-0" : "max-w-6xl px-4",
         )}
       >
-        <div className="px-4 text-left md:text-center">
+        <div className="px-4 text-center">
           <ScrollReveal>
             <h2 className="break-keep text-3xl font-serif font-semibold leading-[1.28] text-foreground md:text-4xl md:leading-tight">
               {primary.title}
             </h2>
-            <p className="mt-4 max-w-[30ch] break-keep text-base leading-relaxed text-foreground/85 md:mx-auto md:max-w-3xl md:text-lg">
+            <p className="mx-auto mt-4 max-w-[30ch] break-keep text-base leading-relaxed text-foreground/85 md:max-w-3xl md:text-lg">
               {primary.copy ?? primary.description}
             </p>
           </ScrollReveal>

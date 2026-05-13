@@ -49,7 +49,7 @@ export function NewbornStrengths({ locale }: { locale: Locale }) {
     <section className="w-full bg-background px-6 py-24 md:py-32">
       <div className="mx-auto max-w-7xl">
         <FadeInUp>
-             <div className="mb-24 text-left md:text-center">
+             <div className="mb-24 text-center">
                 <span className="block mb-4 font-sans text-sm font-bold tracking-[0.2em] text-primary uppercase">
                     {locale === "ko" ? "더헬리아 스탠다드" : "The Helia Standard"}
                 </span>

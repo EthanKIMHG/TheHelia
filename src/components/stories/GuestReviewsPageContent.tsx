@@ -403,15 +403,15 @@ function ReviewsOverview({
     <ScrollReveal>
       <section className="overflow-hidden rounded-[2.5rem] border border-border/30 bg-gradient-to-br from-primary/10 via-background to-background/95 shadow-sm">
         <div className="grid gap-8 p-6 md:p-8 lg:grid-cols-[0.82fr_1.18fr] lg:items-start lg:p-10">
-          <div className="space-y-5 text-left">
+          <div className="space-y-5 text-center lg:text-left">
             <div className="space-y-4">
               <p className="font-playfair text-sm font-semibold uppercase tracking-[0.3em] text-primary italic">
                 {copy.badge}
               </p>
-              <h2 className="max-w-[14ch] break-keep font-serif text-3xl leading-[1.2] text-foreground md:max-w-[12ch] md:text-5xl md:leading-[1.12]">
+              <h2 className="mx-auto max-w-[14ch] break-keep font-serif text-3xl leading-[1.2] text-foreground md:max-w-[12ch] md:text-5xl md:leading-[1.12] lg:mx-0">
                 {copy.title}
               </h2>
-              <p className="max-w-[38ch] break-keep text-sm leading-[1.9] text-foreground/78 md:max-w-[44ch] md:text-base">
+              <p className="mx-auto max-w-[38ch] break-keep text-sm leading-[1.9] text-foreground/78 md:max-w-[44ch] md:text-base lg:mx-0">
                 {copy.description}
               </p>
             </div>
@@ -463,14 +463,14 @@ function SectionHeader({
 }) {
   return (
     <ScrollReveal>
-      <div className="space-y-3 text-left">
+      <div className="space-y-3 text-center">
         <p className="font-playfair text-sm font-semibold uppercase tracking-[0.28em] text-primary italic">
           {badge}
         </p>
         <h3 className="break-keep font-serif text-3xl font-semibold leading-[1.24] text-foreground md:text-4xl md:leading-tight">
           {title}
         </h3>
-        <p className="max-w-[40ch] break-keep text-sm leading-[1.9] text-foreground/74 md:text-base">
+        <p className="mx-auto max-w-[40ch] break-keep text-sm leading-[1.9] text-foreground/74 md:text-base">
           {description}
         </p>
       </div>

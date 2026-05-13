@@ -85,7 +85,7 @@ export function HomePrograms({
       >
         <ScrollReveal>
           <div className="container mx-auto px-4">
-            <div className="mb-16 flex flex-col items-start text-left md:items-center md:text-center">
+            <div className="mb-16 flex flex-col items-center text-center">
               <span className="mb-6 inline-flex items-center justify-center rounded-full bg-primary/10 px-4 py-1.5 text-sm font-medium text-primary">
                 <Sparkles className="mr-1.5 h-3.5 w-3.5 fill-current" />
                 {copy.badgeLabel}
@@ -93,7 +93,7 @@ export function HomePrograms({
               <h2 className="mb-4 break-keep text-3xl font-serif leading-tight text-foreground md:text-4xl lg:text-4xl">
                 {copy.title}
               </h2>
-              <p className="max-w-[32ch] break-keep text-lg text-foreground/85 md:mx-auto md:max-w-3xl">
+              <p className="mx-auto max-w-[32ch] break-keep text-lg text-foreground/85 md:max-w-3xl">
                 {copy.subtitle}
               </p>
             </div>

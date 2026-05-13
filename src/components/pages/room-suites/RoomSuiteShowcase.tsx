@@ -57,14 +57,14 @@ export function RoomSuiteShowcase({ suiteId, locale }: RoomSuiteShowcaseProps) {
       <ScrollReveal>
       <section className="rounded-3xl border border-border/30 bg-background/95 p-6 shadow md:p-10">
         <div className="flex flex-col gap-6 md:flex-row md:items-center md:justify-between">
-          <div>
+          <div className="text-center md:text-left">
             <p className="text-sm font-semibold uppercase tracking-[0.3em] text-primary">
               {copy.carouselBadge}
             </p>
             <h3 className="mt-2 text-2xl font-semibold text-foreground md:text-3xl font-serif">
               {copy.carouselTitle}
             </h3>
-            <p className="mt-2 text-sm leading-relaxed text-foreground/70 md:text-base">
+            <p className="mx-auto mt-2 max-w-[34ch] text-sm leading-relaxed text-foreground/70 md:mx-0 md:max-w-none md:text-base">
               {copy.carouselDescription}
             </p>
           </div>
@@ -103,13 +103,13 @@ export function RoomSuiteShowcase({ suiteId, locale }: RoomSuiteShowcaseProps) {
             </div>
           </div>
         </div>
-        <div className="mt-5 flex flex-wrap items-center gap-3">
+        <div className="mt-5 grid grid-cols-2 gap-3 md:flex md:flex-wrap md:items-center">
           {copy.carousel.map((image, index) => (
             <button
               key={image.src + index}
               type="button"
               onClick={() => goToIndex(index)}
-              className={`relative h-[76px] w-[118px] overflow-hidden rounded-xl border transition md:h-20 md:w-32 ${
+              className={`relative aspect-[4/3] w-full overflow-hidden rounded-xl border transition md:h-20 md:w-32 ${
                 currentIndex === index
                   ? "border-primary shadow"
                   : "border-border/40 opacity-75 hover:opacity-100"
@@ -120,7 +120,7 @@ export function RoomSuiteShowcase({ suiteId, locale }: RoomSuiteShowcaseProps) {
                 src={image.src}
                 alt={image.alt}
                 fill
-                sizes="(min-width: 768px) 128px, 118px"
+                sizes="(min-width: 768px) 128px, calc((100vw - 72px) / 2)"
                 className="object-cover"
               />
             </button>
@@ -199,7 +199,7 @@ function AmenitiesSection({ copy }: { copy: SuiteCopy["amenities"] }) {
     <ScrollReveal>
       <section className="overflow-hidden rounded-[2.5rem] border border-stone-200/60 dark:border-white/5 bg-white/60 dark:bg-[#2A2928]/60 backdrop-blur-xl shadow-sm">
         <div className="space-y-8 p-8 md:p-12">
-          <header className="space-y-4 text-left">
+          <header className="space-y-4 text-center md:text-left">
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 text-primary text-xs font-bold uppercase tracking-widest">
                <Sparkles className="w-3 h-3" />
                {copy.badge}
@@ -208,7 +208,7 @@ function AmenitiesSection({ copy }: { copy: SuiteCopy["amenities"] }) {
               <h3 className="text-3xl font-bold text-foreground font-serif mb-2">
                 {copy.title}
               </h3>
-              <p className="text-base text-stone-500 dark:text-stone-400 max-w-2xl leading-relaxed">
+              <p className="mx-auto max-w-[34ch] text-base leading-relaxed text-stone-500 dark:text-stone-400 md:mx-0 md:max-w-2xl">
                 {copy.subtitle}
               </p>
             </div>
@@ -271,7 +271,7 @@ function PartnerBreakfastSection({ locale }: { locale: Locale }) {
           </div>
 
           {/* Content Side */}
-          <div className="flex-1 space-y-4 text-left">
+          <div className="flex-1 space-y-4 text-center md:text-left">
             <div className="space-y-2">
               <span className="inline-block text-xs font-bold text-primary uppercase tracking-widest bg-primary/5 px-3 py-1 rounded-full">
                 {isKo ? "보호자 서비스" : "Partner Service"}
@@ -281,13 +281,13 @@ function PartnerBreakfastSection({ locale }: { locale: Locale }) {
               </h3>
             </div>
             
-            <p className="text-stone-600 dark:text-stone-300 leading-relaxed text-lg">
+            <p className="mx-auto max-w-[34ch] text-lg leading-relaxed text-stone-600 dark:text-stone-300 md:mx-0 md:max-w-none">
               {isKo 
                 ? "든든한 아침을 위해 토스트, 시리얼, 신선한 우유와 주스, 그리고 다양한 스낵바를 무료로 제공합니다."
                 : "Start your day with toast, cereal, fresh milk, juice, and a variety of snacks at our complimentary bar."}
             </p>
 
-            <div className="flex flex-wrap items-center justify-start gap-4 pt-2">
+            <div className="flex flex-wrap items-center justify-center gap-4 pt-2 md:justify-start">
               <div className="flex items-center gap-2 px-4 py-2 rounded-xl bg-white dark:bg-stone-800 border border-stone-200 dark:border-white/5 shadow-sm text-sm font-medium text-stone-600 dark:text-stone-300">
                 <Clock className="w-4 h-4 text-primary" />
                 <span>{isKo ? "오전 7:00 ~ 오전 10:00" : "07:00 AM ~ 10:00 AM"}</span>

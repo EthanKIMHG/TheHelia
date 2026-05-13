@@ -123,6 +123,16 @@ export function RoomSuiteTemplate({
         </div>
 
         <div className="flex flex-col gap-4 md:hidden">
+          <div className="text-center">
+            <ScrollReveal>
+              <h2 className="break-keep text-3xl font-semibold leading-[1.24] font-serif text-foreground">
+                {primary.title}
+              </h2>
+              <p className="mx-auto mt-3 max-w-[30ch] break-keep text-base leading-relaxed text-foreground/85">
+                {primary.copy ?? primary.description}
+              </p>
+            </ScrollReveal>
+          </div>
           <div className="flex flex-wrap items-center justify-center gap-3">
             {SUITE_SLUGS.map((slug) =>
               renderSwitchButton(slug, {

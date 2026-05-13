@@ -130,14 +130,14 @@ function ProcessSection({ copy }: { copy: ProcessCopy }) {
   return (
     <ScrollReveal>
       <section className="rounded-3xl border border-border/30 bg-white/80 dark:bg-[#2A2928]/60 backdrop-blur-md p-6 shadow-sm md:p-10">
-        <header className="mb-8 space-y-3 text-left md:mb-10 md:text-center">
+        <header className="mb-8 space-y-3 text-center md:mb-10">
           <p className="text-sm font-semibold uppercase tracking-[0.3em] text-primary font-playfair italic">
             {copy.badge}
           </p>
           <h2 className="text-2xl font-semibold leading-[1.28] break-keep text-foreground md:text-3xl md:leading-tight font-serif">
             {copy.title}
           </h2>
-          <p className="max-w-[30ch] break-keep text-base leading-relaxed text-foreground/80 md:mx-auto md:max-w-2xl md:text-lg">
+          <p className="mx-auto max-w-[30ch] break-keep text-base leading-relaxed text-foreground/80 md:max-w-2xl md:text-lg">
             {copy.subtitle}
           </p>
         </header>

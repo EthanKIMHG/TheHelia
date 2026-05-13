@@ -75,14 +75,14 @@ export function SpaServiceBento({
     <ScrollReveal>
       <div className="flex flex-col gap-12 py-12">
         {/* Header Section */}
-        <div className="max-w-3xl">
+        <div className="mx-auto max-w-3xl text-center lg:mx-0 lg:text-left">
           <span className="inline-block px-4 py-1.5 rounded-full bg-primary/10 text-primary text-sm font-medium mb-6">
             {badge}
           </span>
           <h3 className="mb-6 break-keep text-3xl font-serif font-semibold leading-[1.26] text-foreground md:text-4xl md:leading-tight">
             {title}
           </h3>
-          <p className="max-w-[34ch] whitespace-pre-line break-keep text-lg leading-relaxed text-foreground/85 md:max-w-3xl">
+          <p className="mx-auto max-w-[34ch] whitespace-pre-line break-keep text-lg leading-relaxed text-foreground/85 md:max-w-3xl lg:mx-0">
             {description}
           </p>
         </div>

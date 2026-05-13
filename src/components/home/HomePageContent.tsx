@@ -142,8 +142,8 @@ export default function HomePageContent({
           ref={(node) => registerSection('partners', node)}
           className="w-full py-12"
         >
-          <div className="px-12 py-12">
-            <span className="text-4xl">
+          <div className="px-4 py-12 text-center md:px-12 md:text-left">
+            <span className="break-keep text-3xl md:text-4xl">
               {locale === 'ko' ? '더헬리아와 함께하는 기업들' : 'Our Partners'}
             </span>
           </div>

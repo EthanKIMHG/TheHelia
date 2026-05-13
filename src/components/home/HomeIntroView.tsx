@@ -45,7 +45,7 @@ export function HomeIntroView({
         ref={(node) => registerSection("intro", node)}
         className="flex min-h-[60vh] w-full items-center justify-center bg-background px-6 py-12 text-foreground md:py-20"
       >
-        <ScrollReveal className="mx-auto flex w-full max-w-4xl flex-col items-start gap-12 text-left md:items-center md:text-center">
+        <ScrollReveal className="mx-auto flex w-full max-w-4xl flex-col items-center gap-12 text-center">
           <IntroHeroContent
             primary={copy.primaryText}
             secondary={copy.secondaryText}
@@ -84,7 +84,7 @@ function IntroHeroContent({ primary, secondary, theme }: IntroHeroContentProps) 
       : "/img/logo/page_logo.png";
 
   return (
-    <div className="flex w-full flex-col items-start gap-10 text-left md:items-center md:text-center">
+    <div className="flex w-full flex-col items-center gap-10 text-center">
       <div className="relative">
         <Image
           src={logoSrc}
@@ -106,7 +106,7 @@ function IntroHeroContent({ primary, secondary, theme }: IntroHeroContentProps) 
       />
       <IntroTextReveal
         text={secondary}
-        className="max-w-[30ch] text-lg leading-relaxed text-foreground break-keep md:mx-auto md:max-w-3xl md:text-[20px]"
+        className="mx-auto max-w-[30ch] text-lg leading-relaxed text-foreground break-keep md:max-w-3xl md:text-[20px]"
         scrub={false}
         scrollStart="top bottom"
         scrollEnd="center center"

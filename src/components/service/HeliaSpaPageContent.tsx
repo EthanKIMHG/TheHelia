@@ -264,7 +264,7 @@ function SpaPageCta({
   return (
     <ScrollReveal>
       <section className="rounded-[2.5rem] border border-border/30 bg-primary/10 p-6 shadow-sm md:p-8 lg:p-10">
-        <div className="flex flex-col gap-6 text-left md:items-center md:text-center">
+        <div className="flex flex-col items-center gap-6 text-center">
           <div className="space-y-3">
             <p className="text-sm font-semibold uppercase tracking-[0.28em] text-primary font-playfair italic">
               Consultation
@@ -272,12 +272,12 @@ function SpaPageCta({
             <h2 className="break-keep text-3xl font-semibold leading-[1.24] text-foreground md:text-4xl md:leading-tight font-serif">
               {copy.title}
             </h2>
-            <p className="max-w-[32ch] whitespace-pre-line break-keep text-sm leading-[1.9] text-foreground/75 md:mx-auto md:max-w-2xl md:text-base">
+            <p className="mx-auto max-w-[32ch] whitespace-pre-line break-keep text-sm leading-[1.9] text-foreground/75 md:max-w-2xl md:text-base">
               {copy.description}
             </p>
           </div>
 
-          <div className="flex flex-col items-start gap-3 md:items-center">
+          <div className="flex flex-col items-center gap-3">
             <Link
               href={`/${locale}/reservation`}
               className="inline-flex items-center gap-2 rounded-full bg-primary px-6 py-3 text-sm font-semibold text-background transition-colors hover:bg-primary/90"

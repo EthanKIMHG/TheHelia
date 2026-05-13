@@ -41,7 +41,7 @@ export function CinematicHero({locale} : {locale: Locale}) {
           initial={{ opacity: 0, y: 100, rotate: 2 }}
           animate={{ opacity: 1, y: 0, rotate: 0 }}
           transition={{ duration: 1.5, ease: [0.16, 1, 0.3, 1] }}
-          className="font-force-playfair absolute bottom-24 left-6 text-7xl tracking-widest text-white mix-blend-overlay md:bottom-32 md:left-12 md:text-9xl lg:text-[11rem]"
+          className="font-force-playfair absolute inset-x-0 bottom-44 w-full px-6 text-center text-6xl tracking-widest text-white drop-shadow-[0_3px_18px_rgba(0,0,0,0.35)] md:bottom-32 md:left-12 md:right-auto md:w-auto md:px-0 md:text-left md:text-9xl md:mix-blend-overlay md:drop-shadow-none lg:text-[11rem]"
           style={{ fontFamily: "'Playfair Display', 'Times New Roman', serif" }}
         >
           The <br/> Helia

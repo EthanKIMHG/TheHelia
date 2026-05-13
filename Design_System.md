@@ -92,7 +92,8 @@ If documents conflict, follow `globals.css` for tokens, this file for design dir
 ### Responsive behavior
 
 - Mobile readability is a first-order requirement
-- Prefer `text-left md:text-center` for section headers when centered mobile text wraps awkwardly
+- Page titles and compact section titles may be centered on mobile when it improves hierarchy
+- Keep long explanatory copy, lists, and dense card content constrained and left-aligned when centered mobile text wraps awkwardly
 - Use constrained line length, Korean-friendly wrapping, and tighter mobile line-height where needed
 - Mobile and desktop may use different presentation patterns when that improves clarity
 

@@ -33,14 +33,14 @@ export function SpaBrandIntro({ copy }: SpaBrandIntroProps) {
       <section className="overflow-hidden rounded-[2.5rem] border border-border/30 bg-gradient-to-br from-primary/10 via-background to-background/95 shadow-sm">
         <div className="grid gap-8 p-6 md:p-8 lg:grid-cols-[0.9fr_1.1fr] lg:p-8">
           <div className="space-y-8 text-left">
-            <div className="space-y-8">
+            <div className="space-y-8 text-center lg:text-left">
               <span className="inline-flex rounded-full bg-primary/10 px-4 py-1.5 text-sm font-medium text-primary">
                 {copy.badge}
               </span>
               <h2 className="whitespace-pre-line break-keep text-3xl font-serif leading-[1.24] text-foreground md:text-4xl md:leading-tight">
                 {copy.headline}
               </h2>
-              <p className="max-w-[34ch] whitespace-pre-line break-keep text-sm leading-[1.9] text-foreground/78 md:max-w-[42ch] md:text-base">
+              <p className="mx-auto max-w-[34ch] whitespace-pre-line break-keep text-sm leading-[1.9] text-foreground/78 md:max-w-[42ch] md:text-base lg:mx-0">
                 {copy.intro}
               </p>
             </div>

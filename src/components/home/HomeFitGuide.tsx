@@ -44,17 +44,17 @@ export function HomeFitGuide({
     >
       <ScrollReveal>
         <div className="mx-auto grid w-full max-w-7xl gap-5 lg:grid-cols-[0.88fr_1.12fr] lg:gap-6">
-          <div className="rounded-[2.4rem] border border-border/50 bg-primary/5 p-7 shadow-[0_24px_80px_rgba(105,79,55,0.06)] dark:border-border/40 dark:bg-primary/10 md:p-9">
+          <div className="rounded-[2.4rem] border border-border/50 bg-primary/5 p-7 text-center shadow-[0_24px_80px_rgba(105,79,55,0.06)] dark:border-border/40 dark:bg-primary/10 md:p-9 lg:text-left">
             <span className="mb-5 inline-flex items-center gap-2 rounded-full border border-primary/15 bg-background/85 px-4 py-2 text-[11px] font-semibold uppercase tracking-[0.18em] text-primary dark:bg-background/30">
               <Sparkles className="h-3.5 w-3.5" />
               {copy.badgeLabel}
             </span>
 
-            <h2 className="max-w-[11ch] break-keep text-3xl font-serif font-semibold leading-[1.2] text-foreground md:max-w-[10ch] md:text-4xl">
+            <h2 className="mx-auto max-w-[11ch] break-keep text-3xl font-serif font-semibold leading-[1.2] text-foreground md:max-w-[10ch] md:text-4xl lg:mx-0">
               {copy.title}
             </h2>
 
-            <p className="mt-5 max-w-[30ch] break-keep text-base leading-relaxed text-foreground/82 md:text-[18px]">
+            <p className="mx-auto mt-5 max-w-[30ch] break-keep text-base leading-relaxed text-foreground/82 md:text-[18px] lg:mx-0">
               {copy.subtitle}
             </p>
 

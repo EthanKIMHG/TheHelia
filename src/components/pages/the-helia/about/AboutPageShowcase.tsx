@@ -228,14 +228,14 @@ function DailyFlowSection({ copy }: { copy: DailyFlowCopy }) {
   return (
     <ScrollReveal>
       <section className="rounded-3xl border border-border/30 bg-white/80 dark:bg-[#2A2928]/60 backdrop-blur-md p-8 shadow-sm md:p-12">
-        <header className="mx-auto mb-12 max-w-4xl space-y-3 text-left md:text-center">
+        <header className="mx-auto mb-12 max-w-4xl space-y-3 text-center">
           <p className="text-sm font-semibold uppercase tracking-[0.28em] text-primary font-playfair italic">
             {copy.badge}
           </p>
           <h2 className="text-3xl font-semibold leading-[1.26] break-keep text-foreground md:text-4xl md:leading-tight font-serif">
             {copy.title}
           </h2>
-          <p className="max-w-[30ch] text-base leading-relaxed break-keep text-foreground/70 md:mx-auto md:max-w-3xl md:text-lg">
+          <p className="mx-auto max-w-[30ch] text-base leading-relaxed break-keep text-foreground/70 md:max-w-3xl md:text-lg">
             {copy.subtitle}
           </p>
         </header>
@@ -337,14 +337,14 @@ function VirtualTourSection({ copy }: { copy: VirtualTourCopy }) {
   return (
     <ScrollReveal>
       <section className="overflow-hidden rounded-3xl border border-border/30 bg-background/95 shadow-lg">
-        <div className="space-y-4 p-8 pb-6 text-left md:p-12 md:pb-8 md:text-center">
+        <div className="space-y-4 p-8 pb-6 text-center md:p-12 md:pb-8">
           <p className="text-sm font-semibold uppercase tracking-[0.3em] text-primary font-playfair italic">
             {copy.badge}
           </p>
           <h2 className="text-3xl font-semibold leading-[1.26] break-keep text-foreground md:text-4xl md:leading-tight font-serif">
             {copy.title}
           </h2>
-          <p className="max-w-[30ch] text-base leading-relaxed break-keep text-foreground/70 md:mx-auto md:max-w-3xl md:text-lg">
+          <p className="mx-auto max-w-[30ch] text-base leading-relaxed break-keep text-foreground/70 md:max-w-3xl md:text-lg">
             {copy.subtitle}
           </p>
         </div>

@@ -786,6 +786,32 @@ Last updated: 2026-04-17
 - Result:
   - The featured guest-review area now prioritizes the requested two blog posts while preserving the rest of the review page structure.
 
+### 53) Cross-page mobile title centering pass
+- Request: Optimize mobile layout so page and section titles are not all left-aligned.
+- Change:
+  - Centered mobile page/title header clusters across shared templates and major page sections while keeping card bodies, FAQ rows, lists, and dense informational text left-aligned.
+  - Updated `SubPageHero` and `SubPageTemplate` so subpage hero and intro titles inherit the mobile-centered behavior.
+  - Added a missing mobile suite title block in `RoomSuiteTemplate` so room pages show the active suite title and copy above the mobile suite switcher.
+  - Adjusted the home cinematic title to center on mobile, avoid carousel-dot overlap, and use a mobile-safe shadow instead of `mix-blend-overlay`.
+  - Updated the responsive design-system note to reflect the current rule: center compact titles when it helps hierarchy, but keep long copy constrained and readable.
+- Result:
+  - Mobile pages now present title hierarchy more intentionally without converting content-heavy areas into centered body copy.
+  - Desktop alignment remains unchanged where the existing layout depended on left-aligned split compositions.
+
+### 54) Mobile pricing table readability rebuild
+- Request: Improve mobile readability of the price page pricing components.
+- Change:
+  - Replaced the mobile-only 3-column `Quick Compare` matrix in `PricePageContent` with a simpler vertical price-list component.
+  - Each mobile plan card now shows only the core scan path:
+    - room tier
+    - 2-week price
+    - short description
+    - baby-care ratio, head-spa benefit, and key benefit
+  - Kept the desktop 3-card pricing layout and detailed room/spa/refund sections unchanged.
+- Result:
+  - Mobile users can read VIP, VVIP, and Prestige pricing one tier at a time without cramped table cells.
+  - The primary price hierarchy is stronger while preserving the original pricing data.
+
 ## SEO Follow-up Priorities
 
 - Completed in this step:

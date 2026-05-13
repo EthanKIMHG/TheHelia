@@ -92,15 +92,15 @@ export function HomeNavigationGallery({
 
 function NavigationGalleryHeader({ copy }: { copy: NavigationCopy }) {
   return (
-    <div className="mx-auto flex w-full flex-col gap-4 text-left">
+    <div className="mx-auto flex w-full flex-col gap-4 text-center md:text-left">
       <p className="text-xs uppercase tracking-[0.4em] text-primary">
         {copy.badge}
       </p>
-      <div className="flex flex-col gap-3 md:flex-row md:items-end md:justify-between font-serif">
+      <div className="flex flex-col items-center gap-3 md:flex-row md:items-end md:justify-between font-serif">
         <h2 className=" text-3xl md:text-4xl text-foreground">
           {copy.title}
         </h2>
-        <p className="max-w-xl text-sm text-foreground/70 md:text-base">
+        <p className="max-w-[34ch] text-sm text-foreground/70 md:max-w-xl md:text-base">
           {copy.subtitle}
         </p>
       </div>

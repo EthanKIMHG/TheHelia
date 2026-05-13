@@ -50,14 +50,14 @@ export function SpaServiceCarousel({
       <ScrollReveal>
         <section className="rounded-[2.5rem] border border-border/30 bg-white dark:bg-[#2A2928]/40 p-6 shadow-sm md:p-10">
           <div className="flex flex-col gap-6 md:flex-row md:items-center md:justify-between">
-            <div className="text-left">
+            <div className="text-center md:text-left">
               <p className="text-sm font-semibold uppercase tracking-[0.3em] text-primary">
                 {badge}
               </p>
               <h3 className="mt-2 break-keep text-2xl font-serif font-semibold leading-[1.26] text-foreground md:text-3xl md:leading-tight">
                 {title}
               </h3>
-              <p className="mt-2 max-w-[34ch] whitespace-pre-line break-keep text-sm leading-relaxed text-foreground/85 md:max-w-2xl md:text-base">
+              <p className="mx-auto mt-2 max-w-[34ch] whitespace-pre-line break-keep text-sm leading-relaxed text-foreground/85 md:mx-0 md:max-w-2xl md:text-base">
                 {description}
               </p>
             </div>

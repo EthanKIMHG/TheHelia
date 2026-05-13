@@ -18,22 +18,7 @@ export function EducationalStrengths({ locale }: { locale: Locale }) {
     <section className="w-full px-4 text-foreground">
       <div className="mx-auto max-w-7xl">
         {/* Section Header */}
-        <FadeInUp>
-          <div className="mb-16 flex flex-col items-start text-left md:mb-24 md:items-center md:text-center">
-            <div className="mb-6 flex h-16 w-16 items-center justify-center rounded-full bg-primary/10 text-primary">
-                <Sparkles className="h-8 w-8" />
-            </div>
-            <h2 className="font-serif text-3xl font-bold leading-[1.26] break-keep md:leading-tight md:text-4xl lg:text-4xl text-foreground">
-              {isKo ? "새로운 영감을 주는" : "Inspiring"} <br />
-              <span className="text-foreground/85">{isKo ? "헬리아의 교육" : "The Helia Class"}</span>
-            </h2>
-            <p className="mt-8 max-w-[30ch] break-keep text-base leading-relaxed text-foreground/85 md:max-w-2xl md:text-lg">
-              {isKo 
-               ? "단순한 지식 전달을 넘어, 육아의 자신감을 채워주는 4가지 핵심 가치를 담았습니다." 
-               : "Beyond knowledge, we deliver 4 core values to build your parenting confidence."}
-            </p>
-          </div>
-        </FadeInUp>
+        
 
         {/* Bento Grid Layout */}
         <div className="grid grid-cols-1 gap-4 md:grid-cols-3 md:grid-rows-2 lg:gap-6 h-auto md:h-[800px]">

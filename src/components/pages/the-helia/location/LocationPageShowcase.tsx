@@ -112,14 +112,14 @@ function LocationHeroSection({
 
         <div className="relative space-y-4 p-6 md:space-y-5 md:p-8 lg:p-10">
           <div className="grid items-end gap-8 lg:grid-cols-[0.92fr_1.08fr]">
-            <header className="space-y-4 lg:pb-8">
+            <header className="space-y-4 text-center lg:pb-8 lg:text-left">
               <p className="text-sm font-semibold uppercase tracking-[0.3em] text-primary font-playfair italic">
                 {content.heroBadge}
               </p>
-              <h2 className="max-w-[13ch] text-balance break-keep text-3xl leading-[1.18] text-foreground md:text-5xl md:leading-[1.12] font-serif">
+              <h2 className="mx-auto max-w-[13ch] text-balance break-keep text-3xl leading-[1.18] text-foreground md:text-5xl md:leading-[1.12] lg:mx-0 font-serif">
                 {content.heroTitle}
               </h2>
-              <p className="max-w-[54ch] text-balance break-keep text-sm leading-[1.85] text-foreground/75 md:text-base">
+              <p className="mx-auto max-w-[38ch] text-balance break-keep text-sm leading-[1.85] text-foreground/75 md:max-w-[54ch] md:text-base lg:mx-0">
                 {content.heroSubtitle}
               </p>
             </header>
@@ -267,14 +267,14 @@ function LocationMapSection({
     <ScrollReveal>
       <section className="grid gap-6 lg:grid-cols-[1.08fr_0.92fr]">
         <div className="rounded-[2rem] border border-border/40 bg-background/80 p-4 shadow-sm backdrop-blur md:p-5">
-          <div className="space-y-3 px-2 pb-5 md:px-3">
+          <div className="space-y-3 px-2 pb-5 text-center md:px-3 md:text-left">
             <p className="text-sm font-semibold uppercase tracking-[0.28em] text-primary font-playfair italic">
               {content.mapBadge}
             </p>
-            <h3 className="max-w-[17ch] text-balance break-keep text-2xl font-semibold leading-[1.24] text-foreground md:text-3xl font-serif">
+            <h3 className="mx-auto max-w-[17ch] text-balance break-keep text-2xl font-semibold leading-[1.24] text-foreground md:mx-0 md:text-3xl font-serif">
               {content.mapTitle}
             </h3>
-            <p className="max-w-[52ch] break-keep text-sm leading-[1.85] text-foreground/72 md:text-base">
+            <p className="mx-auto max-w-[38ch] break-keep text-sm leading-[1.85] text-foreground/72 md:mx-0 md:max-w-[52ch] md:text-base">
               {content.mapSubtitle}
             </p>
           </div>
@@ -365,14 +365,14 @@ function LocationGuideSection({
     <ScrollReveal>
       <section className="overflow-hidden rounded-[2rem] border border-border/40 bg-gradient-to-br from-background via-primary/5 to-background/95 shadow-sm">
         <div className="space-y-8 p-6 md:p-10">
-          <header className="max-w-3xl space-y-3">
+          <header className="max-w-3xl space-y-3 text-center md:text-left">
             <p className="text-sm font-semibold uppercase tracking-[0.28em] text-primary font-playfair italic">
               {content.guidesBadge}
             </p>
-            <h3 className="max-w-[19ch] text-balance break-keep text-2xl font-semibold leading-[1.24] text-foreground md:text-3xl font-serif">
+            <h3 className="mx-auto max-w-[19ch] text-balance break-keep text-2xl font-semibold leading-[1.24] text-foreground md:mx-0 md:text-3xl font-serif">
               {content.guidesTitle}
             </h3>
-            <p className="max-w-[54ch] break-keep text-sm leading-[1.85] text-foreground/72 md:text-base">
+            <p className="mx-auto max-w-[38ch] break-keep text-sm leading-[1.85] text-foreground/72 md:mx-0 md:max-w-[54ch] md:text-base">
               {content.guidesSubtitle}
             </p>
           </header>

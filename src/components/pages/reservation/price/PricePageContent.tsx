@@ -25,7 +25,7 @@ export function PricePageContent({ locale }: PricePageContentProps) {
 function PriceHeader({ isKo }: { isKo: boolean }) {
   return (
     <ScrollReveal>
-      <header className="mt-16 mb-20 space-y-6 text-left md:text-center">
+      <header className="mt-16 mb-20 space-y-6 text-center">
         <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/5 border border-primary/10 text-primary text-xs font-bold uppercase tracking-[0.2em]">
           <span className="relative flex h-2 w-2">
             <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
@@ -44,7 +44,7 @@ function PriceHeader({ isKo }: { isKo: boolean }) {
             </>
           )}
         </h2>
-        <p className="max-w-[30ch] break-keep text-lg font-medium leading-relaxed text-foreground/80 md:mx-auto md:max-w-2xl md:text-xl dark:text-foreground/85">
+        <p className="mx-auto max-w-[30ch] break-keep text-lg font-medium leading-relaxed text-foreground/80 md:max-w-2xl md:text-xl dark:text-foreground/85">
           {isKo
             ? "가장 소중한 순간, 더헬리아가 선사하는 완벽한 휴식"
             : "The most precious moment, perfect relaxation presented by The Helia."}
@@ -131,65 +131,95 @@ function MainPriceSection({ isKo }: { isKo: boolean }) {
     },
   ];
 
-  const quickCompareRows = [
-    { label: isKo ? "2주 요금" : "2-Week Rate", values: plans.map((plan) => plan.mobilePriceLabel) },
-    { label: isKo ? "신생아 케어" : "Baby Care", values: plans.map((plan) => plan.quickCompare.babyCare) },
-    { label: isKo ? "헤드스파" : "Head Spa", values: plans.map((plan) => plan.quickCompare.headSpa) },
-    { label: isKo ? "보호자 식사" : "Partner Meal", values: plans.map((plan) => plan.quickCompare.partnerMeal) },
-    { label: isKo ? "베이비 스파" : "Baby Spa", values: plans.map((plan) => plan.quickCompare.babySpa) },
-    { label: isKo ? "핵심 혜택" : "Key Benefit", values: plans.map((plan) => plan.quickCompare.special) },
-  ];
-
-  const tierColumnClass = (type: string) => {
-    if (type === "PRESTIGE") {
-      return "bg-primary text-background border border-primary/60 dark:bg-primary dark:text-background dark:border-primary/70";
-    }
-
-    if (type === "VVIP") {
-      return "bg-primary/15 text-foreground border border-primary/35 dark:bg-primary/25 dark:text-foreground dark:border-primary/45";
-    }
-
-    return "bg-primary/10 text-foreground/90 border border-primary/30 dark:bg-primary/20 dark:text-foreground dark:border-primary/40";
-  };
-
   return (
     <ScrollReveal>
       <section className="max-w-7xl mx-auto px-4 md:px-0 space-y-6">
-        <div className="md:hidden rounded-[2rem] border border-primary/25 bg-primary/5 p-4 shadow-[0_10px_24px_rgba(92,67,42,0.08)] dark:border-primary/35 dark:bg-primary/10 dark:shadow-none">
-          <div className="mb-4 px-1">
-            <p className="text-[11px] font-bold uppercase tracking-[0.2em] text-primary">
-              {isKo ? "Quick Compare" : "Quick Compare"}
+        <div className="md:hidden space-y-4">
+          <div className="rounded-[1.75rem] border border-border/35 bg-background/90 p-5 text-center shadow-sm dark:bg-primary/10">
+            <p className="text-[11px] font-bold uppercase tracking-[0.22em] text-primary">
+              {isKo ? "Room Price" : "Room Price"}
             </p>
-            <p className="mt-1 text-sm font-medium text-foreground/80 dark:text-foreground/90">
-              {isKo ? "VIP · VVIP · PRESTIGE를 한 화면에서 비교하세요." : "Compare all plans on one screen."}
+            <h3 className="mt-2 break-keep font-serif text-2xl font-semibold leading-[1.24] text-foreground">
+              {isKo ? "2주 기준 객실 요금" : "2-Week Room Rates"}
+            </h3>
+            <p className="mx-auto mt-2 max-w-[28ch] break-keep text-sm leading-relaxed text-foreground/78">
+              {isKo
+                ? "등급별 금액과 핵심 차이만 간단히 정리했습니다."
+                : "A simple summary of rates and key differences."}
             </p>
           </div>
 
-          <div className="grid grid-cols-3 gap-2 mb-4">
-            {plans.map((plan) => (
-              <div key={plan.type} className={`rounded-xl p-2.5 text-center ${tierColumnClass(plan.type)}`}>
-                <p className="text-[11px] font-bold tracking-wide">{plan.type}</p>
-                <p className="mt-1 text-[11px] font-medium opacity-85">{plan.mobilePriceLabel}</p>
-              </div>
-            ))}
-          </div>
+          <div className="space-y-3">
+            {plans.map((plan) => {
+              const isPrestige = plan.isPremium;
+              const isVVIP = plan.highlight;
+              const highlights = [
+                { label: isKo ? "신생아 케어" : "Baby Care", value: plan.quickCompare.babyCare },
+                { label: isKo ? "헤드스파" : "Head Spa", value: plan.quickCompare.headSpa },
+                { label: isKo ? "대표 혜택" : "Key Benefit", value: plan.quickCompare.special },
+              ];
 
-          <div className="space-y-2.5">
-            {quickCompareRows.map((row) => (
-              <div key={row.label} className="rounded-xl border border-primary/20 bg-background/95 p-2.5 dark:border-primary/30 dark:bg-primary/10">
-                <p className="text-[11px] font-semibold text-foreground/80 dark:text-foreground/90">{row.label}</p>
-                <div className="mt-2 grid grid-cols-3 gap-2">
-                  {row.values.map((value, index) => (
-                    <p key={`${row.label}-${index}`} className={`rounded-lg px-2 py-1.5 text-center text-[11px] font-semibold leading-tight ${tierColumnClass(plans[index].type)}`}>
-                      {value}
+              return (
+                <article
+                  key={plan.type}
+                  className={`rounded-[1.75rem] border p-5 shadow-sm ${
+                    isPrestige
+                      ? "border-primary/45 bg-foreground text-background dark:bg-primary/25 dark:text-foreground"
+                      : isVVIP
+                        ? "border-primary/40 bg-primary/10 text-foreground dark:bg-primary/20"
+                        : "border-border/35 bg-background/95 text-foreground dark:bg-primary/10"
+                  }`}
+                >
+                  <div className="flex items-start justify-between gap-3">
+                    <div>
+                      <p className={`text-xs font-bold uppercase tracking-[0.24em] ${isPrestige ? "text-background/75 dark:text-foreground/75" : "text-primary"}`}>
+                        {plan.type}
+                      </p>
+                      <p className={`mt-1 break-keep text-sm leading-relaxed ${isPrestige ? "text-background/75 dark:text-foreground/78" : "text-foreground/74"}`}>
+                        {plan.desc}
+                      </p>
+                    </div>
+                    {isVVIP ? (
+                      <span className="shrink-0 rounded-full bg-primary px-2.5 py-1 text-[10px] font-bold uppercase tracking-[0.12em] text-background">
+                        {isKo ? "추천" : "Popular"}
+                      </span>
+                    ) : null}
+                  </div>
+
+                  <div className="mt-5 flex items-end gap-2">
+                    <p className="font-serif text-[2.6rem] font-bold leading-none tracking-tight">
+                      {plan.mobilePriceLabel}
                     </p>
-                  ))}
-                </div>
-              </div>
-            ))}
+                    <p className={`pb-1 text-xs font-semibold ${isPrestige ? "text-background/70 dark:text-foreground/70" : "text-foreground/65"}`}>
+                      {isKo ? "/ 2주" : "/ 2w"}
+                    </p>
+                  </div>
+
+                  <dl className="mt-5 space-y-2.5">
+                    {highlights.map((item) => (
+                      <div
+                        key={`${plan.type}-${item.label}`}
+                        className={`flex items-center justify-between gap-4 rounded-xl px-3 py-2.5 ${
+                          isPrestige
+                            ? "bg-background/15 dark:bg-primary/20"
+                            : "bg-primary/5 dark:bg-primary/10"
+                        }`}
+                      >
+                        <dt className={`text-xs font-semibold ${isPrestige ? "text-background/70 dark:text-foreground/70" : "text-foreground/65"}`}>
+                          {item.label}
+                        </dt>
+                        <dd className="max-w-[58%] break-keep text-right text-sm font-bold leading-snug">
+                          {item.value}
+                        </dd>
+                      </div>
+                    ))}
+                  </dl>
+                </article>
+              );
+            })}
           </div>
 
-          <Link href={`/${isKo ? "ko" : "en"}/reservation`} className="mt-4 block w-full rounded-xl bg-primary py-3 text-center text-sm font-bold tracking-wide text-background transition-colors hover:bg-primary/90 dark:bg-primary dark:text-background dark:hover:bg-primary/90">
+          <Link href={`/${isKo ? "ko" : "en"}/reservation`} className="block w-full rounded-2xl bg-primary py-4 text-center text-sm font-bold tracking-wide text-background shadow-sm transition-colors hover:bg-primary/90 dark:bg-primary dark:text-background dark:hover:bg-primary/90">
             {isKo ? "상담 예약하기" : "Book Now"}
           </Link>
         </div>
@@ -383,16 +413,24 @@ function DetailRatesSection({ isKo }: { isKo: boolean }) {
   ];
 
   const spaHeaders = isKo
-    ? ["구분", "정상가 (만원)", "Package 할인가 (만원)", "산전 예약 할인가 (만원)"]
+    ? ["구분", "정상가", "Package 할인가", "산전 예약 할인가"]
     : ["Course", "Regular Price", "Package Discount", "Pre-booking Discount"];
 
-  const spaRows = [
-    { type: "PRESTIGE Course", reg: "320", pkg: "288 (-10%)", pre: "267 (-10% Add)" },
-    { type: "VIP Course", reg: "300", pkg: "270 (-10%)", pre: "243 (-10% Add)" },
-    { type: "A Course", reg: "250", pkg: "225 (-10%)", pre: "198 (-10% Add)" },
-    { type: "B Course", reg: "195", pkg: "175 (-10%)", pre: "158 (-10% Add)" },
-    { type: "C Course", reg: "140", pkg: "126 (-10%)", pre: "-" },
-  ];
+  const spaRows = isKo
+    ? [
+        { type: "PRESTIGE Course", reg: "320만원", pkg: "288만원 (-10%)", pre: "267만원 (-10% 추가)" },
+        { type: "VIP Course", reg: "300만원", pkg: "270만원 (-10%)", pre: "243만원 (-10% 추가)" },
+        { type: "A Course", reg: "250만원", pkg: "225만원 (-10%)", pre: "198만원 (-10% 추가)" },
+        { type: "B Course", reg: "195만원", pkg: "175만원 (-10%)", pre: "158만원 (-10% 추가)" },
+        { type: "C Course", reg: "140만원", pkg: "126만원 (-10%)", pre: "-" },
+      ]
+    : [
+        { type: "PRESTIGE Course", reg: "3.2M KRW", pkg: "2.88M KRW (-10%)", pre: "2.67M KRW (-10% Add)" },
+        { type: "VIP Course", reg: "3M KRW", pkg: "2.7M KRW (-10%)", pre: "2.43M KRW (-10% Add)" },
+        { type: "A Course", reg: "2.5M KRW", pkg: "2.25M KRW (-10%)", pre: "1.98M KRW (-10% Add)" },
+        { type: "B Course", reg: "1.95M KRW", pkg: "1.75M KRW (-10%)", pre: "1.58M KRW (-10% Add)" },
+        { type: "C Course", reg: "1.4M KRW", pkg: "1.26M KRW (-10%)", pre: "-" },
+      ];
 
   const roomMobileFields = isKo
     ? [
@@ -505,9 +543,9 @@ function DetailRatesSection({ isKo }: { isKo: boolean }) {
                       const isRegular = field.key === "reg";
                       const isPreBooking = field.key === "pre";
                       return (
-                        <div key={`${row.type}-${field.key}`} className={`flex items-center justify-between rounded-lg px-3 py-2 ${isPreBooking ? "bg-primary/10" : "bg-primary/5 dark:bg-primary/10"}`}>
-                          <dt className="text-[11px] font-medium text-foreground/75">{field.label}</dt>
-                          <dd className={`text-sm font-semibold ${isPreBooking ? "text-primary" : isRegular ? "text-foreground/75 line-through" : "text-foreground"}`}>
+                        <div key={`${row.type}-${field.key}`} className={`flex items-center justify-between gap-3 rounded-lg px-3 py-2.5 ${isPreBooking ? "bg-primary/10" : "bg-primary/5 dark:bg-primary/10"}`}>
+                          <dt className="text-xs font-semibold text-foreground/80">{field.label}</dt>
+                          <dd className={`text-right text-[15px] font-bold leading-snug ${isPreBooking ? "text-primary" : isRegular ? "text-foreground/85 line-through decoration-primary/45 decoration-2" : "text-foreground"}`}>
                             {value}
                           </dd>
                         </div>
@@ -523,7 +561,7 @@ function DetailRatesSection({ isKo }: { isKo: boolean }) {
                 <thead className="bg-primary/5 rounded-xl dark:bg-primary/10">
                   <tr>
                     {spaHeaders.map((h, i) => (
-                      <th key={i} className="px-6 py-5 font-serif font-bold text-foreground/80 text-center first:text-left first:rounded-l-xl last:rounded-r-xl">{h}</th>
+                      <th key={i} className="px-6 py-5 font-serif font-bold text-foreground/90 text-center first:text-left first:rounded-l-xl last:rounded-r-xl">{h}</th>
                     ))}
                   </tr>
                 </thead>
@@ -531,8 +569,8 @@ function DetailRatesSection({ isKo }: { isKo: boolean }) {
                   {spaRows.map((row) => (
                     <tr key={row.type} className="hover:bg-primary/5 transition-colors group">
                       <td className="px-6 py-6 font-serif font-bold text-primary text-lg">{row.type}</td>
-                      <td className="px-6 py-6 text-center text-foreground/75 line-through decoration-secondary/50 decoration-2">{row.reg}</td>
-                      <td className="px-6 py-6 text-center text-foreground/80 group-hover:text-foreground font-medium">{row.pkg}</td>
+                      <td className="px-6 py-6 text-center font-semibold text-foreground/85 line-through decoration-primary/45 decoration-2">{row.reg}</td>
+                      <td className="px-6 py-6 text-center text-foreground font-bold">{row.pkg}</td>
                       <td className="px-6 py-6 text-center font-bold text-primary text-lg bg-primary/10 rounded-lg m-2 box-decoration-clone">{row.pre}</td>
                     </tr>
                   ))}
