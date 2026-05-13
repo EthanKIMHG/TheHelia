@@ -1,8 +1,6 @@
 'use client'
 
 import clsx from 'clsx'
-import { ScrollReveal } from '@/components/common/ScrollReveal'
-import type { Locale } from '@/components/header/types'
 import {
   ArrowUpRight,
   Building2,
@@ -10,15 +8,38 @@ import {
   CalendarClock,
   CarFrontIcon,
   CheckCircle2,
+  Compass,
   MapPinIcon,
   Navigation,
   PhoneCall,
+  Route,
   TrainFrontIcon,
+  X,
   type LucideIcon,
 } from 'lucide-react'
 import Image from 'next/image'
+import { useEffect, useId, useState } from 'react'
+import { createPortal } from 'react-dom'
+
+import { ScrollReveal } from '@/components/common/ScrollReveal'
+import type { Locale } from '@/components/header/types'
 
 const BOOKING_URL = 'https://booking.naver.com/booking/6/bizes/1021790'
+const SITE_URL = 'https://thehelia.co.kr'
+const MAP_APP_FALLBACK_DELAY = 1200
+const HELIA_DESTINATION = {
+  name: '더헬리아 산후조리원',
+  lat: '37.275258840774896',
+  lng: '126.95109607716499',
+} as const
+
+type MapProviderId = 'naver' | 'kakao' | 'apple'
+
+const MAP_PROVIDER_ICONS: Record<MapProviderId, LucideIcon> = {
+  naver: Navigation,
+  kakao: Route,
+  apple: Compass,
+}
 
 type QuickFact = {
   id: string
@@ -43,6 +64,12 @@ type GuideCard = {
   points: string[]
 }
 
+type MapAppOption = {
+  id: MapProviderId
+  label: string
+  description: string
+}
+
 type LocationPageContent = {
   heroBadge: string
   heroTitle: string
@@ -61,6 +88,11 @@ type LocationPageContent = {
   mapTitle: string
   mapSubtitle: string
   mapCallout: string
+  mapAppButtonLabel: string
+  mapAppDialogTitle: string
+  mapAppDialogSubtitle: string
+  mapAppDialogCloseLabel: string
+  mapAppOptions: MapAppOption[]
   addressLabel: string
   addressValue: string
   addressDescription: string
@@ -263,97 +295,371 @@ function LocationMapSection({
 }: {
   content: LocationPageContent
 }): React.JSX.Element {
+  const [isMapDialogOpen, setIsMapDialogOpen] = useState(false)
+  const mapDialogTitleId = useId()
+  const mapDialogDescriptionId = useId()
+
+  useEffect(() => {
+    if (!isMapDialogOpen || typeof window === 'undefined') return
+
+    const previousBodyOverflow = document.body.style.overflow
+    const previousHtmlOverflow = document.documentElement.style.overflow
+
+    document.body.style.overflow = 'hidden'
+    document.documentElement.style.overflow = 'hidden'
+
+    const handleKeyDown = (event: KeyboardEvent): void => {
+      if (event.key === 'Escape') {
+        setIsMapDialogOpen(false)
+      }
+    }
+
+    window.addEventListener('keydown', handleKeyDown)
+
+    return () => {
+      document.body.style.overflow = previousBodyOverflow
+      document.documentElement.style.overflow = previousHtmlOverflow
+      window.removeEventListener('keydown', handleKeyDown)
+    }
+  }, [isMapDialogOpen])
+
+  const handleMapProviderSelect = (providerId: MapProviderId): void => {
+    setIsMapDialogOpen(false)
+    openMapRoute(providerId)
+  }
+
   return (
-    <ScrollReveal>
-      <section className="grid gap-6 lg:grid-cols-[1.08fr_0.92fr]">
-        <div className="rounded-[2rem] border border-border/40 bg-background/80 p-4 shadow-sm backdrop-blur md:p-5">
-          <div className="space-y-3 px-2 pb-5 text-center md:px-3 md:text-left">
-            <p className="text-sm font-semibold uppercase tracking-[0.28em] text-primary font-playfair italic">
-              {content.mapBadge}
-            </p>
-            <h3 className="mx-auto max-w-[17ch] text-balance break-keep text-2xl font-semibold leading-[1.24] text-foreground md:mx-0 md:text-3xl font-serif">
-              {content.mapTitle}
-            </h3>
-            <p className="mx-auto max-w-[38ch] break-keep text-sm leading-[1.85] text-foreground/72 md:mx-0 md:max-w-[52ch] md:text-base">
-              {content.mapSubtitle}
-            </p>
-          </div>
-
-          <div className="group relative h-[340px] overflow-hidden rounded-[1.75rem] border border-border/30 shadow-md md:h-[420px]">
-            <iframe
-              title="The Helia Location"
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3174.8384058135257!2d126.95109607716499!3d37.275258840774896!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x277bcbed795ddd7%3A0xad9cdb91d0fde45f!2z642U7Zes66as7JWEIOyCsO2bhOyhsOumrOybkA!5e0!3m2!1sko!2sus!4v1760246577990!5m2!1sko!2sus"
-              loading="lazy"
-              className="h-full w-full grayscale-[8%] transition-all duration-700 group-hover:grayscale-0"
-              referrerPolicy="no-referrer-when-downgrade"
-              allowFullScreen
-            />
-            <div className="absolute right-4 top-4 rounded-full border border-white/50 bg-white/90 px-4 py-2 text-xs font-semibold text-foreground shadow-sm backdrop-blur-md">
-              {content.mapCallout}
-            </div>
-          </div>
-        </div>
-
-        <div className="space-y-4">
-          <article className="rounded-[2rem] border border-border/40 bg-white/80 p-6 shadow-sm backdrop-blur-md dark:bg-[#2A2928]/60">
-            <div className="flex items-start gap-4">
-              <div className="flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-2xl bg-primary/10 text-primary dark:bg-[#333231]">
-                <MapPinIcon className="h-6 w-6" />
-              </div>
-              <div className="space-y-2">
-                <p className="text-sm font-semibold uppercase tracking-[0.18em] text-primary/80">
-                  {content.addressLabel}
-                </p>
-                <p className="max-w-[26ch] text-balance break-keep text-lg font-semibold leading-relaxed text-foreground">
-                  {content.addressValue}
-                </p>
-                <p className="max-w-[40ch] break-keep text-[13px] leading-[1.8] text-foreground/70 md:text-sm">
-                  {content.addressDescription}
-                </p>
-              </div>
-            </div>
-          </article>
-
-          <article className="rounded-[2rem] border border-border/40 bg-gradient-to-br from-primary/10 via-background to-background/95 p-6 shadow-sm">
-            <div className="mb-5 flex items-center gap-4">
-              <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-primary/10 text-primary dark:bg-[#333231]">
-                <Navigation className="h-6 w-6" />
-              </div>
-              <div>
-                <p className="text-sm font-semibold uppercase tracking-[0.18em] text-primary/80">
-                  {content.stepsEyebrow}
-                </p>
-                <h3 className="max-w-[19ch] text-balance break-keep text-xl font-semibold text-foreground font-serif">
-                  {content.stepsTitle}
-                </h3>
-              </div>
-            </div>
-
-            <div className="space-y-4">
-              {content.steps.map((step, index) => (
-                <div
-                  key={step.id}
-                  className="flex gap-4 rounded-[1.5rem] border border-border/35 bg-white/75 p-4 shadow-sm dark:bg-[#2A2928]/60"
+    <>
+      <ScrollReveal>
+        <section className="grid gap-6 lg:grid-cols-[1.08fr_0.92fr]">
+          <div className="rounded-[2rem] border border-border/40 bg-background/80 p-4 shadow-sm backdrop-blur md:p-5">
+            <div className="space-y-3 px-2 pb-5 text-center md:px-3 md:text-left">
+              <p className="text-sm font-semibold uppercase tracking-[0.28em] text-primary font-playfair italic">
+                {content.mapBadge}
+              </p>
+              <h3 className="mx-auto max-w-[17ch] text-balance break-keep text-2xl font-semibold leading-[1.24] text-foreground md:mx-0 md:text-3xl font-serif">
+                {content.mapTitle}
+              </h3>
+              <p className="mx-auto max-w-[38ch] break-keep text-sm leading-[1.85] text-foreground/72 md:mx-0 md:max-w-[52ch] md:text-base">
+                {content.mapSubtitle}
+              </p>
+              <div className="flex justify-center pt-1 md:justify-start">
+                <button
+                  type="button"
+                  onClick={() => setIsMapDialogOpen(true)}
+                  className="inline-flex w-full items-center justify-center gap-2 rounded-xl bg-primary px-5 py-3 text-sm font-semibold text-background shadow-sm transition-colors hover:bg-primary/90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40 sm:w-auto"
                 >
-                  <div className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-full bg-primary text-sm font-semibold text-background">
-                    {index + 1}
-                  </div>
-                  <div>
-                    <p className="max-w-[24ch] text-balance break-keep text-[15px] font-semibold text-foreground md:text-base">
-                      {step.title}
-                    </p>
-                    <p className="mt-1 max-w-[38ch] break-keep text-[13px] leading-[1.75] text-foreground/70 md:text-sm">
-                      {step.body}
-                    </p>
-                  </div>
-                </div>
-              ))}
+                  <Navigation className="h-4 w-4" />
+                  {content.mapAppButtonLabel}
+                </button>
+              </div>
             </div>
-          </article>
-        </div>
-      </section>
-    </ScrollReveal>
+
+            <div className="group relative h-[340px] overflow-hidden rounded-[1.75rem] border border-border/30 shadow-md md:h-[420px]">
+              <iframe
+                title="The Helia Location"
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3174.8384058135257!2d126.95109607716499!3d37.275258840774896!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x277bcbed795ddd7%3A0xad9cdb91d0fde45f!2z642U7Zes66as7JWEIOyCsO2bhOyhsOumrOybkA!5e0!3m2!1sko!2sus!4v1760246577990!5m2!1sko!2sus"
+                loading="lazy"
+                className="h-full w-full grayscale-[8%] transition-all duration-700 group-hover:grayscale-0"
+                referrerPolicy="no-referrer-when-downgrade"
+                allowFullScreen
+              />
+              <div className="absolute right-4 top-4 rounded-full border border-white/50 bg-white/90 px-4 py-2 text-xs font-semibold text-foreground shadow-sm backdrop-blur-md">
+                {content.mapCallout}
+              </div>
+            </div>
+          </div>
+
+          <div className="space-y-4">
+            <article className="rounded-[2rem] border border-border/40 bg-white/80 p-6 shadow-sm backdrop-blur-md dark:bg-[#2A2928]/60">
+              <div className="flex items-start gap-4">
+                <div className="flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-2xl bg-primary/10 text-primary dark:bg-[#333231]">
+                  <MapPinIcon className="h-6 w-6" />
+                </div>
+                <div className="space-y-2">
+                  <p className="text-sm font-semibold uppercase tracking-[0.18em] text-primary/80">
+                    {content.addressLabel}
+                  </p>
+                  <p className="max-w-[26ch] text-balance break-keep text-lg font-semibold leading-relaxed text-foreground">
+                    {content.addressValue}
+                  </p>
+                  <p className="max-w-[40ch] break-keep text-[13px] leading-[1.8] text-foreground/70 md:text-sm">
+                    {content.addressDescription}
+                  </p>
+                </div>
+              </div>
+            </article>
+
+            <article className="rounded-[2rem] border border-border/40 bg-gradient-to-br from-primary/10 via-background to-background/95 p-6 shadow-sm">
+              <div className="mb-5 flex items-center gap-4">
+                <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-primary/10 text-primary dark:bg-[#333231]">
+                  <Navigation className="h-6 w-6" />
+                </div>
+                <div>
+                  <p className="text-sm font-semibold uppercase tracking-[0.18em] text-primary/80">
+                    {content.stepsEyebrow}
+                  </p>
+                  <h3 className="max-w-[19ch] text-balance break-keep text-xl font-semibold text-foreground font-serif">
+                    {content.stepsTitle}
+                  </h3>
+                </div>
+              </div>
+
+              <div className="space-y-4">
+                {content.steps.map((step, index) => (
+                  <div
+                    key={step.id}
+                    className="flex gap-4 rounded-[1.5rem] border border-border/35 bg-white/75 p-4 shadow-sm dark:bg-[#2A2928]/60"
+                  >
+                    <div className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-full bg-primary text-sm font-semibold text-background">
+                      {index + 1}
+                    </div>
+                    <div>
+                      <p className="max-w-[24ch] text-balance break-keep text-[15px] font-semibold text-foreground md:text-base">
+                        {step.title}
+                      </p>
+                      <p className="mt-1 max-w-[38ch] break-keep text-[13px] leading-[1.75] text-foreground/70 md:text-sm">
+                        {step.body}
+                      </p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </article>
+          </div>
+        </section>
+      </ScrollReveal>
+
+      {isMapDialogOpen ? (
+        <MapAppDialog
+          content={content}
+          descriptionId={mapDialogDescriptionId}
+          titleId={mapDialogTitleId}
+          onClose={() => setIsMapDialogOpen(false)}
+          onSelect={handleMapProviderSelect}
+        />
+      ) : null}
+    </>
   )
+}
+
+function MapAppDialog({
+  content,
+  descriptionId,
+  titleId,
+  onClose,
+  onSelect,
+}: {
+  content: LocationPageContent
+  descriptionId: string
+  titleId: string
+  onClose: () => void
+  onSelect: (providerId: MapProviderId) => void
+}): React.JSX.Element {
+  if (typeof document === 'undefined') {
+    return <></>
+  }
+
+  return createPortal(
+    <div
+      className="fixed inset-0 z-[120] flex items-end bg-black/58 px-4 backdrop-blur-[3px] md:items-center md:justify-center md:px-6 md:py-8"
+      onClick={onClose}
+    >
+      <div
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby={titleId}
+        aria-describedby={descriptionId}
+        className="relative mb-0 flex max-h-[88vh] w-full max-w-lg flex-col overflow-hidden rounded-t-[2rem] border border-border/40 bg-background shadow-[0_26px_80px_rgba(0,0,0,0.22)] md:rounded-[2rem]"
+        onClick={(event) => event.stopPropagation()}
+      >
+        <div className="pointer-events-none absolute inset-x-0 top-0 h-20 bg-[linear-gradient(180deg,rgba(255,255,255,0.12),transparent)] dark:bg-[linear-gradient(180deg,rgba(255,255,255,0.06),transparent)]" />
+
+        <div className="flex items-start justify-between gap-4 border-b border-border/40 px-5 pb-5 pt-5 sm:px-6 sm:pb-6 sm:pt-6">
+          <div className="min-w-0">
+            <div className="mb-3 inline-flex items-center gap-2 rounded-full bg-primary/10 px-3 py-1.5 text-[11px] font-semibold uppercase tracking-[0.2em] text-primary">
+              <Navigation className="h-3.5 w-3.5" />
+              MAP APP
+            </div>
+            <h3
+              id={titleId}
+              className="break-keep text-2xl font-serif font-semibold leading-tight text-foreground sm:text-3xl"
+            >
+              {content.mapAppDialogTitle}
+            </h3>
+            <p
+              id={descriptionId}
+              className="mt-3 break-keep text-sm leading-relaxed text-foreground/72 sm:text-base"
+            >
+              {content.mapAppDialogSubtitle}
+            </p>
+          </div>
+          <button
+            type="button"
+            aria-label={content.mapAppDialogCloseLabel}
+            onClick={onClose}
+            className="inline-flex h-11 w-11 flex-shrink-0 items-center justify-center rounded-full border border-border/50 bg-primary/5 text-foreground transition hover:bg-primary/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40"
+          >
+            <X className="h-4 w-4" />
+          </button>
+        </div>
+
+        <div
+          data-lenis-prevent
+          className="space-y-3 overflow-y-auto overscroll-contain px-5 pb-[calc(env(safe-area-inset-bottom)+1.5rem)] pt-5 sm:px-6 sm:pb-6"
+        >
+          {content.mapAppOptions.map((option) => {
+            const Icon = MAP_PROVIDER_ICONS[option.id]
+
+            return (
+              <button
+                key={option.id}
+                type="button"
+                onClick={() => onSelect(option.id)}
+                className="group flex w-full items-center gap-4 rounded-[1.5rem] border border-border/40 bg-white/75 p-4 text-left shadow-sm transition hover:border-primary/45 hover:bg-primary/5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40 dark:bg-[#2A2928]/60 sm:p-5"
+              >
+                <span className="flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-2xl bg-primary/10 text-primary transition group-hover:bg-primary group-hover:text-background">
+                  <Icon className="h-5 w-5" />
+                </span>
+                <span className="min-w-0 flex-1">
+                  <span className="block break-keep text-base font-semibold text-foreground">
+                    {option.label}
+                  </span>
+                  <span className="mt-1 block break-keep text-[13px] leading-[1.7] text-foreground/68 sm:text-sm">
+                    {option.description}
+                  </span>
+                </span>
+                <ArrowUpRight className="h-4 w-4 flex-shrink-0 text-primary transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
+              </button>
+            )
+          })}
+        </div>
+      </div>
+    </div>,
+    document.body,
+  )
+}
+
+function openMapRoute(providerId: MapProviderId): void {
+  if (typeof window === 'undefined') return
+
+  const routeTarget = getMapRouteTarget(providerId)
+
+  if (!routeTarget.usesFallbackTimer) {
+    window.location.href = routeTarget.url
+    return
+  }
+
+  const openedAt = Date.now()
+
+  window.location.href = routeTarget.url
+  window.setTimeout(() => {
+    const elapsed = Date.now() - openedAt
+
+    if (document.visibilityState === 'visible' && elapsed < MAP_APP_FALLBACK_DELAY + 800) {
+      window.location.href = routeTarget.fallbackUrl
+    }
+  }, MAP_APP_FALLBACK_DELAY)
+}
+
+function getMapRouteTarget(providerId: MapProviderId): {
+  url: string
+  fallbackUrl: string
+  usesFallbackTimer: boolean
+} {
+  const isAndroid = typeof window !== 'undefined' && /Android/i.test(window.navigator.userAgent)
+
+  if (providerId === 'apple') {
+    const appleMapsUrl = buildAppleMapsUrl()
+
+    return {
+      url: appleMapsUrl,
+      fallbackUrl: appleMapsUrl,
+      usesFallbackTimer: false,
+    }
+  }
+
+  if (providerId === 'kakao') {
+    const fallbackUrl = buildKakaoFallbackUrl()
+
+    return {
+      url: isAndroid ? buildKakaoIntentUrl(fallbackUrl) : buildKakaoAppUrl(),
+      fallbackUrl,
+      usesFallbackTimer: true,
+    }
+  }
+
+  const fallbackUrl = buildNaverFallbackUrl()
+
+  return {
+    url: isAndroid ? buildNaverIntentUrl(fallbackUrl) : buildNaverAppUrl(),
+    fallbackUrl,
+    usesFallbackTimer: true,
+  }
+}
+
+function buildNaverRouteQuery(): string {
+  return new URLSearchParams({
+    dlat: HELIA_DESTINATION.lat,
+    dlng: HELIA_DESTINATION.lng,
+    dname: HELIA_DESTINATION.name,
+    appname: SITE_URL,
+  }).toString()
+}
+
+function buildNaverAppUrl(): string {
+  return `nmap://route/car?${buildNaverRouteQuery()}`
+}
+
+function buildNaverIntentUrl(fallbackUrl: string): string {
+  const routeQuery = buildNaverRouteQuery()
+  const encodedFallbackUrl = encodeURIComponent(fallbackUrl)
+
+  return [
+    `intent://route/car?${routeQuery}#Intent`,
+    'scheme=nmap',
+    'action=android.intent.action.VIEW',
+    'category=android.intent.category.BROWSABLE',
+    'package=com.nhn.android.nmap',
+    `S.browser_fallback_url=${encodedFallbackUrl}`,
+    'end',
+  ].join(';')
+}
+
+function buildNaverFallbackUrl(): string {
+  return `https://map.naver.com/p/search/${encodeURIComponent(HELIA_DESTINATION.name)}`
+}
+
+function buildKakaoAppUrl(): string {
+  return `kakaomap://route?ep=${HELIA_DESTINATION.lat},${HELIA_DESTINATION.lng}&by=car`
+}
+
+function buildKakaoIntentUrl(fallbackUrl: string): string {
+  const encodedFallbackUrl = encodeURIComponent(fallbackUrl)
+
+  return [
+    `intent://route?ep=${HELIA_DESTINATION.lat},${HELIA_DESTINATION.lng}&by=car#Intent`,
+    'scheme=kakaomap',
+    'action=android.intent.action.VIEW',
+    'category=android.intent.category.BROWSABLE',
+    'package=net.daum.android.map',
+    `S.browser_fallback_url=${encodedFallbackUrl}`,
+    'end',
+  ].join(';')
+}
+
+function buildKakaoFallbackUrl(): string {
+  return `https://map.kakao.com/link/to/${encodeURIComponent(HELIA_DESTINATION.name)},${HELIA_DESTINATION.lat},${HELIA_DESTINATION.lng}`
+}
+
+function buildAppleMapsUrl(): string {
+  const params = new URLSearchParams({
+    daddr: `${HELIA_DESTINATION.lat},${HELIA_DESTINATION.lng}`,
+    q: HELIA_DESTINATION.name,
+    dirflg: 'd',
+  })
+
+  return `https://maps.apple.com/?${params.toString()}`
 }
 
 function LocationGuideSection({
@@ -483,6 +789,37 @@ function getLocationContent(locale: Locale): LocationPageContent {
       ? '건물 위치를 먼저 확인한 뒤, 도착 후에는 안내 데스크 등록 순서대로 이동하시면 됩니다.'
       : 'Check the building location first, then follow the check-in flow once you arrive.',
     mapCallout: isKo ? 'MS메디컬스퀘어 5·6층' : 'MS Medical Square 5F-6F',
+    mapAppButtonLabel: isKo ? '지도 앱으로 길찾기' : 'Open in map app',
+    mapAppDialogTitle: isKo
+      ? '사용할 지도 앱을 선택해 주세요'
+      : 'Choose your map app',
+    mapAppDialogSubtitle: isKo
+      ? '선택한 지도 앱에서 현재 위치 기준 길찾기를 엽니다. 이동수단은 앱에서 변경할 수 있습니다.'
+      : 'Open directions from your current location to The Helia. You can change the travel mode in the map app.',
+    mapAppDialogCloseLabel: isKo ? '지도 앱 선택 닫기' : 'Close map app chooser',
+    mapAppOptions: [
+      {
+        id: 'naver',
+        label: isKo ? '네이버 지도' : 'Naver Map',
+        description: isKo
+          ? '네이버 지도 앱에서 더헬리아까지 길찾기를 엽니다.'
+          : 'Open directions to The Helia in Naver Map.',
+      },
+      {
+        id: 'kakao',
+        label: isKo ? '카카오맵' : 'KakaoMap',
+        description: isKo
+          ? '카카오맵 앱에서 더헬리아까지 길찾기를 엽니다.'
+          : 'Open directions to The Helia in KakaoMap.',
+      },
+      {
+        id: 'apple',
+        label: isKo ? '애플 지도' : 'Apple Maps',
+        description: isKo
+          ? '아이폰 기본 지도 앱에서 현재 위치 기준 길찾기를 엽니다.'
+          : 'Open directions from here in Apple Maps.',
+      },
+    ],
     addressLabel: isKo ? '주소' : 'Address',
     addressValue: isKo
       ? '경기도 수원시 권선구 금곡로197번길 18-39'
