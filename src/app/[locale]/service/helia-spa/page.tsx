@@ -17,7 +17,17 @@ export default async function HeliaSpaPage({
   const normalizedLocale = normalizeLocale(locale)
 
   return (
-    <SubPageTemplate path="/service/helia-spa" localeOverride={normalizedLocale}>
+    <SubPageTemplate
+      path="/service/helia-spa"
+      localeOverride={normalizedLocale}
+      heroVariant="cinematic"
+      heroImageSrc="/img/subhero/us/helia-spa.jpg"
+      heroImageAlt={
+        normalizedLocale === 'ko'
+          ? '헬리아 스파의 따뜻하고 고요한 프라이빗 라운지'
+          : 'The warm, serene private lounge at Helia Spa'
+      }
+    >
       <HeliaSpaPageContent />
     </SubPageTemplate>
   )

@@ -163,10 +163,10 @@ export const NAV_ITEMS: NavItemDefinition[] = [
       ko: "산모와 아기를 위한 프리미엄 케어를 만나보세요.",
     },
     previewImage: {
-      src: "/img/spa/spa_main.png",
+      src: "/img/subhero/us/service.jpg",
       alt: {
-        en: "Service",
-        ko: "서비스"
+        en: "Premium spa and wellness care at The Helia",
+        ko: "더 헬리아의 프리미엄 스파 & 웰니스 케어"
       }
     },
     sub: [

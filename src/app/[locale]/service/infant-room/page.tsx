@@ -17,7 +17,18 @@ export default async function InfantRoomPage({
   const normalizedLocale = normalizeLocale(locale)
 
   return (
-    <SubPageTemplate path="/service/infant-room" localeOverride={normalizedLocale} fullWidth>
+    <SubPageTemplate
+      path="/service/infant-room"
+      localeOverride={normalizedLocale}
+      fullWidth
+      heroVariant="cinematic"
+      heroImageSrc="/img/subhero/us/infant-room.jpg"
+      heroImageAlt={
+        normalizedLocale === 'ko'
+          ? '신생아실에서 포근하게 잠든 아기'
+          : 'A newborn sleeping peacefully in the infant room'
+      }
+    >
       <NewbornPageContent locale={normalizedLocale} />
     </SubPageTemplate>
   )
