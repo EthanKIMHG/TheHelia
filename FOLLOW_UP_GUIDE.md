@@ -1108,6 +1108,26 @@ Last updated: 2026-07-04
   - `SpaBrandIntro.tsx`: THALAC image `/img/spa/thalac.png` → `/img/spa/us/thalac.jpg` (Unsplash: a serum dropper bottle resting in a swirl of sand — marine/mineral esthetic matching the French thalassotherapy brand story), added `sizes`.
 - Validation: `pnpm build` passes; SSR HTML confirms all 8 feature group headings present once each, dropped "프라이빗 케어" absent, old long items gone, THALAC image serving 200 via the optimizer with no remaining `thalac.png` refs. (Note: `grep -o "…" | head && echo` always runs the echo regardless of match — use `grep -q` for presence checks.)
 
+### Room-suites page — One&Only-inspired "balanced" redesign (2026-07-04)
+- Request: improve the room page referencing One&Only's private-villa-rentals page. (Their live site times out via WebFetch — bot/JS wall — so worked from the known One&Only villa pattern + WebSearch confirmation.) User chose the "balanced" direction: photo-forward like One&Only but keep core specs (조리원 buyers want detail).
+- Change in `RoomSuiteShowcase.tsx` (RoomSuiteTemplate/data untouched; component-level so scoped to room pages):
+  - Revived the previously-DEAD `hero.highlights` data (객실 크기 / 베드 / 신생아 케어) as a clean "한눈에 보기 / At a Glance" hairline 3-col spec strip — the One&Only key-specs move. This data existed in SUITE_CONTENT but was never rendered.
+  - Replaced the dense [feature grid + sticky "FAST FACTS" sidebar] with a photo-forward 2-col image/text block: a large room image beside the feature groups. Removed the FAST FACTS sidebar (redundant with the new spec strip; `copy.facts` now unused but kept in data).
+  - Condensed bullets ~50% via render-time slice (no data edits): feature groups `items.slice(0, 2)` (16 → 8 bullets), amenities `items.slice(0, 3)` (trims the 5-item linen group).
+  - Opened up vertical rhythm: `space-y-14` → `space-y-16 md:space-y-24`.
+  - Kept the gallery carousel (thumbnail browsing is useful for a room page) and the partner-breakfast section.
+- Validation: `pnpm build` passes; server HTML (curl) confirms the spec strip + all 3 highlights render, FAST FACTS gone, 4 feature groups present with exactly 8 bullets, page 200. (Preview harness kept resetting to /ko and screenshots stayed blank — Lenis vs. compositor desync — so verified via curl'd SSR HTML.)
+
+### Room-suites hero + suite selector redesign (2026-07-04)
+- Request: redesign the VIP/VVIP/PRESTIGE selector "hero" area to match the design system; destructive OK.
+- Change in `RoomSuiteTemplate.tsx` (full rewrite of the hero/selector; `RoomSuiteShowcase` content untouched except one border removal):
+  - Replaced the generic parent `SubPageHero` ("룸 & 스위트") + awkward left/right switch buttons with a **suite-specific full-bleed cinematic hero** (62vh/70vh): the suite's own preview image (`/img/headerpreview/{suite}.jpg`) under a warm espresso gradient, with parent label as a tracked eyebrow, the SUITE NAME as a large uppercase serif, and one line of copy.
+  - Added an editorial **suite selector tab bar** below the hero: `01 VIP · 02 VVIP · 03 PRESTIGE` (numbered, tracked serif labels, active tab = foreground + 2px underline, others muted → hover foreground). Links via `buildSuiteHref`.
+  - `RoomSuiteShowcase`: removed the now-redundant `border-t` on the gallery section (the selector bar provides the top divider).
+  - Bug fixed during review: suite order changed to [vip,vvip,prestige] for display broke `currentSuite` detection because `"/room-suites/vvip".endsWith("vip")` is true → switched to exact last-segment match (`slug === lastSegment`). Verified each suite page renders exactly one `aria-current="page"` tab.
+  - `SubPageHero` is no longer used by room pages (still used by other sub-pages via `SubPageTemplate`).
+- Validation: `pnpm build` passes; visually confirmed the full-bleed suite hero + correct active tab on VIP and VVIP; SSR HTML confirms suite-specific hero image, 3 selector links with 01/02/03, and one active tab per page.
+
 ## Follow-up Notes For Next AI
 - Keep app scope static/content-driven (no auth, no DB).
 - Continue improvements based on new user directives and append each change under `Completed Improvements`.

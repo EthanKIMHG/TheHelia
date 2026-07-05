@@ -34,7 +34,10 @@ export function RoomSuiteShowcase({ suiteId, locale }: RoomSuiteShowcaseProps) {
   );
   const [currentIndex, setCurrentIndex] = useState(1);
 
+  const isKo = activeLocale === "ko";
   const currentImage = copy.carousel[currentIndex] ?? copy.carousel[1];
+  const featureImage =
+    copy.carousel[Math.min(4, copy.carousel.length - 1)] ?? copy.carousel[0];
 
   const handlePrev = () => {
     setCurrentIndex((prev) =>
@@ -53,9 +56,9 @@ export function RoomSuiteShowcase({ suiteId, locale }: RoomSuiteShowcaseProps) {
   };
 
   return (
-    <div className="space-y-14">
+    <div className="space-y-16 md:space-y-24">
       <ScrollReveal>
-      <section className="border-t border-border pt-8 md:pt-10">
+      <section>
         <div className="flex flex-col gap-6 md:flex-row md:items-center md:justify-between">
           <div className="text-center md:text-left">
             <p className="eyebrow">
@@ -129,13 +132,53 @@ export function RoomSuiteShowcase({ suiteId, locale }: RoomSuiteShowcaseProps) {
       </section>
       </ScrollReveal>
 
+      {copy.hero.highlights.length > 0 ? (
+        <ScrollReveal>
+        <section>
+          <span className="eyebrow mb-8 inline-block">
+            {isKo ? "한눈에 보기" : "At a Glance"}
+          </span>
+          <div className="grid grid-cols-1 border-t border-border sm:grid-cols-3">
+            {copy.hero.highlights.map((highlight, index) => (
+              <div
+                key={highlight.title}
+                className={`py-8 sm:px-8 sm:first:pl-0 ${
+                  index > 0 ? "border-t border-border sm:border-t-0 sm:border-l" : ""
+                }`}
+              >
+                <p className="font-sans text-[10px] font-semibold uppercase tracking-[0.24em] text-primary">
+                  {highlight.title}
+                </p>
+                <p className="mt-4 break-keep font-display-serif text-2xl font-normal leading-[1.4] text-foreground">
+                  {highlight.value}
+                </p>
+                <p className="mt-2 break-keep text-sm leading-[1.75] text-secondary">
+                  {highlight.note}
+                </p>
+              </div>
+            ))}
+          </div>
+        </section>
+        </ScrollReveal>
+      ) : null}
+
       <ScrollReveal>
-      <section className="grid gap-10 lg:grid-cols-[1.2fr_0.8fr] lg:gap-8">
-        <div className="grid gap-x-8 gap-y-10 sm:grid-cols-2">
+      <section className="grid gap-10 lg:grid-cols-2 lg:items-stretch lg:gap-14">
+        <div className="relative order-1 min-h-[420px] overflow-hidden bg-accent/60 lg:order-2 lg:min-h-full">
+          <Image
+            src={featureImage.src}
+            alt={featureImage.alt}
+            fill
+            sizes="(min-width: 1024px) 46vw, 100vw"
+            className="object-cover"
+          />
+        </div>
+
+        <div className="order-2 flex flex-col gap-10 lg:order-1">
           {copy.featureGroups.map((group, idx) => (
             <article
               key={group.title}
-              className={`border-t border-border pt-6 ${idx === 0 ? 'sm:col-span-2' : ''}`}
+              className="border-t border-border pt-6"
             >
               <h4 className="mb-4 flex items-center gap-3 font-display-serif text-lg font-normal leading-[1.5] text-foreground">
                 {idx === 0 && <Sofa className="h-5 w-5 text-primary" strokeWidth={1.5} />}
@@ -144,9 +187,9 @@ export function RoomSuiteShowcase({ suiteId, locale }: RoomSuiteShowcaseProps) {
                 {idx === 3 && <Sparkles className="h-5 w-5 text-primary" strokeWidth={1.5} />}
                 {group.title}
               </h4>
-              <ul className={`grid gap-x-8 text-sm text-foreground/80 ${idx === 0 ? 'sm:grid-cols-2' : ''}`}>
-                {group.items.map((item) => (
-                  <li key={item} className="flex items-center gap-3 border-b border-border py-2.5">
+              <ul className="text-sm text-foreground/80">
+                {group.items.slice(0, 2).map((item) => (
+                  <li key={item} className="flex items-center gap-3 border-b border-border py-2.5 last:border-b-0">
                     <span className="h-px w-3 flex-shrink-0 bg-primary" />
                     <span className="leading-relaxed">{item}</span>
                   </li>
@@ -155,30 +198,6 @@ export function RoomSuiteShowcase({ suiteId, locale }: RoomSuiteShowcaseProps) {
             </article>
           ))}
         </div>
-
-        <aside className="sticky top-24 flex h-fit flex-col gap-6 border border-border bg-background p-7 md:p-8">
-          <div>
-            <span className="eyebrow mb-5 inline-block">
-              {copy.facts.badge}
-            </span>
-            <div>
-               {copy.facts.items.map((fact) => (
-                <div key={fact.title} className="flex items-center justify-between gap-4 border-b border-border py-3.5">
-                  <span className="flex items-center gap-2.5">
-                    <fact.icon className="h-4 w-4 flex-shrink-0 text-primary" strokeWidth={1.5} />
-                    <span className="font-sans text-[10px] font-semibold uppercase tracking-[0.24em] text-primary">
-                      {fact.title}
-                    </span>
-                  </span>
-                  <span className="text-right text-sm leading-snug text-foreground/80">{fact.detail}</span>
-                </div>
-               ))}
-            </div>
-          </div>
-          <div className="mt-auto text-sm leading-[1.85] text-secondary">
-            <span className="text-primary mr-1">*</span>{copy.facts.note}
-          </div>
-        </aside>
       </section>
       </ScrollReveal>
 
@@ -218,7 +237,7 @@ function AmenitiesSection({ copy }: { copy: SuiteCopy["amenities"] }) {
                   {group.title}
                 </h4>
                 <ul className="space-y-3">
-                  {group.items.map((item) => (
+                  {group.items.slice(0, 3).map((item) => (
                     <li key={item} className="flex items-start gap-2.5 text-sm leading-[1.85] text-secondary">
                       <Heart className="mt-1.5 h-3 w-3 flex-shrink-0 text-primary" strokeWidth={1.5} />
                       <span>{item}</span>
