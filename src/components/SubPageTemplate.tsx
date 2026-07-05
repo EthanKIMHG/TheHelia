@@ -45,8 +45,10 @@ export function SubPageTemplate({
       ? getMainPageContent(parentPath, locale)
       : null;
 
+  const showEyebrow = Boolean(main?.title) && main?.title !== primary.title;
+
   return (
-    <div className="pb-12 ">
+    <div className="pb-16 md:pb-24">
       <SubPageHero
         title={main?.title ?? primary.title}
         imageSrc={main?.imageSrc ?? primary.imageSrc}
@@ -55,16 +57,23 @@ export function SubPageTemplate({
 
       <section
         className={clsx(
-          "mx-auto flex w-full flex-col items-center gap-8 pt-20 text-foreground",
+          "mx-auto flex w-full flex-col items-center gap-12 pt-16 text-foreground md:gap-16 md:pt-24",
           fullWidth ? "max-w-none px-0" : "max-w-6xl px-4",
         )}
       >
         <div className="px-4 text-center">
           <ScrollReveal>
-            <h2 className="break-keep text-3xl font-serif font-semibold leading-[1.28] text-foreground md:text-4xl md:leading-tight">
+            {showEyebrow ? (
+              <span className="eyebrow mb-5 block">{main?.title}</span>
+            ) : null}
+            <h2 className="break-keep font-display-serif text-3xl font-normal leading-[1.4] text-foreground md:text-4xl">
               {primary.title}
             </h2>
-            <p className="mx-auto mt-4 max-w-[30ch] break-keep text-base leading-relaxed text-foreground/85 md:max-w-3xl md:text-lg">
+            <span
+              className="mx-auto mt-7 block h-px w-10 bg-primary/60"
+              aria-hidden
+            />
+            <p className="mx-auto mt-7 max-w-[34ch] break-keep text-[15px] leading-[2] text-secondary md:max-w-2xl md:text-base">
               {primary.copy ?? primary.description}
             </p>
           </ScrollReveal>
@@ -72,7 +81,7 @@ export function SubPageTemplate({
         {children ? (
           <div
             className={clsx(
-              "w-full rounded-xl backdrop-blur",
+              "w-full",
               fullWidth ? "max-w-none" : "max-w-7xl",
             )}
           >

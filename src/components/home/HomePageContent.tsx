@@ -140,10 +140,10 @@ export default function HomePageContent({
         <section
           id="partners"
           ref={(node) => registerSection('partners', node)}
-          className="w-full py-12"
+          className="w-full py-12 md:py-20"
         >
-          <div className="px-4 py-12 text-center md:px-12 md:text-left">
-            <span className="break-keep text-3xl md:text-4xl">
+          <div className="mx-auto max-w-7xl border-t border-border px-4 pb-4 pt-14 text-center md:px-12 md:text-left">
+            <span className="break-keep font-display-serif text-2xl font-normal text-foreground md:text-3xl">
               {locale === 'ko' ? '더헬리아와 함께하는 기업들' : 'Our Partners'}
             </span>
           </div>
@@ -156,7 +156,7 @@ export default function HomePageContent({
             pauseOnHover
             scaleOnHover
             ariaLabel="cooperation logos"
-            className="bg-[#FAF9F6]"
+            className="bg-background"
           />
         </section>
       </main>

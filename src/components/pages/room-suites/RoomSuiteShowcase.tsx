@@ -55,16 +55,16 @@ export function RoomSuiteShowcase({ suiteId, locale }: RoomSuiteShowcaseProps) {
   return (
     <div className="space-y-14">
       <ScrollReveal>
-      <section className="rounded-3xl border border-border/30 bg-background/95 p-6 shadow md:p-10">
+      <section className="border-t border-border pt-8 md:pt-10">
         <div className="flex flex-col gap-6 md:flex-row md:items-center md:justify-between">
           <div className="text-center md:text-left">
-            <p className="text-sm font-semibold uppercase tracking-[0.3em] text-primary">
+            <p className="eyebrow">
               {copy.carouselBadge}
             </p>
-            <h3 className="mt-2 text-2xl font-semibold text-foreground md:text-3xl font-serif">
+            <h3 className="mt-4 font-display-serif text-2xl font-normal leading-[1.4] text-foreground md:text-3xl">
               {copy.carouselTitle}
             </h3>
-            <p className="mx-auto mt-2 max-w-[34ch] text-sm leading-relaxed text-foreground/70 md:mx-0 md:max-w-none md:text-base">
+            <p className="mx-auto mt-3 max-w-[34ch] text-sm leading-[1.85] text-secondary md:mx-0 md:max-w-none md:text-base">
               {copy.carouselDescription}
             </p>
           </div>
@@ -72,22 +72,22 @@ export function RoomSuiteShowcase({ suiteId, locale }: RoomSuiteShowcaseProps) {
             <button
               type="button"
               onClick={handlePrev}
-              className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-border/40 bg-background/80 text-foreground transition hover:bg-primary/10"
+              className="inline-flex h-11 w-11 items-center justify-center border border-border bg-background text-foreground transition-colors hover:border-foreground"
               aria-label={copy.prevLabel}
             >
-              <ChevronLeft className="h-5 w-5" />
+              <ChevronLeft className="h-5 w-5" strokeWidth={1.5} />
             </button>
             <button
               type="button"
               onClick={handleNext}
-              className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-border/40 bg-background/80 text-foreground transition hover:bg-primary/10"
+              className="inline-flex h-11 w-11 items-center justify-center border border-border bg-background text-foreground transition-colors hover:border-foreground"
               aria-label={copy.nextLabel}
             >
-              <ChevronRight className="h-5 w-5" />
+              <ChevronRight className="h-5 w-5" strokeWidth={1.5} />
             </button>
           </div>
         </div>
-        <div className="mt-6 overflow-hidden rounded-3xl border border-border/30">
+        <div className="mt-6 overflow-hidden bg-accent/30">
           <div className="relative h-[320px] w-full md:h-[520px] lg:h-[620px]">
             <Image
               key={currentImage.src}
@@ -98,7 +98,7 @@ export function RoomSuiteShowcase({ suiteId, locale }: RoomSuiteShowcaseProps) {
               className="object-cover"
               priority
             />
-            <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent p-4 text-sm text-background/90">
+            <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent p-4 text-sm text-white/90 drop-shadow">
               {currentImage.caption}
             </div>
           </div>
@@ -109,10 +109,10 @@ export function RoomSuiteShowcase({ suiteId, locale }: RoomSuiteShowcaseProps) {
               key={image.src + index}
               type="button"
               onClick={() => goToIndex(index)}
-              className={`relative aspect-[4/3] w-full overflow-hidden rounded-xl border transition md:h-20 md:w-32 ${
+              className={`relative aspect-[4/3] w-full overflow-hidden border transition md:h-20 md:w-32 ${
                 currentIndex === index
-                  ? "border-primary shadow"
-                  : "border-border/40 opacity-75 hover:opacity-100"
+                  ? "border-foreground"
+                  : "border-border opacity-70 hover:opacity-100"
               }`}
               aria-label={`${copy.thumbnailLabel} ${index + 1}`}
             >
@@ -130,28 +130,24 @@ export function RoomSuiteShowcase({ suiteId, locale }: RoomSuiteShowcaseProps) {
       </ScrollReveal>
 
       <ScrollReveal>
-      <section className="grid gap-6 lg:grid-cols-[1.2fr_0.8fr]">
-        <div className="grid gap-6 sm:grid-cols-2">
+      <section className="grid gap-10 lg:grid-cols-[1.2fr_0.8fr] lg:gap-8">
+        <div className="grid gap-x-8 gap-y-10 sm:grid-cols-2">
           {copy.featureGroups.map((group, idx) => (
             <article
               key={group.title}
-              className={`rounded-[2rem] border border-stone-200/60 dark:border-white/5 bg-white/60 dark:bg-[#2A2928]/60 backdrop-blur-xl p-8 shadow-sm transition-all hover:shadow-md hover:-translate-y-1 group
-                ${idx === 0 ? 'sm:col-span-2 bg-gradient-to-br from-white/80 to-stone-50/50 dark:from-[#2A2928] dark:to-[#201F1E]' : ''}
-              `}
+              className={`border-t border-border pt-6 ${idx === 0 ? 'sm:col-span-2' : ''}`}
             >
-              <h4 className="flex items-center gap-2.5 text-lg font-bold text-foreground font-serif mb-5">
-                <span className="flex items-center justify-center w-8 h-8 rounded-full bg-primary/10 text-primary">
-                  {idx === 0 && <Sofa className="w-4 h-4" />}
-                  {idx === 1 && <LaptopMinimal className="w-4 h-4" />}
-                  {idx === 2 && <Baby className="w-4 h-4" />}
-                  {idx === 3 && <Sparkles className="w-4 h-4" />}
-                </span>
+              <h4 className="mb-4 flex items-center gap-3 font-display-serif text-lg font-normal leading-[1.5] text-foreground">
+                {idx === 0 && <Sofa className="h-5 w-5 text-primary" strokeWidth={1.5} />}
+                {idx === 1 && <LaptopMinimal className="h-5 w-5 text-primary" strokeWidth={1.5} />}
+                {idx === 2 && <Baby className="h-5 w-5 text-primary" strokeWidth={1.5} />}
+                {idx === 3 && <Sparkles className="h-5 w-5 text-primary" strokeWidth={1.5} />}
                 {group.title}
               </h4>
-              <ul className={`grid gap-3 text-[15px] text-stone-600 dark:text-stone-300 ${idx === 0 ? 'sm:grid-cols-2' : ''}`}>
+              <ul className={`grid gap-x-8 text-sm text-foreground/80 ${idx === 0 ? 'sm:grid-cols-2' : ''}`}>
                 {group.items.map((item) => (
-                  <li key={item} className="flex items-start gap-2.5 group/item">
-                    <div className="mt-1.5 w-1.5 h-1.5 rounded-full bg-primary/40 group-hover/item:bg-primary transition-colors flex-shrink-0" />
+                  <li key={item} className="flex items-center gap-3 border-b border-border py-2.5">
+                    <span className="h-px w-3 flex-shrink-0 bg-primary" />
                     <span className="leading-relaxed">{item}</span>
                   </li>
                 ))}
@@ -159,29 +155,27 @@ export function RoomSuiteShowcase({ suiteId, locale }: RoomSuiteShowcaseProps) {
             </article>
           ))}
         </div>
-        
-        <aside className="flex flex-col gap-6 rounded-[2.5rem] border border-primary/10 bg-[#FAF9F6] dark:bg-[#2A2928] p-8 shadow-sm h-fit sticky top-24">
+
+        <aside className="sticky top-24 flex h-fit flex-col gap-6 border border-border bg-background p-7 md:p-8">
           <div>
-            <span className="inline-block px-3 py-1 rounded-full bg-primary/10 text-primary text-xs font-bold uppercase tracking-widest mb-4">
+            <span className="eyebrow mb-5 inline-block">
               {copy.facts.badge}
             </span>
-            <div className="space-y-5">
+            <div>
                {copy.facts.items.map((fact) => (
-                <div key={fact.title} className="flex items-start gap-4 group">
-                  <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-white dark:bg-stone-800 shadow-sm text-primary group-hover:scale-110 transition-transform">
-                    <fact.icon className="h-5 w-5" />
-                  </div>
-                  <div>
-                    <p className="text-sm font-bold text-foreground font-serif mb-0.5">
+                <div key={fact.title} className="flex items-center justify-between gap-4 border-b border-border py-3.5">
+                  <span className="flex items-center gap-2.5">
+                    <fact.icon className="h-4 w-4 flex-shrink-0 text-primary" strokeWidth={1.5} />
+                    <span className="font-sans text-[10px] font-semibold uppercase tracking-[0.24em] text-primary">
                       {fact.title}
-                    </p>
-                    <p className="text-sm text-stone-500 dark:text-stone-400 leading-snug">{fact.detail}</p>
-                  </div>
+                    </span>
+                  </span>
+                  <span className="text-right text-sm leading-snug text-foreground/80">{fact.detail}</span>
                 </div>
                ))}
             </div>
           </div>
-          <div className="mt-auto rounded-2xl bg-white dark:bg-stone-800 border border-stone-100 dark:border-white/5 p-5 text-sm font-medium text-stone-500 dark:text-stone-400 leading-relaxed shadow-sm">
+          <div className="mt-auto text-sm leading-[1.85] text-secondary">
             <span className="text-primary mr-1">*</span>{copy.facts.note}
           </div>
         </aside>
@@ -197,39 +191,36 @@ export function RoomSuiteShowcase({ suiteId, locale }: RoomSuiteShowcaseProps) {
 function AmenitiesSection({ copy }: { copy: SuiteCopy["amenities"] }) {
   return (
     <ScrollReveal>
-      <section className="overflow-hidden rounded-[2.5rem] border border-stone-200/60 dark:border-white/5 bg-white/60 dark:bg-[#2A2928]/60 backdrop-blur-xl shadow-sm">
-        <div className="space-y-8 p-8 md:p-12">
+      <section className="border-t border-border pt-10 md:pt-12">
+        <div className="space-y-10">
           <header className="space-y-4 text-center md:text-left">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 text-primary text-xs font-bold uppercase tracking-widest">
-               <Sparkles className="w-3 h-3" />
+            <span className="eyebrow inline-flex items-center gap-2">
+               <Sparkles className="h-3 w-3" strokeWidth={1.5} />
                {copy.badge}
-            </div>
+            </span>
             <div>
-              <h3 className="text-3xl font-bold text-foreground font-serif mb-2">
+              <h3 className="mb-3 font-display-serif text-2xl font-normal leading-[1.4] text-foreground md:text-3xl">
                 {copy.title}
               </h3>
-              <p className="mx-auto max-w-[34ch] text-base leading-relaxed text-stone-500 dark:text-stone-400 md:mx-0 md:max-w-2xl">
+              <p className="mx-auto max-w-[34ch] text-base leading-[1.85] text-secondary md:mx-0 md:max-w-2xl">
                 {copy.subtitle}
               </p>
             </div>
           </header>
-          
-          <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+
+          <div className="grid gap-x-8 gap-y-10 md:grid-cols-2 lg:grid-cols-3">
             {copy.groups.map((group) => (
               <article
                 key={group.title}
-                className="group relative rounded-[2rem] border border-white/40 dark:border-white/5 bg-white/40 dark:bg-[#2A2928]/40 backdrop-blur-md p-8 shadow-[0_8px_30px_rgb(0,0,0,0.04)] hover:shadow-xl transition-all duration-500 hover:-translate-y-1"
+                className="border-t border-border pt-6"
               >
-                <div className="absolute inset-0 bg-gradient-to-br from-white/40 to-transparent dark:from-white/5 dark:to-transparent rounded-[2rem] opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
-                
-                <h4 className="text-lg font-bold text-foreground mb-4 font-serif flex items-center gap-2">
-                  <span className="w-1.5 h-1.5 rounded-full bg-primary" />
+                <h4 className="mb-4 font-display-serif text-lg font-normal leading-[1.5] text-foreground">
                   {group.title}
                 </h4>
                 <ul className="space-y-3">
                   {group.items.map((item) => (
-                    <li key={item} className="flex items-start gap-2.5 text-[15px] leading-relaxed text-stone-600 dark:text-stone-300 group-hover:text-stone-800 dark:group-hover:text-stone-100 transition-colors">
-                      <Heart className="mt-1 h-3.5 w-3.5 flex-shrink-0 text-primary/40 group-hover:text-primary transition-colors" />
+                    <li key={item} className="flex items-start gap-2.5 text-sm leading-[1.85] text-secondary">
+                      <Heart className="mt-1.5 h-3 w-3 flex-shrink-0 text-primary" strokeWidth={1.5} />
                       <span>{item}</span>
                     </li>
                   ))}
@@ -237,10 +228,9 @@ function AmenitiesSection({ copy }: { copy: SuiteCopy["amenities"] }) {
               </article>
             ))}
           </div>
-          
-          <div className="pt-6 border-t border-dashed border-stone-200 dark:border-white/10">
-            <p className="text-xs font-medium text-stone-400 dark:text-stone-500 flex items-center gap-1.5">
-              <span className="inline-block w-3 h-3 rounded-full bg-stone-100 dark:bg-stone-800 text-stone-400 flex items-center justify-center text-[8px]">i</span>
+
+          <div className="border-t border-border pt-6">
+            <p className="text-xs leading-[1.85] text-secondary">
               {copy.notice}
             </p>
           </div>
@@ -255,47 +245,32 @@ function PartnerBreakfastSection({ locale }: { locale: Locale }) {
   
   return (
     <ScrollReveal>
-      <section className="rounded-[2.5rem] border border-primary/10 bg-[#FAF9F6] dark:bg-[#2A2928] p-8 md:p-12 shadow-sm overflow-hidden relative group">
-        <div className="absolute top-0 right-0 w-64 h-64 bg-primary/5 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2" />
-        
-        <div className="relative z-10 flex flex-col md:flex-row items-center gap-8 md:gap-12">
-          {/* Icon / Visual Side */}
-          <div className="shrink-0 relative">
-            <div className="w-24 h-24 rounded-full bg-white dark:bg-stone-800 shadow-md flex items-center justify-center text-primary relative z-10">
-               <Coffee className="w-10 h-10" strokeWidth={1.5} />
-            </div>
-            <div className="absolute inset-0 bg-primary/10 rounded-full animate-ping opacity-20" />
-            <div className="absolute -bottom-2 -right-2 w-10 h-10 rounded-full bg-primary text-white flex items-center justify-center shadow-lg border-2 border-white dark:border-[#2A2928]">
-              <Utensils className="w-5 h-5" />
-            </div>
+      <section className="border-t border-border pt-10 md:pt-12">
+        <div className="flex-1 space-y-4 text-center md:text-left">
+          <div className="space-y-4">
+            <span className="eyebrow inline-flex items-center gap-2">
+              <Coffee className="h-3 w-3" strokeWidth={1.5} />
+              {isKo ? "보호자 서비스" : "Partner Service"}
+            </span>
+            <h3 className="font-display-serif text-2xl font-normal leading-[1.4] text-foreground md:text-3xl">
+              {isKo ? "보호자를 위한 조식 서비스" : "Complimentary Partner Breakfast"}
+            </h3>
           </div>
 
-          {/* Content Side */}
-          <div className="flex-1 space-y-4 text-center md:text-left">
-            <div className="space-y-2">
-              <span className="inline-block text-xs font-bold text-primary uppercase tracking-widest bg-primary/5 px-3 py-1 rounded-full">
-                {isKo ? "보호자 서비스" : "Partner Service"}
-              </span>
-              <h3 className="text-2xl md:text-3xl font-bold font-serif text-foreground">
-                {isKo ? "보호자를 위한 조식 서비스" : "Complimentary Partner Breakfast"}
-              </h3>
-            </div>
-            
-            <p className="mx-auto max-w-[34ch] text-lg leading-relaxed text-stone-600 dark:text-stone-300 md:mx-0 md:max-w-none">
-              {isKo 
-                ? "든든한 아침을 위해 토스트, 시리얼, 신선한 우유와 주스, 그리고 다양한 스낵바를 무료로 제공합니다."
-                : "Start your day with toast, cereal, fresh milk, juice, and a variety of snacks at our complimentary bar."}
-            </p>
+          <p className="mx-auto max-w-[34ch] text-base leading-[1.85] text-secondary md:mx-0 md:max-w-none md:text-lg">
+            {isKo
+              ? "든든한 아침을 위해 토스트, 시리얼, 신선한 우유와 주스, 그리고 다양한 스낵바를 무료로 제공합니다."
+              : "Start your day with toast, cereal, fresh milk, juice, and a variety of snacks at our complimentary bar."}
+          </p>
 
-            <div className="flex flex-wrap items-center justify-center gap-4 pt-2 md:justify-start">
-              <div className="flex items-center gap-2 px-4 py-2 rounded-xl bg-white dark:bg-stone-800 border border-stone-200 dark:border-white/5 shadow-sm text-sm font-medium text-stone-600 dark:text-stone-300">
-                <Clock className="w-4 h-4 text-primary" />
-                <span>{isKo ? "오전 7:00 ~ 오전 10:00" : "07:00 AM ~ 10:00 AM"}</span>
-              </div>
-              <div className="flex items-center gap-2 px-4 py-2 rounded-xl bg-white dark:bg-stone-800 border border-stone-200 dark:border-white/5 shadow-sm text-sm font-medium text-stone-600 dark:text-stone-300">
-                <Utensils className="w-4 h-4 text-primary" />
-                <span>{isKo ? "토스트 · 시리얼 · 스낵바" : "Toast · Cereal · Snack Bar"}</span>
-              </div>
+          <div className="flex flex-wrap items-center justify-center gap-x-8 gap-y-3 pt-2 md:justify-start">
+            <div className="flex items-center gap-2 text-sm text-foreground/80">
+              <Clock className="h-4 w-4 text-primary" strokeWidth={1.5} />
+              <span>{isKo ? "오전 7:00 ~ 오전 10:00" : "07:00 AM ~ 10:00 AM"}</span>
+            </div>
+            <div className="flex items-center gap-2 text-sm text-foreground/80">
+              <Utensils className="h-4 w-4 text-primary" strokeWidth={1.5} />
+              <span>{isKo ? "토스트 · 시리얼 · 스낵바" : "Toast · Cereal · Snack Bar"}</span>
             </div>
           </div>
         </div>
@@ -784,7 +759,6 @@ function buildAmenityCopy(locale: Locale) {
           : [
               
               "Hand sanitiser and wipes",
-              
             ],
       },
     ],

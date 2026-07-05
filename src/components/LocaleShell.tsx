@@ -22,7 +22,7 @@ export function LocaleShell({ locale, theme, children }: LocaleShellProps) {
     <ThemeLocaleProvider initialLocale={locale} initialTheme={theme}>
       <div className={clsx("min-h-dvh", fontClass)}>
         <Header />
-        <main className="min-h-[calc(100dvh-4rem)] w-full transition-colors">
+        <main className="min-h-[calc(100dvh-4rem)] w-full transition-colors md:min-h-[calc(100dvh-5rem)]">
           <PageTransition>{children}</PageTransition>
         </main>
         <FloatingReservationCta />

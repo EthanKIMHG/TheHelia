@@ -43,7 +43,7 @@ export function HomeIntroView({
       <section
         id="intro"
         ref={(node) => registerSection("intro", node)}
-        className="flex min-h-[60vh] w-full items-center justify-center bg-background px-6 py-12 text-foreground md:py-20"
+        className="flex min-h-[60vh] w-full items-center justify-center bg-background px-6 py-24 text-foreground md:py-40"
       >
         <ScrollReveal className="mx-auto flex w-full max-w-4xl flex-col items-center gap-12 text-center">
           <IntroHeroContent
@@ -91,7 +91,7 @@ function IntroHeroContent({ primary, secondary, theme }: IntroHeroContentProps) 
           alt="The Helia emblem"
           width={260}
           height={120}
-          className="object-contain"
+          className="w-36 object-contain md:w-44"
           priority
           placeholder="blur"
           blurDataURL={DEFAULT_BLUR_DATA_URL}
@@ -101,12 +101,12 @@ function IntroHeroContent({ primary, secondary, theme }: IntroHeroContentProps) 
       <IntroTextReveal
         text={primary}
         scrub={false}
-        className="text-2xl leading-[1.28] break-keep text-foreground md:text-5xl md:leading-tight"
+        className="font-display-serif text-2xl font-normal leading-[1.7] tracking-[0.01em] break-keep text-foreground md:text-4xl md:leading-[1.65]"
         animationDuration={1}
       />
       <IntroTextReveal
         text={secondary}
-        className="mx-auto max-w-[30ch] text-lg leading-relaxed text-foreground break-keep md:max-w-3xl md:text-[20px]"
+        className="mx-auto max-w-[30ch] text-base leading-loose text-secondary break-keep md:max-w-3xl md:text-[17px] md:leading-[2.05]"
         scrub={false}
         scrollStart="top bottom"
         scrollEnd="center center"
@@ -151,7 +151,7 @@ function IntroTextReveal({
 const KOREAN_COPY = {
   primaryText: "최고의 시설과 세심한 배려를 담아 \n잊지 못할 14일을 선사합니다.",
   secondaryText:
-    "더헬리아 산후조리원은 타협하지 않는 하이엔드 시설과 독보적인 신생아 케어 시스템, 그리고 산모님을 위한 격조 높은 서비스를 약속합니다. \n모든 것이 완벽하게 준비된 최고의 공간에서, 가격 이상의 가치를 경험해 보세요. \n당신의 기억 속에 영원히 남을 선물 같은 14일을 선사하겠습니다.",
+    "타협 없는 시설과 독보적인 신생아 케어로, 잊지 못할 14일을 선물합니다.",
   grid: [
     {
       title: "프라이빗 객실",
@@ -210,7 +210,7 @@ const ENGLISH_COPY = {
   primaryText:
     "Thoughtful care and premium amenities for an unforgettable 14-day stay.",
   secondaryText:
-    "The Helia combines exceptional suites with differentiated newborn care and premium recovery services, while keeping pricing reasonable. Every detail is prepared so you can remember these 14 days as the most comforting chapter.",
+    "Uncompromising suites and singular newborn care, for an unforgettable fourteen days.",
   grid: [
     {
       title: "Private Suites",

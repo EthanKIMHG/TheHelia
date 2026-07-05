@@ -208,42 +208,40 @@ function SpaProgramOverview({
 }) {
   return (
     <ScrollReveal>
-      <section className="overflow-hidden rounded-[2.5rem] border border-border/30 bg-gradient-to-br from-primary/10 via-background to-background/95 shadow-sm">
-        <div className="p-6 md:p-8 lg:p-10">
-          <p className="text-sm font-semibold uppercase tracking-[0.28em] text-primary font-playfair italic">
+      <section>
+        <div className="pb-10 md:pb-12">
+          <p className="eyebrow">
             {copy.badge}
           </p>
-          <h2 className="mt-3 break-keep text-3xl leading-[1.24] text-foreground md:text-3xl md:leading-tight font-serif">
+          <h2 className="mt-4 break-keep font-display-serif text-3xl font-normal leading-[1.4] text-foreground md:text-3xl">
             {copy.title}
           </h2>
         </div>
-        <div className="grid gap-8 p-6 md:p-8 lg:flex lg:p-10">
-          <div className="grid grid-cols-2 md:flex gap-4 ">
+        <div className="grid gap-8 lg:flex">
+          <div className="grid grid-cols-2 gap-x-6 gap-y-10 md:flex md:gap-10">
             {cards.map(({ id, Icon, badge, title, description }) => (
               <a
                 key={id}
                 href={`#${id}`}
-                className="group rounded-[1.75rem] border border-border/30 bg-white/78 p-5 text-left shadow-sm backdrop-blur-sm transition-all duration-300 hover:-translate-y-1 hover:border-primary/30 hover:shadow-md dark:bg-[#2A2928]/60"
+                className="group flex flex-col border-t border-border pt-6 text-left transition-colors duration-500 hover:border-foreground/40 md:flex-1"
               >
                 <div className="flex items-start justify-between gap-4">
-                  <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-primary/10 text-primary dark:bg-[#333231]">
-                    <Icon className="h-5 w-5" />
-                  </div>
-                  <span className="text-[11px] font-semibold uppercase tracking-[0.18em] text-primary/80">
+                  <Icon className="h-5 w-5 text-primary" strokeWidth={1.5} />
+                  <span className="font-sans text-[10px] font-semibold uppercase tracking-[0.24em] text-primary">
                     {badge}
                   </span>
                 </div>
 
-                <h3 className="mt-5 max-w-[16ch] break-keep text-xl font-semibold leading-[1.24] text-foreground font-serif">
+                <h3 className="mt-5 max-w-[16ch] break-keep font-display-serif text-xl font-normal leading-[1.4] text-foreground">
                   {title}
                 </h3>
-                <p className="mt-3 break-keep text-sm leading-[1.8] text-foreground/72">
+                <p className="mt-3 break-keep text-sm leading-[1.85] text-secondary">
                   {description}
                 </p>
 
-                <div className="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-primary">
+                <div className="mt-auto inline-flex items-center gap-2 pt-6 font-sans text-[10px] font-semibold uppercase tracking-[0.28em] text-foreground">
                   {copy.actionLabel}
-                  <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
+                  <ArrowRight className="h-3.5 w-3.5 transition-transform duration-500 group-hover:translate-x-1" />
                 </div>
               </a>
             ))}
@@ -263,29 +261,29 @@ function SpaPageCta({
 }) {
   return (
     <ScrollReveal>
-      <section className="rounded-[2.5rem] border border-border/30 bg-primary/10 p-6 shadow-sm md:p-8 lg:p-10">
-        <div className="flex flex-col items-center gap-6 text-center">
-          <div className="space-y-3">
-            <p className="text-sm font-semibold uppercase tracking-[0.28em] text-primary font-playfair italic">
+      <section className="border border-border bg-accent/30 p-6 py-14 md:p-8 md:py-16 lg:p-10 lg:py-16">
+        <div className="flex flex-col items-center gap-8 text-center">
+          <div className="space-y-4">
+            <p className="eyebrow">
               Consultation
             </p>
-            <h2 className="break-keep text-3xl font-semibold leading-[1.24] text-foreground md:text-4xl md:leading-tight font-serif">
+            <h2 className="break-keep font-display-serif text-3xl font-normal leading-[1.4] text-foreground md:text-4xl">
               {copy.title}
             </h2>
-            <p className="mx-auto max-w-[32ch] whitespace-pre-line break-keep text-sm leading-[1.9] text-foreground/75 md:max-w-2xl md:text-base">
+            <p className="mx-auto max-w-[32ch] whitespace-pre-line break-keep text-sm leading-[1.9] text-secondary md:max-w-2xl md:text-base">
               {copy.description}
             </p>
           </div>
 
-          <div className="flex flex-col items-center gap-3">
+          <div className="flex flex-col items-center gap-4">
             <Link
               href={`/${locale}/reservation`}
-              className="inline-flex items-center gap-2 rounded-full bg-primary px-6 py-3 text-sm font-semibold text-background transition-colors hover:bg-primary/90"
+              className="inline-flex items-center gap-2 bg-foreground px-8 py-3.5 font-sans text-xs font-semibold uppercase tracking-[0.2em] text-background transition-opacity duration-300 hover:opacity-90"
             >
               {copy.button}
-              <ArrowRight className="h-4 w-4" />
+              <ArrowRight className="h-3.5 w-3.5" />
             </Link>
-            <p className="text-xs leading-relaxed text-foreground/60 md:text-sm">
+            <p className="text-xs leading-relaxed text-secondary md:text-sm">
               {copy.note}
             </p>
           </div>
@@ -341,22 +339,17 @@ const KOREAN_COPY: SpaPageCopy = {
       "호르몬 변화로 예민해진 두피를 진정시키고, 깊은 이완을 통해 스트레스를 해소하는 더헬리아만의 시그니처 헤드스파입니다.",
     images: [
       {
-        src: "/img/spa/headspa1.jpeg",
-        alt: "편안한 샴푸대에서 진행되는 더헬리아 헤드스파 케어",
-        caption: "편안한 샴푸대에서의 두피 케어",
-      },
-      {
-        src: "/img/spa/headspa2.jpg",
+        src: "/img/spa/us/headspa-2.jpg",
         alt: "두피 진정 케어가 진행되는 더헬리아 헤드스파 공간",
         caption: "편안한 샴푸대에서의 두피 케어",
       },
       {
-        src: "/img/spa/headspa3.jpg",
+        src: "/img/spa/us/headspa-3.jpg",
         alt: "전문 테라피스트의 손길로 진행되는 헤드스파 관리",
         caption: "전문 테라피스트의 섬세한 터치",
       },
       {
-        src: "/img/spa/headspa4.jpg",
+        src: "/img/spa/us/headspa-4.jpg",
         alt: "아로마와 함께 휴식을 돕는 더헬리아 헤드스파 룸",
         caption: "아로마와 함께하는 깊은 이완",
       },
@@ -396,11 +389,10 @@ const KOREAN_COPY: SpaPageCopy = {
     description:
       "임신 중기부터 말기까지, 급격한 신체 변화로 인한 통증과 부종을 완화하고 엄마와 태아의 교감을 돕는 릴랙싱 케어입니다.",
     images: [
-      { src: "/img/spa/pre1.jpg", alt: "더헬리아 산전 바디 테라피 케어 공간" },
-      { src: "/img/spa/pre2.jpg", alt: "산전 순환 케어가 진행되는 더헬리아 스파 룸" },
-      { src: "/img/spa/pre3.jpg", alt: "임산부를 위한 더헬리아 바디 테라피 장면" },
-      { src: "/img/spa/pre4.jpg", alt: "산전 부종 완화를 돕는 더헬리아 테라피 공간" },
-      { src: "/img/spa/pre5.jpg", alt: "편안한 회복을 위한 더헬리아 산전 관리 환경" },
+      { src: "/img/spa/us/pre-2.jpg", alt: "산전 순환 케어가 진행되는 더헬리아 스파 룸" },
+      { src: "/img/spa/us/pre-3.jpg", alt: "임산부를 위한 더헬리아 바디 테라피 장면" },
+      { src: "/img/spa/us/pre-4.jpg", alt: "산전 부종 완화를 돕는 더헬리아 테라피 공간" },
+      { src: "/img/spa/us/pre-5.jpg", alt: "편안한 회복을 위한 더헬리아 산전 관리 환경" },
     ],
     features: [
       {
@@ -433,12 +425,11 @@ const KOREAN_COPY: SpaPageCopy = {
     description:
       "출산 후 틀어진 골반과 체형을 바로잡고, 산후풍 예방과 오로 배출을 돕는 전문적인 회복 프로그램입니다.",
     images: [
-      { src: "/img/spa/after1.jpg", alt: "더헬리아 산후 바디 테라피 프로그램 대표 이미지" },
-      { src: "/img/spa/after2.jpg", alt: "산후 회복을 위한 더헬리아 바디 케어 장면" },
-      { src: "/img/spa/after3.jpg", alt: "산후 순환 관리를 돕는 더헬리아 스파 룸" },
-      { src: "/img/spa/after4.jpeg", alt: "산모 회복을 위한 더헬리아 바디 테라피 공간" },
-      { src: "/img/spa/after5.jpg", alt: "산후 체형 회복을 지원하는 더헬리아 테라피 장면" },
-      { src: "/img/spa/after6.jpg", alt: "더헬리아 산후 케어 프로그램 디테일 이미지" },
+      { src: "/img/spa/us/after-2.jpg", alt: "산후 회복을 위한 더헬리아 바디 케어 장면" },
+      { src: "/img/spa/us/after-3.jpg", alt: "산후 순환 관리를 돕는 더헬리아 스파 룸" },
+      { src: "/img/spa/us/after-4.jpg", alt: "산모 회복을 위한 더헬리아 바디 테라피 공간" },
+      { src: "/img/spa/us/after-5.jpg", alt: "산후 체형 회복을 지원하는 더헬리아 테라피 장면" },
+      { src: "/img/spa/us/after-6.jpg", alt: "더헬리아 산후 케어 프로그램 디테일 이미지" },
     ],
     features: [
       {
@@ -471,11 +462,10 @@ const KOREAN_COPY: SpaPageCopy = {
     description:
       "모유 수유를 준비하는 산모님과 수유 중인 산모님을 위한 전문적인 가슴 관리 프로그램입니다. 유선 발달을 돕고 젖몸살을 예방합니다.",
     images: [
-      { src: "/img/spa/breast1.jpg", alt: "더헬리아 가슴 관리 프로그램 대표 이미지" },
-      { src: "/img/spa/breast2.jpg", alt: "수유 준비를 돕는 더헬리아 가슴 케어 장면" },
-      { src: "/img/spa/breast3.jpg", alt: "더헬리아 전문 가슴 관리 프로그램 공간" },
-      { src: "/img/spa/breast4.jpg", alt: "모유 수유를 위한 더헬리아 케어 디테일" },
-      { src: "/img/spa/breast5.jpg", alt: "산모 유방 컨디션 관리를 위한 더헬리아 서비스 이미지" },
+      { src: "/img/spa/us/breast-2.jpg", alt: "수유 준비를 돕는 더헬리아 가슴 케어 장면" },
+      { src: "/img/spa/us/breast-3.jpg", alt: "더헬리아 전문 가슴 관리 프로그램 공간" },
+      { src: "/img/spa/us/breast-4.jpg", alt: "모유 수유를 위한 더헬리아 케어 디테일" },
+      { src: "/img/spa/us/breast-5.jpg", alt: "산모 유방 컨디션 관리를 위한 더헬리아 서비스 이미지" },
     ],
     features: [
       {
@@ -557,22 +547,17 @@ const ENGLISH_COPY: SpaPageCopy = {
       "The Helia's signature head spa soothes the scalp sensitive to hormonal changes and relieves stress through deep relaxation.",
     images: [
       {
-        src: "/img/spa/headspa1.jpeg",
-        alt: "The Helia head spa care in a comfortable shampoo unit",
-        caption: "Scalp care in a comfortable shampoo unit",
-      },
-      {
-        src: "/img/spa/headspa2.jpg",
+        src: "/img/spa/us/headspa-2.jpg",
         alt: "Soothing head spa treatment room at The Helia",
         caption: "Delicate touch of professional therapists",
       },
       {
-        src: "/img/spa/headspa3.jpg",
+        src: "/img/spa/us/headspa-3.jpg",
         alt: "Professional therapist performing The Helia head spa",
         caption: "Deep relaxation with aroma",
       },
       {
-        src: "/img/spa/headspa4.jpg",
+        src: "/img/spa/us/headspa-4.jpg",
         alt: "Private and cozy head spa room at The Helia",
         caption: "Private and cozy spa room",
       },
@@ -612,11 +597,10 @@ const ENGLISH_COPY: SpaPageCopy = {
     description:
       "Relaxing care that relieves pain and edema caused by rapid physical changes from mid to late pregnancy and helps communion between mother and fetus.",
     images: [
-      { src: "/img/spa/pre1.jpg", alt: "Prenatal body therapy space at The Helia" },
-      { src: "/img/spa/pre2.jpg", alt: "Prenatal circulation care room at The Helia" },
-      { src: "/img/spa/pre3.jpg", alt: "Relaxing prenatal body therapy at The Helia" },
-      { src: "/img/spa/pre4.jpg", alt: "Prenatal edema care environment at The Helia" },
-      { src: "/img/spa/pre5.jpg", alt: "Comfort-focused prenatal care setting at The Helia" },
+      { src: "/img/spa/us/pre-2.jpg", alt: "Prenatal circulation care room at The Helia" },
+      { src: "/img/spa/us/pre-3.jpg", alt: "Relaxing prenatal body therapy at The Helia" },
+      { src: "/img/spa/us/pre-4.jpg", alt: "Prenatal edema care environment at The Helia" },
+      { src: "/img/spa/us/pre-5.jpg", alt: "Comfort-focused prenatal care setting at The Helia" },
     ],
     features: [
       {
@@ -649,12 +633,11 @@ const ENGLISH_COPY: SpaPageCopy = {
     description:
       "A professional recovery program that corrects the pelvis and body shape distorted after childbirth, and helps prevent postpartum wind and discharge lochia.",
     images: [
-      { src: "/img/spa/after1.jpg", alt: "Postpartum body therapy program at The Helia" },
-      { src: "/img/spa/after2.jpg", alt: "Postpartum recovery care at The Helia" },
-      { src: "/img/spa/after3.jpg", alt: "Circulation-focused postpartum therapy room at The Helia" },
-      { src: "/img/spa/after4.jpeg", alt: "Body recovery treatment space at The Helia" },
-      { src: "/img/spa/after5.jpg", alt: "Postpartum care detail at The Helia" },
-      { src: "/img/spa/after6.jpg", alt: "The Helia postpartum wellness program image" },
+      { src: "/img/spa/us/after-2.jpg", alt: "Postpartum recovery care at The Helia" },
+      { src: "/img/spa/us/after-3.jpg", alt: "Circulation-focused postpartum therapy room at The Helia" },
+      { src: "/img/spa/us/after-4.jpg", alt: "Body recovery treatment space at The Helia" },
+      { src: "/img/spa/us/after-5.jpg", alt: "Postpartum care detail at The Helia" },
+      { src: "/img/spa/us/after-6.jpg", alt: "The Helia postpartum wellness program image" },
     ],
     features: [
       {
@@ -687,11 +670,10 @@ const ENGLISH_COPY: SpaPageCopy = {
     description:
       "Professional breast care program for mothers preparing for breastfeeding and breastfeeding mothers. Helps mammary gland development and prevents mastitis.",
     images: [
-      { src: "/img/spa/breast1.jpg", alt: "Breast care program at The Helia" },
-      { src: "/img/spa/breast2.jpg", alt: "Breastfeeding support care at The Helia" },
-      { src: "/img/spa/breast3.jpg", alt: "Professional breast care setting at The Helia" },
-      { src: "/img/spa/breast4.jpg", alt: "Breast care service detail for postpartum mothers" },
-      { src: "/img/spa/breast5.jpg", alt: "The Helia breast care treatment image" },
+      { src: "/img/spa/us/breast-2.jpg", alt: "Breastfeeding support care at The Helia" },
+      { src: "/img/spa/us/breast-3.jpg", alt: "Professional breast care setting at The Helia" },
+      { src: "/img/spa/us/breast-4.jpg", alt: "Breast care service detail for postpartum mothers" },
+      { src: "/img/spa/us/breast-5.jpg", alt: "The Helia breast care treatment image" },
     ],
     features: [
       {

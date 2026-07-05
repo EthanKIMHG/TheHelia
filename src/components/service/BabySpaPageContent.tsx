@@ -37,42 +37,35 @@ function BabySpaStrengths({ copy }: { copy: typeof KOREAN_COPY.strengths }) {
     <ScrollReveal>
       <section className="space-y-12">
         {/* Row 1: Experience & Exclusivity */}
-        <div className="grid gap-6 lg:grid-cols-2">
-           {/* Image Card */}
-           <div className="relative overflow-hidden rounded-[2.5rem] h-[360px] lg:h-auto shadow-sm group">
+        <div className="grid gap-10 lg:grid-cols-2 lg:gap-14">
+           {/* Image */}
+           <div className="relative overflow-hidden bg-accent/60 h-[360px] lg:h-auto group">
              <Image
-               src="/img/babyspa/strength-babyspa1.png"
+               src="/img/babyspa/us/water-play.jpg"
                alt={copy.point1.title}
                fill
-               className="object-cover transition-transform duration-700 group-hover:scale-105"
+               className="object-cover transition-transform duration-700 group-hover:scale-[1.03]"
              />
-             <div className="absolute inset-0 bg-black/5" />
            </div>
-           
-           {/* Text Card */}
-           <div className="flex flex-col justify-center rounded-[2.5rem] bg-stone-100 dark:bg-[#2A2928] p-8 md:p-12 shadow-sm border border-stone-200/50 dark:border-white/5">
+
+           {/* Text Column */}
+           <div className="flex flex-col justify-center lg:py-8">
               <div className="space-y-10">
                  {/* Point 1 */}
-                 <div className="flex gap-5 items-start">
-                    <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-white dark:bg-[#333231] shadow-sm text-primary">
-                       <Droplets className="h-6 w-6" />
-                    </div>
+                 <div className="flex gap-5 items-start border-t border-border pt-6">
+                    <Droplets className="mt-1 h-5 w-5 shrink-0 text-primary" strokeWidth={1.5} />
                     <div className="space-y-3">
-                       <h3 className="text-xl font-bold font-serif text-foreground">{copy.point1.title}</h3>
-                       <p className="text-muted-foreground leading-relaxed text-[15px]">{copy.point1.desc}</p>
+                       <h3 className="break-keep font-display-serif text-xl font-normal leading-[1.5] text-foreground">{copy.point1.title}</h3>
+                       <p className="break-keep text-secondary leading-[1.85] text-[15px]">{copy.point1.desc}</p>
                     </div>
                  </div>
-                 
-                 <div className="w-full h-px bg-stone-200 dark:bg-white/10" />
 
                  {/* Point 2 */}
-                 <div className="flex gap-5 items-start">
-                    <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-white dark:bg-[#333231] shadow-sm text-primary">
-                       <MapPin className="h-6 w-6" />
-                    </div>
+                 <div className="flex gap-5 items-start border-t border-border pt-6">
+                    <MapPin className="mt-1 h-5 w-5 shrink-0 text-primary" strokeWidth={1.5} />
                     <div className="space-y-3">
-                       <h3 className="text-xl font-bold font-serif text-foreground">{copy.point2.title}</h3>
-                       <p className="text-muted-foreground leading-relaxed text-[15px]">{copy.point2.desc}</p>
+                       <h3 className="break-keep font-display-serif text-xl font-normal leading-[1.5] text-foreground">{copy.point2.title}</h3>
+                       <p className="break-keep text-secondary leading-[1.85] text-[15px]">{copy.point2.desc}</p>
                     </div>
                  </div>
               </div>
@@ -80,45 +73,38 @@ function BabySpaStrengths({ copy }: { copy: typeof KOREAN_COPY.strengths }) {
         </div>
 
         {/* Row 2: Quality & Education */}
-        <div className="grid gap-6 lg:grid-cols-2">
-           {/* Text Card */}
-           <div className="order-2 lg:order-1 flex flex-col justify-center rounded-[2.5rem] bg-stone-100 dark:bg-[#2A2928] p-8 md:p-12 shadow-sm border border-stone-200/50 dark:border-white/5">
+        <div className="grid gap-10 lg:grid-cols-2 lg:gap-14">
+           {/* Text Column */}
+           <div className="order-2 lg:order-1 flex flex-col justify-center lg:py-8">
               <div className="space-y-10">
                  {/* Point 3 */}
-                 <div className="flex gap-5 items-start">
-                    <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-white dark:bg-[#333231] shadow-sm text-primary">
-                       <Sparkles className="h-6 w-6" />
-                    </div>
+                 <div className="flex gap-5 items-start border-t border-border pt-6">
+                    <Sparkles className="mt-1 h-5 w-5 shrink-0 text-primary" strokeWidth={1.5} />
                     <div className="space-y-3">
-                       <h3 className="text-xl font-bold font-serif text-foreground">{copy.point3.title}</h3>
-                       <p className="text-muted-foreground leading-relaxed text-[15px]">{copy.point3.desc}</p>
+                       <h3 className="break-keep font-display-serif text-xl font-normal leading-[1.5] text-foreground">{copy.point3.title}</h3>
+                       <p className="break-keep text-secondary leading-[1.85] text-[15px]">{copy.point3.desc}</p>
                     </div>
                  </div>
-                 
-                 <div className="w-full h-px bg-stone-200 dark:bg-white/10" />
 
                  {/* Point 4 */}
-                 <div className="flex gap-5 items-start">
-                    <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-white dark:bg-[#333231] shadow-sm text-primary">
-                       <GraduationCap className="h-6 w-6" />
-                    </div>
+                 <div className="flex gap-5 items-start border-t border-border pt-6">
+                    <GraduationCap className="mt-1 h-5 w-5 shrink-0 text-primary" strokeWidth={1.5} />
                     <div className="space-y-3">
-                       <h3 className="text-xl font-bold font-serif text-foreground">{copy.point4.title}</h3>
-                       <p className="text-muted-foreground leading-relaxed text-[15px]">{copy.point4.desc}</p>
+                       <h3 className="break-keep font-display-serif text-xl font-normal leading-[1.5] text-foreground">{copy.point4.title}</h3>
+                       <p className="break-keep text-secondary leading-[1.85] text-[15px]">{copy.point4.desc}</p>
                     </div>
                  </div>
               </div>
            </div>
 
-           {/* Image Card */}
-           <div className="order-1 lg:order-2 relative overflow-hidden rounded-[2.5rem] h-[360px] lg:h-auto shadow-sm group">
+           {/* Image */}
+           <div className="order-1 lg:order-2 relative overflow-hidden bg-accent/60 h-[360px] lg:h-auto group">
              <Image
-               src="/img/babyspa/strength-babyspa2.png"
+               src="/img/babyspa/us/feet-care.jpg"
                alt={copy.point4.title}
                fill
-               className="object-cover transition-transform duration-700 group-hover:scale-105"
+               className="object-cover transition-transform duration-700 group-hover:scale-[1.03]"
              />
-             <div className="absolute inset-0 bg-black/5" />
            </div>
         </div>
       </section>
@@ -133,9 +119,9 @@ const KOREAN_COPY = {
     description: "엄마의 양수와 가장 유사한 환경에서 진행되는 아기만을 위한 특별한 물놀이 시간입니다. 아기의 정서적 안정과 신체 발달을 돕습니다.",
     images: [
       { src: "/img/babyspa/babyspa1.jpg", alt: "더헬리아 베이비 스파 프로그램 전경" },
-      { src: "/img/babyspa/babyspa2.jpg", alt: "더헬리아 베이비 스파 수중 케어 장면" },
-      { src: "/img/babyspa/babyspa3.jpg", alt: "더헬리아 베이비 스파 이용 공간 디테일" },
-      { src: "/img/babyspa/babyspa4.jpg", alt: "아기와 보호자를 위한 더헬리아 베이비 스파 이미지" },
+      { src: "/img/babyspa/us/bonding.jpg", alt: "엄마 품에 안긴 아기" },
+      { src: "/img/babyspa/us/newborn-rest.jpg", alt: "편안하게 잠든 신생아" },
+      { src: "/img/babyspa/us/baby-play.jpg", alt: "놀이하며 시간을 보내는 아기" },
     ],
     features: [
       {
@@ -183,9 +169,9 @@ const ENGLISH_COPY = {
     description: "A special water play time just for babies in an environment most similar to the mother's amniotic fluid. It helps the baby's emotional stability and physical development.",
     images: [
       { src: "/img/babyspa/babyspa1.jpg", alt: "Baby spa program image at The Helia" },
-      { src: "/img/babyspa/babyspa2.jpg", alt: "Water-based baby care at The Helia" },
-      { src: "/img/babyspa/babyspa3.jpg", alt: "Baby spa facility detail at The Helia" },
-      { src: "/img/babyspa/babyspa4.jpg", alt: "The Helia baby spa care image for infants and families" },
+      { src: "/img/babyspa/us/bonding.jpg", alt: "A parent gently holding their baby" },
+      { src: "/img/babyspa/us/newborn-rest.jpg", alt: "A newborn resting peacefully" },
+      { src: "/img/babyspa/us/baby-play.jpg", alt: "A baby enjoying playtime" },
     ],
     features: [
       {

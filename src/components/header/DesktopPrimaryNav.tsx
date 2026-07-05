@@ -27,14 +27,14 @@ export function DesktopPrimaryNav({
               key={item.id}
               href={item.href}
               className={clsx(
-              "relative rounded-2xl text-base text-foreground transition-colors hover:text-primary",
-                active && "font-medium text-foreground",
+                "relative text-[13px] uppercase tracking-[0.22em] text-foreground/75 transition-colors hover:text-foreground",
+                active && "text-foreground",
               )}
             >
               {item.label}
               <span
                 className={clsx(
-                  "absolute -bottom-2 left-1/2 h-px w-6 -translate-x-1/2 transition-opacity",
+                  "absolute -bottom-2 left-1/2 h-px w-5 -translate-x-1/2 transition-opacity",
                   active ? "bg-foreground opacity-100" : "bg-foreground/40 opacity-0",
                 )}
               />
@@ -48,14 +48,14 @@ export function DesktopPrimaryNav({
             type="button"
             onClick={() => onNavClick(item)}
             className={clsx(
-              "relative cursor-pointer rounded-2xl text-base text-foreground transition-colors hover:text-primary",
-              active && "font-medium text-foreground",
+              "relative cursor-pointer text-[13px] uppercase tracking-[0.22em] text-foreground/75 transition-colors hover:text-foreground",
+              active && "text-foreground",
             )}
           >
             {item.label}
             <span
               className={clsx(
-                "absolute -bottom-2 left-1/2 h-px w-6 -translate-x-1/2 transition-opacity",
+                "absolute -bottom-2 left-1/2 h-px w-5 -translate-x-1/2 transition-opacity",
                 active ? "bg-foreground opacity-100" : "bg-foreground/40 opacity-0",
               )}
             />

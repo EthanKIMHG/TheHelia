@@ -43,10 +43,10 @@ export function NewbornProcess({ locale }: { locale: Locale }) {
         <div className="w-full max-w-[1450px] mx-auto">
             <FadeInUp>
                 <div className="mb-20 text-center md:mb-32">
-                    <span className="block mb-4 font-sans text-sm font-bold tracking-[0.2em] text-primary uppercase">
+                    <span className="eyebrow block mb-6">
                         Process
                     </span>
-                    <h2 className="font-serif text-4xl font-bold leading-[1.25] break-keep text-foreground md:leading-tight md:text-4xl">
+                    <h2 className="font-display-serif text-4xl font-normal leading-[1.4] break-keep text-foreground md:text-4xl">
                         {locale === "ko" ? "체계적인 입소 프로세스" : "Systematic Admission Process"}
                     </h2>
                 </div>
@@ -55,35 +55,31 @@ export function NewbornProcess({ locale }: { locale: Locale }) {
             {/* Horizontal Timeline Container */}
              <div className="relative">
                 {/* Connecting Line (Desktop) */}
-                <div className="hidden md:block absolute top-[27px] left-0 w-full h-[2px] bg-primary/20" />
+                <div className="hidden md:block absolute top-[27px] left-0 w-full h-px bg-border" />
 
                 <div className="grid grid-cols-1 md:grid-cols-6 gap-8 md:gap-4">
                     {steps.map((step, index) => (
                         <div key={index} className="relative flex flex-col md:items-center group">
                             {/* Dot/Node */}
-                            <div className="hidden md:flex relative z-10 w-[54px] h-[54px] rounded-full border-[3px] border-background bg-primary items-center justify-center transition-all duration-500 group-hover:scale-110 group-hover:bg-primary group-hover:border-primary/30 mb-8 shadow-md">
-                                <div className="w-3 h-3 rounded-full bg-white" />
+                            <div className="hidden md:flex relative z-10 w-[54px] h-[54px] bg-background items-center justify-center mb-8">
+                                <div className="w-2 h-2 bg-primary" />
                             </div>
 
                             {/* Card Content */}
                             <FadeInUp delay={index * 0.1}>
-                                <div className="h-full flex flex-row md:flex-col items-start md:items-center gap-6 md:gap-6 bg-primary/10 backdrop-blur-md rounded-[2rem] p-8 border border-white/40 shadow-sm transition-all duration-300 hover:shadow-lg hover:-translate-y-2 hover:bg-primary/5">
+                                <div className="h-full flex flex-row md:flex-col items-start md:items-center gap-6 md:gap-6 border-t border-border pt-6 md:pt-8 transition-colors duration-500 hover:border-foreground/40">
                                     {/* Mobile Icon */}
-                                    <div className="md:hidden flex-shrink-0 w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center text-primary">
-                                        <step.icon className="w-6 h-6" />
-                                    </div>
-                                    
+                                    <step.icon className="md:hidden mt-1 h-5 w-5 flex-shrink-0 text-primary" strokeWidth={1.5} />
+
                                      {/* Center Icon (Desktop - inside card for better visual balance in this layout, or keep dot only? The reference has icons IN the card) */}
                                      {/* Reviewing reference: The reference has icons at top of card. */}
-                                    <div className="hidden md:flex w-14 h-14 rounded-full bg-primary/5 items-center justify-center text-primary mb-2">
-                                        <step.icon className="w-7 h-7" />
-                                    </div>
+                                    <step.icon className="hidden md:block h-5 w-5 text-primary mb-2" strokeWidth={1.5} />
 
                                     <div className="flex-1 md:text-center">
-                                        <h3 className="font-serif text-lg font-bold text-foreground mb-3 leading-snug break-keep">
+                                        <h3 className="font-display-serif text-lg font-normal text-foreground mb-3 leading-[1.5] break-keep">
                                             {step.title[locale]}
                                         </h3>
-                                        <p className="text-sm text-foreground/70 leading-relaxed break-keep">
+                                        <p className="text-sm text-secondary leading-[1.85] break-keep">
                                             {step.desc[locale]}
                                         </p>
                                     </div>

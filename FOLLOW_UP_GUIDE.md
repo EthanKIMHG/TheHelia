@@ -1,6 +1,6 @@
 # The Helia Frontend Improvement Log
 
-Last updated: 2026-04-17
+Last updated: 2026-07-04
 
 ## Project Goal
 - Build an informative postpartum care center website without DB, login, or signup features.
@@ -968,6 +968,136 @@ Last updated: 2026-04-17
 - `src/components/stories/GuestReviewsPageContent.tsx`
 - `FOLLOW_UP_GUIDE.md`
 - `src/middleware.ts`
+
+### Design system overhaul — bright quiet luxury (2026-07-04)
+- Request: redesign the site in a five-star resort language (One&Only minimal grammar as base, Four Seasons spec clarity for rooms), bright ivory tone. Design-only change — all copy preserved; Naver reservation routing untouched.
+- Change:
+  - `Design_System.md` fully rewritten as the new source of truth (bright ivory/espresso monochrome-warm palette, eyebrow/tlink utilities, square geometry, hairline structure, no shadows/glass/pill badges).
+  - `src/app/globals.css`: new light tokens (`#FBF9F4` bg / `#3A2E22` fg / taupe / clay / sand / hairline), warm-espresso dark tokens (sage removed), `--radius-brand: 0`, added `.eyebrow` and `.tlink` utilities.
+  - `Header.tsx`: transparent over the home hero → solid ivory + hairline after 24px scroll (and always on subpages / when nav panels open); tracked-text `THE HELIA` wordmark replaces the logo image; height h-16 → h-20 (`LocaleShell` min-h calc updated); on home the header gets `-mb-20` so the hero runs underneath it (note: pulling the hero up with negative margin instead gets clipped by `overflow-x-hidden` on the home main wrapper).
+  - `CinematicHero.tsx`: dark veil/pulse blob removed; ivory gradient veils top/bottom; centered tracked serif wordmark at bottom (espresso — photography is bright); thin drip scroll line. `HeroCarousel.tsx`: dots → hairline dashes bottom-left, espresso.
+  - `HomeIntroView.tsx`: manifesto treatment (serif-normal statement, clay support copy, more whitespace).
+  - `BentoGridShowcase.tsx`: bento grid replaced with a 3-column triptych (tall 3:4 images, captions below with eyebrow/badge row, serif title, hairline bullet rows). Same data/props/hrefs.
+  - `HomeFitGuide.tsx`, `HomePrograms.tsx`: card boxes → hairline-top list cards, eyebrow labels, serif-normal titles; program dialog squared and de-chromed.
+  - `HomeNavigationGallery.tsx`: square panels, glass pills → hairline-bordered links + solid ivory CTA, softer inactive dimming with drop-shadow labels for contrast on bright photos.
+  - `HomePageContent.tsx` partners heading + marquee bg on tokens; `Footer.tsx`: warm espresso bg, hairline consultation blocks, square buttons, tracked labels.
+- Validation: `pnpm build` passes; visually verified in dev (desktop + mobile, home + subpage, light theme; dark theme tokens rechecked).
+- Note: subpages inherit the new tokens automatically; their legacy rounded/badge surfaces migrate incrementally per `Design_System.md` → Migration Status.
+
+### Full-site migration to the new design system (2026-07-04)
+- Request: extend the bright quiet-luxury system beyond the landing page to every page. Design-only; all copy, data, routes, and logic preserved.
+- Change (grammar applied everywhere: square corners, hairline structure instead of boxes/shadows/glass, `.eyebrow` labels instead of pill badges, serif-normal headings, clay `text-secondary` body, standalone taupe icons, soft border/scale hovers):
+  - Shared shell: `SubPageHero`, `SubPageTemplate`, `RoomSuiteTemplate`, `common/FloatingReservationCta` (now a square solid espresso bar — hrefs/visibility logic untouched), `common/AIAgentFAB`, `common/GlobalPageLoader`, `header/DesktopNavPanel` (hairline list rows), `header/MobileNavDrawer` (tracked `THE HELIA` wordmark replaces logo images).
+  - Service/nursery: all `service/*` components (spa bento/accordion/carousel interactions kept, surfaces squared; `ClassSchedule` desktop board → hairline `divide-x` columns), `pages/service/infant-room/NewbornPageContent` (composition-only), `nursery/NewbornProcess` (1px timeline, square markers), `nursery/NewbornStrengths`.
+  - Rooms/reservation/stories: `RoomSuiteShowcase` (Four Seasons spec-card grammar: label/value hairline rows, squared gallery), `ReservationPageContent` (Naver CTA dominant solid `bg-foreground`; tel/Kakao as quiet hairline links — all links untouched), `PricePageContent` (plan cards + room/spa/refund tables as hairline boards, serif `tabular-nums` prices, emphasis via `border-foreground/40` not fills), `AboutPageShowcase` (hardcoded pastel timeline palettes removed → tokens), `LocationPageShowcase` (map deep-link dialog kept, bottom-sheet radius retained), `FaqPageContent` (`divide-y` accordion), `GuestReviewsPageContent` (quiet quote treatment).
+- Validation: `pnpm build` passes; visual spot checks in dev (home desktop, room-suites/vip, reservation, reservation/price, stories/faq, service/helia-spa).
+
+### Helia Spa page imagery replaced with subject-matched Unsplash photos (2026-07-04)
+- Request: the spa page's real photos were blurry; replace them with treatment-relevant stock photos (head spa → head spa imagery, breast care → related imagery, etc.).
+- Change: added 22 curated Unsplash photos under `public/img/spa/us/` (visually reviewed one by one for subject and tone match against the bright design system) and repointed `HeliaSpaPageContent.tsx` (ko + en arrays) and `SpaBentoGrid.tsx`:
+  - `headspa-1..4` — shampoo-basin scalp care, calming treatment, therapist facial touch, aroma relaxation
+  - `pre-1..5` — pregnant belly (x2), table shoulder care, foot bath (edema), caring hands
+  - `after-1..6` — oil back massage, back massage, hot stone, shoulder care, stone bathtub room, oil detail
+  - `breast-1..5` — tasteful indirect imagery only (rose-quartz oil set, oil application, lotion/care products)
+  - `bento-thalac` (warm shoreline for the THALAC marine card), `bento-atmosphere` (private spa lounge)
+- Also fixed pre-existing 404s in `SpaBentoGrid` (`/img/spa/spa3.jpg`, `/img/spa/headspa1.jpg` never existed on disk).
+- Original photos in `public/img/spa/` were kept (not deleted) in case a revert is wanted.
+- License: Unsplash License — free for commercial use, no attribution required. Note: these are stock scenes, not the actual facility; replace with a professional shoot when available.
+- Validation: `pnpm build` passes; direct and `/_next/image` optimizer requests return 200 with valid JPEG for all new files (browser-tab pixel check was inconclusive only because a backgrounded preview tab defers image decode).
+
+### Spa broken-image URLs removed + moms-class promo block removed (2026-07-04)
+- Request: delete the spa-page image URLs that rendered as broken (X-box) in the user's session, and remove everything ("CTA") above "The Helia Programs" on the moms-class page.
+- Change:
+  - `HeliaSpaPageContent.tsx`: removed the first image entry of each program gallery (`us/headspa-1`, `us/pre-1`, `us/after-1`, `us/breast-1`) from both ko and en arrays; `SpaBentoGrid.tsx` head-spa card repointed to `us/headspa-2.jpg`. Note: those four files actually serve 200/valid JPEG in production (the X-boxes came from a stale dev/browser cache), and the files remain in `public/img/spa/us/` — entries can be restored if wanted.
+  - `ClassSchedule.tsx`: no longer renders `EducationalStrengths` (AI-image promo bento + QR hybrid banner) — moms-class now opens directly with "The Helia Programs". Unused imports cleaned in `ClassSchedule.tsx` and `MomsClassPageContent.tsx`; `EducationalStrengths.tsx` is now unused but kept on disk.
+- Validation: `pnpm build` passes; a11y snapshot of `/ko/service/moms-class` confirms hero → The Helia Programs order; rendered spa page HTML contains zero references to the removed URLs.
+
+### Mobile optimization pass (2026-07-04)
+- Request: optimize the site for mobile.
+- Audit: automated horizontal-overflow scan of all 14 routes at 375px (iframe-based) found zero overflow; issues found were density/perf, not layout breakage.
+- Change:
+  - `Header.tsx`: h-16 on mobile / md:h-20 (home hero pull adjusted to `-mb-16 md:-mb-20`); `LocaleShell` min-height calc updated to match.
+  - `FloatingReservationCta.tsx`: compact single-line bar on mobile (tracking label hidden below md, tighter padding/icon).
+  - `SubPageHero.tsx`: removed the `unoptimized` bypass so local hero images go through the Next image optimizer (they previously shipped original full-size files), quality 100 → 85, mobile min-height 500px → 420px.
+  - `HeroCarousel.tsx`: carousel image quality 100 → 85 (LCP weight).
+  - `MobileNavDrawer.tsx`: drawer wordmark no longer wraps (nowrap, text-base, tracking 0.3em).
+- Validation: `pnpm build` passes; verified at 375×812 — home hero, moms-class, price boards, drawer open state.
+
+### Desktop nav panel + SubPageTemplate intro redesign (2026-07-04)
+- Request: update the desktop header nav panel design; the sub-page template intro looked cluttered.
+- Change:
+  - `DesktopNavPanel.tsx`: redesigned as a compact 540px dropdown card anchored under the header (user rejected an interim full-width mega panel as too sparse). Left: eyebrow section label + tight hairline link rows with hover/active ArrowUpRight; right: 200px `border-l` preview column (image + serif caption + clamped clay copy). Quick fade-in via framer-motion, transparent click-catcher (no page dim), no shadow; fixed stale `top-16` offsets to `top-20` (desktop header is h-20); removed the image `unoptimized` bypass.
+  - `SubPageTemplate.tsx`: removed stray debug text `123` rendered next to every sub-page title; intro now = parent-section eyebrow (only when different from the page title) → serif title → short centered hairline divider → constrained clay description (`max-w-[34ch]`, looser leading); more generous spacing (pt-16/24, gap-12/16, pb-16/24).
+- Validation: `pnpm build` passes; verified panel open state and moms-class intro at 1280px.
+
+### One&Only-style full-screen nav + photo-forward homepage (2026-07-04)
+- Request: reference One&Only Resorts' sidebar-style navigation (stays/dining/experiences), emphasize photography, reduce text overall — update destructively.
+- Change:
+  - New `header/FullscreenNav.tsx`: full-screen photo-forward menu overlay (One&Only grammar). Left column = large serif category list (dimmed inactive + `01`–`0N` numerals + hairline dividers), hover/first-item reveals sub-links and swaps the right-column full-height image (crossfade). Footer has the reserve button + locale/theme toggles. Esc + body-scroll-lock. Serves both desktop and mobile (image column hidden below `lg`).
+  - `Header.tsx` rebuilt: minimal three-zone bar (menu button · centered wordmark · reserve link). Removed the top-bar link row (`DesktopPrimaryNav`), hover dropdown (`DesktopNavPanel`), and `MobileNavDrawer` usage — all replaced by the overlay. Locale/theme toggles moved into the overlay. A `NavCloseButton` (z-70) keeps close + wordmark reachable above the overlay.
+  - `DesktopPrimaryNav.tsx`, `DesktopNavPanel.tsx`, `MobileNavDrawer.tsx` are now unused (kept on disk, not imported).
+  - Homepage photo emphasis + text cuts: `HomeIntroView` manifesto secondary paragraph trimmed from 3 sentences to 1 (ko + en); `BentoGridShowcase` triptych images enlarged to `aspect-[3/5]` in a wider `max-w-[1600px]` container with tighter gaps, captions reduced to eyebrow + serif title only (description paragraph + hairline bullet list removed from the home cards — full detail still lives on the sub-pages).
+- Validation: `pnpm build` passes. Overlay verified with real screenshots on desktop (light) + mobile — category list, active-state dim, sub-link reveal, and right-image crossfade all working. Homepage triptych/manifesto changes confirmed via a11y snapshot + DOM inspection (preview screenshots at deep scroll come back blank due to a Lenis smooth-scroll vs. screenshot-compositor desync, not a render bug — DOM shows images loaded, opaque, positioned).
+
+### Baby spa page imagery replaced with Unsplash (2026-07-04)
+- Request: on the baby-spa page, keep the first real baby-spa photo and replace the rest with Unsplash.
+- Change: kept `/img/babyspa/babyspa1.jpg` (real). Added 5 curated, reviewed-one-by-one Unsplash photos under `public/img/babyspa/us/` and repointed `BabySpaPageContent.tsx` (ko + en), with alt text updated to accurately describe each new image:
+  - Bento carousel: babyspa1 (kept) + `bonding` (parent holding baby) + `newborn-rest` (sleeping newborn) + `baby-play` (baby at play).
+  - Strengths row 1 (1:1 private spa / watching baby float) ← `water-play` (baby on a float ring — literal match for the copy).
+  - Strengths row 2 (organic care / bathing education) ← `feet-care` (newborn feet in a towel — bath/care).
+- Note: one initial candidate (`massage`) turned out to be an ADULT back massage (the same shot as the helia-spa page), so it was discarded — Unsplash has few genuine baby-massage/baby-bath photos findable by ID. The old files (`babyspa2/3/4.jpg`, `strength-babyspa1/2.png`) remain on disk, unused.
+- License: Unsplash License (free commercial use, no attribution). These are stock babies, not actual guests — replace with a real shoot when available.
+- Validation: `pnpm build` passes; all 5 new files + babyspa1 return 200 through the `/_next/image` optimizer at production sizes; rendered HTML confirms the wiring and zero remaining old refs. (In-browser screenshots at deep scroll were blank/dark again due to the Lenis smooth-scroll vs. screenshot-compositor desync noted earlier — not a render bug.)
+
+### Newborn-room "Uncompromising Premium Care" imagery replaced with Unsplash (2026-07-04)
+- Request: on the infant-room page, replace the images below the "타협하지 않는 프리미엄 케어" (Uncompromising Premium Care) heading with Unsplash.
+- Scope: that heading lives in `nursery/NewbornStrengths.tsx` (rendered via `pages/service/infant-room/NewbornPageContent.tsx`, NOT the unused `service/InfantRoomPageContent.tsx`). Its four strength images were AI-generated (they carried a "생성형 AI" disclaimer). The bento sections above (observation room + newborn room, `/img/infant/infant1–6.jpg`) are real facility photos and were left untouched.
+- Change: added 4 curated Unsplash photos under `public/img/infant/us/` and repointed the `strengths` array; also removed the now-inaccurate AI-image disclaimer overlay.
+  - `care.jpg` (parents cradling a newborn) → Strength 01 "1:3 소수 정예 케어 & 상시 오픈 투어"
+  - `bassinet.jpg` (infant resting in a bassinet) → Strength 02 "100cm 감염 예방 거리두기"
+  - `tending.jpg` (hands cradling a newborn) → Strength 03 "1인 1 기저귀 갈이대 & 전용 처치"
+  - `bath.jpg` (baby in a bathtub) → Strength 04 "매일 아침 개별 욕조 목욕"
+- Sourcing note: nursery/bassinet/bath photo IDs aren't findable by blind CDN-ID guessing — used WebSearch (unsplash.com) to find real photo pages, then WebFetch on each page to extract the `images.unsplash.com/photo-…` CDN URL. Rejected a "pediatrician giving a vaccine injection" candidate (needle → off-tone for a premium care page). Old files (`strength_infant1.jpg`, `strength_infant2/3/4.png`) remain on disk, unused.
+- License: Unsplash License (free commercial use, no attribution). Stock, not the actual facility — replace with a real shoot when available.
+- Validation: `pnpm build` passes; all 4 new files return 200 through `/_next/image`; rendered HTML confirms all four wired in (this section SSRs all 4, unlike the carousel bentos) with zero old refs. (Deep-scroll screenshots still blank due to the Lenis vs. screenshot-compositor desync noted earlier.)
+
+### Moms-class header de-duplication + header language toggle (2026-07-04)
+- Request: the moms-class page stacked three near-identical centered header blocks (page title "교육 프로그램" → "The Helia Programs" → "Weekly Routine / 반복 교육 프로그램 캘린더"); improve readability. Also re-expose a language toggle (multilingual is supported but the toggle was buried in the FullscreenNav overlay after the header redesign).
+- Change:
+  - `ClassSchedule.tsx`: removed the redundant "The Helia Programs" umbrella block (it duplicated the SubPageTemplate page title). Removed the doubled table caption title ("주간 반복 일정") — the desktop calendar table now shows just a slim "매월 반복 / Every Month" meta line + the availability note. Gave "프로그램 구성" a matching eyebrow ("LINEUP") so the page now reads as one page title (교육 프로그램) → two parallel content sections (반복 교육 프로그램 캘린더, 프로그램 구성). Added `Sparkles` to the lucide import.
+  - `Header.tsx`: added a visible locale toggle to the right cluster (shows "EN" on Korean pages, "KO" on English), calling the existing `changeLocale` (router.push to the mirrored path). The reserve link now sits in a flex group beside it. The overlay's locale toggle stays as well.
+- Validation: `pnpm build` passes; a11y snapshot confirms the cleaned heading hierarchy and the header language button (aria-label "Switch to English"/"한국어로 전환"); click test confirms EN → `/en/service/moms-class` with content switching to English; header shows KO/RESERVE on `/en`.
+
+### Photo-forward pass across text-heavy pages (2026-07-04)
+- Request: compare every page against the (photo-forward) landing page and replace excessive text with related Unsplash imagery.
+- Audit (unique content images per rendered page): moms-class 1 (hero only) and reservation 1 were the clear outliers; price/faq are data/Q&A pages where text is appropriate (left alone); rooms 9, helia-spa 8, infant-room 7, reviews 7, baby-spa 4, about 4 are balanced. About remains the most text-dense (daily-flow columns) — candidate for a future pass.
+- Change:
+  - `ClassSchedule.tsx` (moms-class): the 10-item Program Lineup converted from icon+text cards to photo cards (aspect-[4/5] image + serif title + schedule line). Added 10 topic-matched Unsplash photos under `public/img/momclass/us/` — pediatric (stethoscope exam), discharge (parents holding newborn), photo (newborn studio shoot on pink fur), pilates (reformer studio), sleep (sleeping newborn), cues (soothing a crying baby), book (baby with picture book), massage (baby on soft towel), casting (hand cradling baby foot), first-aid (CPR manikin training). Removed the now-unused per-item `icon`/`color` fields and lucide icon imports. Page went from 1 → 11 content images.
+  - `ReservationPageContent.tsx`: added a wide photo band (240px/420px) between the process header and the steps using the REAL facility lounge photo `/img/main/homepage_2.jpg` (real beats stock on the conversion page). 1 → 2 content images.
+- Sourcing method: WebFetch on Unsplash SEARCH pages (e.g. `/s/photos/baby-massage`) returns several CDN URLs + descriptions per call — much faster than per-photo pages; skip `plus.unsplash.com/premium_photo-*` results (paid Unsplash+ license). All 20 candidates were verified visually via contact sheet before final selection (caught two wrong-ID downloads and earlier a chick-photo false positive).
+- Ops note: running `pnpm build` while the preview dev server is running clobbers `.next` and makes the dev server 500 — restart the dev server after builds.
+- Validation: `pnpm build` passes; fresh dev server confirms all 10 + lounge images wired in rendered HTML and serving 200 via the optimizer.
+- Follow-up in the same pass: `AboutPageShowcase.tsx` DailyFlowSection — added a 4:3 photo atop each of the three time-band columns (`public/img/about/us/`): `morning` (breakfast tray on bed), `afternoon` (bathtub rest — the spa-interior candidate verified earlier but unused), `evening` (mother nuzzling sleeping baby). Icons/copy untouched; about page 4 → 7 content images. Same validation (build + rendered HTML + optimizer 200).
+
+### Guest Reviews page decluttered (2026-07-04)
+- Request: the guest-reviews page had too much text and felt cramped (tight spacing).
+- Change in `GuestReviewsPageContent.tsx` (copy/data left intact; only rendering trimmed + spacing opened up):
+  - Overview: dropped the 3-item stats block AND the "Review Curation" note; the 2-col layout became a single centered intro (eyebrow + serif title + one description line) with generous py.
+  - Review cards (both Featured and Archive): removed the long `content` paragraph — each card now reads as photo → category·date (→ stars, featured only) → serif headline → highlight tags → author/date + original-review link. The full text is one click away on the source blog. (`content` still exists in the `Review` type/data, just no longer rendered; `PageCopy` `stats`/`noteTitle`/`noteBody` and the featured/archive `description` fields are now unused but kept.)
+  - Section headers: dropped the two long descriptions (titles are self-explanatory); `SectionHeader` `description` is now optional.
+  - Spacing opened up: section gaps `mt-16` → `mt-24 md:mt-36`; featured grid `gap-6` → `gap-8 xl:gap-10`; archive grid `gap-6` → `gap-x-8 gap-y-16`; card image heights bumped (featured 280→300, archive 52→56).
+- Validation: `pnpm build` passes; server-rendered HTML confirms 8 headlines kept, 0 card content paragraphs, 0 stats/curation/section-description blocks, overview description + highlight tags kept. (Browser screenshots unreliable this session — Lenis smooth-scroll vs. screenshot-compositor desync; verified via SSR HTML + DOM instead.)
+
+### Location page hero redesign (2026-07-04)
+- Request: the location page needed a design refresh in line with the design system.
+- Diagnosis: the page was already on-system, but the hero's lower block was the eyesore — reservation CTA + building + contact + hours crammed into an asymmetric `lg:grid-cols-[1.05fr_0.95fr]` grid with a row-span and a nested sub-grid (engineered/tight).
+- Change in `LocationPageShowcase.tsx`:
+  - Hero rebuilt as a clean two-column row: intro (eyebrow + serif title + subtitle + Naver booking CTA moved up here as the primary action + note) on the left, a larger exterior photo (`lg:min-h-[540px]`, was 360) on the right.
+  - The cramped fact cards replaced by a single airy 3-column hairline strip (contact · hours · location) — `border-t` + `sm:grid-cols-3` with `sm:border-l` dividers, serif values, taupe eyebrow labels — same grammar as the homepage nursery stat row. Removed the now-unused `FactCard` component.
+  - Page spacing opened up: `space-y-20 pb-20` → `space-y-24 pb-24 md:space-y-32`.
+  - Map section (embed + address + visit steps + map-app deep-link dialog) and the guide band (transit/parking/timing) were already clean and left untouched — all deep-link logic intact.
+  - `reservationEyebrow/Title/Description` copy fields are now unused (kept in the content object).
+- Validation: `pnpm build` passes; server-rendered HTML confirms the booking CTA + hero image + all 3 facts + `sm:grid-cols-3` strip are present, and the old reservation article and `lg:grid-cols-[1.05fr_0.95fr]` grid are gone; map + guide preserved. (Browser screenshots blank again — Lenis vs. screenshot-compositor desync; verified via SSR HTML. Theme also kept defaulting to dark on fresh dev loads — set cookie+reload to force light.)
 
 ## Follow-up Notes For Next AI
 - Keep app scope static/content-driven (no auth, no DB).

@@ -74,12 +74,12 @@ export function RoomSuiteTemplate({
     const label = labels?.[locale] ?? slug.toUpperCase();
     const { align, isMobile = false, isActive = false } = options ?? {};
     const baseClasses =
-      "inline-flex items-center gap-2 rounded-2xl border px-6 py-3 text-base font-semibold transition";
+      "inline-flex items-center gap-2 border px-6 py-3 font-sans text-xs font-semibold uppercase tracking-[0.2em] transition-colors duration-300";
     const paletteClasses = isMobile
       ? isActive
-        ? "border-primary bg-primary text-background shadow-md"
-        : "border-primary/20 bg-white/80 dark:bg-[#2A2928]/60 backdrop-blur-sm text-primary hover:bg-primary hover:text-background"
-      : "border-primary/20 bg-white/80 dark:bg-[#2A2928]/60 backdrop-blur-md text-primary hover:bg-primary hover:text-background shadow-sm";
+        ? "border-foreground bg-foreground text-background"
+        : "border-foreground/40 text-foreground hover:border-foreground"
+      : "border-foreground/40 text-foreground hover:border-foreground";
     const alignmentClasses =
       align === "left"
         ? "self-start md:self-auto"
@@ -111,10 +111,10 @@ export function RoomSuiteTemplate({
           {renderSwitchButton(otherSuites[0], { align: "left" })}
           <div className="text-center">
             <ScrollReveal>
-              <h2 className="text-3xl font-semibold font-serif text-foreground">
+              <h2 className="font-display-serif text-3xl font-normal leading-[1.4] text-foreground">
                 {primary.title}
               </h2>
-              <p className="mt-4 text-base leading-relaxed text-foreground/85">
+              <p className="mt-4 text-base leading-[1.85] text-secondary">
                 {primary.copy ?? primary.description}
               </p>
             </ScrollReveal>
@@ -125,10 +125,10 @@ export function RoomSuiteTemplate({
         <div className="flex flex-col gap-4 md:hidden">
           <div className="text-center">
             <ScrollReveal>
-              <h2 className="break-keep text-3xl font-semibold leading-[1.24] font-serif text-foreground">
+              <h2 className="break-keep font-display-serif text-3xl font-normal leading-[1.4] text-foreground">
                 {primary.title}
               </h2>
-              <p className="mx-auto mt-3 max-w-[30ch] break-keep text-base leading-relaxed text-foreground/85">
+              <p className="mx-auto mt-3 max-w-[30ch] break-keep text-base leading-[1.85] text-secondary">
                 {primary.copy ?? primary.description}
               </p>
             </ScrollReveal>
@@ -144,7 +144,7 @@ export function RoomSuiteTemplate({
         </div>
 
         {children ? (
-          <div className="mt-4 w-full rounded-3xl backdrop-blur">
+          <div className="mt-4 w-full">
             {children}
           </div>
         ) : null}

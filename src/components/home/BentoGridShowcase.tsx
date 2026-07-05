@@ -18,25 +18,12 @@ export function BentoGridShowcase({ highlights, onSectionMount }: BentoGridShowc
     <section
       id="bento-showcase"
       ref={(node) => onSectionMount?.("bento-showcase", node)}
-      className="w-full bg-background px-4 py-16 md:px-8 md:py-24"
+      className="w-full bg-background px-4 pb-24 pt-4 md:px-8 md:pb-36"
     >
-      <div className="mx-auto max-w-7xl">
-        <div className="grid grid-cols-1 gap-4 md:grid-cols-3 md:grid-rows-2 md:gap-6 lg:gap-8">
+      <div className="mx-auto max-w-[1600px]">
+        <div className="grid grid-cols-1 gap-12 md:grid-cols-3 md:gap-4">
           {highlights.map((item, index) => (
-            
-            <BentoCard
-              key={item.title}
-              item={item}
-              index={index}
-              className={
-                index === 0
-                  ? "min-h-[460px] md:min-h-[860px] md:col-span-2 md:row-span-2" // First item (Suites) takes 2x2
-                  : index === 1
-                  ? "min-h-[360px] md:min-h-[430px] md:col-span-1 md:row-span-1" // Second item (Nursery) takes 1x1
-                  : "min-h-[360px] md:min-h-[430px] md:col-span-1 md:row-span-1" // Third item (Spa) takes 1x1
-              }
-            />
-            
+            <TriptychCard key={item.title} item={item} index={index} />
           ))}
         </div>
       </div>
@@ -45,18 +32,15 @@ export function BentoGridShowcase({ highlights, onSectionMount }: BentoGridShowc
 }
 
 
-function BentoCard({
+function TriptychCard({
   item,
   index,
-  className,
 }: {
   item: HomeExperienceHighlight;
   index: number;
-  className?: string;
 }) {
   const params = useParams();
   const locale = params?.locale ?? "ko";
-  const isPrimaryCard = index === 0;
 
   const getHref = (idx: number) => {
     switch (idx) {
@@ -72,71 +56,31 @@ function BentoCard({
   };
 
   return (
-    <ScrollReveal
-      className={`group relative overflow-hidden rounded-[2.5rem] border border-white/20 bg-white/5 backdrop-blur-2xl shadow-xl transition-all duration-500 hover:shadow-2xl hover:bg-white/10 ${className}`}
-    >
-      <TransitionLink
-        href={getHref(index)}
-        className="block h-full w-full transition-none"
-      >
-        {/* Image Background - Darker overlay for text contrast */}
-        <div className="absolute inset-0 h-full w-full">
+    <ScrollReveal>
+      <TransitionLink href={getHref(index)} className="group block">
+        {/* Tall photography — the focus */}
+        <div className="relative aspect-[3/5] w-full overflow-hidden bg-accent/60">
           <Image
             src={item.image}
             alt={item.imageAlt}
             fill
-            className="object-cover transition-transform duration-700 group-hover:scale-105"
+            sizes="(min-width: 768px) 33vw, 100vw"
+            className="object-cover transition-transform duration-[1400ms] ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-[1.05]"
             placeholder="blur"
             blurDataURL={DEFAULT_BLUR_DATA_URL}
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-t from-foreground/10 to-transparent opacity-0 transition-opacity duration-700 group-hover:opacity-100" />
         </div>
 
-        {/* Content */}
-        <div className="relative flex h-full flex-col justify-end p-8 text-white md:p-10">
-          <div className="mb-auto flex justify-between">
-            <span className="inline-flex items-center rounded-full border border-white/30 bg-white/10 px-4 py-1.5 text-xs font-semibold uppercase tracking-widest backdrop-blur-md">
-              {item.meta}
-            </span>
-            <div className="flex h-10 w-10 items-center justify-center rounded-full bg-white/20 backdrop-blur-md transition-colors group-hover:bg-white group-hover:text-black">
-              <ArrowUpRight className="h-5 w-5" />
-            </div>
-          </div>
-
-          <div
-            className={`relative my-4 transform transition-all duration-500 group-hover:-translate-y-2 md:group-hover:-translate-y-14`}
-          >
-            <h3
-              className={`mb-3 font-serif font-bold leading-tight ${
-                isPrimaryCard ? "text-2xl md:text-3xl" : "text-xl md:text-2xl"
-              }`}
-            >
+        {/* Minimal caption below the image */}
+        <div className="flex items-center justify-between gap-3 pt-6 text-left">
+          <div>
+            <span className="eyebrow">{item.meta}</span>
+            <h3 className="mt-3 font-display-serif text-xl font-normal text-foreground md:text-2xl">
               {item.title}
             </h3>
-            <p
-              className={`text-white/80 whitespace-pre-line font-bold tracking-wide  ${
-                isPrimaryCard ? "text-sm md:text-base line-clamp-3" : "text-xs md:text-sm line-clamp-2"
-              }`}
-            >
-              {item.description}
-            </p>
-
-            {/* Bullets */}
-            <ul
-              className={`mt-3 space-y-2 text-white/80 ${
-                isPrimaryCard ? "text-sm" : "text-xs"
-              } md:pointer-events-none md:absolute md:left-0 md:right-0 md:top-full md:mt-4 md:translate-y-3 md:opacity-0 md:transition-all md:duration-500 md:group-hover:translate-y-0 md:group-hover:opacity-100 ${
-                isPrimaryCard ? "md:text-md md:pb-8" : "md:text-sm md:pb-6"
-              }`}
-            >
-              {item.bullets?.slice(0, 3).map((bullet) => (
-                <li key={bullet} className="flex items-center gap-2">
-                  <span className="h-1.5 w-1.5 rounded-full bg-accent" />
-                  {bullet}
-                </li>
-              ))}
-            </ul>
           </div>
+          <ArrowUpRight className="h-4 w-4 shrink-0 text-foreground/40 transition-all duration-500 group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-foreground" />
         </div>
       </TransitionLink>
     </ScrollReveal>

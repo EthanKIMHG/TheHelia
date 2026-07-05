@@ -8,19 +8,16 @@ export function AIAgentFAB() {
     <div className="fixed bottom-6 right-6 z-50 md:bottom-10 md:right-10">
       
         <motion.button
-          className="group relative flex h-14 w-14 items-center justify-center rounded-full border border-white/30 bg-white/10 text-white backdrop-blur-xl shadow-lg transition-all hover:bg-primary hover:border-primary"
+          className="group relative flex h-14 w-14 items-center justify-center border border-border bg-background text-foreground transition-colors duration-300 hover:border-foreground"
           initial={{ opacity: 0, scale: 0.8 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ delay: 2, duration: 0.8 }}
           aria-label="AI Concierge"
         >
-          {/* Pulse Ring */}
-          <span className="absolute inset-0 rounded-full border border-white/50 opacity-0 group-hover:animate-ping" />
-          
           <div className="relative">
-             <MessageSquareDiff className="h-6 w-6" />
+             <MessageSquareDiff className="h-5 w-5 text-primary" strokeWidth={1.5} />
              <div className="absolute -top-1 -right-1">
-                <Sparkles className="h-3 w-3 text-accent animate-pulse" />
+                <Sparkles className="h-3 w-3 text-primary" strokeWidth={1.5} />
              </div>
           </div>
         </motion.button>

@@ -48,16 +48,16 @@ export function SpaServiceCarousel({
   return (
     <div className="space-y-14">
       <ScrollReveal>
-        <section className="rounded-[2.5rem] border border-border/30 bg-white dark:bg-[#2A2928]/40 p-6 shadow-sm md:p-10">
+        <section className="border border-border bg-background p-6 md:p-10">
           <div className="flex flex-col gap-6 md:flex-row md:items-center md:justify-between">
             <div className="text-center md:text-left">
-              <p className="text-sm font-semibold uppercase tracking-[0.3em] text-primary">
+              <p className="eyebrow">
                 {badge}
               </p>
-              <h3 className="mt-2 break-keep text-2xl font-serif font-semibold leading-[1.26] text-foreground md:text-3xl md:leading-tight">
+              <h3 className="mt-3 break-keep font-display-serif text-2xl font-normal leading-[1.4] text-foreground md:text-3xl">
                 {title}
               </h3>
-              <p className="mx-auto mt-2 max-w-[34ch] whitespace-pre-line break-keep text-sm leading-relaxed text-foreground/85 md:mx-0 md:max-w-2xl md:text-base">
+              <p className="mx-auto mt-3 max-w-[34ch] whitespace-pre-line break-keep text-sm leading-[1.85] text-secondary md:mx-0 md:max-w-2xl md:text-base">
                 {description}
               </p>
             </div>
@@ -65,24 +65,24 @@ export function SpaServiceCarousel({
               <button
                 type="button"
                 onClick={handlePrev}
-                className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-border/40 bg-background/80 text-foreground transition hover:bg-primary/10"
+                className="inline-flex h-11 w-11 items-center justify-center border border-border bg-background text-foreground transition-colors duration-300 hover:border-foreground/50"
                 aria-label="Previous image"
               >
-                <ChevronLeft className="h-5 w-5" />
+                <ChevronLeft className="h-5 w-5" strokeWidth={1.5} />
               </button>
               <button
                 type="button"
                 onClick={handleNext}
-                className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-border/40 bg-background/80 text-foreground transition hover:bg-primary/10"
+                className="inline-flex h-11 w-11 items-center justify-center border border-border bg-background text-foreground transition-colors duration-300 hover:border-foreground/50"
                 aria-label="Next image"
               >
-                <ChevronRight className="h-5 w-5" />
+                <ChevronRight className="h-5 w-5" strokeWidth={1.5} />
               </button>
             </div>
           </div>
 
-          <div className="mt-8 overflow-hidden rounded-3xl border border-border/30 shadow-inner">
-            <div className="relative h-[300px] w-full md:h-[500px]">
+          <div className="mt-8 overflow-hidden">
+            <div className="relative h-[300px] w-full bg-accent/60 md:h-[500px]">
               <Image
                 key={currentImage.src}
                 src={currentImage.src}
@@ -91,7 +91,7 @@ export function SpaServiceCarousel({
                 className="object-cover transition-opacity duration-500"
                 priority
               />
-              <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent p-6 text-white/90 backdrop-blur-[2px]">
+              <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent p-6 text-white/90">
                 <p className="text-sm md:text-base font-medium">{currentImage.caption}</p>
               </div>
             </div>
@@ -103,10 +103,10 @@ export function SpaServiceCarousel({
                 key={image.src + index}
                 type="button"
                 onClick={() => goToIndex(index)}
-                className={`relative h-20 w-32 flex-shrink-0 overflow-hidden rounded-xl border transition-all duration-300 ${
+                className={`relative h-20 w-32 flex-shrink-0 overflow-hidden border transition-all duration-300 ${
                   currentIndex === index
-                    ? "border-primary shadow-md ring-2 ring-primary/20 scale-105"
-                    : "border-border/40 opacity-70 hover:opacity-100 hover:scale-105"
+                    ? "border-foreground"
+                    : "border-border opacity-70 hover:opacity-100"
                 }`}
                 aria-label={`View image ${index + 1}`}
               >
@@ -124,21 +124,21 @@ export function SpaServiceCarousel({
       </ScrollReveal>
 
       <ScrollReveal>
-        <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+        <div className="grid gap-x-10 gap-y-12 md:grid-cols-2 lg:grid-cols-3">
           {features.map((group) => (
             <article
               key={group.title}
-              className="rounded-3xl border border-border/30 bg-white/60 dark:bg-[#2A2928]/40 p-8 shadow-sm backdrop-blur-sm transition-transform hover:-translate-y-1"
+              className="border-t border-border pt-6 transition-colors duration-500 hover:border-foreground/40"
             >
-              <h4 className="text-lg font-semibold text-foreground mb-4 flex items-center gap-2">
-                <span className="w-1 h-5 bg-primary rounded-full" />
+              <h4 className="break-keep font-display-serif text-lg font-normal leading-[1.5] text-foreground mb-4 flex items-center gap-3">
+                <span className="h-px w-3 bg-primary" />
                 {group.title}
               </h4>
               <ul className="space-y-3">
                 {group.items.map((item) => (
-                  <li key={item} className="flex items-start gap-2.5 text-sm text-foreground">
-                    <div className="w-1.5 h-1.5 rounded-full bg-primary/60 mt-2" />
-                    <span className="leading-relaxed">{item}</span>
+                  <li key={item} className="flex items-start gap-3 text-sm text-foreground/80">
+                    <span className="mt-3 h-px w-3 flex-shrink-0 bg-primary" />
+                    <span className="break-keep leading-[1.85]">{item}</span>
                   </li>
                 ))}
               </ul>

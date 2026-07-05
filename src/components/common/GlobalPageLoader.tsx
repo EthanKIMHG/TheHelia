@@ -16,14 +16,6 @@ export function GlobalPageLoader() {
           transition={{ duration: 0.5, ease: "easeInOut" }}
           className="fixed inset-0 z-[9999] flex items-center justify-center bg-background"
         >
-           {/* Background Texture & Pulse */}
-           <div className="absolute inset-0 bg-grain opacity-50" />
-           <motion.div 
-             animate={{ scale: [1, 1.1, 1], opacity: [0.3, 0.6, 0.3] }}
-             transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
-             className="absolute w-[60vw] h-[60vw] bg-primary/10 rounded-full blur-[100px]" 
-           />
-
           <div className="relative z-10 flex flex-col items-center gap-8">
             {/* Logo / Brand Name Animation */}
             <motion.div
@@ -33,17 +25,17 @@ export function GlobalPageLoader() {
                 transition={{ duration: 0.8, ease: "easeOut" }}
                 className="flex flex-col items-center"
             >
-                <span className="font-serif text-4xl md:text-4xl lg:text-6xl text-primary tracking-widest">
+                <span className="font-force-playfair text-center text-4xl font-normal tracking-[0.3em] indent-[0.3em] text-foreground md:text-4xl lg:text-6xl">
                     The Helia
                 </span>
-                <span className="mt-4 font-sans text-xs md:text-sm text-foreground/85 tracking-[0.3em] uppercase">
+                <span className="mt-4 font-sans text-xs font-semibold uppercase tracking-[0.3em] text-primary md:text-sm">
                     Organic Serenity
                 </span>
             </motion.div>
 
             {/* Loading Bar / Indicator */}
-            <div className="w-24 h-[2px] bg-secondary/20 overflow-hidden relative rounded-full">
-                <motion.div 
+            <div className="w-24 h-px bg-border overflow-hidden relative">
+                <motion.div
                     className="absolute inset-0 bg-primary"
                     initial={{ x: "-100%" }}
                     animate={{ x: "100%" }}

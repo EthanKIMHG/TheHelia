@@ -2,7 +2,6 @@
 
 import type { Locale } from "@/components/header/types";
 import { ClassSchedule } from "@/components/service/ClassSchedule";
-import { EducationalStrengths } from "@/components/service/EducationalStrengths";
 
 export function MomsClassPageContent({ locale }: { locale: Locale }) {
   return (

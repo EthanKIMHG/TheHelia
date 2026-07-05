@@ -115,7 +115,7 @@ export function LocationPageShowcase({
   const content = getLocationContent(locale)
 
   return (
-    <div className="space-y-20 pb-20">
+    <div className="space-y-24 pb-24 md:space-y-32">
       <LocationHeroSection content={content} />
       <LocationMapSection content={content} />
       <LocationGuideSection content={content} />
@@ -136,157 +136,92 @@ function LocationHeroSection({
     return <></>
   }
 
+  const facts = [contactFact, hoursFact, buildingFact]
+
   return (
     <ScrollReveal>
-      <section className="relative overflow-hidden rounded-[2rem] border border-border/50 bg-gradient-to-br from-primary/10 via-background to-background/95 shadow-sm">
-        <div className="absolute -right-24 -top-24 h-64 w-64 rounded-full bg-primary/15 blur-3xl" />
-        <div className="absolute -left-20 bottom-0 h-48 w-48 rounded-full bg-accent/25 blur-3xl" />
-
-        <div className="relative space-y-4 p-6 md:space-y-5 md:p-8 lg:p-10">
-          <div className="grid items-end gap-8 lg:grid-cols-[0.92fr_1.08fr]">
-            <header className="space-y-4 text-center lg:pb-8 lg:text-left">
-              <p className="text-sm font-semibold uppercase tracking-[0.3em] text-primary font-playfair italic">
+      <section>
+        <div className="grid gap-10 lg:grid-cols-[0.88fr_1.12fr] lg:items-stretch lg:gap-14">
+          <header className="flex flex-col justify-center space-y-8 text-center lg:text-left">
+            <div className="space-y-5">
+              <p className="eyebrow">
                 {content.heroBadge}
               </p>
-              <h2 className="mx-auto max-w-[13ch] text-balance break-keep text-3xl leading-[1.18] text-foreground md:text-5xl md:leading-[1.12] lg:mx-0 font-serif">
+              <h2 className="mx-auto max-w-[14ch] text-balance break-keep font-display-serif text-3xl font-normal leading-[1.4] text-foreground md:text-5xl lg:mx-0">
                 {content.heroTitle}
               </h2>
-              <p className="mx-auto max-w-[38ch] text-balance break-keep text-sm leading-[1.85] text-foreground/75 md:max-w-[54ch] md:text-base lg:mx-0">
+              <p className="mx-auto max-w-[42ch] text-balance break-keep text-sm leading-[1.9] text-secondary md:text-base lg:mx-0">
                 {content.heroSubtitle}
               </p>
-            </header>
-
-            <div className="relative min-h-[360px] overflow-hidden rounded-[2rem] border border-border/40 shadow-lg">
-              <Image
-                src="/img/location2.png"
-                alt={content.exteriorAlt}
-                fill
-                className="object-cover"
-                sizes="(min-width: 1024px) 42vw, 100vw"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-[#2D241E]/78 via-[#2D241E]/15 to-transparent" />
-              <div className="absolute left-4 top-4 rounded-full border border-white/25 bg-white/15 px-4 py-2 text-xs font-semibold uppercase tracking-[0.18em] text-white backdrop-blur-md md:left-6 md:top-6">
-                {content.exteriorBadge}
-              </div>
-              <div className="absolute inset-x-0 bottom-0 p-4 md:p-6">
-                <div className="rounded-[1.5rem] border border-white/15 bg-black/20 p-5 text-white backdrop-blur-md">
-                  <p className="text-sm font-semibold uppercase tracking-[0.18em] text-white/75">
-                    {content.exteriorTitle}
-                  </p>
-                  <p className="mt-2 text-2xl font-semibold leading-snug">
-                    {content.exteriorBody}
-                  </p>
-                </div>
-              </div>
             </div>
-          </div>
 
-          <div className="grid gap-4 border-t border-border/25 pt-4 md:pt-5 lg:grid-cols-[1.05fr_0.95fr]">
-            <article className="flex h-full flex-col justify-between rounded-[1.75rem] border border-border/35 bg-white/80 p-6 shadow-sm backdrop-blur-md dark:bg-[#2A2928]/60 md:p-7 lg:row-span-2">
-              <div className="space-y-6">
-                <div className="flex items-start gap-4">
-                  <div className="flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-2xl bg-primary/10 text-primary dark:bg-[#333231]">
-                    <CalendarCheck className="h-6 w-6" />
-                  </div>
-                  <div className="min-w-0 space-y-2">
-                    <p className="text-sm font-semibold uppercase tracking-[0.18em] text-primary/80">
-                      {content.reservationEyebrow}
-                    </p>
-                    <p className="max-w-[16ch] text-balance break-keep text-2xl font-semibold leading-[1.24] text-foreground md:text-[1.7rem]">
-                      {content.reservationTitle}
-                    </p>
-                    <p className="max-w-[40ch] break-keep text-[13px] leading-[1.78] text-foreground/70 md:text-base">
-                      {content.reservationDescription}
-                    </p>
-                  </div>
-                </div>
-              </div>
+            <div className="flex flex-col items-center gap-3 lg:items-start">
+              <a
+                href={BOOKING_URL}
+                target="_blank"
+                rel="noreferrer"
+                className="inline-flex items-center justify-center gap-2 bg-foreground px-8 py-3.5 font-sans text-sm font-semibold text-background transition-opacity hover:opacity-90"
+              >
+                {content.buttonLabel}
+                <ArrowUpRight className="h-4 w-4" strokeWidth={1.5} />
+              </a>
+              <p className="break-keep text-[11px] leading-[1.7] text-secondary">
+                {content.reservationNote}
+              </p>
+            </div>
+          </header>
 
-              <div className="mt-8 grid gap-3 md:grid-cols-[auto_1fr] md:items-end">
-                <a
-                  href={BOOKING_URL}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="inline-flex items-center justify-center gap-2 rounded-xl bg-primary px-6 py-3 text-sm font-semibold text-background transition-colors hover:bg-primary/90 md:justify-self-start"
-                >
-                  {content.buttonLabel}
-                  <ArrowUpRight className="h-4 w-4" />
-                </a>
-                <p className=" break-keep text-[11px] leading-[1.7] text-foreground/55 md:justify-self-end md:text-right md:text-xs">
-                  {content.reservationNote}
+          <div className="relative min-h-[380px] overflow-hidden bg-accent/30 lg:min-h-[540px]">
+            <Image
+              src="/img/location2.png"
+              alt={content.exteriorAlt}
+              fill
+              className="object-cover"
+              sizes="(min-width: 1024px) 52vw, 100vw"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-[#2D241E]/78 via-[#2D241E]/15 to-transparent" />
+            <div className="absolute left-5 top-5 font-sans text-[11px] font-semibold uppercase tracking-[0.24em] text-white drop-shadow md:left-6 md:top-6">
+              {content.exteriorBadge}
+            </div>
+            <div className="absolute inset-x-0 bottom-0 p-6 md:p-8">
+              <div className="text-white">
+                <p className="font-sans text-[11px] font-semibold uppercase tracking-[0.24em] text-white/75 drop-shadow">
+                  {content.exteriorTitle}
+                </p>
+                <p className="mt-2 font-display-serif text-2xl font-normal leading-snug drop-shadow">
+                  {content.exteriorBody}
                 </p>
               </div>
-            </article>
-
-            <FactCard
-              fact={buildingFact}
-              className="h-full bg-primary/5"
-              valueClassName="text-xl leading-[1.22]"
-              descriptionClassName="max-w-[32ch]"
-            />
-
-            <div className="grid gap-4 sm:grid-cols-2">
-              <FactCard
-                fact={contactFact}
-                className="h-full"
-                valueClassName="font-sans text-lg leading-none tracking-[-0.045em] whitespace-nowrap tabular-nums md:text-xl"
-                descriptionClassName="max-w-[26ch]"
-              />
-              <FactCard
-                fact={hoursFact}
-                className="h-full"
-                valueClassName="font-sans text-lg leading-[1.08] tracking-[-0.035em] whitespace-nowrap tabular-nums md:text-xl"
-                descriptionClassName="max-w-[26ch]"
-              />
             </div>
           </div>
         </div>
+
+        <div className="mt-16 grid grid-cols-1 border-t border-border sm:grid-cols-3 md:mt-20">
+          {facts.map((fact, index) => (
+            <div
+              key={fact.id}
+              className={clsx(
+                'py-8 sm:px-8 sm:first:pl-0',
+                index > 0 && 'border-t border-border sm:border-t-0 sm:border-l',
+              )}
+            >
+              <div className="mb-4 flex items-center gap-2.5">
+                <fact.Icon className="h-4 w-4 text-primary" strokeWidth={1.5} />
+                <p className="font-sans text-[10px] font-semibold uppercase tracking-[0.24em] text-primary">
+                  {fact.label}
+                </p>
+              </div>
+              <p className="break-keep font-display-serif text-xl font-normal leading-[1.4] text-foreground">
+                {fact.value}
+              </p>
+              <p className="mt-3 max-w-[30ch] break-keep text-[13px] leading-[1.75] text-secondary">
+                {fact.description}
+              </p>
+            </div>
+          ))}
+        </div>
       </section>
     </ScrollReveal>
-  )
-}
-
-function FactCard({
-  fact,
-  className,
-  valueClassName,
-  descriptionClassName,
-}: {
-  fact: QuickFact
-  className?: string
-  valueClassName?: string
-  descriptionClassName?: string
-}): React.JSX.Element {
-  return (
-    <article
-      className={clsx(
-        'rounded-[1.5rem] border border-border/35 bg-white/70 p-5 shadow-sm backdrop-blur-md dark:bg-[#2A2928]/60 md:p-6',
-        className,
-      )}
-    >
-      <div className="mb-4 flex h-11 w-11 items-center justify-center rounded-2xl bg-primary/10 text-primary dark:bg-[#333231]">
-        <fact.Icon className="h-5 w-5" />
-      </div>
-      <p className="text-sm font-semibold uppercase tracking-[0.16em] text-primary/80">
-        {fact.label}
-      </p>
-      <p
-        className={clsx(
-          'mt-2 text-balance break-keep text-lg font-semibold leading-snug text-foreground',
-          valueClassName,
-        )}
-      >
-        {fact.value}
-      </p>
-      <p
-        className={clsx(
-          'mt-3 break-keep text-[13px] leading-[1.75] text-foreground/65 md:text-sm',
-          descriptionClassName,
-        )}
-      >
-        {fact.description}
-      </p>
-    </article>
   )
 }
 
@@ -331,31 +266,31 @@ function LocationMapSection({
   return (
     <>
       <ScrollReveal>
-        <section className="grid gap-6 lg:grid-cols-[1.08fr_0.92fr]">
-          <div className="rounded-[2rem] border border-border/40 bg-background/80 p-4 shadow-sm backdrop-blur md:p-5">
-            <div className="space-y-3 px-2 pb-5 text-center md:px-3 md:text-left">
-              <p className="text-sm font-semibold uppercase tracking-[0.28em] text-primary font-playfair italic">
+        <section className="grid gap-12 lg:grid-cols-[1.08fr_0.92fr] lg:gap-10">
+          <div>
+            <div className="space-y-4 pb-6 text-center md:text-left">
+              <p className="eyebrow">
                 {content.mapBadge}
               </p>
-              <h3 className="mx-auto max-w-[17ch] text-balance break-keep text-2xl font-semibold leading-[1.24] text-foreground md:mx-0 md:text-3xl font-serif">
+              <h3 className="mx-auto max-w-[17ch] text-balance break-keep font-display-serif text-2xl font-normal leading-[1.4] text-foreground md:mx-0 md:text-3xl">
                 {content.mapTitle}
               </h3>
-              <p className="mx-auto max-w-[38ch] break-keep text-sm leading-[1.85] text-foreground/72 md:mx-0 md:max-w-[52ch] md:text-base">
+              <p className="mx-auto max-w-[38ch] break-keep text-sm leading-[1.85] text-secondary md:mx-0 md:max-w-[52ch] md:text-base">
                 {content.mapSubtitle}
               </p>
               <div className="flex justify-center pt-1 md:justify-start">
                 <button
                   type="button"
                   onClick={() => setIsMapDialogOpen(true)}
-                  className="inline-flex w-full items-center justify-center gap-2 rounded-xl bg-primary px-5 py-3 text-sm font-semibold text-background shadow-sm transition-colors hover:bg-primary/90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40 sm:w-auto"
+                  className="inline-flex w-full items-center justify-center gap-2 border border-foreground/30 bg-background px-5 py-3 font-sans text-sm font-semibold text-foreground transition-colors hover:border-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40 sm:w-auto"
                 >
-                  <Navigation className="h-4 w-4" />
+                  <Navigation className="h-4 w-4 text-primary" strokeWidth={1.5} />
                   {content.mapAppButtonLabel}
                 </button>
               </div>
             </div>
 
-            <div className="group relative h-[340px] overflow-hidden rounded-[1.75rem] border border-border/30 shadow-md md:h-[420px]">
+            <div className="group relative h-[340px] overflow-hidden border border-border md:h-[420px]">
               <iframe
                 title="The Helia Location"
                 src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3174.8384058135257!2d126.95109607716499!3d37.275258840774896!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x277bcbed795ddd7%3A0xad9cdb91d0fde45f!2z642U7Zes66as7JWEIOyCsO2bhOyhsOumrOybkA!5e0!3m2!1sko!2sus!4v1760246577990!5m2!1sko!2sus"
@@ -364,61 +299,57 @@ function LocationMapSection({
                 referrerPolicy="no-referrer-when-downgrade"
                 allowFullScreen
               />
-              <div className="absolute right-4 top-4 rounded-full border border-white/50 bg-white/90 px-4 py-2 text-xs font-semibold text-foreground shadow-sm backdrop-blur-md">
+              <div className="absolute right-4 top-4 border border-border bg-background px-3 py-1.5 font-sans text-[10px] font-semibold uppercase tracking-[0.2em] text-foreground">
                 {content.mapCallout}
               </div>
             </div>
           </div>
 
-          <div className="space-y-4">
-            <article className="rounded-[2rem] border border-border/40 bg-white/80 p-6 shadow-sm backdrop-blur-md dark:bg-[#2A2928]/60">
+          <div className="space-y-10">
+            <article className="border-t border-border pt-6">
               <div className="flex items-start gap-4">
-                <div className="flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-2xl bg-primary/10 text-primary dark:bg-[#333231]">
-                  <MapPinIcon className="h-6 w-6" />
-                </div>
+                <MapPinIcon className="mt-1 h-5 w-5 flex-shrink-0 text-primary" strokeWidth={1.5} />
                 <div className="space-y-2">
-                  <p className="text-sm font-semibold uppercase tracking-[0.18em] text-primary/80">
+                  <p className="font-sans text-[10px] font-semibold uppercase tracking-[0.24em] text-primary">
                     {content.addressLabel}
                   </p>
-                  <p className="max-w-[26ch] text-balance break-keep text-lg font-semibold leading-relaxed text-foreground">
+                  <p className="max-w-[26ch] text-balance break-keep font-display-serif text-lg font-normal leading-relaxed text-foreground">
                     {content.addressValue}
                   </p>
-                  <p className="max-w-[40ch] break-keep text-[13px] leading-[1.8] text-foreground/70 md:text-sm">
+                  <p className="max-w-[40ch] break-keep text-[13px] leading-[1.8] text-secondary md:text-sm">
                     {content.addressDescription}
                   </p>
                 </div>
               </div>
             </article>
 
-            <article className="rounded-[2rem] border border-border/40 bg-gradient-to-br from-primary/10 via-background to-background/95 p-6 shadow-sm">
-              <div className="mb-5 flex items-center gap-4">
-                <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-primary/10 text-primary dark:bg-[#333231]">
-                  <Navigation className="h-6 w-6" />
-                </div>
-                <div>
-                  <p className="text-sm font-semibold uppercase tracking-[0.18em] text-primary/80">
+            <article className="border-t border-border pt-6">
+              <div className="mb-6 flex items-start gap-4">
+                <Navigation className="mt-1 h-5 w-5 flex-shrink-0 text-primary" strokeWidth={1.5} />
+                <div className="space-y-2">
+                  <p className="font-sans text-[10px] font-semibold uppercase tracking-[0.24em] text-primary">
                     {content.stepsEyebrow}
                   </p>
-                  <h3 className="max-w-[19ch] text-balance break-keep text-xl font-semibold text-foreground font-serif">
+                  <h3 className="max-w-[19ch] text-balance break-keep font-display-serif text-xl font-normal leading-[1.4] text-foreground">
                     {content.stepsTitle}
                   </h3>
                 </div>
               </div>
 
-              <div className="space-y-4">
+              <div>
                 {content.steps.map((step, index) => (
                   <div
                     key={step.id}
-                    className="flex gap-4 rounded-[1.5rem] border border-border/35 bg-white/75 p-4 shadow-sm dark:bg-[#2A2928]/60"
+                    className="flex gap-4 border-t border-border py-4"
                   >
-                    <div className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-full bg-primary text-sm font-semibold text-background">
+                    <div className="w-6 flex-shrink-0 pt-0.5 font-display-serif text-lg leading-none tabular-nums text-primary">
                       {index + 1}
                     </div>
                     <div>
                       <p className="max-w-[24ch] text-balance break-keep text-[15px] font-semibold text-foreground md:text-base">
                         {step.title}
                       </p>
-                      <p className="mt-1 max-w-[38ch] break-keep text-[13px] leading-[1.75] text-foreground/70 md:text-sm">
+                      <p className="mt-1 max-w-[38ch] break-keep text-[13px] leading-[1.75] text-secondary md:text-sm">
                         {step.body}
                       </p>
                     </div>
@@ -462,7 +393,7 @@ function MapAppDialog({
 
   return createPortal(
     <div
-      className="fixed inset-0 z-[120] flex items-end bg-black/58 px-4 backdrop-blur-[3px] md:items-center md:justify-center md:px-6 md:py-8"
+      className="fixed inset-0 z-[120] flex items-end bg-black/60 px-4 md:items-center md:justify-center md:px-6 md:py-8"
       onClick={onClose}
     >
       <div
@@ -470,26 +401,24 @@ function MapAppDialog({
         aria-modal="true"
         aria-labelledby={titleId}
         aria-describedby={descriptionId}
-        className="relative mb-0 flex max-h-[88vh] w-full max-w-lg flex-col overflow-hidden rounded-t-[2rem] border border-border/40 bg-background shadow-[0_26px_80px_rgba(0,0,0,0.22)] md:rounded-[2rem]"
+        className="relative mb-0 flex max-h-[88vh] w-full max-w-lg flex-col overflow-hidden rounded-t-lg border border-border bg-background md:rounded-none"
         onClick={(event) => event.stopPropagation()}
       >
-        <div className="pointer-events-none absolute inset-x-0 top-0 h-20 bg-[linear-gradient(180deg,rgba(255,255,255,0.12),transparent)] dark:bg-[linear-gradient(180deg,rgba(255,255,255,0.06),transparent)]" />
-
-        <div className="flex items-start justify-between gap-4 border-b border-border/40 px-5 pb-5 pt-5 sm:px-6 sm:pb-6 sm:pt-6">
+        <div className="flex items-start justify-between gap-4 border-b border-border px-5 pb-5 pt-5 sm:px-6 sm:pb-6 sm:pt-6">
           <div className="min-w-0">
-            <div className="mb-3 inline-flex items-center gap-2 rounded-full bg-primary/10 px-3 py-1.5 text-[11px] font-semibold uppercase tracking-[0.2em] text-primary">
-              <Navigation className="h-3.5 w-3.5" />
+            <div className="eyebrow mb-3 inline-flex items-center gap-2">
+              <Navigation className="h-3 w-3" strokeWidth={1.5} />
               MAP APP
             </div>
             <h3
               id={titleId}
-              className="break-keep text-2xl font-serif font-semibold leading-tight text-foreground sm:text-3xl"
+              className="break-keep font-display-serif text-2xl font-normal leading-[1.4] text-foreground sm:text-3xl"
             >
               {content.mapAppDialogTitle}
             </h3>
             <p
               id={descriptionId}
-              className="mt-3 break-keep text-sm leading-relaxed text-foreground/72 sm:text-base"
+              className="mt-3 break-keep text-sm leading-[1.85] text-secondary sm:text-base"
             >
               {content.mapAppDialogSubtitle}
             </p>
@@ -498,9 +427,9 @@ function MapAppDialog({
             type="button"
             aria-label={content.mapAppDialogCloseLabel}
             onClick={onClose}
-            className="inline-flex h-11 w-11 flex-shrink-0 items-center justify-center rounded-full border border-border/50 bg-primary/5 text-foreground transition hover:bg-primary/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40"
+            className="inline-flex h-11 w-11 flex-shrink-0 items-center justify-center border border-border bg-background text-foreground transition-colors hover:border-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40"
           >
-            <X className="h-4 w-4" />
+            <X className="h-4 w-4" strokeWidth={1.5} />
           </button>
         </div>
 
@@ -516,20 +445,18 @@ function MapAppDialog({
                 key={option.id}
                 type="button"
                 onClick={() => onSelect(option.id)}
-                className="group flex w-full items-center gap-4 rounded-[1.5rem] border border-border/40 bg-white/75 p-4 text-left shadow-sm transition hover:border-primary/45 hover:bg-primary/5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40 dark:bg-[#2A2928]/60 sm:p-5"
+                className="group flex w-full items-center gap-4 border border-border bg-background p-4 text-left transition-colors hover:border-foreground/40 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40 sm:p-5"
               >
-                <span className="flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-2xl bg-primary/10 text-primary transition group-hover:bg-primary group-hover:text-background">
-                  <Icon className="h-5 w-5" />
-                </span>
+                <Icon className="h-5 w-5 flex-shrink-0 text-primary" strokeWidth={1.5} />
                 <span className="min-w-0 flex-1">
                   <span className="block break-keep text-base font-semibold text-foreground">
                     {option.label}
                   </span>
-                  <span className="mt-1 block break-keep text-[13px] leading-[1.7] text-foreground/68 sm:text-sm">
+                  <span className="mt-1 block break-keep text-[13px] leading-[1.7] text-secondary sm:text-sm">
                     {option.description}
                   </span>
                 </span>
-                <ArrowUpRight className="h-4 w-4 flex-shrink-0 text-primary transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
+                <ArrowUpRight className="h-4 w-4 flex-shrink-0 text-primary transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" strokeWidth={1.5} />
               </button>
             )
           })}
@@ -669,36 +596,36 @@ function LocationGuideSection({
 }): React.JSX.Element {
   return (
     <ScrollReveal>
-      <section className="overflow-hidden rounded-[2rem] border border-border/40 bg-gradient-to-br from-background via-primary/5 to-background/95 shadow-sm">
-        <div className="space-y-8 p-6 md:p-10">
-          <header className="max-w-3xl space-y-3 text-center md:text-left">
-            <p className="text-sm font-semibold uppercase tracking-[0.28em] text-primary font-playfair italic">
+      <section className="bg-accent/35 px-6 py-12 md:px-10 md:py-16">
+        <div className="space-y-10">
+          <header className="max-w-3xl space-y-4 text-center md:text-left">
+            <p className="eyebrow">
               {content.guidesBadge}
             </p>
-            <h3 className="mx-auto max-w-[19ch] text-balance break-keep text-2xl font-semibold leading-[1.24] text-foreground md:mx-0 md:text-3xl font-serif">
+            <h3 className="mx-auto max-w-[19ch] text-balance break-keep font-display-serif text-2xl font-normal leading-[1.4] text-foreground md:mx-0 md:text-3xl">
               {content.guidesTitle}
             </h3>
-            <p className="mx-auto max-w-[38ch] break-keep text-sm leading-[1.85] text-foreground/72 md:mx-0 md:max-w-[54ch] md:text-base">
+            <p className="mx-auto max-w-[38ch] break-keep text-sm leading-[1.85] text-secondary md:mx-0 md:max-w-[54ch] md:text-base">
               {content.guidesSubtitle}
             </p>
           </header>
 
-          <div className="grid gap-5 md:grid-cols-2 xl:grid-cols-3">
+          <div className="grid gap-x-8 gap-y-10 md:grid-cols-2 xl:grid-cols-3">
             {content.guideCards.map((card) => (
               <article
                 key={card.id}
-                className="flex h-full flex-col rounded-[1.75rem] border border-border/35 bg-white/80 p-6 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-md dark:bg-[#2A2928]/60"
+                className="flex h-full flex-col border-t border-border pt-6"
               >
-                <div className="mb-5 flex h-12 w-12 items-center justify-center rounded-2xl bg-primary/10 text-primary dark:bg-[#333231]">
-                  <card.Icon className="h-6 w-6" />
+                <div className="mb-5 flex items-center justify-between gap-3">
+                  <card.Icon className="h-5 w-5 text-primary" strokeWidth={1.5} />
+                  <p className="font-sans text-[10px] font-semibold uppercase tracking-[0.24em] text-primary">
+                    {card.title}
+                  </p>
                 </div>
-                <p className="text-sm font-semibold uppercase tracking-[0.18em] text-primary/80">
-                  {card.title}
-                </p>
-                <p className="mt-2 text-balance break-keep text-xl font-semibold leading-snug text-foreground">
+                <p className="text-balance break-keep font-display-serif text-xl font-normal leading-[1.4] text-foreground">
                   {card.value}
                 </p>
-                <p className="mt-3 max-w-[30ch] break-keep text-[13px] leading-[1.75] text-foreground/70 md:text-sm">
+                <p className="mt-3 max-w-[30ch] break-keep text-[13px] leading-[1.85] text-secondary md:text-sm">
                   {card.description}
                 </p>
 
@@ -706,9 +633,9 @@ function LocationGuideSection({
                   {card.points.map((point) => (
                     <li
                       key={point}
-                      className="flex items-start gap-3 break-keep text-[13px] leading-[1.75] text-foreground/72 md:text-sm"
+                      className="flex items-start gap-3 break-keep text-[13px] leading-[1.75] text-foreground/80 md:text-sm"
                     >
-                      <CheckCircle2 className="mt-0.5 h-4 w-4 flex-shrink-0 text-primary" />
+                      <CheckCircle2 className="mt-0.5 h-4 w-4 flex-shrink-0 text-primary" strokeWidth={1.5} />
                       <span>{point}</span>
                     </li>
                   ))}

@@ -33,7 +33,7 @@ function AccordionCard({
       layout
       onMouseEnter={() => onHover(id)}
       className={cn(
-        "relative h-[500px] md:h-[600px] cursor-pointer overflow-hidden rounded-[2rem] transition-all duration-500 ease-out",
+        "relative h-[500px] md:h-[600px] cursor-pointer overflow-hidden transition-all duration-500 ease-out",
         isActive ? "flex-[3]" : "flex-[1] hover:flex-[1.2]"
       )}
     >
@@ -68,10 +68,10 @@ function AccordionCard({
               className="flex flex-col gap-4"
             >
               <div>
-                <span className="mb-2 inline-block rounded-full bg-white/20 px-3 py-1 text-xs font-medium backdrop-blur-sm">
+                <span className="mb-3 inline-block font-sans text-[10px] font-semibold uppercase tracking-[0.3em] text-white/90 drop-shadow-sm">
                   {subtitle}
                 </span>
-                <h3 className="text-3xl font-serif font-semibold leading-tight md:text-4xl">
+                <h3 className="font-display-serif text-3xl font-normal leading-[1.4] md:text-4xl">
                   {title}
                 </h3>
               </div>
@@ -85,16 +85,16 @@ function AccordionCard({
                     initial={{ opacity: 0, x: -10 }}
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ delay: 0.2 + i * 0.1 }}
-                    className="flex items-center gap-2 text-sm text-white/80"
+                    className="flex items-center gap-3 text-sm text-white/80"
                   >
-                    <div className="h-1 w-1 rounded-full bg-white" />
+                    <div className="h-px w-3 bg-white/80" />
                     {feature}
                   </motion.li>
                 ))}
               </ul>
-              <div className="mt-4 flex items-center gap-2 text-sm font-medium text-white/80">
+              <div className="mt-4 flex items-center gap-2 font-sans text-[10px] font-semibold uppercase tracking-[0.28em] text-white/80">
                 <span>View Details</span>
-                <ArrowUpRight className="h-4 w-4" />
+                <ArrowUpRight className="h-4 w-4" strokeWidth={1.5} />
               </div>
             </motion.div>
           ) : (
@@ -104,11 +104,11 @@ function AccordionCard({
               exit={{ opacity: 0 }}
               className="flex flex-col items-center justify-end h-full pb-4"
             >
-              <div className="rotate-[-90deg] whitespace-nowrap text-xl font-medium tracking-wide text-white/90 origin-bottom-left translate-x-8 mb-12">
+              <div className="rotate-[-90deg] whitespace-nowrap font-display-serif text-xl font-normal tracking-wide text-white/90 origin-bottom-left translate-x-8 mb-12">
                 {title}
               </div>
-              <div className="flex h-10 w-10 items-center justify-center rounded-full bg-white/20 backdrop-blur-md">
-                <Plus className="h-5 w-5 text-white" />
+              <div className="flex h-10 w-10 items-center justify-center border border-white/40">
+                <Plus className="h-5 w-5 text-white" strokeWidth={1.5} />
               </div>
             </motion.div>
           )}
@@ -150,7 +150,7 @@ export function SpaHorizontalAccordion({ items }: SpaHorizontalAccordionProps) {
         {items.map((item, index) => (
           <div
             key={index}
-            className="relative h-[400px] w-full overflow-hidden rounded-[2rem]"
+            className="relative h-[400px] w-full overflow-hidden"
           >
             <Image
               src={item.image}
@@ -160,10 +160,10 @@ export function SpaHorizontalAccordion({ items }: SpaHorizontalAccordionProps) {
             />
             <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
             <div className="relative flex h-full flex-col justify-end p-6 text-white">
-              <span className="mb-2 inline-block w-fit rounded-full bg-white/20 px-3 py-1 text-xs font-medium backdrop-blur-sm">
+              <span className="mb-3 inline-block w-fit font-sans text-[10px] font-semibold uppercase tracking-[0.3em] text-white/90 drop-shadow-sm">
                 {item.subtitle}
               </span>
-              <h3 className="mb-2 text-2xl font-serif font-semibold">
+              <h3 className="mb-2 font-display-serif text-2xl font-normal leading-[1.4]">
                 {item.title}
               </h3>
               <p className="text-sm text-white/90 mb-4 line-clamp-2">
@@ -171,8 +171,8 @@ export function SpaHorizontalAccordion({ items }: SpaHorizontalAccordionProps) {
               </p>
               <ul className="space-y-1">
                 {item.features.slice(0, 2).map((feature, i) => (
-                  <li key={i} className="flex items-center gap-2 text-xs text-white/80">
-                    <div className="h-1 w-1 rounded-full bg-white" />
+                  <li key={i} className="flex items-center gap-3 text-xs text-white/80">
+                    <div className="h-px w-3 bg-white/80" />
                     {feature}
                   </li>
                 ))}
