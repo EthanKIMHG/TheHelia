@@ -1099,6 +1099,15 @@ Last updated: 2026-07-04
   - `reservationEyebrow/Title/Description` copy fields are now unused (kept in the content object).
 - Validation: `pnpm build` passes; server-rendered HTML confirms the booking CTA + hero image + all 3 facts + `sm:grid-cols-3` strip are present, and the old reservation article and `lg:grid-cols-[1.05fr_0.95fr]` grid are gone; map + guide preserved. (Browser screenshots blank again — Lenis vs. screenshot-compositor desync; verified via SSR HTML. Theme also kept defaulting to dark on fresh dev loads — set cookie+reload to force light.)
 
+### Helia Spa page text cut to ~40% + THALAC image via Unsplash (2026-07-04)
+- Request: the spa page still felt text-heavy (wanted ~40% of the text), fill the rest with related photos, and source a THALAC brand image from Unsplash.
+- Change in `HeliaSpaPageContent.tsx` (ko + en) — data trimmed, no component/layout changes so other pages using SpaServiceBento (baby-spa, infant-room) are untouched:
+  - Program feature lists cut from 39 → 16 items: every program now shows 2 groups × 2 items (head spa dropped its 3rd "Private Care" group; prenatal/postpartum/breast-care went 5→2 items per group). Items were merged/condensed, not just deleted.
+  - Section `description` paragraphs, the hero `intro` (3 lines → 1), and the THALAC `description` (2 paragraphs → 1 sentence) all shortened.
+  - The 4 program sections stay photo-forward automatically — the bento/carousel image galleries are unchanged, so less text now sits beside the same images.
+  - `SpaBrandIntro.tsx`: THALAC image `/img/spa/thalac.png` → `/img/spa/us/thalac.jpg` (Unsplash: a serum dropper bottle resting in a swirl of sand — marine/mineral esthetic matching the French thalassotherapy brand story), added `sizes`.
+- Validation: `pnpm build` passes; SSR HTML confirms all 8 feature group headings present once each, dropped "프라이빗 케어" absent, old long items gone, THALAC image serving 200 via the optimizer with no remaining `thalac.png` refs. (Note: `grep -o "…" | head && echo` always runs the echo regardless of match — use `grep -q` for presence checks.)
+
 ## Follow-up Notes For Next AI
 - Keep app scope static/content-driven (no auth, no DB).
 - Continue improvements based on new user directives and append each change under `Completed Improvements`.

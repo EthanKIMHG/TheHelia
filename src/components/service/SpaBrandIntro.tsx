@@ -67,9 +67,10 @@ export function SpaBrandIntro({ copy }: SpaBrandIntroProps) {
             <div className="">
               <div className="relative h-60 overflow-hidden bg-accent/60 md:h-[420px]">
                 <Image
-                  src="/img/spa/thalac.png"
+                  src="/img/spa/us/thalac.jpg"
                   alt="THALAC premium spa products used at The Helia"
                   fill
+                  sizes="(min-width: 1024px) 52vw, 100vw"
                   className="object-cover"
                 />
               </div>

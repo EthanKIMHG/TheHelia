@@ -307,11 +307,11 @@ const KOREAN_COPY: SpaPageCopy = {
   badge: "Premium Spa Service",
   headline: "바다의 생명력을 담은\n진정한 휴식과 치유",
   intro:
-    "더헬리아 스파는 산모님의 지친 몸과 마음을 깊이 이해합니다.\n프랑스 정통 탈라소 테라피의 해양 에너지를 통해\n가장 편안하고 우아한 회복의 시간을 선사합니다.",
+    "프랑스 정통 탈라소 테라피의 해양 에너지로, 가장 편안하고 우아한 회복의 시간을 선사합니다.",
   thalac: {
     title: "프랑스 정통 탈라소 테라피, THALAC",
     description:
-      "지중해의 풍부한 미네랄과 해양 성분을 담은 프랑스 정통 에스테틱 브랜드 THALAC 제품을 사용합니다. \n\n미네랄은 체내 삼투압 작용을 도와 부종 완화와 독소 배출에 탁월하며, 임산부에게도 안전한 순수 해양 성분으로 깊은 보습과 영양을 공급합니다.",
+      "지중해의 미네랄과 해양 성분을 담은 프랑스 에스테틱 브랜드. 임산부에게도 안전한 순수 성분으로 부종을 완화하고 깊은 보습을 더합니다.",
     features: [
       {
         icon: "crown",
@@ -336,7 +336,7 @@ const KOREAN_COPY: SpaPageCopy = {
     summary:
       "예민해진 두피를 부드럽게 진정시키고, 긴장과 피로를 차분히 풀어내는 시그니처 관리입니다.",
     description:
-      "호르몬 변화로 예민해진 두피를 진정시키고, 깊은 이완을 통해 스트레스를 해소하는 더헬리아만의 시그니처 헤드스파입니다.",
+      "예민해진 두피를 진정시키고 깊은 이완으로 스트레스를 풀어내는 시그니처 헤드스파.",
     images: [
       {
         src: "/img/spa/us/headspa-2.jpg",
@@ -358,25 +358,15 @@ const KOREAN_COPY: SpaPageCopy = {
       {
         title: "두피 진정 & 탈모 예방",
         items: [
-          "호르몬 변화로 인한 민감성 두피 케어",
-          "산후 탈모 예방을 위한 영양 공급",
+          "민감성 두피 케어와 산후 탈모 예방 영양 공급",
           "두피 열감 완화 및 쿨링 효과",
         ],
       },
       {
         title: "스트레스 릴리프",
         items: [
-          "아로마 테라피를 통한 심신 안정",
-          "목과 어깨의 긴장 완화",
+          "아로마 테라피로 심신 안정과 긴장 완화",
           "깊은 수면 유도 및 피로 회복",
-        ],
-      },
-      {
-        title: "프라이빗 케어",
-        items: [
-          "1:1 맞춤형 두피 진단",
-          "프라이빗 룸에서의 조용한 휴식",
-          "최고급 헤어 제품 사용",
         ],
       },
     ],
@@ -387,7 +377,7 @@ const KOREAN_COPY: SpaPageCopy = {
     summary:
       "임신 중 컨디션 변화로 생긴 부종과 통증을 덜어내며, 몸의 순환 리듬을 편안하게 돕습니다.",
     description:
-      "임신 중기부터 말기까지, 급격한 신체 변화로 인한 통증과 부종을 완화하고 엄마와 태아의 교감을 돕는 릴랙싱 케어입니다.",
+      "임신기 급격한 신체 변화로 생긴 통증과 부종을 완화하는 릴랙싱 케어.",
     images: [
       { src: "/img/spa/us/pre-2.jpg", alt: "산전 순환 케어가 진행되는 더헬리아 스파 룸" },
       { src: "/img/spa/us/pre-3.jpg", alt: "임산부를 위한 더헬리아 바디 테라피 장면" },
@@ -399,20 +389,14 @@ const KOREAN_COPY: SpaPageCopy = {
         title: "순환 & 부종 관리",
         items: [
           "임신성 부종 완화 및 혈액 순환 촉진",
-          "다리 저림 및 경련 예방",
-          "체내 노폐물 배출",
-          "무거워진 하체 피로감 완화",
-          "장시간 같은 자세로 생긴 순환 정체 완화",
+          "무거워진 하체 피로감과 저림 완화",
         ],
       },
       {
         title: "통증 집중 케어",
         items: [
-          "허리 및 골반 통증 완화",
-          "어깨 및 목 긴장 해소",
+          "허리·골반 통증과 어깨·목 긴장 완화",
           "튼살 예방 및 피부 탄력 유지",
-          "자세 변화로 누적된 등 라인 부담 완화",
-          "컨디션에 맞춘 부드러운 이완 케어",
         ],
       },
     ],
@@ -423,7 +407,7 @@ const KOREAN_COPY: SpaPageCopy = {
     summary:
       "출산 후 흐트러진 균형을 다시 세우고, 붓기와 피로가 오래 남지 않도록 회복에 집중합니다.",
     description:
-      "출산 후 틀어진 골반과 체형을 바로잡고, 산후풍 예방과 오로 배출을 돕는 전문적인 회복 프로그램입니다.",
+      "출산 후 틀어진 골반과 체형을 바로잡고 회복에 집중하는 전문 프로그램.",
     images: [
       { src: "/img/spa/us/after-2.jpg", alt: "산후 회복을 위한 더헬리아 바디 케어 장면" },
       { src: "/img/spa/us/after-3.jpg", alt: "산후 순환 관리를 돕는 더헬리아 스파 룸" },
@@ -436,20 +420,14 @@ const KOREAN_COPY: SpaPageCopy = {
         title: "체형 교정 & 회복",
         items: [
           "벌어진 골반 및 복직근 이개 회복",
-          "산후 부종 및 체중 감량 지원",
-          "바디 라인 리프팅",
-          "회복 초기 무너진 중심 밸런스 정돈",
-          "장시간 수유와 안아주기로 누적된 자세 부담 완화",
+          "산후 부종 완화와 바디 라인 리프팅",
         ],
       },
       {
         title: "디톡스 & 밸런스",
         items: [
           "오로 배출 촉진 및 자궁 회복",
-          "산후 우울감 완화 및 호르몬 밸런스",
-          "온열 돔을 이용한 심부열 독소 배출",
-          "순환 회복을 통한 몸의 무거움 완화",
-          "컨디션 저하 시기 피로 회복 보조",
+          "온열 돔 심부열로 독소 배출과 순환 회복",
         ],
       },
     ],
@@ -460,7 +438,7 @@ const KOREAN_COPY: SpaPageCopy = {
     summary:
       "수유 준비부터 단유 관리까지, 통증과 불편을 줄이며 편안한 수유 흐름을 돕는 프로그램입니다.",
     description:
-      "모유 수유를 준비하는 산모님과 수유 중인 산모님을 위한 전문적인 가슴 관리 프로그램입니다. 유선 발달을 돕고 젖몸살을 예방합니다.",
+      "수유 준비부터 단유까지, 유선 발달을 돕고 젖몸살을 예방하는 전문 케어.",
     images: [
       { src: "/img/spa/us/breast-2.jpg", alt: "수유 준비를 돕는 더헬리아 가슴 케어 장면" },
       { src: "/img/spa/us/breast-3.jpg", alt: "더헬리아 전문 가슴 관리 프로그램 공간" },
@@ -472,20 +450,14 @@ const KOREAN_COPY: SpaPageCopy = {
         title: "수유 준비 & 통증 완화",
         items: [
           "유선 발달 촉진 및 유두 관리",
-          "젖몸살 및 유방 울혈 예방",
-          "수유 자세 교정 및 통증 완화",
-          "수유 시작 전 가슴 컨디션 단계별 케어",
-          "초기 수유 적응 과정의 부담 완화",
+          "젖몸살·유방 울혈 예방과 수유 자세 교정",
         ],
       },
       {
         title: "단유 관리",
         items: [
-          "건강하고 아름다운 단유를 위한 체계적 관리",
+          "건강한 단유를 위한 체계적 관리",
           "가슴 처짐 예방 및 탄력 회복",
-          "잔여 모유 배출 및 독소 제거",
-          "불편감이 커지지 않도록 부드러운 단계 조절",
-          "민감해진 컨디션을 고려한 진정 케어",
         ],
       },
     ],
@@ -512,11 +484,11 @@ const ENGLISH_COPY: SpaPageCopy = {
   badge: "Premium Spa Service",
   headline: "True Rest and Healing\nwith the Vitality of the Sea",
   intro:
-    "The Helia Spa deeply understands the exhausted body and mind of mothers.\nThrough the marine energy of authentic French Thalassotherapy,\nwe present the most comfortable and elegant time of recovery.",
+    "Through the marine energy of authentic French Thalassotherapy, we present the most comfortable and elegant time of recovery.",
   thalac: {
     title: "Authentic French Thalassotherapy, THALAC",
     description:
-      "We use THALAC, an authentic French aesthetic brand containing rich minerals and marine ingredients from the Mediterranean.\n\nMinerals help relieve edema and eliminate toxins through osmotic action in the body, and provide deep hydration and nutrition with pure marine ingredients safe for pregnant women.",
+      "A French aesthetic brand rich in Mediterranean minerals and marine ingredients — pure and safe for pregnancy, easing edema while adding deep hydration.",
     features: [
       {
         icon: "crown",
@@ -544,7 +516,7 @@ const ENGLISH_COPY: SpaPageCopy = {
     summary:
       "A signature treatment that gently settles the scalp, softens tension, and creates a calmer recovery rhythm.",
     description:
-      "The Helia's signature head spa soothes the scalp sensitive to hormonal changes and relieves stress through deep relaxation.",
+      "A signature head spa that soothes a sensitive scalp and releases stress through deep relaxation.",
     images: [
       {
         src: "/img/spa/us/headspa-2.jpg",
@@ -566,25 +538,15 @@ const ENGLISH_COPY: SpaPageCopy = {
       {
         title: "Scalp Soothing & Hair Loss Prevention",
         items: [
-          "Care for sensitive scalp due to hormonal changes",
-          "Nutrition supply to prevent postpartum hair loss",
+          "Sensitive scalp care with nutrition to prevent postpartum hair loss",
           "Relief of scalp heat & cooling effect",
         ],
       },
       {
         title: "Stress Relief",
         items: [
-          "Mind-body stability through aromatherapy",
-          "Relief of tension in neck and shoulders",
+          "Mind-body calm and tension relief through aromatherapy",
           "Induction of deep sleep & fatigue recovery",
-        ],
-      },
-      {
-        title: "Private Care",
-        items: [
-          "1:1 customized scalp diagnosis",
-          "Quiet rest in a private room",
-          "Use of premium hair products",
         ],
       },
     ],
@@ -595,7 +557,7 @@ const ENGLISH_COPY: SpaPageCopy = {
     summary:
       "Built to ease swelling and pain during pregnancy while helping the body stay lighter and more comfortable.",
     description:
-      "Relaxing care that relieves pain and edema caused by rapid physical changes from mid to late pregnancy and helps communion between mother and fetus.",
+      "Relaxing care that eases the pain and edema of rapid changes through pregnancy.",
     images: [
       { src: "/img/spa/us/pre-2.jpg", alt: "Prenatal circulation care room at The Helia" },
       { src: "/img/spa/us/pre-3.jpg", alt: "Relaxing prenatal body therapy at The Helia" },
@@ -606,21 +568,15 @@ const ENGLISH_COPY: SpaPageCopy = {
       {
         title: "Circulation & Edema Care",
         items: [
-          "Relief of gestational edema & promotion of blood circulation",
-          "Prevention of leg numbness & cramps",
-          "Elimination of body wastes",
-          "Relief for heavy, tired lower body",
-          "Gentle support for sluggish circulation after long hours in one position",
+          "Relief of gestational edema & better blood circulation",
+          "Relief for a heavy, tired lower body and cramps",
         ],
       },
       {
         title: "Intensive Pain Care",
         items: [
-          "Relief of back & pelvic pain",
-          "Relief of shoulder & neck tension",
-          "Prevention of stretch marks & maintenance of elasticity",
-          "Support for upper-back strain from posture changes",
-          "Soft tension release adjusted to your daily condition",
+          "Relief of back, pelvic, shoulder & neck tension",
+          "Prevention of stretch marks & maintained elasticity",
         ],
       },
     ],
@@ -631,7 +587,7 @@ const ENGLISH_COPY: SpaPageCopy = {
     summary:
       "Focused on rebuilding balance after childbirth so swelling, fatigue, and body strain do not linger longer than needed.",
     description:
-      "A professional recovery program that corrects the pelvis and body shape distorted after childbirth, and helps prevent postpartum wind and discharge lochia.",
+      "A professional recovery program that realigns the pelvis and body after childbirth.",
     images: [
       { src: "/img/spa/us/after-2.jpg", alt: "Postpartum recovery care at The Helia" },
       { src: "/img/spa/us/after-3.jpg", alt: "Circulation-focused postpartum therapy room at The Helia" },
@@ -644,20 +600,14 @@ const ENGLISH_COPY: SpaPageCopy = {
         title: "Body Correction & Recovery",
         items: [
           "Recovery of widened pelvis & diastasis recti",
-          "Support for postpartum edema & weight loss",
-          "Body line lifting",
-          "Realignment of core balance after delivery",
-          "Relief for posture strain from feeding and holding your baby",
+          "Postpartum edema relief and body-line lifting",
         ],
       },
       {
         title: "Detox & Balance",
         items: [
           "Promotion of lochia discharge & uterine recovery",
-          "Relief of postpartum depression & hormone balance",
-          "Deep heat toxin elimination using thermal dome",
-          "Support for a lighter body through circulation recovery",
-          "Recovery support during periods of low energy",
+          "Deep-heat toxin release and circulation recovery",
         ],
       },
     ],
@@ -668,7 +618,7 @@ const ENGLISH_COPY: SpaPageCopy = {
     summary:
       "Supports an easier feeding flow from preparation to weaning, while helping reduce pain and daily discomfort.",
     description:
-      "Professional breast care program for mothers preparing for breastfeeding and breastfeeding mothers. Helps mammary gland development and prevents mastitis.",
+      "Professional breast care from feeding prep to weaning — supporting gland development and preventing mastitis.",
     images: [
       { src: "/img/spa/us/breast-2.jpg", alt: "Breastfeeding support care at The Helia" },
       { src: "/img/spa/us/breast-3.jpg", alt: "Professional breast care setting at The Helia" },
@@ -679,21 +629,15 @@ const ENGLISH_COPY: SpaPageCopy = {
       {
         title: "Breastfeeding Prep & Pain Relief",
         items: [
-          "Promotion of mammary gland development & nipple care",
-          "Prevention of mastitis & breast engorgement",
-          "Correction of breastfeeding posture & pain relief",
-          "Step-by-step care for changing breast condition before feeding begins",
-          "Reduced strain during the early breastfeeding adjustment period",
+          "Mammary gland development & nipple care",
+          "Mastitis prevention and breastfeeding-posture correction",
         ],
       },
       {
         title: "Weaning Care",
         items: [
-          "Systematic management for healthy and beautiful weaning",
-          "Prevention of breast sagging & recovery of elasticity",
-          "Discharge of residual breast milk & toxin removal",
-          "Gentle pacing so discomfort does not build too quickly",
-          "Soothing care for a more sensitive condition during weaning",
+          "Systematic care for a healthy weaning",
+          "Prevention of sagging & recovery of elasticity",
         ],
       },
     ],
