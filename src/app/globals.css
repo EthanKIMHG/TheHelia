@@ -36,18 +36,17 @@
 }
 
 :root[data-theme="dark"] {
-  --background: #16120D;
-  /* Deep Warm Espresso */
-  --foreground: #F2EBE0;
-  /* Warm Ivory Text */
-  --primary: #B9A88F;
-  /* Light Taupe */
-  --secondary: #A99C8C;
-  /* Muted Warm Grey */
-  --accent: #2E261D;
-  /* Dark Sand Surface */
-  --border: #3A3128;
-  /* Dark Hairline */
+  --background: #FBF9F4;
+  /* Bright Warm Ivory */
+  --foreground: #3A2E22;
+  /* Espresso */
+  --primary: #A29380;
+  /* Taupe — eyebrows, labels, quiet accents */
+  --secondary: #84776A;
+  /* Clay — muted body copy */
+  --accent: #EAE1D1;
+  /* Sand — soft tinted surfaces */
+  --border: #E4DBCB;
 }
 
 /* 5. Base Styles & Utilities */
