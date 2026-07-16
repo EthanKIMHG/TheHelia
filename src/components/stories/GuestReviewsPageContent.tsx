@@ -195,7 +195,7 @@ const REVIEWS: Review[] = [
     initial: '초',
     link: 'https://blog.naver.com/rlorxya/224158217705',
     platform: 'blog',
-    thumbnail: '/img/infant/strength_infant1.jpg',
+    thumbnail: blobUrl('img/infant/strength_infant1.jpg'),
   },
   {
     id: 7,

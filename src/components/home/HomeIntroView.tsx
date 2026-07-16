@@ -95,6 +95,7 @@ function IntroHeroContent({ primary, secondary, theme }: IntroHeroContentProps) 
           className="w-36 object-contain md:w-44"
           priority
           placeholder="blur"
+          
           blurDataURL={DEFAULT_BLUR_DATA_URL}
         />
       </div>
@@ -160,7 +161,7 @@ const KOREAN_COPY = {
         "아늑하고 쾌적한 프라이빗 공간에서 시간을 보내며 산후 회복에 집중하실 수 있습니다.",
       meta: "VIP · VVIP · PRESTIGE",
       image: {
-        src: blobUrl("img/room/prestige_livingroom1.jpg"),
+        src: blobUrl("img/room/prestige_livingroom2.jpg"),
         alt: "더헬리아 프레스티지 스위트 객실 전경",
       },
       bullets: [
@@ -176,7 +177,7 @@ const KOREAN_COPY = {
         "24시간 전문 간호 인력이 상주하며 아가들의 컨디션을 세심하게 살핍니다",
       meta: "24H Nursery",
       image: {
-        src: "/img/infantroom.jpg",
+        src: blobUrl("img/infant/infant2.jpg"),
         alt: "더헬리아 산후조리원 신생아실 케어 공간",
       },
       bullets: [
@@ -235,7 +236,7 @@ const ENGLISH_COPY = {
         "Professional nursing staff are on site 24 hours a day, carefully monitoring each baby's condition.",
       meta: "24H Nursery",
       image: {
-        src: "/img/infantroom.jpg",
+        src: blobUrl("img/infant/infant2.jpg"),
         alt: "Nursery care room at The Helia postpartum care center",
       },
       bullets: [

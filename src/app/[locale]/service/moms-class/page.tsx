@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 
 import { SubPageTemplate } from '@/components/SubPageTemplate'
 import { MomsClassPageContent } from '@/components/service/MomsClassPageContent'
+import { blobUrl } from '@/lib/media'
 import { buildSubPageMetadata, normalizeLocale, type LocalePageProps } from '@/lib/seo'
 
 export async function generateMetadata({ params }: LocalePageProps): Promise<Metadata> {
@@ -23,7 +24,7 @@ export default async function MomsClassPage({
       localeOverride={normalizedLocale}
       fullWidth
       heroVariant="cinematic"
-      heroImageSrc="/img/subhero/us/moms-class.jpg"
+      heroImageSrc={blobUrl('img/subhero/us/moms-class.jpg')}
       heroImageAlt={
         normalizedLocale === 'ko'
           ? '아기에게 베이비 마사지를 해 주는 엄마'

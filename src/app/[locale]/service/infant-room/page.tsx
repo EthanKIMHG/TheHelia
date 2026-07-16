@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 
 import { NewbornPageContent } from '@/components/pages/service/infant-room/NewbornPageContent'
 import { SubPageTemplate } from '@/components/SubPageTemplate'
+import { blobUrl } from '@/lib/media'
 import { buildSubPageMetadata, normalizeLocale, type LocalePageProps } from '@/lib/seo'
 
 export async function generateMetadata({ params }: LocalePageProps): Promise<Metadata> {
@@ -22,7 +23,7 @@ export default async function InfantRoomPage({
       localeOverride={normalizedLocale}
       fullWidth
       heroVariant="cinematic"
-      heroImageSrc="/img/subhero/us/infant-room.jpg"
+      heroImageSrc={blobUrl('img/subhero/us/infant-room.jpg')}
       heroImageAlt={
         normalizedLocale === 'ko'
           ? '신생아실에서 포근하게 잠든 아기'

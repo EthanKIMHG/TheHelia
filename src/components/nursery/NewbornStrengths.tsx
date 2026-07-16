@@ -2,6 +2,7 @@
 
 import { FadeInUp } from "@/components/common/FadeInUp";
 import type { Locale } from "@/components/header/types";
+import { blobUrl } from "@/lib/media";
 import { CheckCircle2 } from "lucide-react";
 import Image from "next/image";
 
@@ -13,7 +14,7 @@ const strengths = [
       ko: "전문 간호 인력이 아이 셋을 전담하여 세심하게 케어합니다. 언제든 투어를 통해 투명하게 운영되는 신생아실을 직접 확인하실 수 있습니다.", 
       en: "Dedicated nursing staff provides 1:3 care. Our transparent operation allows for open tours anytime, giving you peace of mind." 
     },
-    image: "/img/infant/us/care.jpg",
+    image: blobUrl("img/infant/us/care.jpg"),
   },
   {
     id: "spacing",
@@ -22,7 +23,7 @@ const strengths = [
       ko: "모든 베지넷 간격을 100cm 이상 유지하여 비말 감염 및 교차 감염을 철저히 예방합니다. 넓은 공간은 아기에게도 쾌적한 환경을 제공합니다.", 
       en: "We maintain a strict 100cm distance between bassinets to prevent droplet and cross-infection, providing a spacious and safe environment." 
     },
-    image: "/img/infant/us/bassinet.jpg",
+    image: blobUrl("img/infant/us/bassinet.jpg"),
   },
   {
     id: "diaper",
@@ -31,7 +32,7 @@ const strengths = [
       ko: "교차 감염 방지를 위해 모든 아기는 전용 기저귀 갈이대를 사용합니다. 작은 처치 하나에도 타협하지 않는 위생 기준을 적용합니다.", 
       en: "To prevent cross-infection, every baby has their own dedicated diaper changing station. We apply uncompromising hygiene standards to every detail." 
     },
-    image: "/img/infant/us/tending.jpg",
+    image: blobUrl("img/infant/us/tending.jpg"),
   },
   {
     id: "bath",
@@ -40,7 +41,7 @@ const strengths = [
       ko: "매일 아침, 전용 욕조에서 개별 목욕을 진행하여 청결과 위생을 최우선으로 합니다. 아기의 컨디션을 체크하며 하루를 상쾌하게 시작합니다.", 
       en: "We prioritize hygiene with daily baths in individual tubs. It's a refreshing start to the day, allowing us to closely check your baby's condition." 
     },
-    image: "/img/infant/us/bath.jpg",
+    image: blobUrl("img/infant/us/bath.jpg"),
   },
 ];
 

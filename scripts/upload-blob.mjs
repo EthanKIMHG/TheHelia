@@ -6,7 +6,7 @@
 // Example:
 //   node --env-file=.env.local scripts/upload-blob.mjs public/img/room img/room 'prestige_*'
 
-import { readFile, readdir } from 'node:fs/promises'
+import { readFile, readdir, stat } from 'node:fs/promises'
 import { basename, join } from 'node:path'
 
 import { put } from '@vercel/blob'
@@ -29,7 +29,11 @@ const toRegExp = (glob) =>
   new RegExp('^' + glob.replace(/[.+^${}()|[\]\\]/g, '\\$&').replace(/\*/g, '.*') + '$')
 const match = toRegExp(pattern)
 
-const files = (await readdir(localDir)).filter((f) => match.test(f)).sort()
+const entries = (await readdir(localDir)).filter((f) => match.test(f)).sort()
+const files = []
+for (const entry of entries) {
+  if ((await stat(join(localDir, entry))).isFile()) files.push(entry)
+}
 if (files.length === 0) {
   console.error(`no files matching "${pattern}" in ${localDir}`)
   process.exit(1)

@@ -64,7 +64,8 @@ function TriptychCard({
             src={item.image}
             alt={item.imageAlt}
             fill
-            sizes="(min-width: 768px) 33vw, 100vw"
+            sizes="(min-width: 768px) 80vw, calc((100vw - 32px) * 2.5)"
+            quality={90}
             className="object-cover transition-transform duration-[1400ms] ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-[1.05]"
             placeholder="blur"
             blurDataURL={DEFAULT_BLUR_DATA_URL}

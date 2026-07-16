@@ -2,6 +2,7 @@
 
 import { ScrollReveal } from "@/components/common/ScrollReveal";
 import type { Locale } from "@/components/header/types";
+import { blobUrl } from "@/lib/media";
 import {
   Baby,
   CalendarCheck2,
@@ -194,9 +195,9 @@ type DailyFlowCopy = ReturnType<typeof getAboutCopy>["dailyFlow"];
 function DailyFlowSection({ copy }: { copy: DailyFlowCopy }) {
   const timelineIcons = [ChefHat, Stethoscope, MoonStar] as const;
   const timelineImages = [
-    "/img/about/us/morning.jpg",
-    "/img/about/us/afternoon.jpg",
-    "/img/about/us/evening.jpg",
+    blobUrl("img/about/us/morning.jpg"),
+    blobUrl("img/about/us/afternoon.jpg"),
+    blobUrl("img/about/us/evening.jpg"),
   ] as const;
 
   return (
@@ -325,7 +326,10 @@ function VirtualTourSection({ copy }: { copy: VirtualTourCopy }) {
         <div className="relative w-full h-[500px] md:h-[700px] bg-black group">
           {!isLoaded ? (
             <div className="absolute inset-0 flex flex-col items-center justify-center p-6 text-center">
-              <div className="absolute inset-0 bg-[url('/img/infant/infant1.jpg')] bg-cover bg-center opacity-30" />
+              <div
+                className="absolute inset-0 bg-cover bg-center opacity-30"
+                style={{ backgroundImage: `url(${blobUrl('img/infant/infant1.jpg')})` }}
+              />
               <div className="absolute inset-0 bg-black/40" />
 
               <div className="relative z-10 flex flex-col items-center gap-6">

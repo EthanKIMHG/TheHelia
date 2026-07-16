@@ -1,6 +1,8 @@
 "use client";
 
 import { useOptionalThemeLocale } from "@/context/theme-locale-context";
+import { blobUrl } from "@/lib/media";
+
 import { SpaServiceBento } from "./SpaServiceBento";
 
 export function InfantRoomPageContent() {
@@ -41,9 +43,9 @@ const KOREAN_COPY = {
         title: "신생아실",
         description: "엄마의 품처럼 따뜻한 온도와 습도, 전문 간호 선생님들의 사랑이 가득한 공간입니다.\n24시간 세심한 케어로 아기의 편안함을 지켜드립니다.",
         images: [
-            "/img/infant/infant1.jpg",
-            "/img/infant/infant2.jpg",
-            "/img/infant/infant4.jpg",
+            blobUrl("img/infant/infant1.jpg"),
+            blobUrl("img/infant/infant2.jpg"),
+            blobUrl("img/infant/infant4.jpg"),
         ],
         features: [
             {
@@ -69,9 +71,9 @@ const KOREAN_COPY = {
         title: "사전 관찰실",
         description: "건강한 첫 만남을 위한 준비 공간입니다.\n입실 초기 모든 아기들은 이곳에서 세심한 컨디션 체크를 받습니다.",
         images: [
-            "/img/infant/infant3.jpg",
-            "/img/infant/infant5.jpg",
-            "/img/infant/infant6.jpg",
+            blobUrl("img/infant/infant3.jpg"),
+            blobUrl("img/infant/infant5.jpg"),
+            blobUrl("img/infant/infant6.jpg"),
         ],
         features: [
             {
@@ -100,9 +102,9 @@ const ENGLISH_COPY = {
         title: "Newborn Room",
         description: "A space full of love from professional nurses, with warmth and humidity just like a mother's embrace.\nWe protect your baby's comfort with 24-hour meticulous care.",
         images: [
-            "/img/infant/infant1.jpg",
-            "/img/infant/infant2.jpg",
-            "/img/infant/infant4.jpg",
+            blobUrl("img/infant/infant1.jpg"),
+            blobUrl("img/infant/infant2.jpg"),
+            blobUrl("img/infant/infant4.jpg"),
         ],
         features: [
             {
@@ -128,9 +130,9 @@ const ENGLISH_COPY = {
         title: "Pre-Observation Room",
         description: "Preparation space for a healthy first meeting.\nAll babies receive meticulous condition checks here upon initial entry.",
         images: [
-            "/img/infant/infant3.jpg",
-            "/img/infant/infant5.jpg",
-            "/img/infant/infant6.jpg",
+            blobUrl("img/infant/infant3.jpg"),
+            blobUrl("img/infant/infant5.jpg"),
+            blobUrl("img/infant/infant6.jpg"),
         ],
         features: [
             {

@@ -4,6 +4,7 @@ import { useOptionalThemeLocale } from "@/context/theme-locale-context";
 import { SpaServiceBento } from "./SpaServiceBento";
 
 import { ScrollReveal } from "@/components/common/ScrollReveal";
+import { blobUrl } from "@/lib/media";
 import { Droplets, GraduationCap, MapPin, Sparkles } from "lucide-react";
 import Image from "next/image";
 
@@ -41,7 +42,7 @@ function BabySpaStrengths({ copy }: { copy: typeof KOREAN_COPY.strengths }) {
            {/* Image */}
            <div className="relative overflow-hidden bg-accent/60 h-[360px] lg:h-auto group">
              <Image
-               src="/img/babyspa/us/water-play.jpg"
+               src={blobUrl("img/babyspa/strength-babyspa1.png")}
                alt={copy.point1.title}
                fill
                className="object-cover transition-transform duration-700 group-hover:scale-[1.03]"
@@ -100,7 +101,7 @@ function BabySpaStrengths({ copy }: { copy: typeof KOREAN_COPY.strengths }) {
            {/* Image */}
            <div className="order-1 lg:order-2 relative overflow-hidden bg-accent/60 h-[360px] lg:h-auto group">
              <Image
-               src="/img/babyspa/us/feet-care.jpg"
+               src={blobUrl("img/babyspa/strength-babyspa2.png")}
                alt={copy.point4.title}
                fill
                className="object-cover transition-transform duration-700 group-hover:scale-[1.03]"
@@ -118,10 +119,10 @@ const KOREAN_COPY = {
     title: "베이비 스파",
     description: "엄마의 양수와 가장 유사한 환경에서 진행되는 아기만을 위한 특별한 물놀이 시간입니다. 아기의 정서적 안정과 신체 발달을 돕습니다.",
     images: [
-      { src: "/img/babyspa/babyspa1.jpg", alt: "더헬리아 베이비 스파 프로그램 전경" },
-      { src: "/img/babyspa/us/bonding.jpg", alt: "엄마 품에 안긴 아기" },
-      { src: "/img/babyspa/us/newborn-rest.jpg", alt: "편안하게 잠든 신생아" },
-      { src: "/img/babyspa/us/baby-play.jpg", alt: "놀이하며 시간을 보내는 아기" },
+      { src: blobUrl("img/babyspa/babyspa1.jpg"), alt: "더헬리아 베이비 스파 프로그램 전경" },
+      { src: blobUrl("img/babyspa/babyspa2.jpg"), alt: "더헬리아 베이비 스파 프로그램 전경2" },
+      { src: blobUrl("img/babyspa/babyspa3.jpg"), alt: "더헬리아 베이비 스파 프로그램 전경3" },
+      { src: blobUrl("img/babyspa/babyspa4.jpg"), alt: "더헬리아 베이비 스파 프로그램 전경4" },
     ],
     features: [
       {
@@ -168,10 +169,10 @@ const ENGLISH_COPY = {
     title: "Baby Spa",
     description: "A special water play time just for babies in an environment most similar to the mother's amniotic fluid. It helps the baby's emotional stability and physical development.",
     images: [
-      { src: "/img/babyspa/babyspa1.jpg", alt: "Baby spa program image at The Helia" },
-      { src: "/img/babyspa/us/bonding.jpg", alt: "A parent gently holding their baby" },
-      { src: "/img/babyspa/us/newborn-rest.jpg", alt: "A newborn resting peacefully" },
-      { src: "/img/babyspa/us/baby-play.jpg", alt: "A baby enjoying playtime" },
+      { src: blobUrl("img/babyspa/babyspa1.jpg"), alt: "Baby spa program image at The Helia" },
+      { src: blobUrl("img/babyspa/babyspa2.jpg"), alt: "Baby spa program image at The Helia 2" },
+      { src: blobUrl("img/babyspa/babyspa3.jpg"), alt: "Baby spa program image at The Helia 3" },
+      { src: blobUrl("img/babyspa/babyspa4.jpg"), alt: "Baby spa program image at The Helia 4" },
     ],
     features: [
       {

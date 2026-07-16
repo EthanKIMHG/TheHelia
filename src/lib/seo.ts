@@ -90,7 +90,7 @@ const PAGE_IMAGE_OVERRIDES: Partial<Record<string, RouteImageOverride>> = {
     },
   },
   '/service/baby-spa': {
-    src: '/img/babyspa/babyspa1.jpg',
+    src: blobUrl('img/babyspa/babyspa1.jpg'),
     alt: {
       ko: '더헬리아 베이비 스파 프로그램 대표 이미지',
       en: 'Baby spa program image at The Helia',
