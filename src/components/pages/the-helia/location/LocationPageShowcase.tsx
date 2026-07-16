@@ -49,12 +49,6 @@ type QuickFact = {
   description: string
 }
 
-type VisitStep = {
-  id: string
-  title: string
-  body: string
-}
-
 type GuideCard = {
   id: string
   Icon: LucideIcon
@@ -86,7 +80,6 @@ type LocationPageContent = {
   quickFacts: QuickFact[]
   mapBadge: string
   mapTitle: string
-  mapSubtitle: string
   mapCallout: string
   mapAppButtonLabel: string
   mapAppDialogTitle: string
@@ -96,9 +89,6 @@ type LocationPageContent = {
   addressLabel: string
   addressValue: string
   addressDescription: string
-  stepsEyebrow: string
-  stepsTitle: string
-  steps: VisitStep[]
   guidesBadge: string
   guidesTitle: string
   guidesSubtitle: string
@@ -275,9 +265,6 @@ function LocationMapSection({
               <h3 className="mx-auto max-w-[17ch] text-balance break-keep font-display-serif text-2xl font-normal leading-[1.4] text-foreground md:mx-0 md:text-3xl">
                 {content.mapTitle}
               </h3>
-              <p className="mx-auto max-w-[38ch] break-keep text-sm leading-[1.85] text-secondary md:mx-0 md:max-w-[52ch] md:text-base">
-                {content.mapSubtitle}
-              </p>
               <div className="flex justify-center pt-1 md:justify-start">
                 <button
                   type="button"
@@ -320,41 +307,6 @@ function LocationMapSection({
                     {content.addressDescription}
                   </p>
                 </div>
-              </div>
-            </article>
-
-            <article className="border-t border-border pt-6">
-              <div className="mb-6 flex items-start gap-4">
-                <Navigation className="mt-1 h-5 w-5 flex-shrink-0 text-primary" strokeWidth={1.5} />
-                <div className="space-y-2">
-                  <p className="font-sans text-[10px] font-semibold uppercase tracking-[0.24em] text-primary">
-                    {content.stepsEyebrow}
-                  </p>
-                  <h3 className="max-w-[19ch] text-balance break-keep font-display-serif text-xl font-normal leading-[1.4] text-foreground">
-                    {content.stepsTitle}
-                  </h3>
-                </div>
-              </div>
-
-              <div>
-                {content.steps.map((step, index) => (
-                  <div
-                    key={step.id}
-                    className="flex gap-4 border-t border-border py-4"
-                  >
-                    <div className="w-6 flex-shrink-0 pt-0.5 font-display-serif text-lg leading-none tabular-nums text-primary">
-                      {index + 1}
-                    </div>
-                    <div>
-                      <p className="max-w-[24ch] text-balance break-keep text-[15px] font-semibold text-foreground md:text-base">
-                        {step.title}
-                      </p>
-                      <p className="mt-1 max-w-[38ch] break-keep text-[13px] leading-[1.75] text-secondary md:text-sm">
-                        {step.body}
-                      </p>
-                    </div>
-                  </div>
-                ))}
               </div>
             </article>
           </div>
@@ -625,9 +577,6 @@ function LocationGuideSection({
                 <p className="text-balance break-keep font-display-serif text-xl font-normal leading-[1.4] text-foreground">
                   {card.value}
                 </p>
-                <p className="mt-3 max-w-[30ch] break-keep text-[13px] leading-[1.85] text-secondary md:text-sm">
-                  {card.description}
-                </p>
 
                 <ul className="mt-6 space-y-3">
                   {card.points.map((point) => (
@@ -693,10 +642,10 @@ function getLocationContent(locale: Locale): LocationPageContent {
         id: 'hours',
         Icon: CalendarClock,
         label: isKo ? '상담 운영' : 'Hours',
-        value: isKo ? '평일 09:00 - 18:00' : 'Weekdays 09:00 - 18:00',
+        value: isKo ? '연중 무휴 10:00 - 19:00' : 'All Day 10:00 - 19:00',
         description: isKo
-          ? '주말·공휴일은 사전 예약 후 방문해 주세요.'
-          : 'Weekend and holiday visits are available by prior reservation.',
+          ? '방문시 사전 예약 후 방문해 주세요.'
+          : 'Every visits are available by prior reservation.',
       },
       {
         id: 'building',
@@ -712,9 +661,6 @@ function getLocationContent(locale: Locale): LocationPageContent {
     mapTitle: isKo
       ? '지도와 함께 도착 동선을 한 번에 확인하세요'
       : 'See the location and arrival flow at a glance',
-    mapSubtitle: isKo
-      ? '건물 위치를 먼저 확인한 뒤, 도착 후에는 안내 데스크 등록 순서대로 이동하시면 됩니다.'
-      : 'Check the building location first, then follow the check-in flow once you arrive.',
     mapCallout: isKo ? 'MS메디컬스퀘어 5·6층' : 'MS Medical Square 5F-6F',
     mapAppButtonLabel: isKo ? '지도 앱으로 길찾기' : 'Open in map app',
     mapAppDialogTitle: isKo
@@ -754,33 +700,6 @@ function getLocationContent(locale: Locale): LocationPageContent {
     addressDescription: isKo
       ? '더헬리아는 MS메디컬스퀘어 5·6층에 위치합니다. 건물 도착 후 5층 안내 데스크에서 등록해 주세요.'
       : 'The Helia is located on the 5th and 6th floors of MS Medical Square. Please check in at the 5F information desk upon arrival.',
-    stepsEyebrow: isKo ? '방문 순서' : 'Visit Flow',
-    stepsTitle: isKo
-      ? '처음 오셔도 헤매지 않도록 짧게 안내드립니다'
-      : 'A simple step-by-step guide for your first visit',
-    steps: [
-      {
-        id: 'step-1',
-        title: isKo ? '방문 일정을 먼저 예약해 주세요' : 'Reserve your visit first',
-        body: isKo
-          ? '평일 상담 시간 내 예약을 권장드리며, 주말·공휴일 방문은 사전 예약 후 가능합니다.'
-          : 'Weekday consultation hours are recommended, and weekend or holiday visits are available with prior reservation.',
-      },
-      {
-        id: 'step-2',
-        title: isKo ? '홈플러스 서수원점 인근에서 건물을 찾으세요' : 'Use HomePlus West Suwon as your landmark',
-        body: isKo
-          ? '버스 13-1, 64-2, 200번 이용 시 금곡동 주민센터 정류장에서 하차 후 도보 5분 거리입니다.'
-          : 'Take buses 13-1, 64-2, or 200, get off at Geumgok-dong Community Center, then walk about 5 minutes.',
-      },
-      {
-        id: 'step-3',
-        title: isKo ? '도착 후 5층에서 등록하고 이동합니다' : 'Check in on 5F and then head up',
-        body: isKo
-          ? '등록을 마치면 더헬리아 상담 공간으로 자연스럽게 안내해 드립니다.'
-          : 'After check-in, you will be guided to The Helia consultation space.',
-      },
-    ],
     guidesBadge: isKo ? '방문 전 체크' : 'Before You Visit',
     guidesTitle: isKo
       ? '방문 전 알아두면 좋은 핵심 안내'
@@ -838,14 +757,14 @@ function getLocationContent(locale: Locale): LocationPageContent {
         Icon: CalendarCheck,
         title: isKo ? '방문 운영' : 'Visit Timing',
         value: isKo
-          ? '평일 09:00 - 18:00 상담 운영'
+          ? '연중 무휴 10:00 - 19:00 상담 운영'
           : 'Consultation hours: weekdays 09:00 - 18:00',
         description: isKo
           ? '방문 시간을 미리 정해 두시면 상담과 투어를 보다 차분하게 진행하실 수 있습니다.'
           : 'Scheduling in advance helps keep your consultation and tour relaxed and focused.',
         points: isKo
           ? [
-              '주말·공휴일은 사전 예약 후 방문 가능',
+              '방문시 사전 예약은 필수 입니다.',
               '네이버 예약 또는 전화로 일정 문의 가능',
               '카카오톡 더헬리아 산후조리원 채널 상담 가능',
             ]

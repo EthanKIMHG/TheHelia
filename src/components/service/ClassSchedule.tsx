@@ -165,12 +165,12 @@ export function ClassSchedule({ locale }: { locale: Locale }) {
                      {isKo ? "Weekly Routine" : "Weekly Routine"}
                   </div>
                   <h2 className="mt-5 break-keep font-display-serif text-2xl font-normal leading-[1.4] text-foreground md:text-3xl">
-                     {isKo ? "반복 교육 프로그램 캘린더" : "Recurring Class Calendar"}
+                     {isKo ? "교육 프로그램 캘린더" : "Education Class Calendar"}
                   </h2>
                   <p className="mx-auto mt-4 max-w-[32ch] break-keep text-sm leading-[1.85] text-secondary md:max-w-2xl md:text-base">
                      {isKo
-                      ? "매주 고정 일정과 격주 순환 수업을 요일별로 확인할 수 있습니다."
-                      : "Weekly classes and alternate-week sessions are grouped by day."}
+                      ? "퇴소 후 실전 육아에 도움이 되는 다양한 교육 프로그램에 참여하실 수 있습니다."
+                      : "Join a variety of educational programs designed to help you feel confident in caring for your baby after leaving our center."}
                   </p>
                </div>
             </FadeInUp>

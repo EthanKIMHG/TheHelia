@@ -145,8 +145,8 @@ const KOREAN_COPY = {
   },
   strengths: {
     point1: {
-      title: "1:1 프라이빗 스파",
-      desc: "어디서도 경험할 수 없는 1:1 케어 시스템으로, 엄마 양수와 가장 유사한 환경에서 아이가 편안하게 유영하는 모습을 생생하게 볼 수 있습니다.",
+      title: "1:1 목욕 교육",
+      desc: "초보 부모님도 자신 있게 아이를 목욕시킬 수 있도록 전문가가 1:1로 신생아 목욕 방법을 세심하게 알려드립니다. 목욕 교육 후에는 기저귀 교체, 배꼽 소독 등 신생아 필수 케어까지 함께 교육해 드립니다.",
     },
     point2: {
       title: "수원 유일 베이비 스파",
@@ -195,8 +195,8 @@ const ENGLISH_COPY = {
   },
   strengths: {
     point1: {
-      title: "1:1 Private Spa",
-      desc: "Experience our exclusive 1:1 care system where you can watch your baby swim comfortably in an environment that mimics the mother's amniotic fluid.",
+      title: "One-on-One Baby Bath Training",
+      desc: "Our experts provide personalized one-on-one guidance to help new parents confidently bathe their newborn. After the bath, you'll also learn essential newborn care, including diaper changing, umbilical cord care, and other daily care techniques.",
     },
     point2: {
       title: "Exclusive in Suwon",

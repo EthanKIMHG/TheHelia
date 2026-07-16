@@ -214,9 +214,6 @@ function NoticeSection({ copy }: { copy: NoticeCopy }) {
         <h2 className="font-display-serif text-2xl font-normal leading-[1.4] text-foreground md:text-3xl">
           {copy.title}
         </h2>
-        <p className="text-sm leading-[1.85] text-secondary md:text-base">
-          {copy.subtitle}
-        </p>
       </div>
       <div className="mt-8 grid gap-x-10 gap-y-8 md:grid-cols-2">
         {copy.items.map((group) => (
@@ -293,7 +290,7 @@ function getReservationCopy(locale: Locale) {
       steps: [
         {
           label: isKo ? "Step 1" : "Step 1",
-          title: isKo ? "문의 접수" : "Initial Inquiry",
+          title: isKo ? "투어 문의" : "Initial Inquiry",
           description: isKo
             ? "네이버 플레이스를 통해 방문하고자 하는 일자와 시간을 선택 후 예약해주세요.."
             : "Please choose your preferred visit date and time through Naver Place to make a reservation.",
@@ -336,32 +333,31 @@ function getReservationCopy(locale: Locale) {
     notice: {
       badge: isKo ? "이용 안내" : "Helpful Notes",
       title: isKo ? "방문 전 알아두면 좋은 안내" : "Good to Know Before You Visit",
-      subtitle: isKo
-        ? "예약 상담은 산모의 컨디션과 일정에 맞춰 조율됩니다."
-        : "We adjust consultation details around mother’s condition and timing.",
       items: [
         {
           title: isKo ? "상담 준비" : "Preparing for Consultation",
           points: isKo
             ? [
-                "의료 기록 또는 산모 수첩이 있다면 지참해 주세요.",
-                "동반 가족이 있다면 편안한 라운지 좌석을 준비해 드립니다.",
+                "방문 시 산모수첩을 꼭 지참해 주세요.",
+                "방문 예정일의 객실 운영 상황에 따라 객실 투어가 제한될 수 있습니다.",
+                "모든 객실이 만실인 경우에는 객실 투어가 어려우며, 공용 시설 투어만 진행 가능한 점 양해 부탁드립니다."
               ]
             : [
-                "Bring medical notes or maternity records if available.",
-                "Family members can relax in our lounge while you consult.",
+                "Please bring your maternity record book (Maternal Health Record) when visiting",
+                "Room tours are subject to room availability on the day of your visit.",
+                "If all rooms are fully occupied, only a tour of the common facilities will be available."
               ],
         },
         {
           title: isKo ? "주차 & 이동" : "Parking & Access",
           points: isKo
             ? [
-                "MS메디컬스퀘어 지하주차장 이용 시 주차권을 제공해 드립니다.",
-                "택시 또는 대중교통 이용 시 도착 시간에 맞춰 안내해 드립니다.",
+                "MS 메디컬 스퀘어 지하 1층(B1) 또는 지하 2층(B2) 주차장을 이용해 주세요",
+                "치즈 아동복 매장 옆 주차장 입구를 통해 진입하시면 편리합니다.",
               ]
             : [
-                "Parking validation is available for MS Medical Square’s garage.",
-                "We help coordinate arrival if you’re taking a taxi or subway.",
+                "Please use the B1 or B2 parking garage at MS Medical Square.",
+                "Enter through the parking entrance located next to the Cheese Kids Clothing Store.",
               ],
         },
       ],

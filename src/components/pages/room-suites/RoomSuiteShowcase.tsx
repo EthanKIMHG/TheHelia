@@ -275,7 +275,6 @@ function AmenityGroupCard({
 }
 
 const AMENITY_IMAGES: Array<{ src: string; altKo: string; altEn: string }> = [
-  { src: blobUrl("img/room/amenity/ameniti_moltonbrown1.jpg"), altKo: "몰튼 브라운 어메니티", altEn: "Molton Brown amenities" },
   { src: blobUrl("img/room/amenity/ameniti_moltonbrown2.jpg"), altKo: "몰튼 브라운 어메니티", altEn: "Molton Brown amenities" },
   { src: blobUrl("img/room/amenity/ameniti_towel.jpg"), altKo: "수건 세트", altEn: "Towel set" },
   { src: blobUrl("img/room/amenity/ameniti_cloth1.jpg"), altKo: "산모복", altEn: "Mother wear" },
@@ -601,9 +600,9 @@ const SUITE_CONTENT: Record<
       nextLabel: "다음",
       carousel: [
         { src: blobUrl("img/room/vvip_livingroom1.jpg"), alt: "VVIP 스위트 거실" },
-        { src: blobUrl("img/room/vvip_livingroom2.png"), alt: "VVIP 스위트 거실" },
-        { src: blobUrl("img/room/vvip_livingroom3.jpg"), alt: "VVIP 스위트 거실" },
-        { src: blobUrl("img/room/vvip_livingroom4.jpg"), alt: "VVIP 스위트 거실" },
+        { src: blobUrl("img/room/vvip_livingroom2.jpg"), alt: "VVIP 스위트 거실" },
+        { src: blobUrl("img/room/vvip_livingroom3.png"), alt: "VVIP 스위트 거실" },
+        { src: blobUrl("img/room/vvip_livingroom4.png"), alt: "VVIP 스위트 거실" },
         { src: blobUrl("img/room/vvip_bed.jpg"), alt: "VVIP 스위트 침실" },
         { src: blobUrl("img/room/vvip_bathroom1.jpg"), alt: "VVIP 스위트 욕실" },
         { src: blobUrl("img/room/vvip_bathroom2.jpg"), alt: "VVIP 스위트 욕실" },
@@ -664,7 +663,7 @@ const SUITE_CONTENT: Record<
       carousel: [
         { src: blobUrl("img/room/vvip_livingroom1.jpg"), alt: "VVIP Suite Living Room" },
         { src: blobUrl("img/room/vvip_livingroom2.png"), alt: "VVIP Suite Living Room" },
-        { src: blobUrl("img/room/vvip_livingroom3.jpg"), alt: "VVIP Suite Living Room" },
+        { src: blobUrl("img/room/vvip_livingroom3.png"), alt: "VVIP Suite Living Room" },
         { src: blobUrl("img/room/vvip_livingroom4.jpg"), alt: "VVIP Suite Living Room" },
         { src: blobUrl("img/room/vvip_bed.jpg"), alt: "VVIP Suite Bedroom" },
         { src: blobUrl("img/room/vvip_bathroom1.jpg"), alt: "VVIP Suite Bathroom" },

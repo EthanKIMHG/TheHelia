@@ -203,8 +203,8 @@ const REVIEWS: Review[] = [
     date: '2025.12',
     category: { ko: 'VIP 2주 + 베이비스파', en: 'VIP 2-week + baby spa' },
     headline: {
-      ko: '베이비스파와 모자동실 지원을 함께 살펴본 후기',
-      en: 'A review that looks at baby spa together with rooming-in support',
+      ko: '더헬리아 산후조리원 VIP룸 이용후기',
+      en: 'The Helia VIP Room Review',
     },
     content: {
       ko: 'VIP 2주 이용과 베이비스파 중심 후기로, 모자동실 대응·신생아실 수유콜 지원·젤리캠 접근성, 식사 만족도와 목욕교육 경험을 구체적으로 정리한 글입니다.',
@@ -225,8 +225,8 @@ const REVIEWS: Review[] = [
     date: '2026.02',
     category: { ko: 'VVIP 2주 + 산후마사지', en: 'VVIP 2-week + postpartum massage' },
     headline: {
-      ko: '객실 비품과 회복 체감까지 실사용 기준으로 정리한 후기',
-      en: 'A practical review focused on amenities and real recovery outcomes',
+      ko: '더헬리아 산후조리원 VVIP룸 이용후기',
+      en: 'The Helia VVIP Room Review',
     },
     content: {
       ko: 'VVIP 2주 후기에서 객실 비품(원목 아기침대·메델라 유축기·좌욕기), 매일 청소/산모복 관리, 신생아실 관찰·수유콜 동선, 산후마사지 체감까지 실사용 관점으로 소개합니다.',
@@ -247,7 +247,7 @@ const PAGE_COPY: Record<'ko' | 'en', PageCopy> = {
   ko: {
     overview: {
       badge: 'Real Stories',
-      title: '실제 이용 후기로 보는 더헬리아의 생활감',
+      title: '실제 이용 후기로 보는 더헬리아 산후조리원',
       description:
         '후기 페이지는 단순한 칭찬 모음이 아니라, 객실 컨디션부터 신생아실 동선, 마사지와 베이비스파, 입소 후 하루 루틴까지 실제 체감 포인트를 빠르게 읽어볼 수 있도록 정리했습니다.',
       noteTitle: 'Review Curation',
@@ -289,7 +289,7 @@ const PAGE_COPY: Record<'ko' | 'en', PageCopy> = {
   en: {
     overview: {
       badge: 'Real Stories',
-      title: 'A clearer sense of daily life at The Helia through real guest reviews',
+      title: 'Real Stories from The Helia Families',
       description:
         'This page is not a simple collection of praise. It is arranged so you can quickly scan what families actually felt about room condition, nursery flow, massage, baby spa, and the rhythm of everyday recovery.',
       noteTitle: 'Review Curation',

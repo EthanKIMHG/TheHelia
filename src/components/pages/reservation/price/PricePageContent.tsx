@@ -286,26 +286,22 @@ function MainPriceSection({ isKo }: { isKo: boolean }) {
 function PromotionSection({ isKo }: { isKo: boolean }) {
   const promotions = isKo
     ? [
-        "당일 할인 이벤트: 20만원 할인 (기간 한정)",
-        "제왕둔 검사 할인: 10만원 할인 (기간 한정)",
-        "당일 할인 및 재방문 할인은 2주 예약 시 적용",
+        "당일 할인 이벤트: 20만원 할인 (매월 선착순 한정)",
+        "재방문 감사 할인: 10만원 할인",
         "SPA: 산전 2회 + 산후 2회 (총 4회/60분)",
-        "Prestige: 병원→조리원 단독 의전 서비스",
-        "Prestige & VVIP: 메델라 유축기 2주 무상 대여",
+        "Prestige & VVIP: 메델라 유축기 2주 무상 대여 (2주 이상 예약시)",
       ]
     : [
-        "Same-day Booking: 200k KRW Discount",
-        "C-section Check: 100k KRW Discount",
-        "Discounts apply to 2-week bookings only",
-        "SPA: 2 Pre-natal + 2 Post-natal (60min)",
-        "Prestige: Private Transfer Service",
-        "Prestige & VVIP: Free Medela Pump Rental",
+        "Same-Day Reservation Benefit: ₩200,000 discount (Limited availability each month)",
+        "Returning Guest Benefit: ₩100,000 discount",
+        "SPA Benefit: 2 prenatal + 2 postnatal spa sessions (4 sessions total, 60 minutes each)",
+        "Prestige & VVIP Benefit: Complimentary 2-week rental of a Medela breast pump (for reservations of 2 weeks or longer)",
       ];
 
   const notes = isKo
     ? [
         "식사 (1일 3식) 및 간식 (1일 3회) 제공",
-        "보호자 식사: 15,000원 / 1식 (Prestige 주말 무료)",
+        "보호자 식사: 20,000원 / 1식",
         "쌍둥이 추가 비용: 90만원 / 1주",
         "BABY SPA 추가: 15만원 / HEAD SPA 추가: 10만원",
         "포함: 신생아/산모 케어, 청소/세탁, 교육 프로그램",
@@ -313,7 +309,7 @@ function PromotionSection({ isKo }: { isKo: boolean }) {
       ]
     : [
         "Meals (3/day) & Snacks (3/day) included",
-        "Partner Meal: 15,000 KRW (Free on Weekends for Prestige)",
+        "Partner Meal: 20,000 KRW / meal",
         "Twin Surcharge: 900,000 KRW / week",
         "Add-ons: Baby Spa 150k / Head Spa 100k",
         "Includes: Care, Cleaning, Laundry, Education",

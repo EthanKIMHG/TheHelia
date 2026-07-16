@@ -261,7 +261,7 @@ export const NAV_ITEMS: NavItemDefinition[] = [
         },
         previewCopy: {
           en: "Classes bring mothers together with hands-on learning.",
-          ko: "산모들이 함께하는 실습형 클래스에 참여해 보세요.",
+          ko: "산모들이 함께하는 참여형 클래스에 참여해 보세요.",
         },
       },
     ],

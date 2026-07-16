@@ -32,7 +32,6 @@ export function AboutPageShowcase({ locale }: AboutPageShowcaseProps) {
       <VideoSection copy={copy.video} />
       <VirtualTourSection copy={copy.virtualTour} />
       <SpacesSection copy={copy.spaces} />
-      <CareSection copy={copy.care} />
       <DailyFlowSection copy={copy.dailyFlow} />
     </div>
   );
@@ -462,13 +461,6 @@ function getAboutCopy(locale: Locale) {
             ? "24시간 상주하는 간호 인력과 전문가들이 산모와 아기의 상태를 세심하게 살피고 필요한 순간을 함께합니다."
             : "Round-the-clock nurses and specialists monitor mother and baby with warmth, staying close when you need support.",
         },
-        {
-          icon: Baby,
-          title: isKo ? "가족을 위한 배려" : "Thoughtful for Families",
-          body: isKo
-            ? "파트너와 가족도 편안히 머무를 수 있도록 라운지, 티타임, 육아 교육까지 포함한 프로그램을 준비했습니다."
-            : "Lounges, tea service, and parenting sessions welcome partners and family members into the journey with ease.",
-        },
       ],
     },
     spaces: {
@@ -482,22 +474,15 @@ function getAboutCopy(locale: Locale) {
           icon: Sparkles,
           title: isKo ? "프라이빗 스위트" : "Private Suite Experience",
           body: isKo
-            ? "모든 객실은 단 하나의 가구처럼 설계된 독립형 스위트로, 산모와 가족만의 온전한 시간을 지켜드립니다."
-            : "Each independent suite is arranged like a private residence, keeping every moment for you and your family alone.",
+            ? "모든 객실은 단 하나의 가구처럼 설계된 독립형 스위트로, 산모님의 온전한 시간을 지켜드립니다."
+            : "Each independent suite is arranged like a private residence, keeping every moment for you alone.",
         },
         {
           icon: Flower2,
           title: isKo ? "신생아 케어 존" : "Newborn Care Zone",
           body: isKo
-            ? "전용 신생아실에서 24시간 전담 간호사가 케어하며, 수유와 모자동실 전환도 편안하게 이어집니다."
+            ? "전용 신생아실에서 24시간 전담 간호 인력이 케어하며, 수유와 모자동실 전환도 편안하게 이어집니다."
             : "A dedicated nursery with 24-hour nurses keeps little ones safe while supporting smooth transitions to rooming-in.",
-        },
-        {
-          icon: ShieldCheck,
-          title: isKo ? "아기 케어 스테이션" : "Baby Care Station",
-          body: isKo
-            ? "24시간 모니터링이 가능한 아기 케어 룸과 수유실, 특화된 살균 시스템으로 안심 케어를 보장합니다."
-            : "A dedicated nursery, feeding room, and advanced sanitisation systems ensure round-the-clock peace of mind.",
         },
       ],
       gallery: [
@@ -613,7 +598,7 @@ function getAboutCopy(locale: Locale) {
             ? [
               "아침 식사 후 오전 모자동실로 아기와 교감하는 시간을 가집니다.",
               "오전 간식과 함께 컨디션을 점검하고 수유·유축 루틴을 정리합니다.",
-              "필요 시 간호사 상담으로 하루 케어 계획을 조율합니다.",
+              "소아과 전문의와의 상담 (매주 수, 토 오전 8시 진행)",
             ]
             : [
               "After breakfast, mothers join a morning rooming-in session with their baby.",
