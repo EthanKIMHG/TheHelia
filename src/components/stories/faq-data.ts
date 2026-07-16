@@ -43,7 +43,7 @@ After testing negative with a Rotavirus kit, they enter the nursery. Admission w
 - 입실예정일 91일전, 계약후 24시간 이내 : 계약금 전액 환불
 - 입실예정일 61일 이전부터 90일 이전까지 : 계약금의 60% 환불
 - 입실예정일 31일 이전부터 60일 이전까지 : 계약금의 30% 환불
-- 입실예정일 31일 이전부터 : 계약금 환불불가
+- 입실예정일 30일 이전부터 : 계약금 환불불가
 
 대기 예약이신 경우 취소기간 제한 없이 예약금 전액 환불되며, 위 환불 규정은 대기 해제된 시점부터 적용됩니다.`,
       en: `∙ The deposit is 10% of the total service fee, and the refund policy is as follows:
