@@ -377,9 +377,9 @@ function DetailRatesSection({ isKo }: { isKo: boolean }) {
     : ["Type", "1 Week", "9 Nights 10 Days", "2 Weeks", "3 Weeks"];
 
   const roomRows = [
-    { type: "PRESTIGE", w1: "715", d10: "885", w2: "950", w3: "1425" },
-    { type: "VVIP", w1: "490", d10: "605", w2: "650", w3: "975" },
-    { type: "VIP", w1: "415", d10: "515", w2: "550", w3: "825" },
+    { type: "PRESTIGE", w1: "715", d10: "885", w2: "950", w3: "1520" },
+    { type: "VVIP", w1: "490", d10: "605", w2: "650", w3: "1040" },
+    { type: "VIP", w1: "415", d10: "515", w2: "550", w3: "880" },
   ];
 
   const spaHeaders = isKo
