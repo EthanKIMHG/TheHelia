@@ -81,24 +81,24 @@ export function HomePrograms({
     <>
       <section
         ref={onSectionMount ? (node) => onSectionMount(node) : undefined}
-        className="w-full bg-[#FDFBF9] py-24 dark:bg-background"
+        className="w-full bg-background py-24 md:py-32"
       >
         <ScrollReveal>
           <div className="container mx-auto px-4">
-            <div className="mb-16 flex flex-col items-start text-left md:items-center md:text-center">
-              <span className="mb-6 inline-flex items-center justify-center rounded-full bg-primary/10 px-4 py-1.5 text-sm font-medium text-primary">
-                <Sparkles className="mr-1.5 h-3.5 w-3.5 fill-current" />
+            <div className="mb-16 flex flex-col items-center text-center md:mb-20">
+              <span className="eyebrow mb-6 inline-flex items-center gap-2">
+                <Sparkles className="h-3 w-3" strokeWidth={1.5} />
                 {copy.badgeLabel}
               </span>
-              <h2 className="mb-4 break-keep text-3xl font-serif leading-tight text-foreground md:text-4xl lg:text-4xl">
+              <h2 className="mb-5 break-keep font-display-serif text-3xl font-normal leading-[1.4] text-foreground md:text-4xl lg:text-4xl">
                 {copy.title}
               </h2>
-              <p className="max-w-[32ch] break-keep text-lg text-foreground/85 md:mx-auto md:max-w-3xl">
+              <p className="mx-auto max-w-[32ch] break-keep text-base leading-loose text-secondary md:max-w-3xl md:text-[17px]">
                 {copy.subtitle}
               </p>
             </div>
 
-            <div className="mx-auto grid max-w-7xl grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-3 lg:gap-6">
+            <div className="mx-auto grid max-w-7xl grid-cols-1 gap-x-10 gap-y-12 md:grid-cols-2 lg:grid-cols-3">
               {copy.programs.map((program) => {
                 const Icon = program.icon
 
@@ -107,37 +107,26 @@ export function HomePrograms({
                     type="button"
                     key={program.title}
                     onClick={() => setActiveProgram(program)}
-                    whileHover={
-                      reduceMotion
-                        ? undefined
-                        : {
-                            y: -5,
-                            transition: {
-                              duration: 0.34,
-                              ease: SOFT_EASE,
-                            },
-                          }
-                    }
-                    whileTap={reduceMotion ? undefined : { scale: 0.992 }}
-                    className="group flex min-h-[248px] w-full flex-col rounded-[2rem] border border-primary/10 bg-white p-6 text-left transition-[border-color,box-shadow,background-color] duration-500 ease-out hover:shadow-[0_20px_44px_rgba(105,79,55,0.12)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40 dark:bg-[#2A2928]/40 sm:min-h-[264px] sm:p-7"
+                    whileTap={reduceMotion ? undefined : { scale: 0.996 }}
+                    className="group flex min-h-[220px] w-full flex-col border-t border-border pt-7 text-left transition-colors duration-500 hover:border-foreground/40 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-primary/50"
                   >
-                    <div className="mb-5 flex h-14 w-14 items-center justify-center rounded-2xl bg-primary/10 text-primary shadow-[inset_0_1px_0_rgba(255,255,255,0.5)] transition-colors duration-500 ease-out group-hover:bg-primary group-hover:text-white">
-                      <Icon className="h-6 w-6" />
+                    <div className="mb-6 flex items-center justify-between gap-3">
+                      <Icon className="h-5 w-5 text-primary" strokeWidth={1.5} />
+                      <span className="font-sans text-[10px] font-semibold uppercase tracking-[0.2em] text-primary">
+                        {program.eyebrow}
+                      </span>
                     </div>
 
-                    <span className="mb-3 text-[11px] font-semibold tracking-[0.18em] text-primary/75 sm:text-xs">
-                      {program.eyebrow}
-                    </span>
-                    <h3 className="mb-3 break-keep text-xl font-bold text-foreground">
+                    <h3 className="mb-3 break-keep font-display-serif text-xl font-normal text-foreground">
                       {program.title}
                     </h3>
-                    <p className="break-keep text-sm leading-relaxed text-foreground/78 sm:text-[15px]">
+                    <p className="break-keep text-sm leading-[1.85] text-secondary sm:text-[14.5px]">
                       {program.summary}
                     </p>
 
-                    <span className="mt-auto inline-flex items-center gap-2 pt-6 text-sm font-semibold text-primary">
+                    <span className="mt-auto inline-flex items-center gap-2 pt-8 font-sans text-[10px] font-semibold uppercase tracking-[0.28em] text-foreground">
                       {copy.openLabel}
-                      <ChevronRight className="h-4 w-4 transition-transform duration-500 ease-out group-hover:translate-x-1" />
+                      <ChevronRight className="h-3.5 w-3.5 transition-transform duration-500 ease-out group-hover:translate-x-1" />
                     </span>
                   </motion.button>
                 )
@@ -199,7 +188,7 @@ function ProgramDetailDialog({
         role="dialog"
         aria-modal="true"
         aria-labelledby={dialogTitleId}
-        className="relative flex max-h-[88vh] w-full flex-col overflow-hidden rounded-t-[2rem] border border-border/40 bg-background shadow-[0_26px_80px_rgba(0,0,0,0.22)] md:max-w-3xl md:rounded-[2rem]"
+        className="relative flex max-h-[88vh] w-full flex-col overflow-hidden rounded-t-lg border border-border bg-background md:max-w-3xl md:rounded-none"
         onClick={(event) => event.stopPropagation()}
         initial={reduceMotion ? { opacity: 1 } : { opacity: 0, y: 42, scale: 0.985 }}
         animate={reduceMotion ? { opacity: 1 } : { opacity: 1, y: 0, scale: 1 }}
@@ -231,7 +220,7 @@ function ProgramDetailDialog({
         >
           <div className="min-w-0">
             <motion.div
-              className="mb-3 inline-flex items-center gap-2 rounded-full bg-primary/10 px-3 py-1.5 text-[11px] font-semibold uppercase tracking-[0.2em] text-primary"
+              className="eyebrow mb-4 inline-flex items-center gap-2"
               initial={reduceMotion ? undefined : { opacity: 0, scale: 0.96 }}
               animate={reduceMotion ? undefined : { opacity: 1, scale: 1 }}
               transition={
@@ -249,7 +238,7 @@ function ProgramDetailDialog({
             </motion.div>
             <motion.h3
               id={dialogTitleId}
-              className="break-keep text-2xl font-serif font-semibold leading-tight text-foreground sm:text-3xl"
+              className="break-keep font-display-serif text-2xl font-normal leading-[1.4] text-foreground sm:text-3xl"
               initial={reduceMotion ? undefined : { opacity: 0, y: 14 }}
               animate={reduceMotion ? undefined : { opacity: 1, y: 0 }}
               transition={
@@ -265,7 +254,7 @@ function ProgramDetailDialog({
               {program.title}
             </motion.h3>
             <motion.p
-              className="mt-3 break-keep text-sm leading-relaxed text-foreground/78 sm:text-base"
+              className="mt-3 break-keep text-sm leading-[1.85] text-secondary sm:text-base"
               initial={reduceMotion ? undefined : { opacity: 0, y: 16 }}
               animate={reduceMotion ? undefined : { opacity: 1, y: 0 }}
               transition={
@@ -286,8 +275,7 @@ function ProgramDetailDialog({
             type="button"
             aria-label={copy.closeLabel}
             onClick={onClose}
-            className="inline-flex h-11 w-11 flex-shrink-0 items-center justify-center rounded-full border border-border/50 bg-primary/5 text-foreground transition hover:bg-primary/10"
-            whileHover={reduceMotion ? undefined : { rotate: 90, scale: 1.04 }}
+            className="inline-flex h-11 w-11 flex-shrink-0 items-center justify-center border border-border text-foreground transition hover:border-foreground/50"
             whileTap={reduceMotion ? undefined : { scale: 0.96 }}
             transition={listTransition}
           >
@@ -312,7 +300,7 @@ function ProgramDetailDialog({
           }
         >
           <motion.div
-            className="rounded-[1.6rem] border border-border/40 bg-primary/5 p-5 sm:p-6"
+            className="border border-border bg-accent/30 p-5 sm:p-6"
             initial={reduceMotion ? undefined : { opacity: 0, scale: 0.985 }}
             animate={reduceMotion ? undefined : { opacity: 1, scale: 1 }}
             transition={
@@ -326,7 +314,7 @@ function ProgramDetailDialog({
             }
           >
             <motion.p
-              className="mb-4 text-xs font-semibold uppercase tracking-[0.2em] text-primary/78"
+              className="eyebrow mb-4"
               initial={reduceMotion ? undefined : { opacity: 0 }}
               animate={reduceMotion ? undefined : { opacity: 1 }}
               transition={
@@ -358,14 +346,14 @@ function ProgramDetailDialog({
               {program.details.map((detail) => (
                 <motion.li
                   key={detail}
-                  className="flex items-start gap-3 rounded-2xl border border-border/35 bg-background/80 px-4 py-3 text-sm leading-relaxed text-foreground/84 sm:text-[15px]"
+                  className="flex items-start gap-3 border-b border-border/70 px-1 py-3 text-sm leading-relaxed text-foreground/84 sm:text-[15px]"
                   variants={{
                     hidden: reduceMotion ? { opacity: 1 } : { opacity: 0, y: 14 },
                     visible: reduceMotion ? { opacity: 1 } : { opacity: 1, y: 0 },
                   }}
                   transition={listTransition}
                 >
-                  <span className="mt-1 h-2 w-2 flex-shrink-0 rounded-full bg-primary" />
+                  <span className="mt-3 h-px w-3 flex-shrink-0 bg-primary" />
                   <span className="break-keep">{detail}</span>
                 </motion.li>
               ))}

@@ -92,15 +92,15 @@ export function HomeNavigationGallery({
 
 function NavigationGalleryHeader({ copy }: { copy: NavigationCopy }) {
   return (
-    <div className="mx-auto flex w-full flex-col gap-4 text-left">
-      <p className="text-xs uppercase tracking-[0.4em] text-primary">
+    <div className="mx-auto flex w-full flex-col gap-5 text-center md:text-left">
+      <p className="eyebrow">
         {copy.badge}
       </p>
-      <div className="flex flex-col gap-3 md:flex-row md:items-end md:justify-between font-serif">
-        <h2 className=" text-3xl md:text-4xl text-foreground">
+      <div className="flex flex-col items-center gap-3 md:flex-row md:items-end md:justify-between">
+        <h2 className="font-display-serif text-3xl font-normal leading-[1.4] text-foreground md:text-4xl">
           {copy.title}
         </h2>
-        <p className="max-w-xl text-sm text-foreground/70 md:text-base">
+        <p className="max-w-[34ch] text-sm leading-[1.85] text-secondary md:max-w-xl md:text-[15px]">
           {copy.subtitle}
         </p>
       </div>
@@ -201,9 +201,9 @@ function NavigationPanelCard({
 
   const quickRouteRailClassName = 'flex flex-col gap-3'
   const glassSubLinkClassName =
-    'inline-flex min-h-10 items-center rounded-full border border-white/16 bg-white/[0.08] px-4 py-2 text-[11px] font-medium tracking-[0.14em] text-white/94 drop-shadow-[0_1px_2px_rgba(0,0,0,0.35)] backdrop-blur-lg transition-all duration-300 shadow-[inset_0_1px_0_rgba(255,255,255,0.16)] hover:-translate-y-0.5 hover:border-white/30 hover:bg-white/[0.16] hover:text-white hover:shadow-[inset_0_1px_0_rgba(255,255,255,0.24),0_14px_28px_rgba(0,0,0,0.14)]'
+    'inline-flex min-h-9 items-center border border-white/40 px-4 py-1.5 text-[11px] tracking-[0.16em] text-white/95 transition-colors duration-300 hover:border-white hover:bg-white/10'
   const glassCtaClassName =
-    'inline-flex min-h-12 items-center justify-center gap-2 rounded-full border border-white/34 bg-white/[0.22] px-6 text-xs font-semibold uppercase tracking-[0.22em] text-white drop-shadow-[0_1px_2px_rgba(0,0,0,0.35)] backdrop-blur-2xl transition-all duration-300 shadow-[inset_0_1px_0_rgba(255,255,255,0.34),0_18px_40px_rgba(0,0,0,0.22)] hover:-translate-y-0.5 hover:border-white/46 hover:bg-white/[0.32] hover:shadow-[inset_0_1px_0_rgba(255,255,255,0.4),0_24px_48px_rgba(0,0,0,0.24)]'
+    'inline-flex min-h-11 items-center justify-center gap-2 border border-white bg-white/95 px-6 text-[10px] font-semibold uppercase tracking-[0.26em] text-[#3A2E22] transition-colors duration-300 hover:bg-white'
 
   const handleDesktopActivate = () => {
     if (!isDesktop) return
@@ -251,11 +251,8 @@ function NavigationPanelCard({
       onClick={handleContainerClick}
       onKeyDown={handleKeyDown}
       className={clsx(
-        'group relative isolate min-h-[80px] min-w-0 overflow-hidden rounded-3xl border bg-background/70 text-left cursor-ne-resize focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/40',
+        'group relative isolate min-h-[80px] min-w-0 overflow-hidden bg-accent/60 text-left cursor-ne-resize focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/40',
         'flex flex-col',
-        active
-          ? 'border-white/40 shadow-[0_24px_80px_rgba(0,0,0,0.28)]'
-          : 'border-border/40',
         isDesktop && 'md:min-h-[80vh]',
       )}
     >
@@ -268,15 +265,15 @@ function NavigationPanelCard({
           className={clsx(
             'object-cover transform-gpu transition-[transform,filter,opacity] duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] will-change-transform',
             active
-              ? 'scale-[1.045] blur-0 brightness-105 opacity-100'
-              : 'scale-100 md:blur-[2px] md:brightness-[0.72] md:opacity-75',
+              ? 'scale-[1.03] opacity-100'
+              : 'scale-100 md:brightness-[0.88] md:opacity-90',
           )}
           priority={active}
         />
         <div
           className={clsx(
             'absolute inset-0 transition-colors duration-700 ease-[cubic-bezier(0.22,1,0.36,1)]',
-            active ? 'bg-none' : 'bg-black/10',
+            active ? 'bg-black/5' : 'bg-black/20',
           )}
         />
         <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/26 to-black/0" />
@@ -293,8 +290,8 @@ function NavigationPanelCard({
           <div className="flex items-center justify-between gap-3 font-serif">
             <h3
               className={clsx(
-                'text-xl md:text-2xl uppercase tracking-[0.1em] transition-colors duration-500 font-semibold',
-                active ? 'text-white' : 'text-white/72',
+                'text-xl md:text-2xl uppercase tracking-[0.14em] transition-colors duration-500 font-normal drop-shadow-[0_1px_10px_rgba(0,0,0,0.4)]',
+                active ? 'text-white' : 'text-white/85',
               )}
             >
               {item.label}
@@ -306,8 +303,8 @@ function NavigationPanelCard({
                 aria-expanded={active}
                 onClick={handleToggleClick}
                 className={clsx(
-                  'inline-flex h-9 w-9 items-center justify-center rounded-full border border-white/30 bg-black/20 transition',
-                  active ? 'bg-white/15' : 'bg-black/40',
+                  'inline-flex h-9 w-9 items-center justify-center border border-white/40 transition',
+                  active ? 'bg-white/15' : 'bg-black/25',
                 )}
               >
                 <ChevronDown

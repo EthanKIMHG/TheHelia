@@ -40,54 +40,52 @@ export function HomeFitGuide({
   return (
     <section
       ref={onSectionMount ? (node) => onSectionMount(node) : undefined}
-      className="w-full bg-[linear-gradient(180deg,rgba(166,139,124,0.05),rgba(250,249,246,0.92))] px-4 py-20 text-foreground sm:px-6 md:px-8 md:py-24"
+      className="w-full bg-accent/35 px-4 py-24 text-foreground sm:px-6 md:px-8 md:py-32"
     >
       <ScrollReveal>
-        <div className="mx-auto grid w-full max-w-7xl gap-5 lg:grid-cols-[0.88fr_1.12fr] lg:gap-6">
-          <div className="rounded-[2.4rem] border border-border/50 bg-primary/5 p-7 shadow-[0_24px_80px_rgba(105,79,55,0.06)] dark:border-border/40 dark:bg-primary/10 md:p-9">
-            <span className="mb-5 inline-flex items-center gap-2 rounded-full border border-primary/15 bg-background/85 px-4 py-2 text-[11px] font-semibold uppercase tracking-[0.18em] text-primary dark:bg-background/30">
-              <Sparkles className="h-3.5 w-3.5" />
+        <div className="mx-auto grid w-full max-w-7xl gap-14 lg:grid-cols-[0.88fr_1.12fr] lg:gap-20">
+          <div className="text-center lg:text-left">
+            <span className="eyebrow inline-flex items-center gap-2">
+              <Sparkles className="h-3 w-3" strokeWidth={1.5} />
               {copy.badgeLabel}
             </span>
 
-            <h2 className="max-w-[11ch] break-keep text-3xl font-serif font-semibold leading-[1.2] text-foreground md:max-w-[10ch] md:text-4xl">
+            <h2 className="mx-auto mt-6 max-w-[11ch] break-keep font-display-serif text-3xl font-normal leading-[1.4] text-foreground md:max-w-[10ch] md:text-4xl lg:mx-0">
               {copy.title}
             </h2>
 
-            <p className="mt-5 max-w-[30ch] break-keep text-base leading-relaxed text-foreground/82 md:text-[18px]">
+            <p className="mx-auto mt-6 max-w-[30ch] break-keep text-base leading-loose text-secondary md:text-[17px] lg:mx-0">
               {copy.subtitle}
             </p>
 
-            <div className="mt-8 rounded-[1.8rem] border border-border/45 bg-background/82 p-5 shadow-[inset_0_1px_0_rgba(255,255,255,0.4)] dark:bg-background/25">
-              <p className="break-keep text-sm leading-relaxed text-foreground/78 md:text-[15px]">
+            <div className="mt-10 border-t border-border pt-6">
+              <p className="break-keep text-sm leading-[1.85] text-secondary md:text-[15px]">
                 {copy.closing}
               </p>
             </div>
           </div>
 
-          <div className="grid gap-4 sm:grid-cols-2">
+          <div className="grid gap-x-10 gap-y-12 sm:grid-cols-2">
             {copy.items.map((item) => {
               const Icon = item.icon
 
               return (
                 <div
                   key={item.title}
-                  className="group flex min-h-[220px] flex-col rounded-[2rem] border border-border/45 bg-background/92 p-6 shadow-[0_18px_50px_rgba(105,79,55,0.06)] transition-all duration-300 hover:-translate-y-1 hover:border-primary/18 hover:shadow-[0_26px_60px_rgba(105,79,55,0.1)] dark:bg-[#1f1d1b]/72 sm:min-h-[236px] sm:p-7"
+                  className="flex flex-col border-t border-border pt-6 text-left"
                 >
                   <div className="mb-5 flex items-center justify-between gap-3">
-                    <div className="inline-flex h-12 w-12 items-center justify-center rounded-2xl bg-primary/10 text-primary transition-colors duration-300 group-hover:bg-primary group-hover:text-white">
-                      <Icon className="h-5 w-5" />
-                    </div>
-                    <span className="rounded-full bg-primary/8 px-3 py-1.5 text-[11px] font-semibold tracking-[0.16em] text-primary/82">
+                    <Icon className="h-5 w-5 text-primary" strokeWidth={1.5} />
+                    <span className="font-sans text-[10px] font-semibold uppercase tracking-[0.24em] text-primary">
                       {item.label}
                     </span>
                   </div>
 
-                  <h3 className="break-keep text-xl font-semibold leading-[1.32] text-foreground">
+                  <h3 className="break-keep font-display-serif text-lg font-normal leading-[1.5] text-foreground md:text-xl">
                     {item.title}
                   </h3>
 
-                  <p className="mt-4 break-keep text-sm leading-relaxed text-foreground/76 sm:text-[15px]">
+                  <p className="mt-3 break-keep text-sm leading-[1.85] text-secondary sm:text-[14.5px]">
                     {item.description}
                   </p>
                 </div>
@@ -109,19 +107,20 @@ const KOREAN_COPY: FitGuideCopy = {
     '위 항목이 중요하시다면, 이어지는 섹션에서 더헬리아의 강점을 더 자세히 살펴보셔도 좋습니다.',
   items: [
     {
-      label: '부모 준비',
-      title: '부모가 되기 위한 배움을 찾는분',
-      description:
-        '분유 조유, 트름시키기, 기저귀갈이 등 신생아 케어에 필요한 기본적인 교육을 원하신다면.',
-      icon: BookUser,
-    },
-    {
       label: '신생아 케어',
       title: '위생적인 신생아실을 찾는 분',
       description:
         '사전 관찰실 운영, 개별 처치대 사용, 개별 욕조 사용 등 위생적으로 우리 아가를 케어하는 공간을 원하신다면.',
       icon: Baby,
     },
+    {
+      label: '부모 준비',
+      title: '부모가 되기 위한 배움을 찾는분',
+      description:
+        '분유 조유, 트름시키기, 기저귀갈이 등 신생아 케어에 필요한 기본적인 교육을 원하신다면.',
+      icon: BookUser,
+    },
+    
     {
       label: '객실·회복',
       title: '프라이빗한 회복공간을 찾는 분',
@@ -148,19 +147,20 @@ const ENGLISH_COPY: FitGuideCopy = {
     'If these points feel important, the next section will show The Helia’s strengths in more detail.',
   items: [
     {
-      label: 'Parent Preparation',
-      title: 'You are looking for practical preparation for parenthood',
-      description:
-        'If you want foundational education for newborn care, including formula preparation, burping, and diaper changes.',
-      icon: BookUser,
-    },
-    {
       label: 'Nursery Care',
       title: 'You are looking for a hygienic nursery',
       description:
         'If you want a hygienic space for your baby, with a preliminary observation room, individual treatment stations, and individual bathtubs.',
       icon: Baby,
     },
+    {
+      label: 'Parent Preparation',
+      title: 'You are looking for practical preparation for parenthood',
+      description:
+        'If you want foundational education for newborn care, including formula preparation, burping, and diaper changes.',
+      icon: BookUser,
+    },
+    
     {
       label: 'Room & Recovery',
       title: 'You are looking for a private recovery space',

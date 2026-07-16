@@ -1,175 +1,162 @@
 # Design System
 
 This document is the current The Helia design system source of truth.
-Use it with [AGENTS.md](/Users/ethan/Desktop/thehelia/AGENTS.md) for execution rules and with [FOLLOW_UP_GUIDE.md](/Users/ethan/Desktop/thehelia/FOLLOW_UP_GUIDE.md) for detailed implementation history.
+Use it with [CLAUDE.md](CLAUDE.md) for execution rules and with [FOLLOW_UP_GUIDE.md](FOLLOW_UP_GUIDE.md) for detailed implementation history.
 
 ## Overview
 
-The Helia is an information-first postpartum care center website.
-The product tone is premium, calm, warm, and conversion-oriented rather than clinical, flashy, or startup-like.
-Design decisions should preserve the current booking and information flow while improving readability, trust, and scanability.
+The Helia is an information-first postpartum care center website designed in the visual language of a five-star resort (primary reference: One&Only Resorts; secondary: Four Seasons room/spec presentation).
+
+The product tone is **bright quiet luxury**: airy ivory light, generous whitespace, hairline structure, and restrained serif typography. The site should feel like a calm morning in a resort suite — never clinical, never busy, never decorated for decoration's sake.
+
+Design decisions must preserve the existing booking flow (Naver routing) and information flow while improving atmosphere, trust, and scanability.
 
 ## Source Of Truth
 
-- Global theme tokens and typography: [src/app/globals.css](/Users/ethan/Desktop/thehelia/src/app/globals.css)
-- Execution rules and repo workflow: [AGENTS.md](/Users/ethan/Desktop/thehelia/AGENTS.md)
-- Historical design changes and recent UI decisions: [FOLLOW_UP_GUIDE.md](/Users/ethan/Desktop/thehelia/FOLLOW_UP_GUIDE.md)
+- Global theme tokens, typography, and shared utilities: [src/app/globals.css](src/app/globals.css)
+- Execution rules and repo workflow: [CLAUDE.md](CLAUDE.md)
+- Historical design changes and recent UI decisions: [FOLLOW_UP_GUIDE.md](FOLLOW_UP_GUIDE.md)
 
-If documents conflict, follow `globals.css` for tokens, this file for design direction, `FOLLOW_UP_GUIDE.md` for recent applied patterns, and `AGENTS.md` for execution rules.
+If documents conflict, follow `globals.css` for tokens, this file for design direction, `FOLLOW_UP_GUIDE.md` for recent applied patterns, and `CLAUDE.md` for execution rules.
 
 ## Brand Direction
 
-- Core mood: warm serenity, quiet luxury, trustworthy care
-- Product goal: make users feel informed, reassured, and ready to book or contact
-- Visual stance: editorial warmth over hospital sterility
-- UX stance: high clarity over ornamental complexity
+- Core mood: bright serenity, quiet luxury, trustworthy care
+- Design DNA: One&Only minimal immersion as the base grammar; Four Seasons spec-card clarity for rooms and comparison content
+- Visual stance: photography and whitespace carry the page; UI chrome recedes to hairlines and tracked labels
+- UX stance: high clarity over ornamental complexity; information density is delivered through quiet structure (hairline rows, spec lists), not boxes and badges
 
 ## Theme Tokens
 
-### Light theme
+### Light theme (default)
 
-- `--background: #FAF9F6`
-- `--foreground: #4A3B36`
-- `--primary: #A68B7C`
-- `--secondary: #9E948D`
-- `--accent: #D9C6BC`
-- `--border: #E6DBD4`
+- `--background: #FBF9F4` — bright warm ivory
+- `--foreground: #3A2E22` — espresso
+- `--primary: #A29380` — taupe (eyebrows, labels, quiet accents)
+- `--secondary: #84776A` — clay (muted body copy)
+- `--accent: #EAE1D1` — sand (soft tinted surfaces)
+- `--border: #E4DBCB` — hairline
 
 ### Dark theme
 
-- `--background: #141313`
-- `--foreground: #FFFFFF`
-- `--primary: #A8B5A0`
-- `--secondary: #E0E0E0`
-- `--accent: #6C7A5E`
-- `--border: #444240`
+- `--background: #16120D` — deep warm espresso
+- `--foreground: #F2EBE0` — warm ivory text
+- `--primary: #B9A88F` — light taupe
+- `--secondary: #A99C8C` — muted warm grey
+- `--accent: #2E261D` — dark sand surface
+- `--border: #3A3128` — dark hairline
 
 ### Token rules
 
 - Use semantic tokens before introducing custom colors
-- Prefer `bg-primary/5`, `bg-primary/10`, `text-primary`, `text-secondary`, `text-foreground`, `border-border/30`, and `divide-border/50`
-- In dark mode, stay inside the existing token system instead of adding one-off hex palettes
-- Warm neutrals and primary-family surfaces should carry most section styling
+- Prefer `text-primary`, `text-secondary`, `text-foreground`, `bg-accent/40`, `border-border`, `divide-border`
+- The palette is intentionally monochrome-warm; do not add new accent hues (no sage, no blue, no gold) without a deliberate brand decision
+- Strong contrast lives in `foreground` on `background`; everything else stays quiet
 
 ## Typography
 
 ### Font system
 
-- Default display serif: `--font-serif` backed by Playfair
-- Korean serif locale font: `--font-korean` backed by Nanum Myeongjo
-- Sans support font: `Pretendard`
-- Default body font currently inherits the serif family at `body`
+- Display serif: `--font-serif` (Playfair) via `.font-display-serif` / `.font-force-playfair`
+- Korean serif: `--font-korean` (Nanum Myeongjo) via `.font-locale-ko`
+- Sans support: Pretendard (`--font-sans`) for labels and UI text
+
+### The three type voices
+
+1. **Display serif** — headings and statements. `font-weight: 400` (never bold), generous line-height (1.4–1.9 for Korean), slight positive letter-spacing on short lines. Oversized-but-calm: `text-3xl`–`text-5xl`, not poster-size.
+2. **Eyebrow label** — the signature utility. Small (10–11px), uppercase, tracked wide (`tracking-[0.3em]`–`[0.42em]`), `text-primary`, semibold sans. Use the `.eyebrow` utility. Every section opens with one.
+3. **Body / support** — quiet and legible. `text-secondary` or `text-foreground/80`, relaxed leading (1.8–2.0 for Korean), constrained measure (`max-w-[56ch]` or less).
 
 ### Usage rules
 
-- Use `font-display-serif` for high-importance headings that should follow the brand serif system
-- Korean pages should inherit `Nanum Myeongjo` through `.font-locale-ko`
-- Use `font-force-playfair` only when the English brand wordmark must remain fixed to Playfair regardless of locale
-- Do not mix unrelated font families inside the same section without a strong hierarchy reason
-
-### Text hierarchy
-
-- Headings should feel editorial and premium, but not oversized to the point of harming readability
-- Body copy should prioritize legibility and steady rhythm over decorative styling
-- Labels, badges, and support text should use stronger contrast than before; avoid washed-out muted text
+- Headings are `font-normal` serif — bold serif headings are a legacy pattern; remove them when touching a component
+- Uppercase tracked labels replace pill badges as the default "label" treatment
+- Text links use the `.tlink` utility: small tracked uppercase with a hairline underline that darkens on hover
+- Do not center long Korean copy on mobile when it harms readability
 
 ## Surfaces, Shape, And Texture
 
-- Use soft, warm surfaces instead of stark white or cold gray panels
-- Default rounded feel should stay generous; the brand radius token is `--radius-brand: 2rem`
-- Borders should be subtle and supportive, not heavy separators
-- Soft shadow plus warm border is preferred over dramatic glass or hard elevation
-- The site already uses a light grain overlay on `body`; preserve that analog texture unless a section has a strong reason to opt out
+- **Square geometry.** `--radius-brand: 0`. Cards, images, and buttons use sharp corners (`rounded-none`). Small radii (2–4px) are allowed only where usability demands it (mobile bottom sheets, form inputs).
+- **Hairlines instead of boxes.** Structure content with 1px `border-border` rules — top rules on list items, column dividers on stat rows — rather than card backgrounds, shadows, or glass effects.
+- **No elevation.** Drop shadows, backdrop blur panels, and glassmorphism are legacy patterns; do not introduce them in new work. Interactive lift is expressed by image scale or underline/contrast change, not shadow.
+- **Soft tinted surfaces** (`bg-accent/30`–`/50`) may distinguish a full-width section band, applied edge-to-edge, not as rounded cards.
+- The light grain overlay on `body` is part of the brand's analog texture; preserve it.
 
-## Layout Principles
+## Photography
 
-### Information architecture
+- Photography is the primary design material; sections should give images large, uncropped presence (full-bleed or tall 3:4 columns)
+- Direction: bright natural light, warm ivory interiors, no heavy color grading, no dark moody edits
+- Text over photos: prefer espresso text over bright imagery with a soft ivory gradient veil (`from-[#FBF9F4]/60`) for legibility; use white text only where a photo is genuinely deep in tone, with a subtle dark gradient
+- Hover: slow scale (`scale-[1.03]`, 700ms+, soft ease) — never brightness flashes or dramatic zooms
 
-- The site is not a product dashboard; it should read like a premium care guide
-- Use clear section sequencing that helps users understand services, daily life, pricing, and booking
-- Prioritize conversion-friendly flow over experimental composition
+## Layout Grammar
+
+The homepage establishes the grammar; subpages adopt it incrementally.
+
+- **Immersive hero** — full-viewport photography, minimal centered copy (tracked wordmark line), thin vertical scroll line, transparent header at top
+- **Manifesto block** — a short centered serif statement surrounded by generous whitespace (`py-24`+)
+- **Triptych** — three equal tall-image columns with captions below the image (eyebrow / serif title / clay description / hairline detail rows)
+- **Hairline stat row** — numbers presented in serif with tracked-label captions, separated by 1px column rules, bordered top and bottom; replaces dark stat bands and badge chips
+- **Spec card** (Four Seasons grammar) — image, serif name, tracked size/view line, then label/value hairline rows; used for rooms and comparison content
+- **Hairline list** — icon-light rows or cards separated by top rules for feature/program enumerations
 
 ### Responsive behavior
 
 - Mobile readability is a first-order requirement
-- Prefer `text-left md:text-center` for section headers when centered mobile text wraps awkwardly
-- Use constrained line length, Korean-friendly wrapping, and tighter mobile line-height where needed
-- Mobile and desktop may use different presentation patterns when that improves clarity
-
-### Approved layout patterns
-
-- Soft bento cards for feature and service overviews
-- Dedicated mobile comparison boards for dense pricing or policy data
-- Card-based mobile detail blocks instead of horizontal-scroll-heavy tables where possible
-- Timeline or guided-step cards for process-oriented content
+- Triptychs and spec grids collapse to a single constrained column
+- Stat rows collapse to a 2-column grid with preserved hairlines
+- Keep long explanatory copy left-aligned when centered text wraps awkwardly; Korean-friendly wrapping (`break-keep`) throughout
 
 ## Interaction Principles
 
-- Motion should feel calm and deliberate, not flashy
+- Motion is slow, soft, and scarce: opacity/translate reveals (`ScrollReveal`), long-duration image scale on hover, gentle crossfades
+- No bouncing icons, pulsing blobs, rotating chips, or hover translations of whole cards
 - Hover behavior must not cause layout jumps
-- Desktop-only hover reveals are acceptable when mobile gets the same information in a visible static form
-- Prefer smooth opacity, translate, and contrast transitions over large transform-driven spectacle
+- Anything hover-revealed on desktop must be statically visible on mobile
+- Respect `useReducedMotion` in new motion code
 
-## Current Component Patterns
+## Header And Navigation
 
-### Bento and showcase cards
-
-- Keep the primary card visually dominant without making side cards cramped
-- Hover reveals should preserve card height stability
-- Smaller cards may use tighter type scale and reduced hover lift
-- Mobile should expose essential content without requiring hover
-
-### Daily flow and operational content
-
-- Daily rhythm content should be grouped by meaningful time zones rather than dense timetable grids
-- Use distinct chips, icons, or numbered markers to improve first-glance understanding
-- Operational rules such as massage, breast care, and class timing should live in a clearly separated guide block
-
-### Reservation and pricing
-
-- Reservation and pricing pages should share one visual family
-- Pricing comparison on mobile should be at-a-glance first, deep detail second
-- Use mobile `Quick Compare` style boards when users need to compare tiers such as VIP, VVIP, and Prestige quickly
-- Refund policy on mobile should use comparison cards or boards rather than wide tables
-- Process flows should read clearly as ordered steps without decorative clutter
-- Contact and booking channels should emphasize the primary conversion path first, with secondary contact methods clearly subordinate
-
-### Detail sections
-
-- Room and spa detail sections should use clean token-based surfaces with strong foreground contrast
-- Highlight states should align with the primary family, not detached colors
-- Desktop tables are acceptable when the matrix matters; mobile should favor cards or simplified boards
+- Header is a minimal three-zone bar: menu button (left) · tracked `THE HELIA` wordmark (center) · reserve link (right). Transparent over the home hero, solid ivory + bottom hairline after scroll and on subpages. Foreground text stays espresso in both states (photography is bright).
+- Primary navigation is a **full-screen photo-forward overlay** (One&Only grammar), opened by the menu button — the same overlay serves desktop and mobile. There is no top-bar link row or hover dropdown.
+  - Left column: large serif category list (`text-4xl`–`text-5xl`), inactive items dimmed to `foreground/45`, numbered `01`–`0N`, hairline dividers. Hovering (desktop) or the first item (default) reveals that category's sub-links as small tracked-uppercase text and swaps the image.
+  - Right column (desktop only): full-height photography that crossfades to the active category's preview image.
+  - Footer: solid espresso reserve button + square locale/theme toggle buttons (moved out of the header).
+  - Close button and centered wordmark sit above the overlay; `Esc` and body-scroll-lock handled.
 
 ## Dark Mode
 
-- Dark mode should remain warm, calm, and contrast-safe
+- Dark mode is deep warm espresso, not cool grey — same monochrome-warm family as light mode
 - Use `[data-theme="dark"]` token behavior from `globals.css`
-- Prefer `dark:bg-primary/10` family surfaces, token-based borders, and stronger foreground hierarchy
-- Do not introduce harsh neon accents or cool blue-grays that break the brand tone
+- Hairline structure carries over; avoid introducing luminous surfaces or neon accents
 
-## Hero Rules
+## Reservation And Pricing
 
-- Hero presentation can be immersive, but it should still support clarity and brand trust
-- The `.home-hero` layout is already tuned for large screens in `globals.css`
-- Preserve full-width presence and calm premium pacing
-- The `The Helia` wordmark may be locked to Playfair when locale overrides would otherwise replace it
+- The reservation flow routes to Naver — preserve it exactly
+- Pricing/comparison content should migrate toward the spec-card and hairline-board grammar (at-a-glance first, detail second)
+- The primary conversion path (Naver reservation) is always the visually dominant action; secondary contacts stay subordinate text links
 
 ## Design Do And Do Not
 
 ### Do
 
-- Keep the site warm, premium, and easy to scan
-- Reuse semantic tokens and existing spacing or contrast patterns
-- Prefer additive refinement over full visual resets
-- Match new sections to the current reservation and pricing tone system
+- Let photography and whitespace do the work; remove chrome before adding it
+- Open every section with an `.eyebrow` label
+- Use hairlines for structure and serif-normal for headings
+- Keep the palette monochrome-warm and bright
+- Match new sections to the homepage grammar
 
 ### Do not
 
-- Reintroduce cold grayscale or purple-leaning palettes detached from brand tokens
-- Center long Korean copy on mobile when it harms readability
-- Add hover-only disclosure for critical information on touch devices
-- Use low-contrast muted text for important labels, values, or guidance
-- Replace the current calm editorial tone with tech-product or hospital-admin styling
+- Reintroduce rounded-2xl+ cards, pill badges, glassmorphism, drop shadows, or gradient panels in new work
+- Use bold serif headings or washed-out low-contrast labels
+- Add new accent colors or dark moody photo treatments
+- Replace the calm resort tone with tech-product or hospital-admin styling
+- Break the Naver reservation routing or inquiry flows
+
+## Migration Status
+
+The full site is on the new system: homepage (hero, manifesto, triptych, fit guide, programs, navigation gallery, partners), shared shell (header, nav panel, mobile drawer, footer, sub-page hero/templates, floating reservation CTA, page loader), service pages (infant room, helia spa, baby spa, moms class, schedules, spa bento/accordion/carousel), nursery sections, room suites (spec-card grammar), reservation and price boards, about/location, and stories (FAQ, guest reviews). New components must follow the grammar above from the start.
 
 ## Maintenance Rule
 

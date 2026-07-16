@@ -1,8 +1,6 @@
 'use client'
 
 import clsx from 'clsx'
-import { ScrollReveal } from '@/components/common/ScrollReveal'
-import type { Locale } from '@/components/header/types'
 import {
   ArrowUpRight,
   Building2,
@@ -10,15 +8,38 @@ import {
   CalendarClock,
   CarFrontIcon,
   CheckCircle2,
+  Compass,
   MapPinIcon,
   Navigation,
   PhoneCall,
+  Route,
   TrainFrontIcon,
+  X,
   type LucideIcon,
 } from 'lucide-react'
 import Image from 'next/image'
+import { useEffect, useId, useState } from 'react'
+import { createPortal } from 'react-dom'
+
+import { ScrollReveal } from '@/components/common/ScrollReveal'
+import type { Locale } from '@/components/header/types'
 
 const BOOKING_URL = 'https://booking.naver.com/booking/6/bizes/1021790'
+const SITE_URL = 'https://thehelia.co.kr'
+const MAP_APP_FALLBACK_DELAY = 1200
+const HELIA_DESTINATION = {
+  name: '더헬리아 산후조리원',
+  lat: '37.275258840774896',
+  lng: '126.95109607716499',
+} as const
+
+type MapProviderId = 'naver' | 'kakao' | 'apple'
+
+const MAP_PROVIDER_ICONS: Record<MapProviderId, LucideIcon> = {
+  naver: Navigation,
+  kakao: Route,
+  apple: Compass,
+}
 
 type QuickFact = {
   id: string
@@ -43,6 +64,12 @@ type GuideCard = {
   points: string[]
 }
 
+type MapAppOption = {
+  id: MapProviderId
+  label: string
+  description: string
+}
+
 type LocationPageContent = {
   heroBadge: string
   heroTitle: string
@@ -61,6 +88,11 @@ type LocationPageContent = {
   mapTitle: string
   mapSubtitle: string
   mapCallout: string
+  mapAppButtonLabel: string
+  mapAppDialogTitle: string
+  mapAppDialogSubtitle: string
+  mapAppDialogCloseLabel: string
+  mapAppOptions: MapAppOption[]
   addressLabel: string
   addressValue: string
   addressDescription: string
@@ -83,7 +115,7 @@ export function LocationPageShowcase({
   const content = getLocationContent(locale)
 
   return (
-    <div className="space-y-20 pb-20">
+    <div className="space-y-24 pb-24 md:space-y-32">
       <LocationHeroSection content={content} />
       <LocationMapSection content={content} />
       <LocationGuideSection content={content} />
@@ -104,157 +136,92 @@ function LocationHeroSection({
     return <></>
   }
 
+  const facts = [contactFact, hoursFact, buildingFact]
+
   return (
     <ScrollReveal>
-      <section className="relative overflow-hidden rounded-[2rem] border border-border/50 bg-gradient-to-br from-primary/10 via-background to-background/95 shadow-sm">
-        <div className="absolute -right-24 -top-24 h-64 w-64 rounded-full bg-primary/15 blur-3xl" />
-        <div className="absolute -left-20 bottom-0 h-48 w-48 rounded-full bg-accent/25 blur-3xl" />
-
-        <div className="relative space-y-4 p-6 md:space-y-5 md:p-8 lg:p-10">
-          <div className="grid items-end gap-8 lg:grid-cols-[0.92fr_1.08fr]">
-            <header className="space-y-4 lg:pb-8">
-              <p className="text-sm font-semibold uppercase tracking-[0.3em] text-primary font-playfair italic">
+      <section>
+        <div className="grid gap-10 lg:grid-cols-[0.88fr_1.12fr] lg:items-stretch lg:gap-14">
+          <header className="flex flex-col justify-center space-y-8 text-center lg:text-left">
+            <div className="space-y-5">
+              <p className="eyebrow">
                 {content.heroBadge}
               </p>
-              <h2 className="max-w-[13ch] text-balance break-keep text-3xl leading-[1.18] text-foreground md:text-5xl md:leading-[1.12] font-serif">
+              <h2 className="mx-auto max-w-[14ch] text-balance break-keep font-display-serif text-3xl font-normal leading-[1.4] text-foreground md:text-5xl lg:mx-0">
                 {content.heroTitle}
               </h2>
-              <p className="max-w-[54ch] text-balance break-keep text-sm leading-[1.85] text-foreground/75 md:text-base">
+              <p className="mx-auto max-w-[42ch] text-balance break-keep text-sm leading-[1.9] text-secondary md:text-base lg:mx-0">
                 {content.heroSubtitle}
               </p>
-            </header>
-
-            <div className="relative min-h-[360px] overflow-hidden rounded-[2rem] border border-border/40 shadow-lg">
-              <Image
-                src="/img/location2.png"
-                alt={content.exteriorAlt}
-                fill
-                className="object-cover"
-                sizes="(min-width: 1024px) 42vw, 100vw"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-[#2D241E]/78 via-[#2D241E]/15 to-transparent" />
-              <div className="absolute left-4 top-4 rounded-full border border-white/25 bg-white/15 px-4 py-2 text-xs font-semibold uppercase tracking-[0.18em] text-white backdrop-blur-md md:left-6 md:top-6">
-                {content.exteriorBadge}
-              </div>
-              <div className="absolute inset-x-0 bottom-0 p-4 md:p-6">
-                <div className="rounded-[1.5rem] border border-white/15 bg-black/20 p-5 text-white backdrop-blur-md">
-                  <p className="text-sm font-semibold uppercase tracking-[0.18em] text-white/75">
-                    {content.exteriorTitle}
-                  </p>
-                  <p className="mt-2 text-2xl font-semibold leading-snug">
-                    {content.exteriorBody}
-                  </p>
-                </div>
-              </div>
             </div>
-          </div>
 
-          <div className="grid gap-4 border-t border-border/25 pt-4 md:pt-5 lg:grid-cols-[1.05fr_0.95fr]">
-            <article className="flex h-full flex-col justify-between rounded-[1.75rem] border border-border/35 bg-white/80 p-6 shadow-sm backdrop-blur-md dark:bg-[#2A2928]/60 md:p-7 lg:row-span-2">
-              <div className="space-y-6">
-                <div className="flex items-start gap-4">
-                  <div className="flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-2xl bg-primary/10 text-primary dark:bg-[#333231]">
-                    <CalendarCheck className="h-6 w-6" />
-                  </div>
-                  <div className="min-w-0 space-y-2">
-                    <p className="text-sm font-semibold uppercase tracking-[0.18em] text-primary/80">
-                      {content.reservationEyebrow}
-                    </p>
-                    <p className="max-w-[16ch] text-balance break-keep text-2xl font-semibold leading-[1.24] text-foreground md:text-[1.7rem]">
-                      {content.reservationTitle}
-                    </p>
-                    <p className="max-w-[40ch] break-keep text-[13px] leading-[1.78] text-foreground/70 md:text-base">
-                      {content.reservationDescription}
-                    </p>
-                  </div>
-                </div>
-              </div>
+            <div className="flex flex-col items-center gap-3 lg:items-start">
+              <a
+                href={BOOKING_URL}
+                target="_blank"
+                rel="noreferrer"
+                className="inline-flex items-center justify-center gap-2 bg-foreground px-8 py-3.5 font-sans text-sm font-semibold text-background transition-opacity hover:opacity-90"
+              >
+                {content.buttonLabel}
+                <ArrowUpRight className="h-4 w-4" strokeWidth={1.5} />
+              </a>
+              <p className="break-keep text-[11px] leading-[1.7] text-secondary">
+                {content.reservationNote}
+              </p>
+            </div>
+          </header>
 
-              <div className="mt-8 grid gap-3 md:grid-cols-[auto_1fr] md:items-end">
-                <a
-                  href={BOOKING_URL}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="inline-flex items-center justify-center gap-2 rounded-xl bg-primary px-6 py-3 text-sm font-semibold text-background transition-colors hover:bg-primary/90 md:justify-self-start"
-                >
-                  {content.buttonLabel}
-                  <ArrowUpRight className="h-4 w-4" />
-                </a>
-                <p className=" break-keep text-[11px] leading-[1.7] text-foreground/55 md:justify-self-end md:text-right md:text-xs">
-                  {content.reservationNote}
+          <div className="relative min-h-[380px] overflow-hidden bg-accent/30 lg:min-h-[540px]">
+            <Image
+              src="/img/location2.png"
+              alt={content.exteriorAlt}
+              fill
+              className="object-cover"
+              sizes="(min-width: 1024px) 52vw, 100vw"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-[#2D241E]/78 via-[#2D241E]/15 to-transparent" />
+            <div className="absolute left-5 top-5 font-sans text-[11px] font-semibold uppercase tracking-[0.24em] text-white drop-shadow md:left-6 md:top-6">
+              {content.exteriorBadge}
+            </div>
+            <div className="absolute inset-x-0 bottom-0 p-6 md:p-8">
+              <div className="text-white">
+                <p className="font-sans text-[11px] font-semibold uppercase tracking-[0.24em] text-white/75 drop-shadow">
+                  {content.exteriorTitle}
+                </p>
+                <p className="mt-2 font-display-serif text-2xl font-normal leading-snug drop-shadow">
+                  {content.exteriorBody}
                 </p>
               </div>
-            </article>
-
-            <FactCard
-              fact={buildingFact}
-              className="h-full bg-primary/5"
-              valueClassName="text-xl leading-[1.22]"
-              descriptionClassName="max-w-[32ch]"
-            />
-
-            <div className="grid gap-4 sm:grid-cols-2">
-              <FactCard
-                fact={contactFact}
-                className="h-full"
-                valueClassName="font-sans text-lg leading-none tracking-[-0.045em] whitespace-nowrap tabular-nums md:text-xl"
-                descriptionClassName="max-w-[26ch]"
-              />
-              <FactCard
-                fact={hoursFact}
-                className="h-full"
-                valueClassName="font-sans text-lg leading-[1.08] tracking-[-0.035em] whitespace-nowrap tabular-nums md:text-xl"
-                descriptionClassName="max-w-[26ch]"
-              />
             </div>
           </div>
         </div>
+
+        <div className="mt-16 grid grid-cols-1 border-t border-border sm:grid-cols-3 md:mt-20">
+          {facts.map((fact, index) => (
+            <div
+              key={fact.id}
+              className={clsx(
+                'py-8 sm:px-8 sm:first:pl-0',
+                index > 0 && 'border-t border-border sm:border-t-0 sm:border-l',
+              )}
+            >
+              <div className="mb-4 flex items-center gap-2.5">
+                <fact.Icon className="h-4 w-4 text-primary" strokeWidth={1.5} />
+                <p className="font-sans text-[10px] font-semibold uppercase tracking-[0.24em] text-primary">
+                  {fact.label}
+                </p>
+              </div>
+              <p className="break-keep font-display-serif text-xl font-normal leading-[1.4] text-foreground">
+                {fact.value}
+              </p>
+              <p className="mt-3 max-w-[30ch] break-keep text-[13px] leading-[1.75] text-secondary">
+                {fact.description}
+              </p>
+            </div>
+          ))}
+        </div>
       </section>
     </ScrollReveal>
-  )
-}
-
-function FactCard({
-  fact,
-  className,
-  valueClassName,
-  descriptionClassName,
-}: {
-  fact: QuickFact
-  className?: string
-  valueClassName?: string
-  descriptionClassName?: string
-}): React.JSX.Element {
-  return (
-    <article
-      className={clsx(
-        'rounded-[1.5rem] border border-border/35 bg-white/70 p-5 shadow-sm backdrop-blur-md dark:bg-[#2A2928]/60 md:p-6',
-        className,
-      )}
-    >
-      <div className="mb-4 flex h-11 w-11 items-center justify-center rounded-2xl bg-primary/10 text-primary dark:bg-[#333231]">
-        <fact.Icon className="h-5 w-5" />
-      </div>
-      <p className="text-sm font-semibold uppercase tracking-[0.16em] text-primary/80">
-        {fact.label}
-      </p>
-      <p
-        className={clsx(
-          'mt-2 text-balance break-keep text-lg font-semibold leading-snug text-foreground',
-          valueClassName,
-        )}
-      >
-        {fact.value}
-      </p>
-      <p
-        className={clsx(
-          'mt-3 break-keep text-[13px] leading-[1.75] text-foreground/65 md:text-sm',
-          descriptionClassName,
-        )}
-      >
-        {fact.description}
-      </p>
-    </article>
   )
 }
 
@@ -263,97 +230,363 @@ function LocationMapSection({
 }: {
   content: LocationPageContent
 }): React.JSX.Element {
+  const [isMapDialogOpen, setIsMapDialogOpen] = useState(false)
+  const mapDialogTitleId = useId()
+  const mapDialogDescriptionId = useId()
+
+  useEffect(() => {
+    if (!isMapDialogOpen || typeof window === 'undefined') return
+
+    const previousBodyOverflow = document.body.style.overflow
+    const previousHtmlOverflow = document.documentElement.style.overflow
+
+    document.body.style.overflow = 'hidden'
+    document.documentElement.style.overflow = 'hidden'
+
+    const handleKeyDown = (event: KeyboardEvent): void => {
+      if (event.key === 'Escape') {
+        setIsMapDialogOpen(false)
+      }
+    }
+
+    window.addEventListener('keydown', handleKeyDown)
+
+    return () => {
+      document.body.style.overflow = previousBodyOverflow
+      document.documentElement.style.overflow = previousHtmlOverflow
+      window.removeEventListener('keydown', handleKeyDown)
+    }
+  }, [isMapDialogOpen])
+
+  const handleMapProviderSelect = (providerId: MapProviderId): void => {
+    setIsMapDialogOpen(false)
+    openMapRoute(providerId)
+  }
+
   return (
-    <ScrollReveal>
-      <section className="grid gap-6 lg:grid-cols-[1.08fr_0.92fr]">
-        <div className="rounded-[2rem] border border-border/40 bg-background/80 p-4 shadow-sm backdrop-blur md:p-5">
-          <div className="space-y-3 px-2 pb-5 md:px-3">
-            <p className="text-sm font-semibold uppercase tracking-[0.28em] text-primary font-playfair italic">
-              {content.mapBadge}
-            </p>
-            <h3 className="max-w-[17ch] text-balance break-keep text-2xl font-semibold leading-[1.24] text-foreground md:text-3xl font-serif">
-              {content.mapTitle}
-            </h3>
-            <p className="max-w-[52ch] break-keep text-sm leading-[1.85] text-foreground/72 md:text-base">
-              {content.mapSubtitle}
-            </p>
-          </div>
-
-          <div className="group relative h-[340px] overflow-hidden rounded-[1.75rem] border border-border/30 shadow-md md:h-[420px]">
-            <iframe
-              title="The Helia Location"
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3174.8384058135257!2d126.95109607716499!3d37.275258840774896!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x277bcbed795ddd7%3A0xad9cdb91d0fde45f!2z642U7Zes66as7JWEIOyCsO2bhOyhsOumrOybkA!5e0!3m2!1sko!2sus!4v1760246577990!5m2!1sko!2sus"
-              loading="lazy"
-              className="h-full w-full grayscale-[8%] transition-all duration-700 group-hover:grayscale-0"
-              referrerPolicy="no-referrer-when-downgrade"
-              allowFullScreen
-            />
-            <div className="absolute right-4 top-4 rounded-full border border-white/50 bg-white/90 px-4 py-2 text-xs font-semibold text-foreground shadow-sm backdrop-blur-md">
-              {content.mapCallout}
-            </div>
-          </div>
-        </div>
-
-        <div className="space-y-4">
-          <article className="rounded-[2rem] border border-border/40 bg-white/80 p-6 shadow-sm backdrop-blur-md dark:bg-[#2A2928]/60">
-            <div className="flex items-start gap-4">
-              <div className="flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-2xl bg-primary/10 text-primary dark:bg-[#333231]">
-                <MapPinIcon className="h-6 w-6" />
-              </div>
-              <div className="space-y-2">
-                <p className="text-sm font-semibold uppercase tracking-[0.18em] text-primary/80">
-                  {content.addressLabel}
-                </p>
-                <p className="max-w-[26ch] text-balance break-keep text-lg font-semibold leading-relaxed text-foreground">
-                  {content.addressValue}
-                </p>
-                <p className="max-w-[40ch] break-keep text-[13px] leading-[1.8] text-foreground/70 md:text-sm">
-                  {content.addressDescription}
-                </p>
-              </div>
-            </div>
-          </article>
-
-          <article className="rounded-[2rem] border border-border/40 bg-gradient-to-br from-primary/10 via-background to-background/95 p-6 shadow-sm">
-            <div className="mb-5 flex items-center gap-4">
-              <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-primary/10 text-primary dark:bg-[#333231]">
-                <Navigation className="h-6 w-6" />
-              </div>
-              <div>
-                <p className="text-sm font-semibold uppercase tracking-[0.18em] text-primary/80">
-                  {content.stepsEyebrow}
-                </p>
-                <h3 className="max-w-[19ch] text-balance break-keep text-xl font-semibold text-foreground font-serif">
-                  {content.stepsTitle}
-                </h3>
-              </div>
-            </div>
-
-            <div className="space-y-4">
-              {content.steps.map((step, index) => (
-                <div
-                  key={step.id}
-                  className="flex gap-4 rounded-[1.5rem] border border-border/35 bg-white/75 p-4 shadow-sm dark:bg-[#2A2928]/60"
+    <>
+      <ScrollReveal>
+        <section className="grid gap-12 lg:grid-cols-[1.08fr_0.92fr] lg:gap-10">
+          <div>
+            <div className="space-y-4 pb-6 text-center md:text-left">
+              <p className="eyebrow">
+                {content.mapBadge}
+              </p>
+              <h3 className="mx-auto max-w-[17ch] text-balance break-keep font-display-serif text-2xl font-normal leading-[1.4] text-foreground md:mx-0 md:text-3xl">
+                {content.mapTitle}
+              </h3>
+              <p className="mx-auto max-w-[38ch] break-keep text-sm leading-[1.85] text-secondary md:mx-0 md:max-w-[52ch] md:text-base">
+                {content.mapSubtitle}
+              </p>
+              <div className="flex justify-center pt-1 md:justify-start">
+                <button
+                  type="button"
+                  onClick={() => setIsMapDialogOpen(true)}
+                  className="inline-flex w-full items-center justify-center gap-2 border border-foreground/30 bg-background px-5 py-3 font-sans text-sm font-semibold text-foreground transition-colors hover:border-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40 sm:w-auto"
                 >
-                  <div className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-full bg-primary text-sm font-semibold text-background">
-                    {index + 1}
-                  </div>
-                  <div>
-                    <p className="max-w-[24ch] text-balance break-keep text-[15px] font-semibold text-foreground md:text-base">
-                      {step.title}
-                    </p>
-                    <p className="mt-1 max-w-[38ch] break-keep text-[13px] leading-[1.75] text-foreground/70 md:text-sm">
-                      {step.body}
-                    </p>
-                  </div>
-                </div>
-              ))}
+                  <Navigation className="h-4 w-4 text-primary" strokeWidth={1.5} />
+                  {content.mapAppButtonLabel}
+                </button>
+              </div>
             </div>
-          </article>
-        </div>
-      </section>
-    </ScrollReveal>
+
+            <div className="group relative h-[340px] overflow-hidden border border-border md:h-[420px]">
+              <iframe
+                title="The Helia Location"
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3174.8384058135257!2d126.95109607716499!3d37.275258840774896!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x277bcbed795ddd7%3A0xad9cdb91d0fde45f!2z642U7Zes66as7JWEIOyCsO2bhOyhsOumrOybkA!5e0!3m2!1sko!2sus!4v1760246577990!5m2!1sko!2sus"
+                loading="lazy"
+                className="h-full w-full grayscale-[8%] transition-all duration-700 group-hover:grayscale-0"
+                referrerPolicy="no-referrer-when-downgrade"
+                allowFullScreen
+              />
+              <div className="absolute right-4 top-4 border border-border bg-background px-3 py-1.5 font-sans text-[10px] font-semibold uppercase tracking-[0.2em] text-foreground">
+                {content.mapCallout}
+              </div>
+            </div>
+          </div>
+
+          <div className="space-y-10">
+            <article className="border-t border-border pt-6">
+              <div className="flex items-start gap-4">
+                <MapPinIcon className="mt-1 h-5 w-5 flex-shrink-0 text-primary" strokeWidth={1.5} />
+                <div className="space-y-2">
+                  <p className="font-sans text-[10px] font-semibold uppercase tracking-[0.24em] text-primary">
+                    {content.addressLabel}
+                  </p>
+                  <p className="max-w-[26ch] text-balance break-keep font-display-serif text-lg font-normal leading-relaxed text-foreground">
+                    {content.addressValue}
+                  </p>
+                  <p className="max-w-[40ch] break-keep text-[13px] leading-[1.8] text-secondary md:text-sm">
+                    {content.addressDescription}
+                  </p>
+                </div>
+              </div>
+            </article>
+
+            <article className="border-t border-border pt-6">
+              <div className="mb-6 flex items-start gap-4">
+                <Navigation className="mt-1 h-5 w-5 flex-shrink-0 text-primary" strokeWidth={1.5} />
+                <div className="space-y-2">
+                  <p className="font-sans text-[10px] font-semibold uppercase tracking-[0.24em] text-primary">
+                    {content.stepsEyebrow}
+                  </p>
+                  <h3 className="max-w-[19ch] text-balance break-keep font-display-serif text-xl font-normal leading-[1.4] text-foreground">
+                    {content.stepsTitle}
+                  </h3>
+                </div>
+              </div>
+
+              <div>
+                {content.steps.map((step, index) => (
+                  <div
+                    key={step.id}
+                    className="flex gap-4 border-t border-border py-4"
+                  >
+                    <div className="w-6 flex-shrink-0 pt-0.5 font-display-serif text-lg leading-none tabular-nums text-primary">
+                      {index + 1}
+                    </div>
+                    <div>
+                      <p className="max-w-[24ch] text-balance break-keep text-[15px] font-semibold text-foreground md:text-base">
+                        {step.title}
+                      </p>
+                      <p className="mt-1 max-w-[38ch] break-keep text-[13px] leading-[1.75] text-secondary md:text-sm">
+                        {step.body}
+                      </p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </article>
+          </div>
+        </section>
+      </ScrollReveal>
+
+      {isMapDialogOpen ? (
+        <MapAppDialog
+          content={content}
+          descriptionId={mapDialogDescriptionId}
+          titleId={mapDialogTitleId}
+          onClose={() => setIsMapDialogOpen(false)}
+          onSelect={handleMapProviderSelect}
+        />
+      ) : null}
+    </>
   )
+}
+
+function MapAppDialog({
+  content,
+  descriptionId,
+  titleId,
+  onClose,
+  onSelect,
+}: {
+  content: LocationPageContent
+  descriptionId: string
+  titleId: string
+  onClose: () => void
+  onSelect: (providerId: MapProviderId) => void
+}): React.JSX.Element {
+  if (typeof document === 'undefined') {
+    return <></>
+  }
+
+  return createPortal(
+    <div
+      className="fixed inset-0 z-[120] flex items-end bg-black/60 px-4 md:items-center md:justify-center md:px-6 md:py-8"
+      onClick={onClose}
+    >
+      <div
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby={titleId}
+        aria-describedby={descriptionId}
+        className="relative mb-0 flex max-h-[88vh] w-full max-w-lg flex-col overflow-hidden rounded-t-lg border border-border bg-background md:rounded-none"
+        onClick={(event) => event.stopPropagation()}
+      >
+        <div className="flex items-start justify-between gap-4 border-b border-border px-5 pb-5 pt-5 sm:px-6 sm:pb-6 sm:pt-6">
+          <div className="min-w-0">
+            <div className="eyebrow mb-3 inline-flex items-center gap-2">
+              <Navigation className="h-3 w-3" strokeWidth={1.5} />
+              MAP APP
+            </div>
+            <h3
+              id={titleId}
+              className="break-keep font-display-serif text-2xl font-normal leading-[1.4] text-foreground sm:text-3xl"
+            >
+              {content.mapAppDialogTitle}
+            </h3>
+            <p
+              id={descriptionId}
+              className="mt-3 break-keep text-sm leading-[1.85] text-secondary sm:text-base"
+            >
+              {content.mapAppDialogSubtitle}
+            </p>
+          </div>
+          <button
+            type="button"
+            aria-label={content.mapAppDialogCloseLabel}
+            onClick={onClose}
+            className="inline-flex h-11 w-11 flex-shrink-0 items-center justify-center border border-border bg-background text-foreground transition-colors hover:border-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40"
+          >
+            <X className="h-4 w-4" strokeWidth={1.5} />
+          </button>
+        </div>
+
+        <div
+          data-lenis-prevent
+          className="space-y-3 overflow-y-auto overscroll-contain px-5 pb-[calc(env(safe-area-inset-bottom)+1.5rem)] pt-5 sm:px-6 sm:pb-6"
+        >
+          {content.mapAppOptions.map((option) => {
+            const Icon = MAP_PROVIDER_ICONS[option.id]
+
+            return (
+              <button
+                key={option.id}
+                type="button"
+                onClick={() => onSelect(option.id)}
+                className="group flex w-full items-center gap-4 border border-border bg-background p-4 text-left transition-colors hover:border-foreground/40 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40 sm:p-5"
+              >
+                <Icon className="h-5 w-5 flex-shrink-0 text-primary" strokeWidth={1.5} />
+                <span className="min-w-0 flex-1">
+                  <span className="block break-keep text-base font-semibold text-foreground">
+                    {option.label}
+                  </span>
+                  <span className="mt-1 block break-keep text-[13px] leading-[1.7] text-secondary sm:text-sm">
+                    {option.description}
+                  </span>
+                </span>
+                <ArrowUpRight className="h-4 w-4 flex-shrink-0 text-primary transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" strokeWidth={1.5} />
+              </button>
+            )
+          })}
+        </div>
+      </div>
+    </div>,
+    document.body,
+  )
+}
+
+function openMapRoute(providerId: MapProviderId): void {
+  if (typeof window === 'undefined') return
+
+  const routeTarget = getMapRouteTarget(providerId)
+
+  if (!routeTarget.usesFallbackTimer) {
+    window.location.href = routeTarget.url
+    return
+  }
+
+  const openedAt = Date.now()
+
+  window.location.href = routeTarget.url
+  window.setTimeout(() => {
+    const elapsed = Date.now() - openedAt
+
+    if (document.visibilityState === 'visible' && elapsed < MAP_APP_FALLBACK_DELAY + 800) {
+      window.location.href = routeTarget.fallbackUrl
+    }
+  }, MAP_APP_FALLBACK_DELAY)
+}
+
+function getMapRouteTarget(providerId: MapProviderId): {
+  url: string
+  fallbackUrl: string
+  usesFallbackTimer: boolean
+} {
+  const isAndroid = typeof window !== 'undefined' && /Android/i.test(window.navigator.userAgent)
+
+  if (providerId === 'apple') {
+    const appleMapsUrl = buildAppleMapsUrl()
+
+    return {
+      url: appleMapsUrl,
+      fallbackUrl: appleMapsUrl,
+      usesFallbackTimer: false,
+    }
+  }
+
+  if (providerId === 'kakao') {
+    const fallbackUrl = buildKakaoFallbackUrl()
+
+    return {
+      url: isAndroid ? buildKakaoIntentUrl(fallbackUrl) : buildKakaoAppUrl(),
+      fallbackUrl,
+      usesFallbackTimer: true,
+    }
+  }
+
+  const fallbackUrl = buildNaverFallbackUrl()
+
+  return {
+    url: isAndroid ? buildNaverIntentUrl(fallbackUrl) : buildNaverAppUrl(),
+    fallbackUrl,
+    usesFallbackTimer: true,
+  }
+}
+
+function buildNaverRouteQuery(): string {
+  return new URLSearchParams({
+    dlat: HELIA_DESTINATION.lat,
+    dlng: HELIA_DESTINATION.lng,
+    dname: HELIA_DESTINATION.name,
+    appname: SITE_URL,
+  }).toString()
+}
+
+function buildNaverAppUrl(): string {
+  return `nmap://route/car?${buildNaverRouteQuery()}`
+}
+
+function buildNaverIntentUrl(fallbackUrl: string): string {
+  const routeQuery = buildNaverRouteQuery()
+  const encodedFallbackUrl = encodeURIComponent(fallbackUrl)
+
+  return [
+    `intent://route/car?${routeQuery}#Intent`,
+    'scheme=nmap',
+    'action=android.intent.action.VIEW',
+    'category=android.intent.category.BROWSABLE',
+    'package=com.nhn.android.nmap',
+    `S.browser_fallback_url=${encodedFallbackUrl}`,
+    'end',
+  ].join(';')
+}
+
+function buildNaverFallbackUrl(): string {
+  return `https://map.naver.com/p/search/${encodeURIComponent(HELIA_DESTINATION.name)}`
+}
+
+function buildKakaoAppUrl(): string {
+  return `kakaomap://route?ep=${HELIA_DESTINATION.lat},${HELIA_DESTINATION.lng}&by=car`
+}
+
+function buildKakaoIntentUrl(fallbackUrl: string): string {
+  const encodedFallbackUrl = encodeURIComponent(fallbackUrl)
+
+  return [
+    `intent://route?ep=${HELIA_DESTINATION.lat},${HELIA_DESTINATION.lng}&by=car#Intent`,
+    'scheme=kakaomap',
+    'action=android.intent.action.VIEW',
+    'category=android.intent.category.BROWSABLE',
+    'package=net.daum.android.map',
+    `S.browser_fallback_url=${encodedFallbackUrl}`,
+    'end',
+  ].join(';')
+}
+
+function buildKakaoFallbackUrl(): string {
+  return `https://map.kakao.com/link/to/${encodeURIComponent(HELIA_DESTINATION.name)},${HELIA_DESTINATION.lat},${HELIA_DESTINATION.lng}`
+}
+
+function buildAppleMapsUrl(): string {
+  const params = new URLSearchParams({
+    daddr: `${HELIA_DESTINATION.lat},${HELIA_DESTINATION.lng}`,
+    q: HELIA_DESTINATION.name,
+    dirflg: 'd',
+  })
+
+  return `https://maps.apple.com/?${params.toString()}`
 }
 
 function LocationGuideSection({
@@ -363,36 +596,36 @@ function LocationGuideSection({
 }): React.JSX.Element {
   return (
     <ScrollReveal>
-      <section className="overflow-hidden rounded-[2rem] border border-border/40 bg-gradient-to-br from-background via-primary/5 to-background/95 shadow-sm">
-        <div className="space-y-8 p-6 md:p-10">
-          <header className="max-w-3xl space-y-3">
-            <p className="text-sm font-semibold uppercase tracking-[0.28em] text-primary font-playfair italic">
+      <section className="bg-accent/35 px-6 py-12 md:px-10 md:py-16">
+        <div className="space-y-10">
+          <header className="max-w-3xl space-y-4 text-center md:text-left">
+            <p className="eyebrow">
               {content.guidesBadge}
             </p>
-            <h3 className="max-w-[19ch] text-balance break-keep text-2xl font-semibold leading-[1.24] text-foreground md:text-3xl font-serif">
+            <h3 className="mx-auto max-w-[19ch] text-balance break-keep font-display-serif text-2xl font-normal leading-[1.4] text-foreground md:mx-0 md:text-3xl">
               {content.guidesTitle}
             </h3>
-            <p className="max-w-[54ch] break-keep text-sm leading-[1.85] text-foreground/72 md:text-base">
+            <p className="mx-auto max-w-[38ch] break-keep text-sm leading-[1.85] text-secondary md:mx-0 md:max-w-[54ch] md:text-base">
               {content.guidesSubtitle}
             </p>
           </header>
 
-          <div className="grid gap-5 md:grid-cols-2 xl:grid-cols-3">
+          <div className="grid gap-x-8 gap-y-10 md:grid-cols-2 xl:grid-cols-3">
             {content.guideCards.map((card) => (
               <article
                 key={card.id}
-                className="flex h-full flex-col rounded-[1.75rem] border border-border/35 bg-white/80 p-6 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-md dark:bg-[#2A2928]/60"
+                className="flex h-full flex-col border-t border-border pt-6"
               >
-                <div className="mb-5 flex h-12 w-12 items-center justify-center rounded-2xl bg-primary/10 text-primary dark:bg-[#333231]">
-                  <card.Icon className="h-6 w-6" />
+                <div className="mb-5 flex items-center justify-between gap-3">
+                  <card.Icon className="h-5 w-5 text-primary" strokeWidth={1.5} />
+                  <p className="font-sans text-[10px] font-semibold uppercase tracking-[0.24em] text-primary">
+                    {card.title}
+                  </p>
                 </div>
-                <p className="text-sm font-semibold uppercase tracking-[0.18em] text-primary/80">
-                  {card.title}
-                </p>
-                <p className="mt-2 text-balance break-keep text-xl font-semibold leading-snug text-foreground">
+                <p className="text-balance break-keep font-display-serif text-xl font-normal leading-[1.4] text-foreground">
                   {card.value}
                 </p>
-                <p className="mt-3 max-w-[30ch] break-keep text-[13px] leading-[1.75] text-foreground/70 md:text-sm">
+                <p className="mt-3 max-w-[30ch] break-keep text-[13px] leading-[1.85] text-secondary md:text-sm">
                   {card.description}
                 </p>
 
@@ -400,9 +633,9 @@ function LocationGuideSection({
                   {card.points.map((point) => (
                     <li
                       key={point}
-                      className="flex items-start gap-3 break-keep text-[13px] leading-[1.75] text-foreground/72 md:text-sm"
+                      className="flex items-start gap-3 break-keep text-[13px] leading-[1.75] text-foreground/80 md:text-sm"
                     >
-                      <CheckCircle2 className="mt-0.5 h-4 w-4 flex-shrink-0 text-primary" />
+                      <CheckCircle2 className="mt-0.5 h-4 w-4 flex-shrink-0 text-primary" strokeWidth={1.5} />
                       <span>{point}</span>
                     </li>
                   ))}
@@ -483,6 +716,37 @@ function getLocationContent(locale: Locale): LocationPageContent {
       ? '건물 위치를 먼저 확인한 뒤, 도착 후에는 안내 데스크 등록 순서대로 이동하시면 됩니다.'
       : 'Check the building location first, then follow the check-in flow once you arrive.',
     mapCallout: isKo ? 'MS메디컬스퀘어 5·6층' : 'MS Medical Square 5F-6F',
+    mapAppButtonLabel: isKo ? '지도 앱으로 길찾기' : 'Open in map app',
+    mapAppDialogTitle: isKo
+      ? '사용할 지도 앱을 선택해 주세요'
+      : 'Choose your map app',
+    mapAppDialogSubtitle: isKo
+      ? '선택한 지도 앱에서 현재 위치 기준 길찾기를 엽니다. 이동수단은 앱에서 변경할 수 있습니다.'
+      : 'Open directions from your current location to The Helia. You can change the travel mode in the map app.',
+    mapAppDialogCloseLabel: isKo ? '지도 앱 선택 닫기' : 'Close map app chooser',
+    mapAppOptions: [
+      {
+        id: 'naver',
+        label: isKo ? '네이버 지도' : 'Naver Map',
+        description: isKo
+          ? '네이버 지도 앱에서 더헬리아까지 길찾기를 엽니다.'
+          : 'Open directions to The Helia in Naver Map.',
+      },
+      {
+        id: 'kakao',
+        label: isKo ? '카카오맵' : 'KakaoMap',
+        description: isKo
+          ? '카카오맵 앱에서 더헬리아까지 길찾기를 엽니다.'
+          : 'Open directions to The Helia in KakaoMap.',
+      },
+      {
+        id: 'apple',
+        label: isKo ? '애플 지도' : 'Apple Maps',
+        description: isKo
+          ? '아이폰 기본 지도 앱에서 현재 위치 기준 길찾기를 엽니다.'
+          : 'Open directions from here in Apple Maps.',
+      },
+    ],
     addressLabel: isKo ? '주소' : 'Address',
     addressValue: isKo
       ? '경기도 수원시 권선구 금곡로197번길 18-39'

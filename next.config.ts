@@ -15,6 +15,10 @@ const nextConfig: NextConfig = {
         protocol: "https",
         hostname: "**.naver.net",
       },
+      {
+        protocol: "https",
+        hostname: "**.public.blob.vercel-storage.com",
+      },
     ],
   },
   async redirects() {

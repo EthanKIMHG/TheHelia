@@ -21,23 +21,23 @@ export function FaqPageContent() {
   return (
     <div className="w-full max-w-4xl mx-auto">
       <ScrollReveal>
-        <div className="flex flex-col gap-4">
+        <div className="flex flex-col divide-y divide-border border-y border-border">
           {FAQ_ITEMS.map((item, index) => {
             const isOpen = openIndex === index;
             return (
               <div
                 key={index}
-                className="bg-white dark:bg-[#2A2928]/40 rounded-2xl border border-primary/10 overflow-hidden transition-all duration-300 hover:shadow-md"
+                className="overflow-hidden"
               >
                 <button
                   onClick={() => toggleIndex(index)}
-                  className="w-full flex items-center justify-between p-6 text-left focus:outline-none"
+                  className="w-full flex items-center justify-between py-6 text-left focus:outline-none"
                 >
-                  <span className="text-lg font-semibold text-foreground pr-8">
+                  <span className="pr-8 font-display-serif text-lg font-normal leading-[1.5] text-foreground">
                     {isKo ? item.question.ko : item.question.en}
                   </span>
-                  <div className={`flex-shrink-0 w-8 h-8 rounded-full flex items-center justify-center transition-colors ${isOpen ? 'bg-primary text-white' : 'bg-primary/10 text-primary'}`}>
-                    {isOpen ? <Minus className="w-5 h-5" /> : <Plus className="w-5 h-5" />}
+                  <div className="flex-shrink-0 text-primary">
+                    {isOpen ? <Minus className="h-5 w-5" strokeWidth={1.5} /> : <Plus className="h-5 w-5" strokeWidth={1.5} />}
                   </div>
                 </button>
                 <AnimatePresence initial={false}>
@@ -48,9 +48,8 @@ export function FaqPageContent() {
                       exit={{ height: 0, opacity: 0 }}
                       transition={{ duration: 0.3, ease: "easeInOut" }}
                     >
-                      <div className="px-6 pb-6 pt-0">
-                        <div className="h-px w-full bg-primary/10 mb-6" />
-                        <p className="text-foreground leading-relaxed whitespace-pre-line">
+                      <div className="pb-6 pt-0">
+                        <p className="whitespace-pre-line leading-loose text-secondary">
                           {isKo ? item.answer.ko : item.answer.en}
                         </p>
                       </div>

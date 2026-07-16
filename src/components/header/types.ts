@@ -22,7 +22,6 @@ export type NavItemDefinition = {
     src: string;
     alt: Record<Locale, string>;
   };
-  comingSoon?: boolean;
   label: Record<Locale, string>;
   description?: Record<Locale, string>;
   sub?: SubNavItemDefinition[];
@@ -34,7 +33,6 @@ export type NavItem = {
   href?: string;
   baseHref?: string;
   description?: string;
-  comingSoon?: boolean;
   previewImage?: {
     src: string;
     alt: string;

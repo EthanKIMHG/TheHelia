@@ -5,6 +5,7 @@ import { motion } from "framer-motion";
 
 import { useOptionalThemeLocale } from "@/context/theme-locale-context";
 import { DEFAULT_BLUR_DATA_URL } from "@/lib/blur-placeholder";
+import { blobUrl } from "@/lib/media";
 import clsx from "clsx";
 import Image from "next/image";
 import { useCallback, useEffect, useState } from "react";
@@ -43,9 +44,9 @@ export function HomeIntroView({
       <section
         id="intro"
         ref={(node) => registerSection("intro", node)}
-        className="flex min-h-[60vh] w-full items-center justify-center bg-background px-6 py-12 text-foreground md:py-20"
+        className="flex min-h-[60vh] w-full items-center justify-center bg-background px-6 py-24 text-foreground md:py-40"
       >
-        <ScrollReveal className="mx-auto flex w-full max-w-4xl flex-col items-start gap-12 text-left md:items-center md:text-center">
+        <ScrollReveal className="mx-auto flex w-full max-w-4xl flex-col items-center gap-12 text-center">
           <IntroHeroContent
             primary={copy.primaryText}
             secondary={copy.secondaryText}
@@ -84,16 +85,17 @@ function IntroHeroContent({ primary, secondary, theme }: IntroHeroContentProps) 
       : "/img/logo/page_logo.png";
 
   return (
-    <div className="flex w-full flex-col items-start gap-10 text-left md:items-center md:text-center">
+    <div className="flex w-full flex-col items-center gap-10 text-center">
       <div className="relative">
         <Image
           src={logoSrc}
           alt="The Helia emblem"
           width={260}
           height={120}
-          className="object-contain"
+          className="w-36 object-contain md:w-44"
           priority
           placeholder="blur"
+          
           blurDataURL={DEFAULT_BLUR_DATA_URL}
         />
       </div>
@@ -101,12 +103,12 @@ function IntroHeroContent({ primary, secondary, theme }: IntroHeroContentProps) 
       <IntroTextReveal
         text={primary}
         scrub={false}
-        className="text-2xl leading-[1.28] break-keep text-foreground md:text-5xl md:leading-tight"
+        className="font-display-serif text-2xl font-normal leading-[1.7] tracking-[0.01em] break-keep text-foreground md:text-4xl md:leading-[1.65]"
         animationDuration={1}
       />
       <IntroTextReveal
         text={secondary}
-        className="max-w-[30ch] text-lg leading-relaxed text-foreground break-keep md:mx-auto md:max-w-3xl md:text-[20px]"
+        className="mx-auto max-w-[30ch] text-base leading-loose text-secondary break-keep md:max-w-3xl md:text-[17px] md:leading-[2.05]"
         scrub={false}
         scrollStart="top bottom"
         scrollEnd="center center"
@@ -151,7 +153,7 @@ function IntroTextReveal({
 const KOREAN_COPY = {
   primaryText: "최고의 시설과 세심한 배려를 담아 \n잊지 못할 14일을 선사합니다.",
   secondaryText:
-    "더헬리아 산후조리원은 타협하지 않는 하이엔드 시설과 독보적인 신생아 케어 시스템, 그리고 산모님을 위한 격조 높은 서비스를 약속합니다. \n모든 것이 완벽하게 준비된 최고의 공간에서, 가격 이상의 가치를 경험해 보세요. \n당신의 기억 속에 영원히 남을 선물 같은 14일을 선사하겠습니다.",
+    "타협 없는 시설과 독보적인 신생아 케어로, 잊지 못할 14일을 선물합니다.",
   grid: [
     {
       title: "프라이빗 객실",
@@ -159,7 +161,7 @@ const KOREAN_COPY = {
         "아늑하고 쾌적한 프라이빗 공간에서 시간을 보내며 산후 회복에 집중하실 수 있습니다.",
       meta: "VIP · VVIP · PRESTIGE",
       image: {
-        src: "/img/room/prestige1.jpg",
+        src: blobUrl("img/room/prestige_livingroom2.jpg"),
         alt: "더헬리아 프레스티지 스위트 객실 전경",
       },
       bullets: [
@@ -175,7 +177,7 @@ const KOREAN_COPY = {
         "24시간 전문 간호 인력이 상주하며 아가들의 컨디션을 세심하게 살핍니다",
       meta: "24H Nursery",
       image: {
-        src: "/img/infantroom.jpg",
+        src: blobUrl("img/infant/infant2.jpg"),
         alt: "더헬리아 산후조리원 신생아실 케어 공간",
       },
       bullets: [
@@ -210,7 +212,7 @@ const ENGLISH_COPY = {
   primaryText:
     "Thoughtful care and premium amenities for an unforgettable 14-day stay.",
   secondaryText:
-    "The Helia combines exceptional suites with differentiated newborn care and premium recovery services, while keeping pricing reasonable. Every detail is prepared so you can remember these 14 days as the most comforting chapter.",
+    "Uncompromising suites and singular newborn care, for an unforgettable fourteen days.",
   grid: [
     {
       title: "Private Suites",
@@ -218,7 +220,7 @@ const ENGLISH_COPY = {
         "Spend time in a cozy, comfortable private space while focusing on postpartum recovery.",
       meta: "VIP · VVIP · PRESTIGE",
       image: {
-        src: "/img/room/prestige1.jpg",
+        src: blobUrl("img/room/prestige_livingroom1.jpg"),
         alt: "Prestige suite room at The Helia postpartum care center",
       },
       bullets: [
@@ -234,7 +236,7 @@ const ENGLISH_COPY = {
         "Professional nursing staff are on site 24 hours a day, carefully monitoring each baby's condition.",
       meta: "24H Nursery",
       image: {
-        src: "/img/infantroom.jpg",
+        src: blobUrl("img/infant/infant2.jpg"),
         alt: "Nursery care room at The Helia postpartum care center",
       },
       bullets: [

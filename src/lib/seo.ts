@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 
 import { getSubPageContent } from '@/components/header/nav-data'
 import type { Locale } from '@/components/header/types'
+import { blobUrl } from '@/lib/media'
 import { SITE_IMAGE_URL } from '@/lib/site'
 
 export type LocalePageProps = {
@@ -61,14 +62,14 @@ const PAGE_IMAGE_OVERRIDES: Partial<Record<string, RouteImageOverride>> = {
     },
   },
   '/room-suites/prestige': {
-    src: '/img/room/prestige1.jpg',
+    src: blobUrl('img/room/prestige_livingroom1.jpg'),
     alt: {
       ko: '더헬리아 프레스티지 스위트 거실 전경',
       en: 'Living area of the Prestige suite at The Helia',
     },
   },
   '/room-suites/vvip': {
-    src: '/img/room/vvip1.jpg',
+    src: blobUrl('img/room/vvip_livingroom1.jpg'),
     alt: {
       ko: '더헬리아 VVIP 스위트 객실 전경',
       en: 'VVIP suite overview at The Helia',
@@ -89,7 +90,7 @@ const PAGE_IMAGE_OVERRIDES: Partial<Record<string, RouteImageOverride>> = {
     },
   },
   '/service/baby-spa': {
-    src: '/img/babyspa/babyspa1.jpg',
+    src: blobUrl('img/babyspa/babyspa1.jpg'),
     alt: {
       ko: '더헬리아 베이비 스파 프로그램 대표 이미지',
       en: 'Baby spa program image at The Helia',

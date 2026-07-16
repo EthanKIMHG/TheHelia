@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 
 import { SubPageTemplate } from '@/components/SubPageTemplate'
 import { HeliaSpaPageContent } from '@/components/service/HeliaSpaPageContent'
+import { blobUrl } from '@/lib/media'
 import { buildSubPageMetadata, normalizeLocale, type LocalePageProps } from '@/lib/seo'
 
 export async function generateMetadata({ params }: LocalePageProps): Promise<Metadata> {
@@ -17,7 +18,17 @@ export default async function HeliaSpaPage({
   const normalizedLocale = normalizeLocale(locale)
 
   return (
-    <SubPageTemplate path="/service/helia-spa" localeOverride={normalizedLocale}>
+    <SubPageTemplate
+      path="/service/helia-spa"
+      localeOverride={normalizedLocale}
+      heroVariant="cinematic"
+      heroImageSrc={blobUrl('img/subhero/us/helia-spa.jpg')}
+      heroImageAlt={
+        normalizedLocale === 'ko'
+          ? '헬리아 스파의 따뜻하고 고요한 프라이빗 라운지'
+          : 'The warm, serene private lounge at Helia Spa'
+      }
+    >
       <HeliaSpaPageContent />
     </SubPageTemplate>
   )

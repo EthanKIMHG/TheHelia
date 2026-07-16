@@ -2,18 +2,15 @@
 
 import clsx from "clsx";
 import { motion } from "framer-motion";
-import { GlobeIcon, Languages, Menu, MoonIcon, SunIcon } from "lucide-react";
-import Image from "next/image";
+import { Menu } from "lucide-react";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import { useCallback, useEffect, useMemo, useState } from "react";
 
 import { useThemeLocale } from "@/context/theme-locale-context";
-import { DesktopNavPanel } from "./header/DesktopNavPanel";
-import { DesktopPrimaryNav } from "./header/DesktopPrimaryNav";
-import { MobileNavDrawer } from "./header/MobileNavDrawer";
+import { FullscreenNav } from "./header/FullscreenNav";
 import { getLocalizedNavItems } from "./header/nav-data";
-import type { Locale, NavItem, NavSubItem, PreviewData } from "./header/types";
+import type { Locale } from "./header/types";
 
 const SUPPORTED_LOCALES: Locale[] = ["ko", "en"];
 
@@ -32,51 +29,20 @@ export default function Header() {
   const pathname = usePathname();
   const { theme, locale, setLocale, toggleTheme } = useThemeLocale();
 
-  const [mobileOpen, setMobileOpen] = useState(false);
-  const [activeNav, setActiveNav] = useState<NavItem | null>(null);
-  const [previewData, setPreviewData] = useState<PreviewData | null>(null);
-  const [mobileSections, setMobileSections] = useState<Record<string, boolean>>({});
+  const [navOpen, setNavOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
 
   const normalizedPath = useMemo(() => stripLocaleFromPath(pathname ?? "/"), [pathname]);
+  const isHome = normalizedPath === "/";
+
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 24);
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
 
   const navItems = useMemo(() => getLocalizedNavItems(locale), [locale]);
-
-  const buildPreviewData = useCallback((subItem?: NavSubItem | null): PreviewData | null => {
-    if (!subItem || !subItem.previewImage) return null;
-    return {
-      src: subItem.previewImage.src,
-      alt: subItem.previewImage.alt,
-      label: subItem.label,
-      copy: subItem.previewCopy,
-    };
-  }, []);
-
-  const handleNavClick = useCallback(
-    (item: NavItem) => {
-      if (!item.sub?.length) {
-        setActiveNav(null);
-        setPreviewData(null);
-        return;
-      }
-      setActiveNav((current) => {
-        const isSame = current?.id === item.id;
-        if (isSame) {
-          setPreviewData(null);
-          return null;
-        }
-        setPreviewData(buildPreviewData(item.sub?.[0] ?? null));
-        return item;
-      });
-    },
-    [buildPreviewData],
-  );
-
-  const closeOverlays = useCallback(() => {
-    setActiveNav(null);
-    setMobileOpen(false);
-    setPreviewData(null);
-    setMobileSections({});
-  }, []);
 
   const changeLocale = useCallback(
     (nextLocale: Locale) => {
@@ -84,140 +50,143 @@ export default function Header() {
       setLocale(nextLocale);
       const basePath = normalizedPath === "/" ? "" : normalizedPath;
       const target = `/${nextLocale}${basePath}`.replace(/\/{2,}/g, "/");
-      setMobileOpen(false);
-      setMobileSections({});
-      setActiveNav(null);
-      setPreviewData(null);
+      setNavOpen(false);
       router.push(target);
     },
     [locale, normalizedPath, router, setLocale],
   );
 
-  const isActivePath = useCallback(
-    (item: NavItem) => {
-      if (item.sub?.some((subItem) => normalizedPath.startsWith(subItem.baseHref))) {
-        return true;
-      }
-      if (item.baseHref) {
-        if (item.baseHref === "/") {
-          return normalizedPath === "/";
-        }
-        return normalizedPath.startsWith(item.baseHref);
-      }
-      return false;
-    },
-    [normalizedPath],
-  );
-
   useEffect(() => {
-    setActiveNav(null);
-    setPreviewData(null);
-    setMobileOpen(false);
+    setNavOpen(false);
   }, [normalizedPath]);
 
-  useEffect(() => {
-    setMobileSections((current) => {
-      const next = { ...current };
-      navItems.forEach((item) => {
-        if (item.sub?.some((sub) => normalizedPath.startsWith(sub.baseHref))) {
-          next[item.id] = true;
-        }
-      });
-      return next;
-    });
-  }, [navItems, normalizedPath]);
+  const solid = !isHome || scrolled;
 
   return (
-    <motion.header
-      initial={{ y: -20, opacity: 0 }}
-      animate={{ y: 0, opacity: 1 }}
-      transition={{ duration: 0.5, ease: "easeOut" }}
-      className="sticky top-0 z-50 w-full border-b border-border bg-background/90 text-lg backdrop-blur supports-[backdrop-filter]:bg-background/70"
-    >
-      <div className="mx-auto flex h-16 max-w-7xl items-center px-4 md:grid md:grid-cols-[auto_1fr_auto] md:gap-10 md:px-6">
-        <Link href={`/${locale}`} className="flex items-center">
-          {theme === "light" ? (
-            <Image
-              src="/img/logo/header_logo.png"
-              alt="더헬리아 산후조리원 로고"
-              width={160}
-              height={40}
-              priority
-              className="h-10 w-auto"
-            />
-          ) : (
-            <Image
-              src="/img/logo/header_logo_white.png"
-              alt="더헬리아 산후조리원 로고"
-              width={160}
-              height={40}
-              priority
-              className="h-10 w-auto"
-            />
-          )}
-        </Link>
-
-        <DesktopPrimaryNav
-          navItems={navItems}
-          activeNav={activeNav}
-          isActivePath={isActivePath}
-          onNavClick={handleNavClick}
-        />
-
-        <div className="ml-auto flex items-center gap-4 md:ml-0 md:gap-1">
+    <>
+      <motion.header
+        initial={{ y: -20, opacity: 0 }}
+        animate={{ y: 0, opacity: 1 }}
+        transition={{ duration: 0.5, ease: "easeOut" }}
+        className={clsx(
+          "sticky top-0 z-50 w-full transition-[background-color,border-color] duration-500",
+          isHome && "-mb-16 md:-mb-20",
+          navOpen && "pointer-events-none opacity-0",
+          solid
+            ? "border-b border-border bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/80"
+            : "border-b border-transparent bg-transparent",
+        )}
+      >
+        <div className="mx-auto grid h-16 max-w-7xl grid-cols-[1fr_auto_1fr] items-center px-4 md:h-20 md:px-6">
           <button
             type="button"
-            onClick={() => changeLocale(locale === "ko" ? "en" : "ko")}
-            className="hidden h-10 w-10 items-center justify-center text-foreground transition md:inline-flex cursor-pointer"
-            aria-label={locale === "ko" ? "Switch to English" : "한국어로 전환"}
+            onClick={() => setNavOpen(true)}
+            className="group inline-flex items-center gap-3 justify-self-start text-foreground"
+            aria-label={locale === "ko" ? "메뉴 열기" : "Open menu"}
           >
-            {locale === "ko" ? <GlobeIcon className="h-5 w-5" /> : <Languages className="h-5 w-5" />}
+            <Menu className="h-5 w-5" strokeWidth={1.5} />
+            <span className="hidden font-sans text-[11px] font-semibold uppercase tracking-[0.28em] md:inline">
+              {locale === "ko" ? "메뉴" : "Menu"}
+            </span>
           </button>
 
-          <button
-            type="button"
-            onClick={toggleTheme}
-            className="hidden h-10 w-10 items-center justify-center text-foreground transition md:inline-flex cursor-pointer"
-            aria-label={theme === "dark" ? "라이트 모드로 전환" : "다크 모드로 전환"}
+          <Link
+            href={`/${locale}`}
+            className="justify-self-center"
+            aria-label="The Helia"
           >
-            {theme === "dark" ? <SunIcon className="h-5 w-5" /> : <MoonIcon className="h-5 w-5" />}
-          </button>
+            <span className="font-force-playfair text-base tracking-[0.42em] text-foreground md:text-xl">
+              THE HELIA
+            </span>
+          </Link>
 
-          <button
-            className="inline-flex h-10 w-10 items-center justify-center rounded-md text-foreground md:hidden cursor-pointer"
-            aria-label="메뉴 열기"
-            onClick={() => setMobileOpen(true)}
-          >
-            <span className="sr-only">모바일 메뉴 열기</span>
-            <Menu className="h-5 w-5" />
-          </button>
+          <div className="flex items-center gap-4 justify-self-end md:gap-6">
+            <button
+              type="button"
+              onClick={() => changeLocale(locale === "ko" ? "en" : "ko")}
+              className="font-sans text-[11px] font-semibold uppercase tracking-[0.22em] text-foreground/65 transition-colors hover:text-foreground"
+              aria-label={locale === "ko" ? "Switch to English" : "한국어로 전환"}
+            >
+              {locale === "ko" ? "EN" : "KO"}
+            </button>
+            <Link
+              href={`/${locale}/reservation`}
+              className="font-sans text-[11px] font-semibold uppercase tracking-[0.24em] text-foreground transition-colors hover:text-primary"
+            >
+              {locale === "ko" ? "예약" : "Reserve"}
+            </Link>
+          </div>
         </div>
-      </div>
+      </motion.header>
 
-      <MobileNavDrawer
-        open={mobileOpen}
+      <FullscreenNav
+        open={navOpen}
         locale={locale}
         theme={theme}
         navItems={navItems}
         normalizedPath={normalizedPath}
-        mobileSections={mobileSections}
-        onToggleSection={(id) =>
-          setMobileSections((current) => ({ ...current, [id]: !current[id] }))
-        }
+        onClose={() => setNavOpen(false)}
         onLocaleChange={changeLocale}
         onToggleTheme={toggleTheme}
-        onClose={closeOverlays}
       />
 
-      <DesktopNavPanel
-        activeNav={activeNav}
-        previewData={previewData}
-        locale={locale}
-        normalizedPath={normalizedPath}
-        onClose={closeOverlays}
-        onPreviewChange={setPreviewData}
-        buildPreviewData={buildPreviewData}
-      />
-    </motion.header>
+      {/* Close button lives above the overlay so it stays reachable */}
+      <NavCloseButton open={navOpen} locale={locale} onClose={() => setNavOpen(false)} />
+    </>
+  );
+}
+
+function NavCloseButton({
+  open,
+  locale,
+  onClose,
+}: {
+  open: boolean;
+  locale: Locale;
+  onClose: () => void;
+}) {
+  if (!open) return null;
+  return (
+    <div className="fixed inset-x-0 top-0 z-[70] mx-auto max-w-7xl px-4 md:px-6">
+      <div className="grid h-16 grid-cols-[1fr_auto_1fr] items-center md:h-20">
+        <button
+          type="button"
+          onClick={onClose}
+          className="group inline-flex items-center gap-3 justify-self-start text-foreground"
+          aria-label={locale === "ko" ? "메뉴 닫기" : "Close menu"}
+        >
+          <CloseIcon />
+          <span className="hidden font-sans text-[11px] font-semibold uppercase tracking-[0.28em] md:inline">
+            {locale === "ko" ? "닫기" : "Close"}
+          </span>
+        </button>
+        <Link
+          href={`/${locale}`}
+          onClick={onClose}
+          className="justify-self-center"
+          aria-label="The Helia"
+        >
+          <span className="font-force-playfair text-base tracking-[0.42em] text-foreground md:text-xl">
+            THE HELIA
+          </span>
+        </Link>
+        <span aria-hidden className="justify-self-end" />
+      </div>
+    </div>
+  );
+}
+
+function CloseIcon() {
+  return (
+    <svg
+      viewBox="0 0 24 24"
+      className="h-5 w-5"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth={1.5}
+      aria-hidden
+    >
+      <path d="M6 6l12 12M18 6L6 18" strokeLinecap="round" />
+    </svg>
   );
 }

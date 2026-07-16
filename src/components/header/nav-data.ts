@@ -1,3 +1,5 @@
+import { blobUrl } from "@/lib/media";
+
 import { Locale, NavItem, NavItemDefinition, SubNavItemDefinition } from "./types";
 
 export const NAV_ITEMS: NavItemDefinition[] = [
@@ -74,7 +76,7 @@ export const NAV_ITEMS: NavItemDefinition[] = [
       ko: "회복 단계에 맞춘 프라이빗 객실을 만나보세요.",
     },
     previewImage: {
-      src: "/img/subhero/room&suite.jpg",
+      src: blobUrl("img/subhero/room-suite.jpg"),
       alt: {
         en: "Room & Suites",
         ko: "룸 & 스위트"
@@ -163,10 +165,10 @@ export const NAV_ITEMS: NavItemDefinition[] = [
       ko: "산모와 아기를 위한 프리미엄 케어를 만나보세요.",
     },
     previewImage: {
-      src: "/img/spa/spa_main.png",
+      src: blobUrl("img/subhero/us/service.jpg"),
       alt: {
-        en: "Service",
-        ko: "서비스"
+        en: "Premium spa and wellness care at The Helia",
+        ko: "더 헬리아의 프리미엄 스파 & 웰니스 케어"
       }
     },
     sub: [
@@ -275,7 +277,7 @@ export const NAV_ITEMS: NavItemDefinition[] = [
       ko: "조리원 예약 관련 내용을 확인하세요.",
     },
     previewImage: {
-      src: "/img/subhero/reservation.jpg",
+      src: blobUrl("img/subhero/reservation.jpg"),
       alt: {
         en: "Reservation",
         ko: "예약"
@@ -341,7 +343,7 @@ export const NAV_ITEMS: NavItemDefinition[] = [
       ko: "더헬리아와 함께한 따뜻한 이야기와 유익한 정보를 전해드립니다.",
     },
     previewImage: {
-      src: "/img/subhero/stories.jpg",
+      src: blobUrl("img/subhero/stories.jpg"),
       alt: {
         en: "Stories",
         ko: "스토리"
@@ -444,10 +446,6 @@ export function getSubPageContent(path: string, locale: Locale = "ko") {
     imageAlt: entry.previewImage?.alt[locale] ?? entry.label[locale],
     copy: entry.previewCopy?.[locale],
   };
-}
-
-export function getAvailableSubPages() {
-  return Array.from(subPageMap.keys());
 }
 
 const normalizeLocaleHref = (locale: Locale, href?: string) => {

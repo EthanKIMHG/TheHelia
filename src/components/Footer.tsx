@@ -119,22 +119,22 @@ export function Footer() {
   }, [isPolicyModalOpen, lenis]);
 
   return (
-    <footer className="bg-[#191919] px-6 py-14 text-white md:px-12 md:py-20">
+    <footer className="bg-[#221B13] px-6 py-14 text-white md:px-12 md:py-20">
       <div className="mx-auto flex w-full max-w-7xl flex-col gap-12 ">
         <div className="flex flex-col xl:gap-32 md:gap-12 md:flex-row md:items-start md:justify-between gap-4">
           <div className="max-w-xl ">
-            <span className="inline-block py-2 text-base uppercase tracking-[0.18em] text-primary">
+            <span className="inline-block py-2 font-sans text-xs font-semibold uppercase tracking-[0.32em] text-[#C4B49E]">
               {copy.tagline}
             </span>
-            <p className="text-[24px] font-semibold leading-relaxed">
+            <p className="text-[22px] font-normal leading-relaxed">
               {copy.description}
             </p>
-            <div className="flex gap-4 mt-3">
-              <Link href={`/${locale}/reservation`} className=" cursor-pointer hover:underline underline-offset-4 rounded-xl p-2 px-4 border-border/30 border-[1px] ">
-                <span className="text-base">{copy.linkLabel.reservation}</span>
+            <div className="flex gap-4 mt-5">
+              <Link href={`/${locale}/reservation`} className="cursor-pointer border border-white/30 p-2 px-5 transition-colors hover:border-white hover:bg-white/5">
+                <span className="text-sm tracking-[0.08em]">{copy.linkLabel.reservation}</span>
               </Link>
-              <Link href={`/${locale}/the-helia/location`} className=" cursor-pointer underline-offset-4  hover:underline rounded-xl p-2 px-4 border-border/30 border-[1px]">
-                <span className="text-base">{copy.linkLabel.location}</span>
+              <Link href={`/${locale}/the-helia/location`} className="cursor-pointer border border-white/30 p-2 px-5 transition-colors hover:border-white hover:bg-white/5">
+                <span className="text-sm tracking-[0.08em]">{copy.linkLabel.location}</span>
               </Link>
             </div>
           </div>
@@ -169,19 +169,19 @@ export function Footer() {
           ).map((block, idx) => (
             <div
               key={block.title}
-              className="rounded-3xl border border-white/12 bg-[#141414] p-6"
+              className="border-t border-white/20 pt-6"
             >
               <div className="flex items-center gap-3 text-white/82">
                 {idx === 0 ? (
-                  <Calendar1Icon className="h-6 w-6 text-primary" />
+                  <Calendar1Icon className="h-5 w-5 text-[#C4B49E]" strokeWidth={1.5} />
                 ) : (
-                  <CalendarClock className="h-6 w-6 text-primary" />
+                  <CalendarClock className="h-5 w-5 text-[#C4B49E]" strokeWidth={1.5} />
                 )}
-                <span className="text-sm font-semibold uppercase tracking-[0.18em]">
+                <span className="font-sans text-xs font-semibold uppercase tracking-[0.24em]">
                   {block.title}
                 </span>
               </div>
-              <div className="mt-4 text-[22px] font-semibold text-white">
+              <div className="mt-4 text-[22px] font-normal text-white">
                 {block.hours}
               </div>
               {block.note && (
@@ -194,7 +194,7 @@ export function Footer() {
         <div className="grid gap-8 border-t border-white/12 pt-8 md:grid-cols-3">
           {copy.sections.map((section) => (
             <div key={section.title} className="space-y-4">
-              <h4 className="text-sm font-semibold uppercase tracking-[0.2em] text-primary">
+              <h4 className="font-sans text-xs font-semibold uppercase tracking-[0.28em] text-[#C4B49E]">
                 {section.title}
               </h4>
               <div className="flex flex-col gap-3 text-sm text-white/82">
@@ -225,7 +225,7 @@ export function Footer() {
           ))}
         </div>
 
-        <div className="flex flex-col gap-3 border-t border-white/12 pt-6 text-xs text-foreground md:flex-row md:items-center md:justify-between">
+        <div className="flex flex-col gap-3 border-t border-white/12 pt-6 text-xs text-white/55 md:flex-row md:items-center md:justify-between">
           <span>{copy.copyright}</span>
           <div className="flex gap-5">
             {copy.sections[2].items.map((item) =>

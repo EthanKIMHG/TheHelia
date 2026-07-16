@@ -3,6 +3,7 @@
 import { FadeInUp } from '@/components/common/FadeInUp'
 import { ScrollReveal } from '@/components/common/ScrollReveal'
 import { useOptionalThemeLocale } from '@/context/theme-locale-context'
+import { blobUrl } from '@/lib/media'
 import { ArrowUpRight, Quote, Star } from 'lucide-react'
 import Image from 'next/image'
 import Link from 'next/link'
@@ -84,7 +85,7 @@ const REVIEWS: Review[] = [
     initial: '뚱',
     link: 'https://blog.naver.com/wodllove2/224199420109',
     platform: 'blog',
-    thumbnail: '/img/room/vip.jpg',
+    thumbnail: blobUrl('img/room/vip_livingroom1.jpg'),
   },
   {
     id: 2,
@@ -150,7 +151,7 @@ const REVIEWS: Review[] = [
     initial: '오',
     link: 'https://blog.naver.com/dongkozip/223828057989',
     platform: 'blog',
-    thumbnail: '/img/room/prestige5.jpg',
+    thumbnail: blobUrl('img/room/prestige_livingroom3.jpg'),
   },
   {
     id: 5,
@@ -172,7 +173,7 @@ const REVIEWS: Review[] = [
     initial: '단',
     link: 'https://blog.naver.com/taetae_1201/224179921722',
     platform: 'blog',
-    thumbnail: '/img/room/vvip6.jpg',
+    thumbnail: blobUrl('img/room/vvip_livingroom1.jpg'),
   },
   {
     id: 6,
@@ -194,7 +195,7 @@ const REVIEWS: Review[] = [
     initial: '초',
     link: 'https://blog.naver.com/rlorxya/224158217705',
     platform: 'blog',
-    thumbnail: '/img/infant/strength_infant1.jpg',
+    thumbnail: blobUrl('img/infant/strength_infant1.jpg'),
   },
   {
     id: 7,
@@ -238,7 +239,7 @@ const REVIEWS: Review[] = [
     initial: '풀',
     link: 'https://blog.naver.com/fullcart/224186390662',
     platform: 'blog',
-    thumbnail: '/img/room/vvip6.jpg',
+    thumbnail: blobUrl('img/room/vvip_livingroom1.jpg'),
   },
 ]
 
@@ -347,14 +348,13 @@ export function GuestReviewsPageContent() {
     <div className="w-full pb-24">
       <ReviewsOverview copy={copy.overview} />
 
-      <section className="mt-16 space-y-6">
+      <section className="mt-24 space-y-12 md:mt-36 md:space-y-16">
         <SectionHeader
           badge={copy.featured.badge}
           title={copy.featured.title}
-          description={copy.featured.description}
         />
 
-        <div className="grid gap-6 xl:grid-cols-2">
+        <div className="grid gap-8 xl:grid-cols-2 xl:gap-10">
           {featuredReviews.map((review, index) => (
             <FadeInUp key={review.id} delay={index * 0.08}>
               <FeaturedReviewCard
@@ -369,14 +369,13 @@ export function GuestReviewsPageContent() {
         </div>
       </section>
 
-      <section className="mt-16 space-y-6">
+      <section className="mt-24 space-y-12 md:mt-36 md:space-y-16">
         <SectionHeader
           badge={copy.archive.badge}
           title={copy.archive.title}
-          description={copy.archive.description}
         />
 
-        <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
+        <div className="grid gap-x-8 gap-y-16 md:grid-cols-2 md:gap-x-10 xl:grid-cols-3">
           {archiveReviews.map((review, index) => (
             <FadeInUp key={review.id} delay={index * 0.06}>
               <ReviewCard
@@ -401,52 +400,16 @@ function ReviewsOverview({
 }) {
   return (
     <ScrollReveal>
-      <section className="overflow-hidden rounded-[2.5rem] border border-border/30 bg-gradient-to-br from-primary/10 via-background to-background/95 shadow-sm">
-        <div className="grid gap-8 p-6 md:p-8 lg:grid-cols-[0.82fr_1.18fr] lg:items-start lg:p-10">
-          <div className="space-y-5 text-left">
-            <div className="space-y-4">
-              <p className="font-playfair text-sm font-semibold uppercase tracking-[0.3em] text-primary italic">
-                {copy.badge}
-              </p>
-              <h2 className="max-w-[14ch] break-keep font-serif text-3xl leading-[1.2] text-foreground md:max-w-[12ch] md:text-5xl md:leading-[1.12]">
-                {copy.title}
-              </h2>
-              <p className="max-w-[38ch] break-keep text-sm leading-[1.9] text-foreground/78 md:max-w-[44ch] md:text-base">
-                {copy.description}
-              </p>
-            </div>
-          </div>
-
-          <div className="grid gap-4 sm:grid-cols-2 lg:self-start">
-            {copy.stats.map((stat, index) => (
-              <article
-                key={stat.label}
-                className={`rounded-[1.75rem] border border-border/30 bg-white/80 p-5 text-left shadow-sm backdrop-blur-sm dark:bg-[#2A2928]/60 ${
-                  index === copy.stats.length - 1 ? 'sm:col-span-2' : ''
-                }`}
-              >
-                <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-primary/80">
-                  {stat.label}
-                </p>
-                <h3 className="mt-4 break-keep font-serif text-[1.7rem] font-semibold leading-[1.22] text-foreground md:text-[1.9rem]">
-                  {stat.value}
-                </h3>
-                <p className="mt-3 break-keep text-sm leading-[1.8] text-foreground/72">
-                  {stat.description}
-                </p>
-              </article>
-            ))}
-
-            <article className="rounded-[1.75rem] border border-border/30 bg-primary/5 p-5 text-left shadow-sm sm:col-span-2">
-              <p className="text-sm font-semibold uppercase tracking-[0.18em] text-primary/80">
-                {copy.noteTitle}
-              </p>
-              <p className="mt-3 max-w-[52ch] break-keep text-sm leading-[1.85] text-foreground/75 md:text-base">
-                {copy.noteBody}
-              </p>
-            </article>
-          </div>
-        </div>
+      <section className="mx-auto max-w-2xl py-8 text-center md:py-14">
+        <p className="eyebrow">
+          {copy.badge}
+        </p>
+        <h2 className="mx-auto mt-6 max-w-[18ch] break-keep font-display-serif text-3xl font-normal leading-[1.4] text-foreground md:text-4xl">
+          {copy.title}
+        </h2>
+        <p className="mx-auto mt-6 max-w-[42ch] break-keep text-sm leading-[1.95] text-secondary md:text-base">
+          {copy.description}
+        </p>
       </section>
     </ScrollReveal>
   )
@@ -459,20 +422,22 @@ function SectionHeader({
 }: {
   badge: string
   title: string
-  description: string
+  description?: string
 }) {
   return (
     <ScrollReveal>
-      <div className="space-y-3 text-left">
-        <p className="font-playfair text-sm font-semibold uppercase tracking-[0.28em] text-primary italic">
+      <div className="space-y-4 text-center">
+        <p className="eyebrow">
           {badge}
         </p>
-        <h3 className="break-keep font-serif text-3xl font-semibold leading-[1.24] text-foreground md:text-4xl md:leading-tight">
+        <h3 className="break-keep font-display-serif text-3xl font-normal leading-[1.4] text-foreground md:text-4xl">
           {title}
         </h3>
-        <p className="max-w-[40ch] break-keep text-sm leading-[1.9] text-foreground/74 md:text-base">
-          {description}
-        </p>
+        {description ? (
+          <p className="mx-auto max-w-[40ch] break-keep text-sm leading-[1.9] text-secondary md:text-base">
+            {description}
+          </p>
+        ) : null}
       </div>
     </ScrollReveal>
   )
@@ -493,7 +458,6 @@ function FeaturedReviewCard({
 }) {
   const localizedCategory = review.category[locale]
   const localizedHeadline = review.headline[locale]
-  const localizedContent = review.content[locale]
   const localizedHighlights = review.highlights[locale]
   const localizedAuthor = review.author[locale]
 
@@ -504,30 +468,30 @@ function FeaturedReviewCard({
       rel="noreferrer"
       className="group block h-full"
     >
-      <article className="overflow-hidden rounded-[2.5rem] border border-border/30 bg-white/82 shadow-sm transition-all duration-500 hover:-translate-y-1 hover:shadow-md dark:bg-[#2A2928]/60">
+      <article className="overflow-hidden border border-border bg-background transition-colors duration-500 hover:border-foreground/40">
         <div className="grid h-full gap-0 lg:grid-cols-[0.82fr_1.18fr]">
-          <div className="relative min-h-[280px] overflow-hidden lg:min-h-full">
+          <div className="relative min-h-[300px] overflow-hidden lg:min-h-full">
             <Image
               src={review.thumbnail}
               alt={thumbnailAlt}
               fill
-              className="object-cover transition-transform duration-700 group-hover:scale-[1.04]"
+              className="object-cover transition-transform duration-700 group-hover:scale-[1.03]"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-black/22 via-black/5 to-transparent" />
-            <div className="absolute left-6 top-6 rounded-full border border-white/20 bg-black/25 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.18em] text-white/88 backdrop-blur-sm">
+            <div className="absolute left-6 top-6 font-sans text-[11px] font-semibold uppercase tracking-[0.24em] text-white drop-shadow">
               {sourceLabel}
             </div>
           </div>
 
           <div className="relative flex h-full flex-col p-6 text-left md:p-8">
-            <Quote className="absolute right-6 top-6 h-16 w-16 text-primary/10" />
+            <Quote className="absolute right-6 top-6 h-16 w-16 text-primary/10" strokeWidth={1.5} />
 
             <div className="relative z-10">
-              <div className="flex flex-wrap items-center gap-3">
-                <span className="rounded-full bg-primary/10 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.16em] text-primary">
+              <div className="flex flex-wrap items-center gap-x-4 gap-y-2">
+                <span className="font-sans text-[11px] font-semibold uppercase tracking-[0.2em] text-primary">
                   {localizedCategory}
                 </span>
-                <span className="text-xs font-medium tracking-[0.18em] text-foreground/50 uppercase">
+                <span className="font-sans text-xs font-medium tracking-[0.18em] text-secondary uppercase">
                   {review.date}
                 </span>
               </div>
@@ -536,49 +500,46 @@ function FeaturedReviewCard({
                 {Array.from({ length: 5 }).map((_, index) => (
                   <Star
                     key={index}
-                    className="h-4 w-4 fill-primary/80 text-primary"
+                    className="h-3.5 w-3.5 text-primary"
+                    strokeWidth={1.5}
                   />
                 ))}
               </div>
 
-              <h4 className="mt-5 max-w-[18ch] break-keep font-serif text-[1.95rem] font-semibold leading-[1.18] text-foreground">
+              <h4 className="mt-6 max-w-[20ch] break-keep font-display-serif text-2xl font-normal leading-[1.45] text-foreground md:text-[1.75rem]">
                 {localizedHeadline}
               </h4>
-
-              <p className="mt-5 break-keep text-sm leading-[1.9] text-foreground/76 md:text-base">
-                {localizedContent}
-              </p>
             </div>
 
-            <div className="mt-8 flex flex-wrap gap-2">
+            <div className="mt-8 flex flex-wrap gap-x-5 gap-y-2">
               {localizedHighlights.map((highlight) => (
                 <span
                   key={highlight}
-                  className="rounded-full border border-border/40 bg-background/80 px-3 py-1.5 text-xs font-medium text-foreground/72 dark:bg-[#333231]/55"
+                  className="font-sans text-xs tracking-[0.08em] text-secondary"
                 >
                   {highlight}
                 </span>
               ))}
             </div>
 
-            <div className="mt-8 flex items-center justify-between gap-4 border-t border-border/30 pt-5">
+            <div className="mt-8 flex items-center justify-between gap-4 border-t border-border pt-5">
               <div className="flex items-center gap-3">
-                <div className="flex h-11 w-11 items-center justify-center rounded-full border border-border/30 bg-primary/10 font-serif text-lg text-primary">
+                <div className="flex h-10 w-10 items-center justify-center border border-border font-display-serif text-lg text-primary">
                   {review.initial}
                 </div>
                 <div>
-                  <p className="text-sm font-semibold text-foreground">
+                  <p className="text-sm text-foreground">
                     {localizedAuthor}
                   </p>
-                  <p className="text-xs uppercase tracking-[0.18em] text-foreground/46">
+                  <p className="font-sans text-[10px] uppercase tracking-[0.2em] text-secondary">
                     {review.date}
                   </p>
                 </div>
               </div>
 
-              <div className="inline-flex items-center gap-2 text-sm font-semibold text-primary">
+              <div className="inline-flex items-center gap-2 border-b border-border pb-1 font-sans text-xs font-semibold text-foreground transition-colors duration-300 group-hover:border-foreground">
                 {linkLabel}
-                <ArrowUpRight className="h-4 w-4 transition-transform duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
+                <ArrowUpRight className="h-4 w-4 transition-transform duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5" strokeWidth={1.5} />
               </div>
             </div>
           </div>
@@ -603,7 +564,6 @@ function ReviewCard({
 }) {
   const localizedCategory = review.category[locale]
   const localizedHeadline = review.headline[locale]
-  const localizedContent = review.content[locale]
   const localizedHighlights = review.highlights[locale]
   const localizedAuthor = review.author[locale]
 
@@ -614,68 +574,63 @@ function ReviewCard({
       rel="noreferrer"
       className="group block h-full"
     >
-      <article className="relative flex h-full flex-col overflow-hidden rounded-[2rem] border border-border/30 bg-white/82 shadow-sm transition-all duration-500 hover:-translate-y-1 hover:shadow-md dark:bg-[#2A2928]/60">
-        <Quote className="absolute -right-5 -top-5 h-24 w-24 rotate-12 text-primary/8" />
-
-        <div className="relative h-52 overflow-hidden">
+      <article className="relative flex h-full flex-col overflow-hidden border-t border-border pt-6 transition-colors duration-500">
+        <div className="relative h-56 overflow-hidden">
           <Image
             src={review.thumbnail}
             alt={thumbnailAlt}
             fill
-            className="object-cover transition-transform duration-700 group-hover:scale-[1.05]"
+            className="object-cover transition-transform duration-700 group-hover:scale-[1.03]"
           />
           <div className="absolute inset-0 bg-gradient-to-t from-black/28 via-transparent to-transparent" />
-          <div className="absolute left-5 top-5 rounded-full border border-white/18 bg-black/25 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.16em] text-white/88 backdrop-blur-sm">
+          <div className="absolute left-5 top-5 font-sans text-[11px] font-semibold uppercase tracking-[0.24em] text-white drop-shadow">
             {sourceLabel}
           </div>
         </div>
 
-        <div className="flex flex-1 flex-col p-6 text-left">
-          <div className="flex flex-wrap items-center gap-3">
-            <span className="rounded-full bg-primary/10 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.15em] text-primary">
+        <div className="flex flex-1 flex-col pt-6 text-left">
+          <div className="flex flex-wrap items-center gap-x-4 gap-y-2">
+            <span className="font-sans text-[11px] font-semibold uppercase tracking-[0.2em] text-primary">
               {localizedCategory}
             </span>
-            <span className="text-xs font-medium uppercase tracking-[0.18em] text-foreground/46">
+            <span className="font-sans text-xs font-medium uppercase tracking-[0.18em] text-secondary">
               {review.date}
             </span>
           </div>
 
-          <h4 className="mt-5 break-keep font-serif text-[1.55rem] font-semibold leading-[1.24] text-foreground">
+          <h4 className="mt-5 break-keep font-display-serif text-xl font-normal leading-[1.5] text-foreground md:text-[1.4rem]">
             {localizedHeadline}
           </h4>
-          <p className="mt-4 break-keep text-sm leading-[1.85] text-foreground/75">
-            {localizedContent}
-          </p>
 
-          <div className="mt-6 flex flex-wrap gap-2">
+          <div className="mt-6 flex flex-wrap gap-x-5 gap-y-2">
             {localizedHighlights.map((highlight) => (
               <span
                 key={highlight}
-                className="rounded-full border border-border/40 bg-background/80 px-3 py-1.5 text-xs font-medium text-foreground/72 dark:bg-[#333231]/55"
+                className="font-sans text-xs tracking-[0.08em] text-secondary"
               >
                 {highlight}
               </span>
             ))}
           </div>
 
-          <div className="mt-auto flex items-center justify-between gap-4 border-t border-border/30 pt-5">
+          <div className="mt-auto flex items-center justify-between gap-4 border-t border-border pt-5">
             <div className="flex items-center gap-3">
-              <div className="flex h-10 w-10 items-center justify-center rounded-full border border-border/30 bg-primary/10 font-serif text-base text-primary">
+              <div className="flex h-9 w-9 items-center justify-center border border-border font-display-serif text-base text-primary">
                 {review.initial}
               </div>
                 <div>
-                  <p className="text-sm font-semibold text-foreground">
+                  <p className="text-sm text-foreground">
                     {localizedAuthor}
                   </p>
-                  <p className="text-xs uppercase tracking-[0.18em] text-foreground/46">
+                  <p className="font-sans text-[10px] uppercase tracking-[0.2em] text-secondary">
                     {sourceLabel}
                   </p>
                 </div>
               </div>
 
-            <div className="inline-flex items-center gap-2 text-sm font-semibold text-primary">
+            <div className="inline-flex items-center gap-2 border-b border-border pb-1 font-sans text-xs font-semibold text-foreground transition-colors duration-300 group-hover:border-foreground">
               {linkLabel}
-              <ArrowUpRight className="h-4 w-4 transition-transform duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
+              <ArrowUpRight className="h-4 w-4 transition-transform duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5" strokeWidth={1.5} />
             </div>
           </div>
         </div>

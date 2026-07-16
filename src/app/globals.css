@@ -16,36 +16,37 @@
   --font-korean: var(--font-nanum-myeongjo, "Nanum Myeongjo"), serif;
   --font-sans: "Pretendard", -apple-system, sans-serif;
 
-  --radius-brand: 2rem;
+  --radius-brand: 0rem;
 }
 
-/* 4. CSS Variables */
+/* 4. CSS Variables — bright quiet luxury (see Design_System.md) */
 :root {
-  --background: #FAF9F6;
-  /* Warmer Off-White */
-  --foreground: #4A3B36;
-  /* Softer Warm Brown */
-  --primary: #A68B7C;
-  /* Deep Rosy Beige (Less Orange, More Clay) */
-  --secondary: #9E948D;
-  /* Warm Greige */
-  --accent: #D9C6BC;
-  /* Dusty Beige */
-  --border: #E6DBD4;
-  /* Pale Beige Border */
+  --background: #FBF9F4;
+  /* Bright Warm Ivory */
+  --foreground: #3A2E22;
+  /* Espresso */
+  --primary: #A29380;
+  /* Taupe — eyebrows, labels, quiet accents */
+  --secondary: #84776A;
+  /* Clay — muted body copy */
+  --accent: #EAE1D1;
+  /* Sand — soft tinted surfaces */
+  --border: #E4DBCB;
+  /* Hairline */
 }
 
 :root[data-theme="dark"] {
-  --background: #141313;
-  /* Warm Dark */
-  --foreground: #FFFFFF;
-  /* Pure White for visibility */
-  --primary: #A8B5A0;
-  /* Lighter Sage/Beige for Dark */
-  --secondary: #E0E0E0;
-  /* Much lighter grey for secondary text */
-  --accent: #6C7A5E;
-  --border: #444240;
+  --background: #FBF9F4;
+  /* Bright Warm Ivory */
+  --foreground: #3A2E22;
+  /* Espresso */
+  --primary: #A29380;
+  /* Taupe — eyebrows, labels, quiet accents */
+  --secondary: #84776A;
+  /* Clay — muted body copy */
+  --accent: #EAE1D1;
+  /* Sand — soft tinted surfaces */
+  --border: #E4DBCB;
 }
 
 /* 5. Base Styles & Utilities */
@@ -106,23 +107,32 @@ body::before {
   .font-locale-en {
     font-family: var(--font-serif);
   }
-}
 
-
-@media (min-width: 1024px) {
-  .home-hero {
-    width: 100vw;
-    max-width: 100vw;
-    height: 80vh;
-    max-height: none;
+  /* Eyebrow — tracked uppercase section label (see Design_System.md) */
+  .eyebrow {
+    font-family: var(--font-sans);
+    font-size: 0.6875rem;
+    font-weight: 600;
+    letter-spacing: 0.35em;
+    text-transform: uppercase;
+    color: var(--primary);
   }
-}
 
-@media (min-width: 2000px) {
-  .home-hero {
-    width: 100vw;
-    max-width: 100vw;
-    height: 95vh;
-    max-height: none;
+  /* Text link — tracked uppercase with hairline underline */
+  .tlink {
+    display: inline-block;
+    font-family: var(--font-sans);
+    font-size: 0.625rem;
+    font-weight: 600;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--foreground);
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 0.3125rem;
+    transition: border-color 300ms ease;
+  }
+
+  .tlink:hover {
+    border-color: var(--foreground);
   }
 }

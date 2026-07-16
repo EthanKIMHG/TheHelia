@@ -2,7 +2,6 @@
 
 
 import { motion, useScroll, useTransform } from "framer-motion";
-import { ArrowDown } from "lucide-react";
 import { useEffect, useRef } from "react";
 import { Locale } from "../header/types";
 import HeroCarousel from "./HeroCarousel";
@@ -22,43 +21,35 @@ export function CinematicHero({locale} : {locale: Locale}) {
   const y = useTransform(scrollY, [0, 500], [0, 150]);
 
   return (
-    <div ref={containerRef} className="relative h-screen w-full overflow-hidden bg-black">
-      {/* 1. Fluid Background & Texture */}
+    <div ref={containerRef} className="relative h-svh w-full overflow-hidden bg-accent">
+      {/* 1. Full-bleed photography with soft ivory veils */}
       <div className="absolute inset-0 z-0">
         <HeroCarousel onLoadComplete={() => setCriticalImageLoading(false)} />
-        <div className="absolute inset-0 z-10 h-full w-full bg-black/30 bg-grain" /> 
-        {/* Anti-Grid Fluid Shape Overlay */}
-        <div className="absolute -top-[20%] -left-[10%] w-[50vw] h-[50vw] bg-primary/20 blur-[120px] rounded-full mix-blend-overlay animate-pulse" />
+        <div className="pointer-events-none absolute inset-x-0 top-0 z-10 h-44 bg-gradient-to-b from-[#FBF9F4]/60 to-transparent" />
+        <div className="pointer-events-none absolute inset-x-0 bottom-0 z-10 h-72 bg-gradient-to-t from-[#FBF9F4]/80 via-[#FBF9F4]/30 to-transparent" />
       </div>
 
-      {/* 2. Anti-Grid Layout Content */}
-      <motion.div 
+      {/* 2. Minimal centered wordmark */}
+      <motion.div
         style={{ opacity, y }}
-        className="relative z-20 h-full w-full max-w-[1920px] mx-auto p-6 md:p-12 lg:p-24"
+        className="relative z-20 h-full w-full"
       >
-        {/* Main Title: Bottom Left, Oversized */}
-        <motion.h1 
-          initial={{ opacity: 0, y: 100, rotate: 2 }}
-          animate={{ opacity: 1, y: 0, rotate: 0 }}
-          transition={{ duration: 1.5, ease: [0.16, 1, 0.3, 1] }}
-          className="font-force-playfair absolute bottom-24 left-6 text-7xl tracking-widest text-white mix-blend-overlay md:bottom-32 md:left-12 md:text-9xl lg:text-[11rem]"
-          style={{ fontFamily: "'Playfair Display', 'Times New Roman', serif" }}
+        <motion.h1
+          initial={{ opacity: 0, y: 24 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1.6, ease: [0.16, 1, 0.3, 1] }}
+          className="font-force-playfair absolute inset-x-0 bottom-40 px-6 text-center text-4xl font-normal uppercase tracking-[0.3em] indent-[0.3em] text-foreground md:bottom-32 md:text-6xl md:tracking-[0.4em] md:indent-[0.4em]"
         >
-          The <br/> Helia
+          The Helia
         </motion.h1>
-        
-        {/* Subtitle: High contrast, floating Top Right */}
-        
 
-        {/* Scroll Indicator */}
+        {/* Scroll Indicator — thin drip line */}
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 1, delay: 1 }}
-          className="absolute bottom-12 left-1/2 -translate-x-1/2"
-        >
-          <ArrowDown className="w-6 h-6 text-white/60 animate-bounce" />
-        </motion.div>
+          className="absolute bottom-0 left-1/2 h-16 w-px -translate-x-1/2 bg-gradient-to-b from-foreground/55 to-transparent"
+        />
       </motion.div>
     </div>
   );

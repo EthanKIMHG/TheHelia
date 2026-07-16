@@ -28,10 +28,9 @@ function BentoCard({
 }: BentoItemProps) {
   return (
     <motion.div
-      whileHover={{ scale: 1.02 }}
       transition={{ duration: 0.4, ease: "easeOut" }}
       className={cn(
-        "group relative overflow-hidden rounded-[2rem] bg-gray-100 dark:bg-neutral-800 shadow-sm",
+        "group relative overflow-hidden bg-accent/60",
         className
       )}
     >
@@ -40,7 +39,7 @@ function BentoCard({
           src={image}
           alt={title}
           fill
-          className="object-cover transition-transform duration-700 group-hover:scale-110"
+          className="object-cover transition-transform duration-700 group-hover:scale-[1.03]"
         />
         <div
           className={cn(
@@ -53,13 +52,13 @@ function BentoCard({
       </div>
 
       <div className="relative flex h-full flex-col justify-end p-8 text-white">
-        <div className="transform transition-all duration-500 group-hover:-translate-y-2">
+        <div className="transition-all duration-500">
           {subtitle && (
-            <span className="mb-2 inline-block rounded-full bg-white/20 px-3 py-1 text-xs font-medium backdrop-blur-sm">
+            <span className="mb-3 inline-block font-sans text-[10px] font-semibold uppercase tracking-[0.3em] text-white/90 drop-shadow-sm">
               {subtitle}
             </span>
           )}
-          <h3 className="mb-2 text-2xl font-serif font-semibold leading-tight md:text-3xl">
+          <h3 className="mb-2 font-display-serif text-2xl font-normal leading-[1.4] md:text-3xl">
             {title}
           </h3>
           {description && (
@@ -69,11 +68,9 @@ function BentoCard({
           )}
           {children}
         </div>
-        
-        <div className="absolute top-6 right-6 opacity-0 transform translate-x-4 -translate-y-4 transition-all duration-500 group-hover:opacity-100 group-hover:translate-x-0 group-hover:translate-y-0">
-          <div className="flex h-10 w-10 items-center justify-center rounded-full bg-white/20 backdrop-blur-md">
-            <ArrowUpRight className="h-5 w-5 text-white" />
-          </div>
+
+        <div className="absolute top-6 right-6 opacity-0 transition-opacity duration-500 group-hover:opacity-100">
+          <ArrowUpRight className="h-5 w-5 text-white drop-shadow-md" strokeWidth={1.5} />
         </div>
       </div>
     </motion.div>
@@ -115,14 +112,14 @@ export function SpaBentoGrid({ copy }: SpaBentoGridProps) {
           title={copy.thalac.title}
           subtitle="Authentic French Thalassotherapy"
           description={copy.thalac.description}
-          image="/img/spa/spa_1.png"
+          image="/img/spa/us/bento-thalac.jpg"
           className="md:col-span-2 md:row-span-2 min-h-[400px]"
           darkOverlay
         >
           <ul className="mt-4 hidden space-y-1 md:block opacity-0 transform translate-y-4 transition-all duration-500 group-hover:opacity-100 group-hover:translate-y-0 delay-100">
             {copy.thalac.features.map((feature, i) => (
-              <li key={i} className="flex items-center gap-2 text-sm text-white/80">
-                <div className="h-1 w-1 rounded-full bg-white" />
+              <li key={i} className="flex items-center gap-3 text-sm text-white/80">
+                <div className="h-px w-3 bg-white/80" />
                 {feature}
               </li>
             ))}
@@ -134,7 +131,7 @@ export function SpaBentoGrid({ copy }: SpaBentoGridProps) {
           title={copy.headSpa.title}
           subtitle="Signature Care"
           description={copy.headSpa.description}
-          image="/img/spa/headspa1.jpg"
+          image="/img/spa/us/headspa-2.jpg"
           className="md:col-span-1 md:row-span-2 min-h-[400px]"
         />
 
@@ -143,14 +140,14 @@ export function SpaBentoGrid({ copy }: SpaBentoGridProps) {
           title={copy.bodyCare.title}
           subtitle="Prenatal & Postpartum"
           description={copy.bodyCare.description}
-          image="/img/spa/spa3.jpg"
+          image="/img/spa/us/after-3.jpg"
           className="md:col-span-2 md:row-span-1 min-h-[250px]"
         />
 
         {/* 4. Atmosphere / Private Room (1x1) */}
         <BentoCard
           title={copy.atmosphere.title}
-          image="/img/spa/headspa4.jpg"
+          image="/img/spa/us/bento-atmosphere.jpg"
           className="md:col-span-1 md:row-span-1 min-h-[250px]"
           description={copy.atmosphere.description}
         />

@@ -14,12 +14,12 @@ type CarouselImage = {
 const IMAGE_PATH = "/img/main";
 
 const CAROUSEL_IMAGES: CarouselImage[] = [
-  { src: `${IMAGE_PATH}/homepage_1.jpg`, alt: "더헬리아 산후조리원 메인 공간 전경", quality: 100},
-  { src: `${IMAGE_PATH}/homepage_2.jpg`, alt: "더헬리아 프리미엄 공간 디테일", quality: 100 },
-  { src: `${IMAGE_PATH}/homepage_3.jpg`, alt: "더헬리아 산모 휴식 공간 이미지", quality: 100 },
-  { src: `${IMAGE_PATH}/homepage_4.jpg`, alt: "더헬리아 산후케어 공간 전경", quality: 100 },
-  { src: `${IMAGE_PATH}/homepage_5.jpg`, alt: "더헬리아 프로그램 및 서비스 이미지", quality: 100 },
-  { src: `${IMAGE_PATH}/homepage_6.jpg`, alt: "더헬리아 브랜드 무드 이미지", quality: 100 }
+  { src: `${IMAGE_PATH}/homepage_1.jpg`, alt: "더헬리아 산후조리원 메인 공간 전경", quality: 85},
+  { src: `${IMAGE_PATH}/homepage_2.jpg`, alt: "더헬리아 프리미엄 공간 디테일", quality: 85 },
+  { src: `${IMAGE_PATH}/homepage_3.jpg`, alt: "더헬리아 산모 휴식 공간 이미지", quality: 85 },
+  { src: `${IMAGE_PATH}/homepage_4.jpg`, alt: "더헬리아 산후케어 공간 전경", quality: 85 },
+  { src: `${IMAGE_PATH}/homepage_5.jpg`, alt: "더헬리아 프로그램 및 서비스 이미지", quality: 85 },
+  { src: `${IMAGE_PATH}/homepage_6.jpg`, alt: "더헬리아 브랜드 무드 이미지", quality: 85 }
 ];
 
 const TRANSITION = { duration: 1.5, ease: "easeInOut" as const };
@@ -50,7 +50,7 @@ export default function HeroCarousel({ onLoadComplete }: { onLoadComplete?: () =
   }, [images.length, index]);
 
   return (
-    <div className="relative w-full h-full overflow-hidden bg-black/5 touch-pan-y">
+    <div className="relative w-full h-full overflow-hidden bg-accent/60 touch-pan-y">
       <AnimatePresence initial={false} mode="wait">
         <motion.div
           key={images[index].src}
@@ -84,7 +84,7 @@ export default function HeroCarousel({ onLoadComplete }: { onLoadComplete?: () =
         </motion.div>
       </AnimatePresence>
 
-      <div className="absolute bottom-6 left-1/2 flex -translate-x-1/2 gap-2 z-99">
+      <div className="absolute bottom-10 left-6 flex gap-2.5 z-99 md:left-12">
         {images.map((image, dotIndex) => {
           const isActive = dotIndex === index;
           return (
@@ -93,8 +93,8 @@ export default function HeroCarousel({ onLoadComplete }: { onLoadComplete?: () =
               type="button"
               aria-label={`${dotIndex + 1}번째 이미지로 이동`}
               onClick={() => setIndex(dotIndex)}
-              className={`h-2.5 w-2.5 rounded-full transition ${
-                isActive ? "bg-white" : "bg-white/50 hover:bg-white/80"
+              className={`h-px w-7 transition-colors duration-500 ${
+                isActive ? "bg-foreground" : "bg-foreground/30 hover:bg-foreground/60"
               }`}
             />
           );
