@@ -3,6 +3,7 @@
 import { FadeInUp } from '@/components/common/FadeInUp'
 import { ScrollReveal } from '@/components/common/ScrollReveal'
 import { useOptionalThemeLocale } from '@/context/theme-locale-context'
+import { blobUrl } from '@/lib/media'
 import { ArrowUpRight, Quote, Star } from 'lucide-react'
 import Image from 'next/image'
 import Link from 'next/link'
@@ -84,7 +85,7 @@ const REVIEWS: Review[] = [
     initial: '뚱',
     link: 'https://blog.naver.com/wodllove2/224199420109',
     platform: 'blog',
-    thumbnail: '/img/room/vip.jpg',
+    thumbnail: blobUrl('img/room/vip_livingroom1.jpg'),
   },
   {
     id: 2,
@@ -150,7 +151,7 @@ const REVIEWS: Review[] = [
     initial: '오',
     link: 'https://blog.naver.com/dongkozip/223828057989',
     platform: 'blog',
-    thumbnail: '/img/room/prestige5.jpg',
+    thumbnail: blobUrl('img/room/prestige_livingroom3.jpg'),
   },
   {
     id: 5,
@@ -172,7 +173,7 @@ const REVIEWS: Review[] = [
     initial: '단',
     link: 'https://blog.naver.com/taetae_1201/224179921722',
     platform: 'blog',
-    thumbnail: '/img/room/vvip6.jpg',
+    thumbnail: blobUrl('img/room/vvip_livingroom1.jpg'),
   },
   {
     id: 6,
@@ -238,7 +239,7 @@ const REVIEWS: Review[] = [
     initial: '풀',
     link: 'https://blog.naver.com/fullcart/224186390662',
     platform: 'blog',
-    thumbnail: '/img/room/vvip6.jpg',
+    thumbnail: blobUrl('img/room/vvip_livingroom1.jpg'),
   },
 ]
 

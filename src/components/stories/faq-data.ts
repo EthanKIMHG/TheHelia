@@ -40,20 +40,20 @@ After testing negative with a Rotavirus kit, they enter the nursery. Admission w
     answer: {
       ko: `∙ 계약금은 전체 이용 금액의 10% 이며 환불 규정은 아래와 같습니다.
 
-- 출산예정일 31일 이상 또는 계약 후 24시간 이내 : 계약금 전액환불
-- 출산예정일 21일~30일 이전 : 계약금의 60% 환불
-- 출산예정일 10일~20일 이전 : 계약금의 30% 환불
-- 출산예정일 9일 이전 : 계약금 환불불가
+- 입실예정일 91일전, 계약후 24시간 이내 : 계약금 전액 환불
+- 입실예정일 61일 이전부터 90일 이전까지 : 계약금의 60% 환불
+- 입실예정일 31일 이전부터 60일 이전까지 : 계약금의 30% 환불
+- 입실예정일 31일 이전부터 : 계약금 환불불가
 
-대기 미해제로 인한 환불의 경우, 기간에 따른 위약금 없이 전액 환불해드립니다.`,
+대기 예약이신 경우 취소기간 제한 없이 예약금 전액 환불되며, 위 환불 규정은 대기 해제된 시점부터 적용됩니다.`,
       en: `∙ The deposit is 10% of the total service fee, and the refund policy is as follows:
 
-- 31 days or more before the due date or within 24 hours of contract: Full refund of deposit
-- 21-30 days before the due date: 60% refund of deposit
-- 10-20 days before the due date: 30% refund of deposit
-- 9 days or less before the due date: No refund of deposit
+- 91 days or more before the due date or within 24 hours of contract: Full refund of deposit
+- 61-90 days before the due date: 60% refund of deposit
+- 31-60 days before the due date: 30% refund of deposit
+- 30 days or less before the due date: No refund of deposit
 
-In case of a refund due to non-release of the waiting list, a full refund will be made without any penalty regardless of the period.`,
+For those on the waiting list, the full deposit will be refunded without any cancellation period restrictions. The above refund policy applies from the time the waiting list is released.`,
     },
   },
   {

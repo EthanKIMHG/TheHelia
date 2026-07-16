@@ -5,6 +5,7 @@ import { motion } from "framer-motion";
 
 import { useOptionalThemeLocale } from "@/context/theme-locale-context";
 import { DEFAULT_BLUR_DATA_URL } from "@/lib/blur-placeholder";
+import { blobUrl } from "@/lib/media";
 import clsx from "clsx";
 import Image from "next/image";
 import { useCallback, useEffect, useState } from "react";
@@ -159,7 +160,7 @@ const KOREAN_COPY = {
         "아늑하고 쾌적한 프라이빗 공간에서 시간을 보내며 산후 회복에 집중하실 수 있습니다.",
       meta: "VIP · VVIP · PRESTIGE",
       image: {
-        src: "/img/room/prestige1.jpg",
+        src: blobUrl("img/room/prestige_livingroom1.jpg"),
         alt: "더헬리아 프레스티지 스위트 객실 전경",
       },
       bullets: [
@@ -218,7 +219,7 @@ const ENGLISH_COPY = {
         "Spend time in a cozy, comfortable private space while focusing on postpartum recovery.",
       meta: "VIP · VVIP · PRESTIGE",
       image: {
-        src: "/img/room/prestige1.jpg",
+        src: blobUrl("img/room/prestige_livingroom1.jpg"),
         alt: "Prestige suite room at The Helia postpartum care center",
       },
       bullets: [
