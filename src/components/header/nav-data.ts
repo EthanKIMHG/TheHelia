@@ -448,10 +448,6 @@ export function getSubPageContent(path: string, locale: Locale = "ko") {
   };
 }
 
-export function getAvailableSubPages() {
-  return Array.from(subPageMap.keys());
-}
-
 const normalizeLocaleHref = (locale: Locale, href?: string) => {
   if (!href) return undefined;
   if (href === "/" || href === "") {
