@@ -85,7 +85,7 @@ const REVIEWS: Review[] = [
     initial: '뚱',
     link: 'https://blog.naver.com/wodllove2/224199420109',
     platform: 'blog',
-    thumbnail: blobUrl('img/room/vip_livingroom1.jpg'),
+    thumbnail: blobUrl('img/babyspa/babyspa1.jpg'),
   },
   {
     id: 2,
@@ -151,7 +151,7 @@ const REVIEWS: Review[] = [
     initial: '오',
     link: 'https://blog.naver.com/dongkozip/223828057989',
     platform: 'blog',
-    thumbnail: blobUrl('img/room/prestige_livingroom3.jpg'),
+    thumbnail: blobUrl('img/about/us/afternoon.jpg'),
   },
   {
     id: 5,
@@ -173,7 +173,7 @@ const REVIEWS: Review[] = [
     initial: '단',
     link: 'https://blog.naver.com/taetae_1201/224179921722',
     platform: 'blog',
-    thumbnail: blobUrl('img/room/vvip_livingroom1.jpg'),
+    thumbnail: blobUrl('img/room/amenity/ameniti_moltonbrown2.jpg'),
   },
   {
     id: 6,
@@ -195,7 +195,7 @@ const REVIEWS: Review[] = [
     initial: '초',
     link: 'https://blog.naver.com/rlorxya/224158217705',
     platform: 'blog',
-    thumbnail: blobUrl('img/infant/strength_infant1.jpg'),
+    thumbnail: blobUrl('img/room/prestige_livingroom3.jpg'),
   },
   {
     id: 7,
@@ -217,7 +217,7 @@ const REVIEWS: Review[] = [
     initial: '세',
     link: 'https://blog.naver.com/serrri/224106408914',
     platform: 'blog',
-    thumbnail: '/img/headerpreview/infantroom.png',
+    thumbnail: blobUrl('img/room/vip_livingroom2.jpg'),
   },
   {
     id: 8,
@@ -239,7 +239,7 @@ const REVIEWS: Review[] = [
     initial: '풀',
     link: 'https://blog.naver.com/fullcart/224186390662',
     platform: 'blog',
-    thumbnail: blobUrl('img/room/vvip_livingroom1.jpg'),
+    thumbnail: blobUrl('img/room/vvip_livingroom2.jpg'),
   },
 ]
 
