@@ -277,7 +277,7 @@ export const NAV_ITEMS: NavItemDefinition[] = [
       ko: "조리원 예약 관련 내용을 확인하세요.",
     },
     previewImage: {
-      src: blobUrl("img/subhero/reservation.jpg"),
+      src: blobUrl("img/subhero/reservation2.jpg"),
       alt: {
         en: "Reservation",
         ko: "예약"
