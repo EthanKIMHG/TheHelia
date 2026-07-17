@@ -6,7 +6,7 @@ import { useOptionalThemeLocale } from "@/context/theme-locale-context";
 import { CalendarCheck, MessageCircle, Phone } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
-import { useMemo } from "react";
+import { useMemo, useState } from "react";
 
 type ReservationPageContentProps = {
   locale?: Locale;
@@ -88,29 +88,33 @@ function ContactSection({ copy, isKo }: { copy: ContactCopy; isKo: boolean }) {
         )}
 
         <div className="grid gap-x-10 gap-y-8 md:grid-cols-2">
-          {supportChannels.map((channel) => (
-            <Link
-              key={channel.label}
-              href={channel.href ?? "#"}
-              target="_blank"
-              rel="noreferrer"
-              className="group border-t border-border pt-6"
-            >
-              <div className="flex items-start justify-between gap-4">
-                <div>
-                  <p className="font-sans text-[10px] font-semibold uppercase tracking-[0.24em] text-primary">
-                    {channel.label}
-                  </p>
-                  <p className="mt-3 font-display-serif text-lg font-normal text-foreground">{channel.value}</p>
-                  <p className="mt-2 text-sm leading-[1.85] text-secondary">{channel.note}</p>
+          {supportChannels.map((channel) =>
+            channel.id === "kakao" ? (
+              <CopyChannelCard key={channel.label} channel={channel} isKo={isKo} />
+            ) : (
+              <Link
+                key={channel.label}
+                href={channel.href ?? "#"}
+                target="_blank"
+                rel="noreferrer"
+                className="group border-t border-border pt-6"
+              >
+                <div className="flex items-start justify-between gap-4">
+                  <div>
+                    <p className="font-sans text-[10px] font-semibold uppercase tracking-[0.24em] text-primary">
+                      {channel.label}
+                    </p>
+                    <p className="mt-3 font-display-serif text-lg font-normal text-foreground">{channel.value}</p>
+                    <p className="mt-2 text-sm leading-[1.85] text-secondary">{channel.note}</p>
+                  </div>
+                  <channel.icon className="h-5 w-5 shrink-0 text-primary" strokeWidth={1.5} />
                 </div>
-                <channel.icon className="h-5 w-5 shrink-0 text-primary" strokeWidth={1.5} />
-              </div>
-              <div className="tlink mt-5">
-                {channel.cta}
-              </div>
-            </Link>
-          ))}
+                <div className="tlink mt-5">
+                  {channel.cta}
+                </div>
+              </Link>
+            ),
+          )}
         </div>
       </div>
     </section>
@@ -118,7 +122,70 @@ function ContactSection({ copy, isKo }: { copy: ContactCopy; isKo: boolean }) {
   );
 }
 
+function copyTextFallback(text: string): boolean {
+  if (typeof document === "undefined") return false;
+  const textarea = document.createElement("textarea");
+  textarea.value = text;
+  textarea.setAttribute("readonly", "");
+  textarea.style.position = "fixed";
+  textarea.style.opacity = "0";
+  document.body.appendChild(textarea);
+  textarea.select();
+  let ok = false;
+  try {
+    ok = document.execCommand("copy");
+  } catch {
+    ok = false;
+  }
+  document.body.removeChild(textarea);
+  return ok;
+}
 
+function CopyChannelCard({
+  channel,
+  isKo,
+}: {
+  channel: ContactCopy["channels"][number];
+  isKo: boolean;
+}) {
+  const [copied, setCopied] = useState(false);
+
+  const handleCopy = async () => {
+    const markCopied = () => {
+      setCopied(true);
+      window.setTimeout(() => setCopied(false), 2000);
+    };
+    try {
+      await navigator.clipboard.writeText(channel.value);
+      markCopied();
+    } catch {
+      // Async Clipboard API blocked (e.g. no focus); try the legacy fallback.
+      if (copyTextFallback(channel.value)) markCopied();
+    }
+  };
+
+  return (
+    <button
+      type="button"
+      onClick={handleCopy}
+      className="group border-t border-border pt-6 text-left"
+    >
+      <div className="flex items-start justify-between gap-4">
+        <div>
+          <p className="font-sans text-[10px] font-semibold uppercase tracking-[0.24em] text-primary">
+            {channel.label}
+          </p>
+          <p className="mt-3 font-display-serif text-lg font-normal text-foreground">{channel.value}</p>
+          <p className="mt-2 text-sm leading-[1.85] text-secondary">{channel.note}</p>
+        </div>
+        <channel.icon className="h-5 w-5 shrink-0 text-primary" strokeWidth={1.5} />
+      </div>
+      <div className="tlink mt-5">
+        {copied ? (isKo ? "복사됨!" : "Copied!") : channel.cta}
+      </div>
+    </button>
+  );
+}
 
 type ProcessCopy = ReturnType<typeof getReservationCopy>["process"];
 
@@ -137,17 +204,6 @@ function ProcessSection({ copy }: { copy: ProcessCopy }) {
             {copy.subtitle}
           </p>
         </header>
-
-        <div className="relative mb-10 h-[240px] w-full overflow-hidden bg-accent/60 md:mb-14 md:h-[420px]">
-          <Image
-            src="/img/main/homepage_2.jpg"
-            alt="더헬리아 가족 전용 라운지 전경"
-            fill
-            sizes="(min-width: 1024px) 1024px, 100vw"
-            className="object-cover"
-          />
-        </div>
-
         <div className="md:hidden space-y-6">
           {copy.steps.map((step, index) => (
             <article
@@ -270,13 +326,13 @@ function getReservationCopy(locale: Locale) {
           icon: Phone,
         },
         {
+          id: "kakao",
           label: isKo ? "카카오톡" : "KakaoTalk",
-          value: "더헬리아산후조리원",
+          value: "THEHELIA",
           note: isKo
-            ? "카카오톡 채널에서 상담 가능 · 빠른 메시지 회신"
-            : "Chat via KakaoTalk channel for quick responses",
-          cta: isKo ? "카카오톡 연결" : "Open KakaoTalk",
-          href: "https://pf.kakao.com/_GGXHn",
+            ? "카카오톡 → 친구추가 → ID 검색에서 위 아이디로 검색해 주세요."
+            : "On KakaoTalk, go to Add Friend → Search by ID and enter the ID above.",
+          cta: isKo ? "ID 복사하기" : "Copy ID",
           icon: MessageCircle,
         },
       ],

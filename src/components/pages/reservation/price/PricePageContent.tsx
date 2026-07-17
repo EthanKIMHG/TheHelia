@@ -65,7 +65,7 @@ function MainPriceSection({ isKo }: { isKo: boolean }) {
       features: [
         { label: isKo ? "신생아 케어 3.5 : 1" : "Baby Care 3.5 : 1", included: true },
         { label: isKo ? "산모 헤드스파 1회" : "Mother Head Spa 1x", included: true },
-        { label: isKo ? "보호자 식사 (입실 당일 1회)" : "Partner Meal (Check-in 1x)", included: true },
+        { label: isKo ? "보호자 식사 (입실 당일 점심 1회)" : "Partner Meal (Check-in Lunch 1x)", included: true },
         { label: isKo ? "베이비 스파 1회" : "Baby Spa 1x", included: true },
         { label: isKo ? "가슴 마사지 (입실 기간 무제한)" : "Breast Care (Unlimited)", included: true },
         { label: isKo ? "퇴실 후 유축기 할인 대여" : "Pump Rental Discount", included: true },
@@ -80,7 +80,7 @@ function MainPriceSection({ isKo }: { isKo: boolean }) {
       features: [
         { label: isKo ? "신생아 케어 3.5 : 1" : "Baby Care 3.5 : 1", included: true },
         { label: isKo ? "산모 헤드스파 1회 + 보호자 1회" : "Mother Head Spa 1x + Partner 1x", included: true },
-        { label: isKo ? "보호자 식사 2회 (입실/토요일)" : "Partner Meal 2x", included: true },
+        { label: isKo ? "보호자 식사 (토요일 점심 1회 특식)" : "Partner Meal (Sat. Special Lunch)", included: true },
         { label: isKo ? "베이비 스파 1회" : "Baby Spa 1x", included: true },
         { label: isKo ? "가슴 마사지 (입실 기간 무제한)" : "Breast Care (Unlimited)", included: true },
         { label: isKo ? "퇴실 후 유축기 무상 대여" : "Free Pump Rental", included: true },
@@ -96,10 +96,11 @@ function MainPriceSection({ isKo }: { isKo: boolean }) {
       features: [
         { label: isKo ? "신생아 케어 2 : 1 (단독 신생아실)" : "Baby Care 2 : 1 (Private Room)", included: true },
         { label: isKo ? "산모 헤드스파 2회 + 보호자 1회" : "Mother Head Spa 2x + Partner 1x", included: true },
-        { label: isKo ? "보호자 주말 식사 전체 제공" : "Partner Meal (All Weekends)", included: true },
+        { label: isKo ? "보호자 식사 (주말 3끼, 총 12회)" : "Partner Meal (Weekends, 12 total)", included: true },
         { label: isKo ? "베이비 스파 2회" : "Baby Spa 2x", included: true },
-        { label: isKo ? "가슴 관리 퇴실 후 3회 추가" : "Breast Care (+3x After)", included: true },
-        { label: isKo ? "병원 → 조리원 리무진 의전" : "Limousine Service", included: true },
+        { label: isKo ? "가슴 관리 (입실 기간 무제한 + 퇴실 후 3회)" : "Breast Care (Unlimited + 3x After)", included: true },
+        { label: isKo ? "의전 서비스 (입실·퇴실 선택)" : "VIP Transfer (Check-in / Check-out)", included: true },
+        { label: isKo ? "퇴실 후 유축기 무상 대여" : "Free Pump Rental", included: true },
       ],
       highlight: false,
       isPremium: true

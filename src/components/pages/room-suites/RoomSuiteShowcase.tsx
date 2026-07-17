@@ -451,7 +451,7 @@ const SUITE_CONTENT: Record<
         title: "호텔 스위트보다 넓은 13평형 프라이빗 라운지",
         subtitle: "투룸 구조로 가족과 함께 머물기에 이상적인 공간입니다. 최고급 모션 베드와 다이슨 풀 라인업, 단독 신생아실 케어로 완벽한 휴식을 선사합니다.",
         highlights: [
-          { title: "객실 크기", value: "13평 / 43㎡", note: "투룸 구조, 논밭뷰(Field View)" },
+          { title: "객실 크기", value: "13평 / 43㎡", note: "투룸 구조, 필드뷰(Field View)" },
           { title: "베드", value: "템퍼 모션베드 SS * 2", note: "트윈 베드 구성" },
           { title: "신생아 케어", value: "2 : 1 케어", note: "단독 신생아실 이용" },
         ],
@@ -484,7 +484,7 @@ const SUITE_CONTENT: Record<
       featureGroups: [
         {
           title: "객실 컨디션",
-          items: ["13평형 투룸 구조 (43㎡)", "이중 통유리 창문 (논밭뷰)", "템퍼 모션베드 슈퍼 싱글 2개", "바디프랜드 안마의자"],
+          items: ["13평형 투룸 구조 (43㎡)", "이중 통유리 창문 (필드뷰)", "템퍼 모션베드 슈퍼 싱글 2개", "바디프랜드 안마의자"],
         },
         {
           title: "가구 & 가전을 갖춘 라운지",
@@ -585,9 +585,9 @@ const SUITE_CONTENT: Record<
       hero: {
         badge: "VVIP SUITE",
         title: "10.5평의 넉넉하고 편안한 힐링 공간",
-        subtitle: "논밭뷰의 탁 트인 전망과 함께 안마의자, 모션베드 등 프리미엄 설비를 갖춘 가장 인기 있는 객실입니다.",
+        subtitle: "필드뷰의 탁 트인 전망과 함께 안마의자, 모션베드 등 프리미엄 설비를 갖춘 가장 인기 있는 객실입니다.",
         highlights: [
-          { title: "객실 크기", value: "10.5평 / 34㎡", note: "원룸형, 논밭뷰(Field View)" },
+          { title: "객실 크기", value: "10.5평 / 34㎡", note: "원룸형, 필드뷰(Field View)" },
           { title: "베드", value: "템퍼 모션베드 Q", note: "퀸 사이즈" },
           { title: "신생아 케어", value: "3.5 : 1 케어", note: "전문 케어팀 상주" },
         ],
@@ -615,7 +615,7 @@ const SUITE_CONTENT: Record<
       featureGroups: [
         {
           title: "객실 컨디션",
-          items: ["10.5평형 원룸 구조 (34㎡)", "이중 통유리 창문 (논밭뷰)", "템퍼 모션베드 퀸(Q)", "바디프랜드 안마의자"],
+          items: ["10.5평형 원룸 구조 (34㎡)", "이중 통유리 창문 (필드뷰)", "템퍼 모션베드 퀸(Q)", "바디프랜드 안마의자"],
         },
         {
           title: "가구 & 가전",
@@ -627,7 +627,7 @@ const SUITE_CONTENT: Record<
         },
         {
           title: "스페셜 서비스",
-          items: ["신생아 케어 3.5 : 1", "가슴 관리: 입실 기간 무제한", "헤드스파 2회 / 베이비 스파 1회", "보호자 식사 2회 (입실/토요일)"],
+          items: ["신생아 케어 3.5 : 1", "가슴 관리: 입실 기간 무제한", "헤드스파 2회 / 베이비 스파 1회", "보호자 식사 (토요일 점심 1회 특식)"],
         },
       ],
       facts: {
@@ -637,7 +637,7 @@ const SUITE_CONTENT: Record<
             { icon: BedDouble, title: "Bed Type", detail: "템퍼 모션베드 퀸(Q)" },
             { icon: Baby, title: "Care Ratio", detail: "3.5 : 1 케어" },
             { icon: Sparkles, title: "Device", detail: "다이슨 드라이어 & 메델라 심포니" },
-            { icon: Utensils, title: "Partner Meal", detail: "입실 당일 + 토요일 특식" },
+            { icon: Utensils, title: "Partner Meal", detail: "토요일 점심 특식 1회" },
          ],
       },
       amenities: buildAmenityCopy("ko"),
@@ -689,7 +689,7 @@ const SUITE_CONTENT: Record<
          },
          {
             title: "Special Service",
-            items: ["Newborn Care 3.5:1", "Unlimited Breast Care", "Head Spa 2x / Baby Spa 1x", "Partner Meal 2x"],
+            items: ["Newborn Care 3.5:1", "Unlimited Breast Care", "Head Spa 2x / Baby Spa 1x", "Partner Meal (Sat. Special Lunch)"],
          },
       ],
       facts: {
@@ -699,7 +699,7 @@ const SUITE_CONTENT: Record<
             { icon: BedDouble, title: "Bed Type", detail: "Tempur Motion Bed Q" },
             { icon: Baby, title: "Care Ratio", detail: "3.5 : 1 Ratio" },
             { icon: Sparkles, title: "Device", detail: "Dyson Dryer & Medela Symphony" },
-            { icon: Utensils, title: "Partner Meal", detail: "Check-in Lunch + Sat Special" },
+            { icon: Utensils, title: "Partner Meal", detail: "Sat. Special Lunch" },
          ],
       },
       amenities: buildAmenityCopy("en"),

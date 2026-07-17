@@ -32,7 +32,7 @@ export function SubPageHero({
         <Image
           src={imageSrc}
           alt={imageAlt}
-          quality={85}
+          quality={90}
           fill
           priority
           sizes="100vw"
