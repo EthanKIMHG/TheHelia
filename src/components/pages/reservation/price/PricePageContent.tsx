@@ -70,13 +70,6 @@ function MainPriceSection({ isKo }: { isKo: boolean }) {
         { label: isKo ? "가슴 마사지 (입실 기간 무제한)" : "Breast Care (Unlimited)", included: true },
         { label: isKo ? "퇴실 후 유축기 할인 대여" : "Pump Rental Discount", included: true },
       ],
-      quickCompare: {
-        babyCare: "3.5 : 1",
-        headSpa: isKo ? "1회" : "1x",
-        partnerMeal: isKo ? "1회" : "1x",
-        babySpa: isKo ? "1회" : "1x",
-        special: isKo ? "합리형" : "Value",
-      },
       highlight: false,
     },
     {
@@ -92,13 +85,6 @@ function MainPriceSection({ isKo }: { isKo: boolean }) {
         { label: isKo ? "가슴 마사지 (입실 기간 무제한)" : "Breast Care (Unlimited)", included: true },
         { label: isKo ? "퇴실 후 유축기 무상 대여" : "Free Pump Rental", included: true },
       ],
-      quickCompare: {
-        babyCare: "3.5 : 1",
-        headSpa: isKo ? "산모1+보호자1" : "Mother1+Partner1",
-        partnerMeal: isKo ? "2회" : "2x",
-        babySpa: isKo ? "1회" : "1x",
-        special: isKo ? "유축기 무상" : "Free Pump",
-      },
       highlight: true,
       tag: isKo ? "MOST POPULAR" : "MOST POPULAR",
     },
@@ -115,13 +101,6 @@ function MainPriceSection({ isKo }: { isKo: boolean }) {
         { label: isKo ? "가슴 관리 퇴실 후 3회 추가" : "Breast Care (+3x After)", included: true },
         { label: isKo ? "병원 → 조리원 리무진 의전" : "Limousine Service", included: true },
       ],
-      quickCompare: {
-        babyCare: "2 : 1",
-        headSpa: isKo ? "산모2+보호자1" : "Mother2+Partner1",
-        partnerMeal: isKo ? "주말 전체" : "All weekend",
-        babySpa: isKo ? "2회" : "2x",
-        special: isKo ? "의전 서비스" : "Transfer",
-      },
       highlight: false,
       isPremium: true
     },
@@ -140,19 +119,14 @@ function MainPriceSection({ isKo }: { isKo: boolean }) {
             </h3>
             <p className="mx-auto mt-2 max-w-[28ch] break-keep text-sm leading-[1.85] text-secondary">
               {isKo
-                ? "등급별 금액과 핵심 차이만 간단히 정리했습니다."
-                : "A simple summary of rates and key differences."}
+                ? "등급별 금액과 포함된 혜택을 모두 확인하세요."
+                : "See the rates and every included benefit for each tier."}
             </p>
           </div>
 
           <div className="space-y-4">
             {plans.map((plan) => {
               const isVVIP = plan.highlight;
-              const highlights = [
-                { label: isKo ? "신생아 케어" : "Baby Care", value: plan.quickCompare.babyCare },
-                { label: isKo ? "헤드스파" : "Head Spa", value: plan.quickCompare.headSpa },
-                { label: isKo ? "대표 혜택" : "Key Benefit", value: plan.quickCompare.special },
-              ];
 
               return (
                 <article
@@ -186,21 +160,16 @@ function MainPriceSection({ isKo }: { isKo: boolean }) {
                     </p>
                   </div>
 
-                  <dl className="mt-5">
-                    {highlights.map((item) => (
-                      <div
-                        key={`${plan.type}-${item.label}`}
-                        className="flex items-center justify-between gap-4 border-b border-border py-2.5"
-                      >
-                        <dt className="font-sans text-[10px] font-semibold uppercase tracking-[0.24em] text-primary">
-                          {item.label}
-                        </dt>
-                        <dd className="max-w-[58%] break-keep text-right text-sm leading-snug text-foreground/80">
-                          {item.value}
-                        </dd>
-                      </div>
+                  <ul className="mt-5 space-y-3 border-t border-border pt-5">
+                    {plan.features.map((feature, i) => (
+                      <li key={i} className="flex items-start gap-2.5 text-sm leading-relaxed">
+                        <Check className="mt-0.5 h-4 w-4 shrink-0 text-primary" strokeWidth={1.5} />
+                        <span className="break-keep text-foreground/80">
+                          {feature.label}
+                        </span>
+                      </li>
                     ))}
-                  </dl>
+                  </ul>
                 </article>
               );
             })}
