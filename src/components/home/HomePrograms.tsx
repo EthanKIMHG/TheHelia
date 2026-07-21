@@ -178,7 +178,7 @@ function ProgramDetailDialog({
 
   return (
     <motion.div
-      className="fixed inset-0 z-[110] flex items-end bg-black/58 backdrop-blur-[3px] md:items-center md:justify-center md:px-6 md:py-8"
+      className="fixed inset-0 z-[110] flex items-end bg-background/40 backdrop-blur-xl md:items-center md:justify-center md:px-6 md:py-8"
       onClick={onClose}
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
