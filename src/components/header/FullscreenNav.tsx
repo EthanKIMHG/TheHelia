@@ -6,6 +6,7 @@ import Image from "next/image";
 import { useEffect, useMemo, useState } from "react";
 
 import { TransitionLink } from "@/components/common/TransitionLink";
+import { GlassIconButton } from "@/components/ui/glass/GlassIconButton";
 import clsx from "clsx";
 import type { Locale, NavItem } from "./types";
 
@@ -178,16 +179,15 @@ export function FullscreenNav({
                 <TransitionLink
                   href={`/${locale}/reservation`}
                   onClick={onClose}
-                  className="inline-flex items-center gap-3 bg-foreground px-6 py-3.5 font-sans text-[10px] font-semibold uppercase tracking-[0.28em] text-background transition-colors duration-500 hover:bg-foreground/90"
+                  className="press-grow inline-flex items-center gap-3 rounded-[var(--radius-pill)] bg-foreground px-6 py-3.5 font-sans text-[10px] font-semibold uppercase tracking-[0.28em] text-background shadow-[var(--shadow-glass-strong)] transition-colors duration-500 hover:bg-foreground/90"
                 >
                   {locale === "ko" ? "예약하기" : "Reserve"}
                 </TransitionLink>
 
                 <div className="flex items-center gap-2">
-                  <button
-                    type="button"
+                  <GlassIconButton
                     onClick={() => onLocaleChange(locale === "ko" ? "en" : "ko")}
-                    className="inline-flex h-10 w-10 items-center justify-center border border-border text-foreground transition-colors hover:border-foreground"
+                    className="h-10 w-10"
                     aria-label={
                       locale === "ko" ? "Switch to English" : "한국어로 전환"
                     }
@@ -197,11 +197,10 @@ export function FullscreenNav({
                     ) : (
                       <GlobeIcon className="h-4 w-4" strokeWidth={1.5} />
                     )}
-                  </button>
-                  <button
-                    type="button"
+                  </GlassIconButton>
+                  <GlassIconButton
                     onClick={onToggleTheme}
-                    className="inline-flex h-10 w-10 items-center justify-center border border-border text-foreground transition-colors hover:border-foreground"
+                    className="h-10 w-10"
                     aria-label={
                       theme === "dark"
                         ? "라이트 모드로 전환"
@@ -213,7 +212,7 @@ export function FullscreenNav({
                     ) : (
                       <MoonIcon className="h-4 w-4" strokeWidth={1.5} />
                     )}
-                  </button>
+                  </GlassIconButton>
                 </div>
               </motion.div>
             </div>

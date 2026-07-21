@@ -1,6 +1,7 @@
 "use client";
 
 import { ScrollReveal } from "@/components/common/ScrollReveal";
+import { GlassCard } from "@/components/ui/glass/GlassCard";
 import { Crown, ShieldCheck, Sparkles, Waves } from "lucide-react";
 import Image from "next/image";
 
@@ -65,7 +66,7 @@ export function SpaBrandIntro({ copy }: SpaBrandIntroProps) {
 
           <div className="space-y-8">
             <div className="">
-              <div className="relative h-60 overflow-hidden bg-accent/60 md:h-[420px]">
+              <GlassCard radius="lg" className="relative h-60 overflow-hidden md:h-[420px]">
                 <Image
                   src="/img/spa/us/thalac.jpg"
                   alt="THALAC premium spa products used at The Helia"
@@ -73,16 +74,18 @@ export function SpaBrandIntro({ copy }: SpaBrandIntroProps) {
                   sizes="(min-width: 1024px) 52vw, 100vw"
                   className="object-cover"
                 />
-              </div>
+              </GlassCard>
             </div>
 
             <div className="grid gap-x-8 gap-y-10 md:grid-cols-3">
               {copy.thalac.features.map((feature, index) => {
                 const Icon = ICON_MAP[feature.icon];
                 return (
-                  <article
+                  <GlassCard
+                    as="article"
                     key={index}
-                    className="border-t border-border pt-6 text-left"
+                    radius="card"
+                    className="p-6 text-left"
                   >
                     <Icon className="h-5 w-5 text-primary" strokeWidth={1.5} />
                     <h4 className="mt-4 break-keep font-display-serif text-lg font-normal leading-[1.5] text-foreground">
@@ -91,7 +94,7 @@ export function SpaBrandIntro({ copy }: SpaBrandIntroProps) {
                     <p className="mt-2 break-keep text-sm leading-[1.85] text-secondary">
                       {feature.description}
                     </p>
-                  </article>
+                  </GlassCard>
                 );
               })}
             </div>

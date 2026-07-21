@@ -4,6 +4,7 @@ import { useOptionalThemeLocale } from "@/context/theme-locale-context";
 import { SpaServiceBento } from "./SpaServiceBento";
 
 import { ScrollReveal } from "@/components/common/ScrollReveal";
+import { GlassCard } from "@/components/ui/glass/GlassCard";
 import { blobUrl } from "@/lib/media";
 import { Droplets, GraduationCap, MapPin, Sparkles } from "lucide-react";
 import Image from "next/image";
@@ -40,14 +41,14 @@ function BabySpaStrengths({ copy }: { copy: typeof KOREAN_COPY.strengths }) {
         {/* Row 1: Experience & Exclusivity */}
         <div className="grid gap-10 lg:grid-cols-2 lg:gap-14">
            {/* Image */}
-           <div className="relative overflow-hidden bg-accent/60 h-[360px] lg:h-auto group">
+           <GlassCard radius="lg" className="relative overflow-hidden h-[360px] lg:h-auto group">
              <Image
                src={blobUrl("img/babyspa/strength-babyspa1.png")}
                alt={copy.point1.title}
                fill
                className="object-cover transition-transform duration-700 group-hover:scale-[1.03]"
              />
-           </div>
+           </GlassCard>
 
            {/* Text Column */}
            <div className="flex flex-col justify-center lg:py-8">
@@ -99,14 +100,14 @@ function BabySpaStrengths({ copy }: { copy: typeof KOREAN_COPY.strengths }) {
            </div>
 
            {/* Image */}
-           <div className="order-1 lg:order-2 relative overflow-hidden bg-accent/60 h-[360px] lg:h-auto group">
+           <GlassCard radius="lg" className="order-1 lg:order-2 relative overflow-hidden h-[360px] lg:h-auto group">
              <Image
                src={blobUrl("img/babyspa/strength-babyspa2.png")}
                alt={copy.point4.title}
                fill
                className="object-cover transition-transform duration-700 group-hover:scale-[1.03]"
              />
-           </div>
+           </GlassCard>
         </div>
       </section>
     </ScrollReveal>

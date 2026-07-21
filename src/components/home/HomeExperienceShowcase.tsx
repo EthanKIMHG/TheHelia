@@ -32,7 +32,7 @@ export function HomeExperienceStacked({
     <motion.section
       id={id}
       ref={sectionRef}
-      className="flex min-h-screen w-full items-center justify-center bg-background px-6 py-16 text-foreground md:py-24"
+      className="flex min-h-screen w-full items-center justify-center glass-depth px-6 py-16 text-foreground md:py-24"
       initial={{ opacity: 0, y: 32 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, amount: 0.55 }}
@@ -40,7 +40,7 @@ export function HomeExperienceStacked({
     >
       <div className="mx-auto flex w-full max-w-6xl flex-col gap-12 md:grid md:grid-cols-[1.1fr_0.9fr]">
         <motion.div
-          className="relative h-[280px] w-full overflow-hidden rounded-[2.5rem] border border-white/20 bg-background/50 backdrop-blur-xl shadow-2xl sm:h-[320px] md:h-[420px] lg:h-[520px]"
+          className="glass relative h-[280px] w-full overflow-hidden rounded-[var(--radius-lg)] sm:h-[320px] md:h-[420px] lg:h-[520px]"
           initial={{ opacity: 0, scale: 0.92, y: 20 }}
           whileInView={{ opacity: 1, scale: 1, y: 0 }}
           viewport={{ once: true, amount: 0.5 }}
@@ -65,7 +65,7 @@ export function HomeExperienceStacked({
           />
           {highlight.badge ? (
             <motion.span
-              className="absolute left-6 top-6 inline-flex items-center justify-center rounded-full border border-border bg-white/10 px-3 py-1 text-xs font-semibold uppercase tracking-[0.3em] text-white backdrop-blur"
+              className="glass-on-dark absolute left-6 top-6 inline-flex items-center justify-center rounded-[var(--radius-pill)] px-3 py-1 text-xs font-semibold uppercase tracking-[0.3em] text-white"
               initial={{ opacity: 0, y: -10 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, amount: 0.6 }}
@@ -91,7 +91,7 @@ export function HomeExperienceStacked({
         </motion.div>
 
         <motion.div
-          className="flex flex-col gap-6 rounded-[2.5rem] border border-white/20 bg-white/40 px-8 py-10 backdrop-blur-xl shadow-lg"
+          className="glass flex flex-col gap-6 rounded-[var(--radius-lg)] px-8 py-10"
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.45 }}
@@ -142,7 +142,7 @@ export function HomeExperienceTilted({
     <motion.section
       id={id}
       ref={sectionRef}
-      className="flex min-h-screen w-full items-center justify-center bg-background px-6 py-16 text-foreground md:py-24"
+      className="flex min-h-screen w-full items-center justify-center glass-depth px-6 py-16 text-foreground md:py-24"
       initial={{ opacity: 0, y: 32 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, amount: 0.55 }}
@@ -157,7 +157,7 @@ export function HomeExperienceTilted({
           transition={{ duration: 0.8, ease: "easeOut" }}
           style={{ order: textFirst ? 1 : 2 }}
         >
-          <span className="inline-flex w-fit items-center rounded-full bg-primary/10 px-4 py-1 text-xs font-semibold uppercase tracking-[0.3em] text-primary">
+          <span className="w-fit text-xs font-semibold uppercase tracking-[0.3em] text-primary">
             {highlight.meta}
           </span>
           <motion.h3
@@ -183,7 +183,7 @@ export function HomeExperienceTilted({
               {highlight.bullets.map((bullet, idx) => (
                 <motion.div
                   key={bullet}
-                  className="rounded-3xl border border-white/30 bg-white/40 px-6 py-4 shadow-sm backdrop-blur-md"
+                  className="glass rounded-[var(--radius-md)] px-6 py-4"
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true, amount: 0.5 }}
@@ -212,7 +212,7 @@ export function HomeExperienceTilted({
             transition={{ delay: 0.3, duration: 0.6 }}
           />
           <motion.div
-            className="relative h-[360px] w-full rotate-[-4.5deg] overflow-hidden rounded-[3rem] border border-white/20 bg-background/50 backdrop-blur-xl shadow-2xl"
+            className="glass relative h-[360px] w-full rotate-[-4.5deg] overflow-hidden rounded-[var(--radius-lg)]"
             initial={{ rotate: textFirst ? 8 : -8, y: 40 }}
             whileInView={{ rotate: textFirst ? -4.5 : 4.5, y: 0 }}
             viewport={{ once: true, amount: 0.5 }}
@@ -229,7 +229,7 @@ export function HomeExperienceTilted({
             />
           </motion.div>
           <motion.div
-            className="absolute -bottom-9 right-6 flex w-[220px] flex-col gap-3 rounded-2xl border border-border bg-background p-4 shadow-lg"
+            className="glass-prominent absolute -bottom-9 right-6 flex w-[220px] flex-col gap-3 rounded-[var(--radius-md)] p-4"
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.5 }}
@@ -280,7 +280,7 @@ export function HomeExperienceGallery({
           transition={{ duration: 0.8, ease: "easeOut" }}
           style={{ order: textFirst ? 1 : 2 }}
         >
-          <span className="inline-flex w-fit items-center rounded-full border border-primary/40 bg-primary/10 px-4 py-1 text-xs font-semibold uppercase tracking-[0.3em] text-primary">
+          <span className="w-fit text-xs font-semibold uppercase tracking-[0.3em] text-primary">
             {highlight.meta}
           </span>
           <motion.h3
@@ -320,7 +320,7 @@ export function HomeExperienceGallery({
               {highlight.bullets.map((bullet) => (
                 <motion.li
                   key={bullet}
-                  className="flex items-center gap-3 rounded-full border border-border bg-background/80 px-5 py-3 backdrop-blur"
+                  className="glass flex items-center gap-3 rounded-[var(--radius-pill)] px-5 py-3"
                   variants={{
                     hidden: { opacity: 0, x: -20 },
                     visible: { opacity: 1, x: 0 },
@@ -339,7 +339,7 @@ export function HomeExperienceGallery({
           style={{ order: textFirst ? 2 : 1 }}
         >
           <motion.div
-            className="col-span-1 h-[220px] overflow-hidden rounded-[2.5rem] border border-white/20 shadow-xl sm:col-span-2 sm:h-[260px] md:h-[300px]"
+            className="glass col-span-1 h-[220px] overflow-hidden rounded-[var(--radius-lg)] sm:col-span-2 sm:h-[260px] md:h-[300px]"
             initial={{ opacity: 0, y: 40 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.45 }}
@@ -357,7 +357,7 @@ export function HomeExperienceGallery({
           </motion.div>
 
           <motion.div
-            className="relative h-[180px] overflow-hidden rounded-3xl border border-border bg-background/90 shadow-lg sm:h-[200px]"
+            className="glass relative h-[180px] overflow-hidden rounded-[var(--radius-md)] sm:h-[200px]"
             initial={{ opacity: 0, scale: 0.92 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true, amount: 0.4 }}
@@ -381,7 +381,7 @@ export function HomeExperienceGallery({
           </motion.div>
 
           <motion.div
-            className="relative h-[180px] overflow-hidden rounded-3xl border border-border bg-background/90 shadow-lg sm:h-[200px]"
+            className="glass relative h-[180px] overflow-hidden rounded-[var(--radius-md)] sm:h-[200px]"
             initial={{ opacity: 0, scale: 0.92 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true, amount: 0.4 }}

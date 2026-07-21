@@ -1,6 +1,7 @@
 "use client";
 
 import { ScrollReveal } from "@/components/common/ScrollReveal";
+import { GlassCard } from "@/components/ui/glass/GlassCard";
 import { useOptionalThemeLocale } from "@/context/theme-locale-context";
 import {
   ArrowRight,
@@ -261,7 +262,12 @@ function SpaPageCta({
 }) {
   return (
     <ScrollReveal>
-      <section className="border border-border bg-accent/30 p-6 py-14 md:p-8 md:py-16 lg:p-10 lg:py-16">
+      <GlassCard
+        as="section"
+        tone="warm"
+        radius="lg"
+        className="p-6 py-14 md:p-8 md:py-16 lg:p-10 lg:py-16"
+      >
         <div className="flex flex-col items-center gap-8 text-center">
           <div className="space-y-4">
             <p className="eyebrow">
@@ -278,7 +284,7 @@ function SpaPageCta({
           <div className="flex flex-col items-center gap-4">
             <Link
               href={`/${locale}/reservation`}
-              className="inline-flex items-center gap-2 bg-foreground px-8 py-3.5 font-sans text-xs font-semibold uppercase tracking-[0.2em] text-background transition-opacity duration-300 hover:opacity-90"
+              className="press-grow inline-flex items-center gap-2 rounded-[var(--radius-pill)] bg-foreground px-8 py-3.5 font-sans text-xs font-semibold uppercase tracking-[0.2em] text-background shadow-[var(--shadow-glass-strong)] transition-opacity duration-300 hover:opacity-90"
             >
               {copy.button}
               <ArrowRight className="h-3.5 w-3.5" />
@@ -288,7 +294,7 @@ function SpaPageCta({
             </p>
           </div>
         </div>
-      </section>
+      </GlassCard>
     </ScrollReveal>
   );
 }

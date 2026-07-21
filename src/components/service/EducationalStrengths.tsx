@@ -2,6 +2,7 @@
 
 import { FadeInUp } from "@/components/common/FadeInUp";
 import type { Locale } from "@/components/header/types";
+import { GlassCard } from "@/components/ui/glass/GlassCard";
 import {
     Activity,
     Quote,
@@ -24,7 +25,7 @@ export function EducationalStrengths({ locale }: { locale: Locale }) {
         <div className="grid grid-cols-1 gap-4 md:grid-cols-3 md:grid-rows-2 lg:gap-6 h-auto md:h-[800px]">
           
           {/* Card 1: Trendy (Large Left) */}
-          <div className="group relative col-span-1 row-span-1 md:col-span-2 md:row-span-2 overflow-hidden bg-accent/60">
+          <GlassCard radius="lg" className="group relative col-span-1 row-span-1 md:col-span-2 md:row-span-2 overflow-hidden">
              {/* Background Image - Full Visibility */}
              <div className="absolute inset-0">
                  <Image
@@ -73,10 +74,10 @@ export function EducationalStrengths({ locale }: { locale: Locale }) {
                     </ul>
                  </div>
              </div>
-          </div>
+          </GlassCard>
 
           {/* Card 2: Medical (Top Right) */}
-          <div className="group relative col-span-1 row-span-1 overflow-hidden bg-accent/60">
+          <GlassCard radius="md" className="group relative col-span-1 row-span-1 overflow-hidden">
              {/* Full Visible Image */}
              <div className="absolute inset-0">
                  <Image
@@ -105,10 +106,10 @@ export function EducationalStrengths({ locale }: { locale: Locale }) {
                     </p>
                 </div>
              </div>
-          </div>
+          </GlassCard>
 
           {/* Card 3: Recovery (Bottom Right 1) */}
-          <div className="group relative col-span-1 row-span-1 overflow-hidden bg-accent/60">
+          <GlassCard radius="md" className="group relative col-span-1 row-span-1 overflow-hidden">
              {/* Full Visible Image */}
              <div className="absolute inset-0">
                  <Image
@@ -137,13 +138,13 @@ export function EducationalStrengths({ locale }: { locale: Locale }) {
                     </p>
                 </div>
              </div>
-          </div>
+          </GlassCard>
 
         </div>
 
         {/* Bottom Banner: Hybrid */}
         <FadeInUp delay={0.3}>
-            <div className="group mt-4 md:mt-6 bg-foreground px-8 py-10 md:px-12 md:py-16 text-white overflow-hidden relative">
+            <div className="group mt-4 md:mt-6 bg-foreground px-8 py-10 md:px-12 md:py-16 text-background overflow-hidden relative rounded-[var(--radius-lg)]">
                 {/* Background Image */}
                 <div className="absolute inset-0 opacity-20 dark:opacity-40 group-hover:scale-[1.03] transition-transform duration-700 mix-blend-overlay">
                      <Image
@@ -156,14 +157,14 @@ export function EducationalStrengths({ locale }: { locale: Locale }) {
 
                 <div className="relative z-10 flex flex-col md:flex-row md:items-center justify-between gap-8">
                     <div className="space-y-4">
-                        <div className="inline-flex items-center gap-2 font-sans text-[11px] font-semibold uppercase tracking-[0.3em] text-white/90">
+                        <div className="inline-flex items-center gap-2 font-sans text-[11px] font-semibold uppercase tracking-[0.3em] text-background/90">
                             <Smartphone className="h-3 w-3" strokeWidth={1.5} />
                             <span>Hybrid System</span>
                         </div>
-                        <h3 className="font-display-serif text-xl md:text-3xl font-normal leading-[1.4] text-white">
+                        <h3 className="font-display-serif text-xl md:text-3xl font-normal leading-[1.4] text-background">
                             {isKo ? "언제 어디서나, 유연한 교육" : "Flexible Learning Anywhere"}
                         </h3>
-                        <p className="max-w-xl text-white/70 text-sm md:text-base leading-[1.85]">
+                        <p className="max-w-xl text-background/70 text-sm md:text-base leading-[1.85]">
                             {isKo
                              ? "컨디션이 좋지 않을 땐 룸에서 QR코드로 편안하게. 산모님의 회복 속도에 맞춘 하이브리드 교육 환경을 제공합니다."
                              : "Learn comfortably from your room via QR code when resting. We offer a hybrid environment tailored to your recovery pace."}
@@ -171,8 +172,8 @@ export function EducationalStrengths({ locale }: { locale: Locale }) {
                     </div>
 
                     {/* Visual Graphic Element */}
-                    <div className="flex-shrink-0 h-20 w-20 md:h-24 md:w-24 flex items-center justify-center border border-white/30 transition-colors duration-500 group-hover:border-white/60">
-                        <span className="font-serif text-3xl font-italic opacity-50 text-white">QR</span>
+                    <div className="flex-shrink-0 h-20 w-20 md:h-24 md:w-24 flex items-center justify-center rounded-[var(--radius-md)] border border-background/30 transition-colors duration-500 group-hover:border-background/60">
+                        <span className="font-serif text-3xl font-italic opacity-50 text-background">QR</span>
                     </div>
                 </div>
             </div>

@@ -1,6 +1,8 @@
 "use client";
 
 import { ScrollReveal } from "@/components/common/ScrollReveal";
+import { GlassCard } from "@/components/ui/glass/GlassCard";
+import { GlassIconButton } from "@/components/ui/glass/GlassIconButton";
 import type { Locale } from "@/components/header/types";
 import { useOptionalThemeLocale } from "@/context/theme-locale-context";
 import { blobUrl } from "@/lib/media";
@@ -72,25 +74,15 @@ export function RoomSuiteShowcase({ suiteId, locale }: RoomSuiteShowcaseProps) {
             </p>
           </div>
           <div className="flex items-center gap-3">
-            <button
-              type="button"
-              onClick={handlePrev}
-              className="inline-flex h-11 w-11 items-center justify-center border border-border bg-background text-foreground transition-colors hover:border-foreground"
-              aria-label={copy.prevLabel}
-            >
+            <GlassIconButton onClick={handlePrev} aria-label={copy.prevLabel}>
               <ChevronLeft className="h-5 w-5" strokeWidth={1.5} />
-            </button>
-            <button
-              type="button"
-              onClick={handleNext}
-              className="inline-flex h-11 w-11 items-center justify-center border border-border bg-background text-foreground transition-colors hover:border-foreground"
-              aria-label={copy.nextLabel}
-            >
+            </GlassIconButton>
+            <GlassIconButton onClick={handleNext} aria-label={copy.nextLabel}>
               <ChevronRight className="h-5 w-5" strokeWidth={1.5} />
-            </button>
+            </GlassIconButton>
           </div>
         </div>
-        <div className="mt-6 overflow-hidden bg-accent/30">
+        <GlassCard radius="lg" className="mt-6 overflow-hidden">
           <div className="relative h-[320px] w-full md:h-[520px] lg:h-[620px]">
             <Image
               key={currentImage.src}
@@ -103,13 +95,14 @@ export function RoomSuiteShowcase({ suiteId, locale }: RoomSuiteShowcaseProps) {
               priority
             />
           </div>
-        </div>
+        </GlassCard>
         <div className="mt-5 grid grid-cols-2 gap-3 md:flex md:flex-wrap md:items-center">
           {copy.carousel.map((image, index) => (
             <button
               key={image.src + index}
               type="button"
               onClick={() => goToIndex(index)}
+              style={{ borderRadius: "var(--radius-sm)" }}
               className={`relative aspect-[4/3] w-full overflow-hidden border transition md:h-20 md:w-32 ${
                 currentIndex === index
                   ? "border-foreground"
@@ -136,11 +129,11 @@ export function RoomSuiteShowcase({ suiteId, locale }: RoomSuiteShowcaseProps) {
           <span className="eyebrow mb-8 inline-block">
             {isKo ? "한눈에 보기" : "At a Glance"}
           </span>
-          <div className="grid grid-cols-1 border-t border-border sm:grid-cols-3">
+          <GlassCard radius="lg" className="grid grid-cols-1 overflow-hidden sm:grid-cols-3">
             {copy.hero.highlights.map((highlight, index) => (
               <div
                 key={highlight.title}
-                className={`py-8 sm:px-8 sm:first:pl-0 ${
+                className={`p-8 ${
                   index > 0 ? "border-t border-border sm:border-t-0 sm:border-l" : ""
                 }`}
               >
@@ -155,14 +148,14 @@ export function RoomSuiteShowcase({ suiteId, locale }: RoomSuiteShowcaseProps) {
                 </p>
               </div>
             ))}
-          </div>
+          </GlassCard>
         </section>
         </ScrollReveal>
       ) : null}
 
       <ScrollReveal>
       <section className="grid gap-10 lg:grid-cols-3 lg:items-stretch lg:gap-14">
-        <div className="relative order-1 min-h-[420px] overflow-hidden bg-accent/60 lg:order-2 lg:min-h-full col-span-2">
+        <GlassCard radius="lg" className="relative order-1 min-h-[420px] overflow-hidden lg:order-2 lg:min-h-full col-span-2">
           <Image
             src={featureImage.src}
             alt={featureImage.alt}
@@ -171,12 +164,14 @@ export function RoomSuiteShowcase({ suiteId, locale }: RoomSuiteShowcaseProps) {
             quality={90}
             className="object-cover"
           />
-        </div>
-        <div className="order-2 flex flex-col gap-10 lg:order-1">
+        </GlassCard>
+        <div className="order-2 flex flex-col gap-6 lg:order-1">
           {copy.featureGroups.map((group, idx) => (
-            <article
+            <GlassCard
+              as="article"
               key={group.title}
-              className="border-t border-border pt-6"
+              radius="card"
+              className="p-6"
             >
               <h4 className="mb-4 flex items-center gap-3 font-display-serif text-lg font-normal leading-[1.5] text-foreground">
                 {idx === 0 && <Sofa className="h-5 w-5 text-primary" strokeWidth={1.5} />}
@@ -193,7 +188,7 @@ export function RoomSuiteShowcase({ suiteId, locale }: RoomSuiteShowcaseProps) {
                   </li>
                 ))}
               </ul>
-            </article>
+            </GlassCard>
           ))}
         </div>
       </section>
@@ -258,7 +253,7 @@ function AmenityGroupCard({
   group: SuiteCopy["amenities"]["groups"][number];
 }): React.JSX.Element {
   return (
-    <article className="border-t border-border pt-6">
+    <GlassCard as="article" radius="card" className="p-6">
       <h4 className="mb-4 font-display-serif text-lg font-normal leading-[1.5] text-foreground">
         {group.title}
       </h4>
@@ -270,7 +265,7 @@ function AmenityGroupCard({
           </li>
         ))}
       </ul>
-    </article>
+    </GlassCard>
   );
 }
 
@@ -292,7 +287,7 @@ function AmenityCarousel({ locale }: { locale: Locale }): React.JSX.Element {
 
   return (
     <div className="mx-auto w-full max-w-[600px] md:max-w-[720px] lg:max-w-[800px] ">
-      <div className="relative aspect-[4/3] w-full overflow-hidden bg-accent/30">
+      <GlassCard radius="lg" className="relative aspect-[4/3] w-full overflow-hidden">
         <Image
           key={current.src}
           src={current.src}
@@ -302,16 +297,15 @@ function AmenityCarousel({ locale }: { locale: Locale }): React.JSX.Element {
           quality={90}
           className="object-cover"
         />
-      </div>
+      </GlassCard>
       <div className="mt-3 flex items-center justify-between">
-        <button
-          type="button"
+        <GlassIconButton
           onClick={() => go(index - 1)}
-          className="inline-flex h-9 w-9 items-center justify-center border border-border bg-background text-foreground transition-colors hover:border-foreground"
+          className="h-9 w-9"
           aria-label={isKo ? "이전" : "Prev"}
         >
           <ChevronLeft className="h-4 w-4" strokeWidth={1.5} />
-        </button>
+        </GlassIconButton>
         <div className="flex items-center gap-1.5">
           {AMENITY_IMAGES.map((image, i) => (
             <button
@@ -325,14 +319,13 @@ function AmenityCarousel({ locale }: { locale: Locale }): React.JSX.Element {
             />
           ))}
         </div>
-        <button
-          type="button"
+        <GlassIconButton
           onClick={() => go(index + 1)}
-          className="inline-flex h-9 w-9 items-center justify-center border border-border bg-background text-foreground transition-colors hover:border-foreground"
+          className="h-9 w-9"
           aria-label={isKo ? "다음" : "Next"}
         >
           <ChevronRight className="h-4 w-4" strokeWidth={1.5} />
-        </button>
+        </GlassIconButton>
       </div>
     </div>
   );

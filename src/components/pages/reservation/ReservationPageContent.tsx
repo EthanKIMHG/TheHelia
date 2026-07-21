@@ -2,6 +2,7 @@
 
 import { ScrollReveal } from "@/components/common/ScrollReveal";
 import type { Locale } from "@/components/header/types";
+import { GlassCard } from "@/components/ui/glass/GlassCard";
 import { useOptionalThemeLocale } from "@/context/theme-locale-context";
 import { CalendarCheck, MessageCircle, Phone } from "lucide-react";
 import Image from "next/image";
@@ -52,7 +53,7 @@ function ContactSection({ copy, isKo }: { copy: ContactCopy; isKo: boolean }) {
       </header>
       <div className="mt-10 space-y-10">
         {bookingChannel && (
-          <article className="border border-foreground/40 bg-background p-6 md:p-8">
+          <GlassCard as="article" radius="md" className="p-6 md:p-8">
             <div className="flex items-start justify-between gap-4">
               <div>
                 <p className="font-sans text-[10px] font-semibold uppercase tracking-[0.24em] text-primary">
@@ -79,12 +80,12 @@ function ContactSection({ copy, isKo }: { copy: ContactCopy; isKo: boolean }) {
                 href={bookingChannel.href}
                 target="_blank"
                 rel="noreferrer"
-                className="mt-6 inline-flex w-full items-center justify-center bg-foreground p-3.5 font-sans text-sm font-semibold text-background transition-opacity hover:opacity-90 md:w-auto md:px-8"
+                className="press-grow mt-6 inline-flex w-full items-center justify-center rounded-[var(--radius-pill)] bg-foreground p-3.5 font-sans text-sm font-semibold text-background shadow-[var(--shadow-glass-strong)] transition-opacity hover:opacity-90 md:w-auto md:px-8"
               >
                 {bookingChannel.cta}
               </Link>
             )}
-          </article>
+          </GlassCard>
         )}
 
         <div className="grid gap-x-10 gap-y-8 md:grid-cols-2">

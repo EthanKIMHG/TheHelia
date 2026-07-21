@@ -1,6 +1,7 @@
 "use client";
 
 import { ScrollReveal } from "@/components/common/ScrollReveal";
+import { GlassCard } from "@/components/ui/glass/GlassCard";
 import { cn } from "@/lib/utils";
 import { AnimatePresence, motion, wrap } from "framer-motion";
 import { ArrowUpRight, Check, ChevronLeft, ChevronRight, Hand } from "lucide-react";
@@ -90,9 +91,10 @@ export function SpaServiceBento({
         {/* Bento Grid */}
         <div className="grid grid-cols-1 gap-6 lg:grid-cols-12">
           {/* Main Image Card (Carousel) */}
-          <div
+          <GlassCard
+            radius="lg"
             className={cn(
-              "relative overflow-hidden group min-h-[400px] bg-accent/60 lg:h-full lg:min-h-0",
+              "relative overflow-hidden group min-h-[400px] lg:h-full lg:min-h-0",
               reversed ? "lg:col-span-7 lg:order-2" : "lg:col-span-7 lg:order-1"
             )}
           >
@@ -138,13 +140,15 @@ export function SpaServiceBento({
             <div className="absolute inset-0 hidden lg:flex items-center justify-between p-4 pointer-events-none z-20">
               <button
                 onClick={(e) => { e.stopPropagation(); paginate(-1); }}
-                className="w-10 h-10 border border-white/40 bg-black/25 text-white flex items-center justify-center hover:bg-black/45 transition-colors pointer-events-auto opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                style={{ borderRadius: "var(--radius-pill)" }}
+                className="w-10 h-10 glass-on-dark glass-press text-white flex items-center justify-center pointer-events-auto opacity-0 group-hover:opacity-100 transition-opacity duration-300"
               >
                 <ChevronLeft className="w-5 h-5" strokeWidth={1.5} />
               </button>
               <button
                 onClick={(e) => { e.stopPropagation(); paginate(1); }}
-                className="w-10 h-10 border border-white/40 bg-black/25 text-white flex items-center justify-center hover:bg-black/45 transition-colors pointer-events-auto opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                style={{ borderRadius: "var(--radius-pill)" }}
+                className="w-10 h-10 glass-on-dark glass-press text-white flex items-center justify-center pointer-events-auto opacity-0 group-hover:opacity-100 transition-opacity duration-300"
               >
                 <ChevronRight className="w-5 h-5" strokeWidth={1.5} />
               </button>
@@ -161,7 +165,8 @@ export function SpaServiceBento({
                   repeat: Infinity,
                   repeatDelay: 2
                 }}
-                className="bg-black/40 text-white px-4 py-2 flex items-center gap-2"
+                style={{ borderRadius: "var(--radius-pill)" }}
+                className="glass-on-dark text-white px-4 py-2 flex items-center gap-2"
               >
                 <Hand className="w-5 h-5 animate-pulse" strokeWidth={1.5} />
                 <span className="text-sm font-medium">Swipe to view</span>
@@ -186,7 +191,7 @@ export function SpaServiceBento({
                 {title}
               </p>
             </div>
-          </div>
+          </GlassCard>
 
           {/* Features Column */}
           <div

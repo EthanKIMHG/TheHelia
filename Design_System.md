@@ -76,11 +76,55 @@ If documents conflict, follow `globals.css` for tokens, this file for design dir
 
 ## Surfaces, Shape, And Texture
 
-- **Square geometry.** `--radius-brand: 0`. Cards, images, and buttons use sharp corners (`rounded-none`). Small radii (2–4px) are allowed only where usability demands it (mobile bottom sheets, form inputs).
-- **Hairlines instead of boxes.** Structure content with 1px `border-border` rules — top rules on list items, column dividers on stat rows — rather than card backgrounds, shadows, or glass effects.
-- **No elevation.** Drop shadows, backdrop blur panels, and glassmorphism are legacy patterns; do not introduce them in new work. Interactive lift is expressed by image scale or underline/contrast change, not shadow.
-- **Soft tinted surfaces** (`bg-accent/30`–`/50`) may distinguish a full-width section band, applied edge-to-edge, not as rounded cards.
+The Helia renders on a **Liquid Glass** material system (Apple iOS 26 glass), re-tuned for the bright ivory palette. See [Liquid Glass Material](#liquid-glass-material) for the tokens, utility classes, and primitives.
+
+- **Glass surfaces.** Cards, panels, chrome bars, floating controls, and image frames use the frosted-glass material — a translucent warm-white fill + backdrop blur + upper-left specular highlight (135°) + hairline edge + soft warm dual-shadow. Content photography stays opaque _inside_ its glass frame.
+- **Superellipse radii.** The `--radius-*` tokens replace the former square geometry: cards 12–16px, large image frames 20px, pills/chips/toggles 100px, sheets 40px. Full-width chrome bars stay radius 0; standalone full-bleed hero images stay square.
+- **Gentle elevation.** Glass reads through its soft warm shadow, hairline, and specular — not heavy drop shadows. Interactive glass controls grow to `1.05` on press (spring physics); the dominant conversion CTA stays a **solid espresso pill** with the same press physics (never frosted glass).
+- **Hairlines still structure content _inside_ glass** — top rules on list rows, column dividers on stat panels. The glass card is the container; hairlines organize its interior.
+- **Subtle depth.** A faint on-palette warm radial field (`.glass-depth`, plus a global `body` layer) gives glass something to refract, without changing the ivory identity. Full-bleed solid color bands (e.g. the dark footer) stay flat — do not glassify them.
 - The light grain overlay on `body` is part of the brand's analog texture; preserve it.
+
+## Liquid Glass Material
+
+The glass foundation lives in [src/app/globals.css](src/app/globals.css) (tokens + utility classes) and [src/components/ui/glass/](src/components/ui/glass/) (primitives). It is re-tuned for the bright ivory base: fills are frosted warm-white (not the dark-oriented white-alpha of the source), shadows are warm and soft, the palette is unchanged.
+
+### Tokens (globals.css is the single source of truth for values)
+
+- **Optics** — `--glass-blur` / `--glass-blur-heavy` / `--glass-saturation`; composed as `--glass-backdrop` / `--glass-backdrop-heavy`. Tuned strong enough that the frost + refraction read on the bright base.
+- **Fills** — `--glass-fill` (translucent frosted white), `--glass-fill-prominent`, `--glass-fill-warm` (sand-tinted), `--glass-fill-14`/`-20`/`-24` (white-alpha, for glass over photography).
+- **Sheen & light** — `--glass-sheen` / `--glass-sheen-strong` (diagonal 135° specular light-catch, layered as `background-image`), `--glass-specular` (bright rim + upper-left inner light), `--glass-edge`, `--glass-hairline` (espresso), `--glass-hairline-dark`.
+- **Shadows** — `--shadow-glass`, `--shadow-glass-strong` (warm), `--shadow-glass-dark`.
+- **Radii** — `--radius-sm|input|card|md|lg|group|sheet|pill`.
+- **Motion** — `--dur-fast|dur|dur-slow`, `--ease-glass`, `--spring`, `--press-scale` (1.05).
+- **Dark zone** — `--zone-dark` (deep warm espresso-black `#14100B`), `--zone-dark-elevated`, `--zone-dark-fg`/`-secondary`/`-primary`/`-border`, `--zone-dark-glow` (champagne/rose-gold/amber). Applied via `.zone-dark`.
+
+The glass intensity (sheen brightness, blur, translucency, and the warm depth-field strength) is deliberately pushed for a clear liquid-glass read on the ivory base; adjust these token values in `globals.css` to dial the whole site up or down at once.
+
+### Utility classes
+
+- `.glass` — default frosted card surface · `.glass-prominent` — stronger chrome · `.glass-warm` — sand-tinted · `.glass-on-dark` — over photography/dark bands · `.glass-bar` — full-width chrome bar (pair with `border-b border-border`) · `.glass-depth` — section warm-depth background · `.glass-interactive` — hover lift for clickable cards · `.glass-press` — press-grow for glass controls · `.press-grow` — scale-only press for solid controls.
+
+### Primitives
+
+- `GlassCard` — base surface; props `tone` (`light`/`warm`/`prominent`/`dark`), `radius`, `interactive`, `as`.
+- `GlassButton` — control button; `variant` (`glass`/`prominent`/`solid`). `solid` = dominant espresso CTA.
+- `GlassIconButton` — round/square glass icon button (arrows, toggles, FABs).
+- `GlassChip` — pill label/badge/tag.
+
+### Rules of thumb
+
+- Glass is chrome **and** content surface here (a deliberate departure from the source's chrome-only rule), but photography stays opaque inside its glass frame, and refractive glass is never nested inside another glass card.
+- Remove any competing `bg-*` utility when adding a glass class to an element.
+- The dominant reservation/Naver CTA stays solid espresso with `press-grow`; secondary controls use glass.
+- Preserve reservation/inquiry logic and routing when restyling.
+
+### Light and dark zones
+
+Glass strength is content-adaptive (per the source library: darker backgrounds get richer glass with a brighter Fresnel rim). The Helia uses two zones on the same page:
+
+- **Light zone (default)** — bright ivory + the warm depth field; glass is subtle and translucent. Main content lives here.
+- **Dark zone (`.zone-dark`)** — deep warm espresso-black (`#14100B`) with a champagne/rose-gold glow field; glass turns rich with a bright rim (use `.glass-on-dark` for surfaces inside it). Used for the footer and any dramatic closing band, so the light→dark rhythm lets the glass shine. `.zone-dark` remaps the semantic tokens (`--foreground`, `--secondary`, `--primary`, `--border`, `--accent`) so token-based children adapt automatically. Keep it warm — this is the ivory family at night, not a cool navy.
 
 ## Photography
 
@@ -140,23 +184,27 @@ The homepage establishes the grammar; subpages adopt it incrementally.
 
 ### Do
 
-- Let photography and whitespace do the work; remove chrome before adding it
+- Let photography and whitespace do the work; keep glass quiet and on-palette (frosted warm-white / sand)
 - Open every section with an `.eyebrow` label
-- Use hairlines for structure and serif-normal for headings
+- Reach for the glass primitives (`GlassCard`, `GlassButton`, `GlassIconButton`, `GlassChip`) and utility classes over ad-hoc surfaces
+- Use hairlines to structure content _inside_ glass, and serif-normal for headings
 - Keep the palette monochrome-warm and bright
 - Match new sections to the homepage grammar
 
 ### Do not
 
-- Reintroduce rounded-2xl+ cards, pill badges, glassmorphism, drop shadows, or gradient panels in new work
+- Over-glassify full-bleed color bands, nest refractive glass inside another glass card, or turn the dominant reservation CTA into frosted glass
+- Recolor text or introduce new accent hues; glass fills stay white/warm
 - Use bold serif headings or washed-out low-contrast labels
-- Add new accent colors or dark moody photo treatments
+- Add dark moody photo treatments
 - Replace the calm resort tone with tech-product or hospital-admin styling
 - Break the Naver reservation routing or inquiry flows
 
 ## Migration Status
 
-The full site is on the new system: homepage (hero, manifesto, triptych, fit guide, programs, navigation gallery, partners), shared shell (header, nav panel, mobile drawer, footer, sub-page hero/templates, floating reservation CTA, page loader), service pages (infant room, helia spa, baby spa, moms class, schedules, spa bento/accordion/carousel), nursery sections, room suites (spec-card grammar), reservation and price boards, about/location, and stories (FAQ, guest reviews). New components must follow the grammar above from the start.
+The full site is on the new system: homepage (hero, manifesto, triptych, fit guide, programs, navigation gallery, partners), shared shell (header, nav panel, mobile drawer, footer, sub-page hero/templates, floating reservation CTA, page loader), service pages (infant room, helia spa, baby spa, moms class, schedules, spa bento/accordion/carousel), nursery sections, room suites (spec-card grammar), reservation and price boards, about/location, and stories (FAQ, guest reviews).
+
+The **Liquid Glass material** (see above) has been applied across all of these surfaces: chrome (glass bars, floating controls, nav footer), content cards/panels/image frames (frosted glass + superellipse radii), and controls (glass buttons/chips/icon buttons), while preserving the color palette, layout arrangement, and reservation flow. New components must follow the glass grammar from the start.
 
 ## Maintenance Rule
 

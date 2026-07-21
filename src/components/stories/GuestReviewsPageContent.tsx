@@ -2,6 +2,7 @@
 
 import { FadeInUp } from '@/components/common/FadeInUp'
 import { ScrollReveal } from '@/components/common/ScrollReveal'
+import { GlassCard } from '@/components/ui/glass/GlassCard'
 import { useOptionalThemeLocale } from '@/context/theme-locale-context'
 import { blobUrl } from '@/lib/media'
 import { ArrowUpRight, Quote, Star } from 'lucide-react'
@@ -468,7 +469,7 @@ function FeaturedReviewCard({
       rel="noreferrer"
       className="group block h-full"
     >
-      <article className="overflow-hidden border border-border bg-background transition-colors duration-500 hover:border-foreground/40">
+      <GlassCard as="article" interactive radius="md" className="overflow-hidden">
         <div className="grid h-full gap-0 lg:grid-cols-[0.82fr_1.18fr]">
           <div className="relative min-h-[300px] overflow-hidden lg:min-h-full">
             <Image
@@ -544,7 +545,7 @@ function FeaturedReviewCard({
             </div>
           </div>
         </div>
-      </article>
+      </GlassCard>
     </Link>
   )
 }
@@ -574,8 +575,8 @@ function ReviewCard({
       rel="noreferrer"
       className="group block h-full"
     >
-      <article className="relative flex h-full flex-col overflow-hidden border-t border-border pt-6 transition-colors duration-500">
-        <div className="relative h-56 overflow-hidden">
+      <article className="relative flex h-full flex-col border-t border-border pt-6 transition-colors duration-500">
+        <GlassCard radius="md" className="relative h-56 overflow-hidden">
           <Image
             src={review.thumbnail}
             alt={thumbnailAlt}
@@ -586,7 +587,7 @@ function ReviewCard({
           <div className="absolute left-5 top-5 font-sans text-[11px] font-semibold uppercase tracking-[0.24em] text-white drop-shadow">
             {sourceLabel}
           </div>
-        </div>
+        </GlassCard>
 
         <div className="flex flex-1 flex-col pt-6 text-left">
           <div className="flex flex-wrap items-center gap-x-4 gap-y-2">

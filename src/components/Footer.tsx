@@ -119,7 +119,7 @@ export function Footer() {
   }, [isPolicyModalOpen, lenis]);
 
   return (
-    <footer className="bg-[#221B13] px-6 py-14 text-white md:px-12 md:py-20">
+    <footer className="zone-dark px-6 py-14 text-white md:px-12 md:py-20">
       <div className="mx-auto flex w-full max-w-7xl flex-col gap-12 ">
         <div className="flex flex-col xl:gap-32 md:gap-12 md:flex-row md:items-start md:justify-between gap-4">
           <div className="max-w-xl ">
@@ -130,10 +130,18 @@ export function Footer() {
               {copy.description}
             </p>
             <div className="flex gap-4 mt-5">
-              <Link href={`/${locale}/reservation`} className="cursor-pointer border border-white/30 p-2 px-5 transition-colors hover:border-white hover:bg-white/5">
+              <Link
+                href={`/${locale}/reservation`}
+                style={{ borderRadius: "var(--radius-pill)" }}
+                className="glass-on-dark press-grow cursor-pointer px-5 py-2.5 transition-colors"
+              >
                 <span className="text-sm tracking-[0.08em]">{copy.linkLabel.reservation}</span>
               </Link>
-              <Link href={`/${locale}/the-helia/location`} className="cursor-pointer border border-white/30 p-2 px-5 transition-colors hover:border-white hover:bg-white/5">
+              <Link
+                href={`/${locale}/the-helia/location`}
+                style={{ borderRadius: "var(--radius-pill)" }}
+                className="glass-on-dark press-grow cursor-pointer px-5 py-2.5 transition-colors"
+              >
                 <span className="text-sm tracking-[0.08em]">{copy.linkLabel.location}</span>
               </Link>
             </div>

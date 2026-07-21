@@ -1,6 +1,7 @@
 'use client'
 
 import { ScrollReveal } from '@/components/common/ScrollReveal'
+import { GlassCard } from '@/components/ui/glass/GlassCard'
 import type { Locale } from '@/components/header/types'
 import {
   Baby,
@@ -70,9 +71,11 @@ export function HomeFitGuide({
               const Icon = item.icon
 
               return (
-                <div
+                <GlassCard
+                  as="article"
                   key={item.title}
-                  className="flex flex-col border-t border-border pt-6 text-left"
+                  radius="card"
+                  className="flex flex-col p-6 text-left"
                 >
                   <div className="mb-5 flex items-center justify-between gap-3">
                     <Icon className="h-5 w-5 text-primary" strokeWidth={1.5} />
@@ -88,7 +91,7 @@ export function HomeFitGuide({
                   <p className="mt-3 break-keep text-sm leading-[1.85] text-secondary sm:text-[14.5px]">
                     {item.description}
                   </p>
-                </div>
+                </GlassCard>
               )
             })}
           </div>

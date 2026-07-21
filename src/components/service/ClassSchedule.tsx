@@ -1,6 +1,7 @@
 "use client";
 
 import { FadeInUp } from "@/components/common/FadeInUp";
+import { GlassCard } from "@/components/ui/glass/GlassCard";
 import type { Locale } from "@/components/header/types";
 import { CalendarDays, Sparkles } from "lucide-react";
 import Image from "next/image";
@@ -176,7 +177,7 @@ export function ClassSchedule({ locale }: { locale: Locale }) {
             </FadeInUp>
 
             <FadeInUp delay={0.1}>
-               <div className="hidden overflow-hidden border border-border bg-background md:block">
+               <GlassCard radius="lg" className="hidden overflow-hidden md:block">
                   <div className="flex items-center justify-between border-b border-border px-6 py-4">
                      <p className="font-sans text-[10px] font-semibold uppercase tracking-[0.24em] text-primary">
                         {isKo ? "매월 반복" : "Every Month"}
@@ -242,7 +243,7 @@ export function ClassSchedule({ locale }: { locale: Locale }) {
                         </article>
                      ))}
                   </div>
-               </div>
+               </GlassCard>
             </FadeInUp>
 
             <div className="space-y-3 md:hidden">
@@ -277,7 +278,7 @@ export function ClassSchedule({ locale }: { locale: Locale }) {
                                     }
 
                                     return (
-                                       <div key={`${scheduleDay.day}-${group}`} className="bg-accent/30 px-3 py-3">
+                                       <GlassCard tone="warm" radius="card" key={`${scheduleDay.day}-${group}`} className="px-3 py-3">
                                           <p className="font-sans text-[10px] font-semibold uppercase tracking-[0.16em] text-primary">{group}</p>
                                           <div className="mt-2 space-y-2">
                                              {groupItems.map((item) => (
@@ -291,7 +292,7 @@ export function ClassSchedule({ locale }: { locale: Locale }) {
                                                 </div>
                                              ))}
                                           </div>
-                                       </div>
+                                       </GlassCard>
                                     );
                                  })}
                               </>
@@ -324,7 +325,7 @@ export function ClassSchedule({ locale }: { locale: Locale }) {
             {programs.map((item, idx) => (
                 <FadeInUp key={item.id} delay={idx * 0.05} className="h-full">
                     <div className="group flex h-full flex-col text-left">
-                        <div className="relative aspect-[4/5] w-full overflow-hidden bg-accent/60">
+                        <GlassCard radius="md" className="relative aspect-[4/5] w-full overflow-hidden">
                             <Image
                                 src={item.image}
                                 alt={item.title}
@@ -332,7 +333,7 @@ export function ClassSchedule({ locale }: { locale: Locale }) {
                                 sizes="(min-width: 768px) 20vw, 50vw"
                                 className="object-cover transition-transform duration-700 group-hover:scale-[1.04]"
                             />
-                        </div>
+                        </GlassCard>
                         <div className="space-y-1 pt-4 md:space-y-1.5">
                              <h3 className="font-display-serif text-base md:text-lg font-normal leading-[1.5] text-foreground break-keep">
                                  {item.title}

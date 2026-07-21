@@ -2,6 +2,7 @@
 
 import { FadeInUp } from "@/components/common/FadeInUp";
 import type { Locale } from "@/components/header/types";
+import { GlassCard } from "@/components/ui/glass/GlassCard";
 import { blobUrl } from "@/lib/media";
 import { CheckCircle2 } from "lucide-react";
 import Image from "next/image";
@@ -47,7 +48,7 @@ const strengths = [
 
 export function NewbornStrengths({ locale }: { locale: Locale }) {
   return (
-    <section className="w-full bg-background px-6 py-24 md:py-32">
+    <section className="glass-depth w-full px-6 py-24 md:py-32">
       <div className="mx-auto max-w-7xl">
         <FadeInUp>
              <div className="mb-24 text-center">
@@ -67,7 +68,7 @@ export function NewbornStrengths({ locale }: { locale: Locale }) {
               className={`flex flex-col gap-8 md:flex-row md:items-center md:gap-16 ${index % 2 === 1 ? 'md:flex-row-reverse' : ''}`}
             >
               {/* Image Section */}
-              <div className="flex-1 relative aspect-[4/3] w-full overflow-hidden bg-accent/60 md:aspect-[16/10]">
+              <GlassCard radius="lg" className="flex-1 relative aspect-[4/3] w-full overflow-hidden md:aspect-[16/10]">
                  <FadeInUp delay={0.2} className="w-full h-full">
                     <div className="relative w-full h-full">
                         <Image
@@ -78,7 +79,7 @@ export function NewbornStrengths({ locale }: { locale: Locale }) {
                         />
                      </div>
                   </FadeInUp>
-               </div>
+               </GlassCard>
 
               {/* Text Section */}
               <div className="flex-1">

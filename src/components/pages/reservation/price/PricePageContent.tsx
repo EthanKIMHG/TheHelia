@@ -1,8 +1,11 @@
 "use client";
 
 import { ScrollReveal } from "@/components/common/ScrollReveal";
+import { GlassCard } from "@/components/ui/glass/GlassCard";
+import { GlassChip } from "@/components/ui/glass/GlassChip";
 import type { Locale } from "@/components/header/types";
 import { Check, Sparkles } from "lucide-react";
+import Link from "next/link";
 
 type PricePageContentProps = {
   locale: Locale;
@@ -49,11 +52,6 @@ function PriceHeader({ isKo }: { isKo: boolean }) {
     </ScrollReveal>
   );
 }
-
-import Link from "next/link";
-// ... (imports remain)
-
-// ... (PriceHeader remains)
 
 function MainPriceSection({ isKo }: { isKo: boolean }) {
   const plans = [
@@ -130,11 +128,12 @@ function MainPriceSection({ isKo }: { isKo: boolean }) {
               const isVVIP = plan.highlight;
 
               return (
-                <article
+                <GlassCard
+                  as="article"
                   key={plan.type}
-                  className={`border bg-background p-5 ${
-                    isVVIP ? "border-foreground/40" : "border-border"
-                  }`}
+                  tone={isVVIP ? "prominent" : "light"}
+                  radius="card"
+                  className="p-5"
                 >
                   <div className="flex items-start justify-between gap-3">
                     <div>
@@ -171,12 +170,12 @@ function MainPriceSection({ isKo }: { isKo: boolean }) {
                       </li>
                     ))}
                   </ul>
-                </article>
+                </GlassCard>
               );
             })}
           </div>
 
-          <Link href={`/${isKo ? "ko" : "en"}/reservation`} className="block w-full bg-foreground py-4 text-center font-sans text-sm font-semibold tracking-wide text-background transition-opacity hover:opacity-90">
+          <Link href={`/${isKo ? "ko" : "en"}/reservation`} className="press-grow block w-full rounded-[var(--radius-pill)] bg-foreground py-4 text-center font-sans text-sm font-semibold tracking-wide text-background shadow-[var(--shadow-glass-strong)] transition-opacity hover:opacity-90">
             {isKo ? "상담 예약하기" : "Book Now"}
           </Link>
         </div>
@@ -186,18 +185,18 @@ function MainPriceSection({ isKo }: { isKo: boolean }) {
             const isVVIP = plan.highlight;
 
             return (
-              <div
+              <GlassCard
                 key={plan.type}
-                className={`relative flex flex-col border bg-background p-8 transition-colors duration-500 md:p-10
-                  ${isVVIP ? "border-foreground/40" : "border-border hover:border-foreground/30"}
-                `}
+                tone={isVVIP ? "prominent" : "light"}
+                radius="md"
+                className="relative flex flex-col p-8 md:p-10"
               >
                 {plan.tag && (
                   <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2">
-                    <span className="flex items-center gap-1.5 bg-background px-4 font-sans text-[10px] font-semibold uppercase tracking-[0.24em] text-primary">
+                    <GlassChip className="gap-1.5 px-4 font-sans text-[10px] font-semibold uppercase tracking-[0.24em] text-primary">
                       <Sparkles className="h-3 w-3" strokeWidth={1.5} />
                       {plan.tag}
-                    </span>
+                    </GlassChip>
                   </div>
                 )}
 
@@ -234,17 +233,17 @@ function MainPriceSection({ isKo }: { isKo: boolean }) {
 
                 <div className="border-t border-border pt-6">
                   <Link href={`/${isKo ? "ko" : "en"}/reservation`} className="block w-full">
-                    <button className={`w-full py-4 font-sans text-sm font-semibold tracking-wide transition-all duration-300
+                    <button className={`w-full rounded-[var(--radius-pill)] py-4 font-sans text-sm font-semibold tracking-wide
                       ${isVVIP
-                        ? "bg-foreground text-background hover:opacity-90"
-                        : "border border-foreground/30 bg-background text-foreground hover:border-foreground"
+                        ? "press-grow bg-foreground text-background shadow-[var(--shadow-glass-strong)] hover:opacity-90"
+                        : "glass glass-press text-foreground"
                       }
                     `}>
                       {isKo ? "상담 예약하기" : "Book Now"}
                     </button>
                   </Link>
                 </div>
-              </div>
+              </GlassCard>
             );
           })}
         </div>
@@ -402,7 +401,7 @@ function DetailRatesSection({ isKo }: { isKo: boolean }) {
           <div>
             <div className="md:hidden space-y-4">
               {roomRows.map((row) => (
-                <article key={row.type} className="border border-border bg-background p-4">
+                <GlassCard as="article" key={row.type} radius="card" className="p-4">
                   <div className="mb-3 flex items-center justify-between border-b border-border pb-3">
                     <h4 className="font-display-serif text-lg font-normal text-foreground">{row.type}</h4>
                     <span className="font-sans text-[10px] font-semibold uppercase tracking-[0.24em] text-primary">
@@ -425,7 +424,7 @@ function DetailRatesSection({ isKo }: { isKo: boolean }) {
                       );
                     })}
                   </dl>
-                </article>
+                </GlassCard>
               ))}
             </div>
 
@@ -465,7 +464,7 @@ function DetailRatesSection({ isKo }: { isKo: boolean }) {
           <div>
             <div className="md:hidden space-y-4">
               {spaRows.map((row) => (
-                <article key={row.type} className="border border-border bg-background p-4">
+                <GlassCard as="article" key={row.type} radius="card" className="p-4">
                   <h4 className="mb-3 border-b border-border pb-3 font-display-serif text-lg font-normal text-foreground">{row.type}</h4>
                   <dl>
                     {spaMobileFields.map((field) => {
@@ -482,7 +481,7 @@ function DetailRatesSection({ isKo }: { isKo: boolean }) {
                       );
                     })}
                   </dl>
-                </article>
+                </GlassCard>
               ))}
             </div>
 
@@ -531,22 +530,22 @@ function RefundPolicySection({ isKo }: { isKo: boolean }) {
     {
       period: isKo ? "91일 이상 / 계약 후 24시간 이내" : "91+ Days / Within 24H",
       value: row.d91,
-      tone: "border-foreground/40 text-foreground",
+      tone: "text-foreground",
     },
     {
       period: isKo ? "61일 ~ 90일" : "61-90 Days",
       value: row.d61,
-      tone: "border-border text-foreground/90",
+      tone: "text-foreground/90",
     },
     {
       period: isKo ? "31일 ~ 60일" : "31-60 Days",
       value: row.d31,
-      tone: "border-border text-foreground/85",
+      tone: "text-foreground/85",
     },
     {
       period: isKo ? "30일 이내" : "30 Days or Less",
       value: row.d30,
-      tone: "border-border text-foreground/80",
+      tone: "text-foreground/80",
     },
   ];
 
@@ -566,10 +565,10 @@ function RefundPolicySection({ isKo }: { isKo: boolean }) {
             </div>
             <div className="grid grid-cols-2 gap-2.5">
               {mobileRefundCards.map((card) => (
-                <article key={card.period} className={`border bg-background p-3 ${card.tone}`}>
+                <GlassCard as="article" key={card.period} radius="card" className={`p-3 ${card.tone}`}>
                   <p className="font-sans text-[11px] font-semibold text-secondary">{card.period}</p>
                   <p className="mt-1.5 font-display-serif text-base leading-tight tabular-nums">{card.value}</p>
-                </article>
+                </GlassCard>
               ))}
             </div>
           </div>

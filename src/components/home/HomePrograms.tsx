@@ -81,7 +81,7 @@ export function HomePrograms({
     <>
       <section
         ref={onSectionMount ? (node) => onSectionMount(node) : undefined}
-        className="w-full bg-background py-24 md:py-32"
+        className="w-full glass-depth py-24 md:py-32"
       >
         <ScrollReveal>
           <div className="container mx-auto px-4">
@@ -108,7 +108,8 @@ export function HomePrograms({
                     key={program.title}
                     onClick={() => setActiveProgram(program)}
                     whileTap={reduceMotion ? undefined : { scale: 0.996 }}
-                    className="group flex min-h-[220px] w-full flex-col border-t border-border pt-7 text-left transition-colors duration-500 hover:border-foreground/40 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-primary/50"
+                    style={{ borderRadius: 'var(--radius-md)' }}
+                    className="glass glass-interactive group flex min-h-[220px] w-full flex-col p-7 text-left focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-primary/50"
                   >
                     <div className="mb-6 flex items-center justify-between gap-3">
                       <Icon className="h-5 w-5 text-primary" strokeWidth={1.5} />
@@ -188,7 +189,7 @@ function ProgramDetailDialog({
         role="dialog"
         aria-modal="true"
         aria-labelledby={dialogTitleId}
-        className="relative flex max-h-[88vh] w-full flex-col overflow-hidden rounded-t-lg border border-border bg-background md:max-w-3xl md:rounded-none"
+        className="glass-prominent relative flex max-h-[88vh] w-full flex-col overflow-hidden rounded-t-[var(--radius-sheet)] md:max-w-3xl md:rounded-[var(--radius-md)]"
         onClick={(event) => event.stopPropagation()}
         initial={reduceMotion ? { opacity: 1 } : { opacity: 0, y: 42, scale: 0.985 }}
         animate={reduceMotion ? { opacity: 1 } : { opacity: 1, y: 0, scale: 1 }}
@@ -275,7 +276,7 @@ function ProgramDetailDialog({
             type="button"
             aria-label={copy.closeLabel}
             onClick={onClose}
-            className="inline-flex h-11 w-11 flex-shrink-0 items-center justify-center border border-border text-foreground transition hover:border-foreground/50"
+            className="glass inline-flex h-11 w-11 flex-shrink-0 items-center justify-center rounded-full text-foreground transition"
             whileTap={reduceMotion ? undefined : { scale: 0.96 }}
             transition={listTransition}
           >
@@ -300,7 +301,7 @@ function ProgramDetailDialog({
           }
         >
           <motion.div
-            className="border border-border bg-accent/30 p-5 sm:p-6"
+            className="glass-warm rounded-[var(--radius-card)] p-5 sm:p-6"
             initial={reduceMotion ? undefined : { opacity: 0, scale: 0.985 }}
             animate={reduceMotion ? undefined : { opacity: 1, scale: 1 }}
             transition={

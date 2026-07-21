@@ -1,6 +1,8 @@
 "use client";
 
 import { ScrollReveal } from "@/components/common/ScrollReveal";
+import { GlassCard } from "@/components/ui/glass/GlassCard";
+import { GlassIconButton } from "@/components/ui/glass/GlassIconButton";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import Image from "next/image";
 import { useState } from "react";
@@ -48,7 +50,7 @@ export function SpaServiceCarousel({
   return (
     <div className="space-y-14">
       <ScrollReveal>
-        <section className="border border-border bg-background p-6 md:p-10">
+        <section>
           <div className="flex flex-col gap-6 md:flex-row md:items-center md:justify-between">
             <div className="text-center md:text-left">
               <p className="eyebrow">
@@ -62,27 +64,17 @@ export function SpaServiceCarousel({
               </p>
             </div>
             <div className="flex items-center gap-3">
-              <button
-                type="button"
-                onClick={handlePrev}
-                className="inline-flex h-11 w-11 items-center justify-center border border-border bg-background text-foreground transition-colors duration-300 hover:border-foreground/50"
-                aria-label="Previous image"
-              >
+              <GlassIconButton onClick={handlePrev} aria-label="Previous image">
                 <ChevronLeft className="h-5 w-5" strokeWidth={1.5} />
-              </button>
-              <button
-                type="button"
-                onClick={handleNext}
-                className="inline-flex h-11 w-11 items-center justify-center border border-border bg-background text-foreground transition-colors duration-300 hover:border-foreground/50"
-                aria-label="Next image"
-              >
+              </GlassIconButton>
+              <GlassIconButton onClick={handleNext} aria-label="Next image">
                 <ChevronRight className="h-5 w-5" strokeWidth={1.5} />
-              </button>
+              </GlassIconButton>
             </div>
           </div>
 
-          <div className="mt-8 overflow-hidden">
-            <div className="relative h-[300px] w-full bg-accent/60 md:h-[500px]">
+          <GlassCard radius="lg" className="mt-8 overflow-hidden">
+            <div className="relative h-[300px] w-full md:h-[500px]">
               <Image
                 key={currentImage.src}
                 src={currentImage.src}
@@ -95,7 +87,7 @@ export function SpaServiceCarousel({
                 <p className="text-sm md:text-base font-medium">{currentImage.caption}</p>
               </div>
             </div>
-          </div>
+          </GlassCard>
 
           <div className="mt-4 flex overflow-x-auto pb-2 gap-3 scrollbar-hide">
             {images.map((image, index) => (
@@ -103,6 +95,7 @@ export function SpaServiceCarousel({
                 key={image.src + index}
                 type="button"
                 onClick={() => goToIndex(index)}
+                style={{ borderRadius: "var(--radius-sm)" }}
                 className={`relative h-20 w-32 flex-shrink-0 overflow-hidden border transition-all duration-300 ${
                   currentIndex === index
                     ? "border-foreground"
@@ -126,9 +119,11 @@ export function SpaServiceCarousel({
       <ScrollReveal>
         <div className="grid gap-x-10 gap-y-12 md:grid-cols-2 lg:grid-cols-3">
           {features.map((group) => (
-            <article
+            <GlassCard
+              as="article"
               key={group.title}
-              className="border-t border-border pt-6 transition-colors duration-500 hover:border-foreground/40"
+              radius="card"
+              className="p-6"
             >
               <h4 className="break-keep font-display-serif text-lg font-normal leading-[1.5] text-foreground mb-4 flex items-center gap-3">
                 <span className="h-px w-3 bg-primary" />
@@ -142,7 +137,7 @@ export function SpaServiceCarousel({
                   </li>
                 ))}
               </ul>
-            </article>
+            </GlassCard>
           ))}
         </div>
       </ScrollReveal>

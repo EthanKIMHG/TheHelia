@@ -15,6 +15,7 @@ import {
 
 import { getLocalizedNavItems } from '@/components/header/nav-data'
 import type { Locale, NavItem } from '@/components/header/types'
+import { GlassCard } from '@/components/ui/glass/GlassCard'
 
 type NavigationCopy = {
   badge: string;
@@ -74,7 +75,7 @@ export function HomeNavigationGallery({
     <section
       id={sectionId}
       ref={onSectionMount}
-      className="w-full bg-background px-4 py-16 text-foreground sm:px-6 md:py-20 lg:px-12"
+      className="glass-depth w-full px-4 py-16 text-foreground sm:px-6 md:py-20 lg:px-12"
       style={{ minHeight: isDesktop ? "80vh" : undefined }}
     >
       <NavigationGalleryHeader copy={copy} />
@@ -201,9 +202,9 @@ function NavigationPanelCard({
 
   const quickRouteRailClassName = 'flex flex-col gap-3'
   const glassSubLinkClassName =
-    'inline-flex min-h-9 items-center border border-white/40 px-4 py-1.5 text-[11px] tracking-[0.16em] text-white/95 transition-colors duration-300 hover:border-white hover:bg-white/10'
+    'glass-on-dark glass-press inline-flex min-h-9 items-center rounded-[var(--radius-pill)] px-4 py-1.5 text-[11px] tracking-[0.16em] text-white/95'
   const glassCtaClassName =
-    'inline-flex min-h-11 items-center justify-center gap-2 border border-white bg-white/95 px-6 text-[10px] font-semibold uppercase tracking-[0.26em] text-[#3A2E22] transition-colors duration-300 hover:bg-white'
+    'press-grow inline-flex min-h-11 items-center justify-center gap-2 rounded-[var(--radius-pill)] bg-white/95 px-6 text-[10px] font-semibold uppercase tracking-[0.26em] text-[#3A2E22] shadow-[var(--shadow-glass-strong)] transition-colors duration-300 hover:bg-white'
 
   const handleDesktopActivate = () => {
     if (!isDesktop) return
@@ -241,7 +242,10 @@ function NavigationPanelCard({
   }
 
   return (
-    <article
+    <GlassCard
+      as="article"
+      radius="lg"
+      interactive
       role="button"
       tabIndex={0}
       aria-pressed={active}
@@ -251,7 +255,7 @@ function NavigationPanelCard({
       onClick={handleContainerClick}
       onKeyDown={handleKeyDown}
       className={clsx(
-        'group relative isolate min-h-[80px] min-w-0 overflow-hidden bg-accent/60 text-left cursor-ne-resize focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/40',
+        'group relative isolate min-h-[80px] min-w-0 overflow-hidden text-left cursor-ne-resize focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/40',
         'flex flex-col',
         isDesktop && 'md:min-h-[80vh]',
       )}
@@ -302,10 +306,8 @@ function NavigationPanelCard({
                 aria-label="Toggle navigation details"
                 aria-expanded={active}
                 onClick={handleToggleClick}
-                className={clsx(
-                  'inline-flex h-9 w-9 items-center justify-center border border-white/40 transition',
-                  active ? 'bg-white/15' : 'bg-black/25',
-                )}
+                style={{ borderRadius: 'var(--radius-md)' }}
+                className="glass-on-dark glass-press inline-flex h-9 w-9 items-center justify-center"
               >
                 <ChevronDown
                   className={clsx(
@@ -447,6 +449,6 @@ function NavigationPanelCard({
           ) : null}
         </AnimatePresence>
       </div>
-    </article>
+    </GlassCard>
   )
 }

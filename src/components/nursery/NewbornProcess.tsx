@@ -2,6 +2,7 @@
 
 import { FadeInUp } from "@/components/common/FadeInUp";
 import type { Locale } from "@/components/header/types";
+import { GlassCard } from "@/components/ui/glass/GlassCard";
 import { Activity, Baby, ClipboardCheck, DoorOpen, ShieldCheck, Thermometer } from "lucide-react";
 
 const steps = [
@@ -39,7 +40,7 @@ const steps = [
 
 export function NewbornProcess({ locale }: { locale: Locale }) {
   return (
-    <section className="w-full bg-background px-6 py-24 md:py-32">
+    <section className="glass-depth w-full px-6 py-24 md:py-32">
         <div className="w-full max-w-[1450px] mx-auto">
             <FadeInUp>
                 <div className="mb-20 text-center md:mb-32">
@@ -67,7 +68,10 @@ export function NewbornProcess({ locale }: { locale: Locale }) {
 
                             {/* Card Content */}
                             <FadeInUp delay={index * 0.1}>
-                                <div className="h-full flex flex-row md:flex-col items-start md:items-center gap-6 md:gap-6 border-t border-border pt-6 md:pt-8 transition-colors duration-500 hover:border-foreground/40">
+                                <GlassCard
+                                    radius="card"
+                                    className="h-full flex flex-row md:flex-col items-start md:items-center gap-6 md:gap-6 p-6"
+                                >
                                     {/* Mobile Icon */}
                                     <step.icon className="md:hidden mt-1 h-5 w-5 flex-shrink-0 text-primary" strokeWidth={1.5} />
 
@@ -83,7 +87,7 @@ export function NewbornProcess({ locale }: { locale: Locale }) {
                                             {step.desc[locale]}
                                         </p>
                                     </div>
-                                </div>
+                                </GlassCard>
                             </FadeInUp>
                         </div>
                     ))}

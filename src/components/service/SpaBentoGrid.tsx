@@ -30,7 +30,7 @@ function BentoCard({
     <motion.div
       transition={{ duration: 0.4, ease: "easeOut" }}
       className={cn(
-        "group relative overflow-hidden bg-accent/60",
+        "glass group relative overflow-hidden rounded-[var(--radius-md)]",
         className
       )}
     >

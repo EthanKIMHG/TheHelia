@@ -33,7 +33,6 @@ export default function Header() {
   const [scrolled, setScrolled] = useState(false);
 
   const normalizedPath = useMemo(() => stripLocaleFromPath(pathname ?? "/"), [pathname]);
-  const isHome = normalizedPath === "/";
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 24);
@@ -60,8 +59,6 @@ export default function Header() {
     setNavOpen(false);
   }, [normalizedPath]);
 
-  const solid = !isHome || scrolled;
-
   return (
     <>
       <motion.header
@@ -69,15 +66,17 @@ export default function Header() {
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 0.5, ease: "easeOut" }}
         className={clsx(
-          "sticky top-0 z-50 w-full transition-[background-color,border-color] duration-500",
-          isHome && "-mb-16 md:-mb-20",
+          "fixed inset-x-0 top-3 z-50 mx-auto w-full max-w-6xl px-4 transition-opacity duration-500 md:top-4 md:px-6",
           navOpen && "pointer-events-none opacity-0",
-          solid
-            ? "border-b border-border bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/80"
-            : "border-b border-transparent bg-transparent",
         )}
       >
-        <div className="mx-auto grid h-16 max-w-7xl grid-cols-[1fr_auto_1fr] items-center px-4 md:h-20 md:px-6">
+        <div
+          style={{ borderRadius: "var(--radius-pill)", border: "1px solid var(--glass-hairline)" }}
+          className={clsx(
+            "glass-bar grid h-14 grid-cols-[1fr_auto_1fr] items-center gap-x-3 px-4 transition-shadow duration-500 md:h-16 md:gap-x-4 md:px-6",
+            scrolled && "shadow-[var(--shadow-glass-strong)]",
+          )}
+        >
           <button
             type="button"
             onClick={() => setNavOpen(true)}
@@ -95,23 +94,24 @@ export default function Header() {
             className="justify-self-center"
             aria-label="The Helia"
           >
-            <span className="font-force-playfair text-base tracking-[0.42em] text-foreground md:text-xl">
+            <span className="whitespace-nowrap font-force-playfair text-sm tracking-[0.2em] text-foreground md:text-lg md:tracking-[0.42em]">
               THE HELIA
             </span>
           </Link>
 
-          <div className="flex items-center gap-4 justify-self-end md:gap-6">
+          <div className="flex items-center gap-2.5 justify-self-end md:gap-4">
             <button
               type="button"
               onClick={() => changeLocale(locale === "ko" ? "en" : "ko")}
-              className="font-sans text-[11px] font-semibold uppercase tracking-[0.22em] text-foreground/65 transition-colors hover:text-foreground"
+              className="hidden shrink-0 font-sans text-[11px] font-semibold uppercase tracking-[0.22em] text-foreground/65 transition-colors hover:text-foreground md:inline-flex"
               aria-label={locale === "ko" ? "Switch to English" : "한국어로 전환"}
             >
               {locale === "ko" ? "EN" : "KO"}
             </button>
             <Link
               href={`/${locale}/reservation`}
-              className="font-sans text-[11px] font-semibold uppercase tracking-[0.24em] text-foreground transition-colors hover:text-primary"
+              style={{ borderRadius: "var(--radius-pill)" }}
+              className="press-grow shrink-0 whitespace-nowrap bg-foreground/[0.07] px-3 py-1.5 font-sans text-[11px] font-semibold uppercase tracking-[0.12em] text-foreground transition-colors hover:bg-foreground/[0.13] md:px-3.5 md:tracking-[0.22em]"
             >
               {locale === "ko" ? "예약" : "Reserve"}
             </Link>
@@ -147,8 +147,8 @@ function NavCloseButton({
 }) {
   if (!open) return null;
   return (
-    <div className="fixed inset-x-0 top-0 z-[70] mx-auto max-w-7xl px-4 md:px-6">
-      <div className="grid h-16 grid-cols-[1fr_auto_1fr] items-center md:h-20">
+    <div className="fixed inset-x-0 top-3 z-[70] mx-auto max-w-6xl px-7 md:top-4 md:px-11">
+      <div className="grid h-14 grid-cols-[1fr_auto_1fr] items-center md:h-16">
         <button
           type="button"
           onClick={onClose}

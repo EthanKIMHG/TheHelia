@@ -95,7 +95,7 @@ export function RoomSuiteTemplate({
       </section>
 
       {/* Suite selector tabs */}
-      <nav className="border-b border-border" aria-label={eyebrow}>
+      <nav className="glass-bar border-b border-border" aria-label={eyebrow}>
         <div className="mx-auto flex max-w-6xl items-stretch justify-center px-2 md:justify-start md:px-4">
           {SUITE_SLUGS.map((slug, index) => {
             const active = slug === currentSuite;

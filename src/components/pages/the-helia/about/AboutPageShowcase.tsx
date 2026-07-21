@@ -2,6 +2,7 @@
 
 import { ScrollReveal } from "@/components/common/ScrollReveal";
 import type { Locale } from "@/components/header/types";
+import { GlassCard } from "@/components/ui/glass/GlassCard";
 import { blobUrl } from "@/lib/media";
 import {
   Baby,
@@ -117,9 +118,10 @@ function SpacesSection({ copy }: { copy: SpacesCopy }) {
 
         <div className="grid gap-6">
           {copy.gallery.map((item) => (
-            <div
+            <GlassCard
               key={item.alt}
-              className="group relative h-64 overflow-hidden bg-accent/30 md:h-full"
+              radius="lg"
+              className="group relative h-64 overflow-hidden md:h-full"
             >
               <Image
                 src={item.src}
@@ -133,7 +135,7 @@ function SpacesSection({ copy }: { copy: SpacesCopy }) {
                 <p className="font-display-serif text-lg font-normal drop-shadow">{item.title}</p>
                 <p className="mt-1 text-sm text-white/80 drop-shadow">{item.body}</p>
               </div>
-            </div>
+            </GlassCard>
           ))}
         </div>
       </section>
@@ -223,7 +225,7 @@ function DailyFlowSection({ copy }: { copy: DailyFlowCopy }) {
                   key={item.title}
                   className="flex flex-col border-t border-border pt-6 text-left"
                 >
-                  <div className="relative mb-6 aspect-[4/3] w-full overflow-hidden bg-accent/60">
+                  <GlassCard radius="md" className="relative mb-6 aspect-[4/3] w-full overflow-hidden">
                     <Image
                       src={timelineImages[index % timelineImages.length]}
                       alt={item.headline}
@@ -231,7 +233,7 @@ function DailyFlowSection({ copy }: { copy: DailyFlowCopy }) {
                       sizes="(min-width: 768px) 33vw, 100vw"
                       className="object-cover transition-transform duration-700 hover:scale-[1.03]"
                     />
-                  </div>
+                  </GlassCard>
                   <div className="mb-5 flex items-center justify-between gap-3">
                     <Icon className="h-5 w-5 text-primary" strokeWidth={1.5} />
                     <p className="font-sans text-[10px] font-semibold uppercase tracking-[0.24em] text-primary">
@@ -322,7 +324,10 @@ function VirtualTourSection({ copy }: { copy: VirtualTourCopy }) {
           </p>
         </div>
 
-        <div className="relative w-full h-[500px] md:h-[700px] bg-black group">
+        <div
+          className="relative w-full h-[500px] md:h-[700px] overflow-hidden bg-black group"
+          style={{ borderRadius: "var(--radius-lg)" }}
+        >
           {!isLoaded ? (
             <div className="absolute inset-0 flex flex-col items-center justify-center p-6 text-center">
               <div
@@ -334,7 +339,8 @@ function VirtualTourSection({ copy }: { copy: VirtualTourCopy }) {
               <div className="relative z-10 flex flex-col items-center gap-6">
                 <button
                   onClick={() => setIsLoaded(true)}
-                  className="flex h-20 w-20 items-center justify-center border border-white/40 text-white transition-colors duration-300 hover:bg-white hover:text-black"
+                  className="glass-on-dark glass-press flex h-20 w-20 items-center justify-center text-white"
+                  style={{ borderRadius: "var(--radius-pill)" }}
                   aria-label="Start Virtual Tour"
                 >
                   <Play className="ml-1 h-8 w-8" strokeWidth={1.5} />
@@ -370,7 +376,10 @@ function VideoSection({ copy }: { copy: VideoCopy }) {
   return (
     <ScrollReveal>
       <section className="overflow-hidden">
-        <div className="relative aspect-video w-full bg-black">
+        <div
+          className="relative aspect-video w-full overflow-hidden bg-black"
+          style={{ borderRadius: "var(--radius-lg)" }}
+        >
           <VideoPlayer videoId={copy.youtubeId} />
           <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-8 md:p-12 text-white">
             <p className="mb-3 font-sans text-[11px] font-semibold uppercase tracking-[0.35em] text-white/80">

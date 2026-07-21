@@ -23,6 +23,8 @@ import { createPortal } from 'react-dom'
 
 import { ScrollReveal } from '@/components/common/ScrollReveal'
 import type { Locale } from '@/components/header/types'
+import { GlassCard } from '@/components/ui/glass/GlassCard'
+import { GlassIconButton } from '@/components/ui/glass/GlassIconButton'
 
 const BOOKING_URL = 'https://booking.naver.com/booking/6/bizes/1021790'
 const SITE_URL = 'https://thehelia.co.kr'
@@ -150,7 +152,7 @@ function LocationHeroSection({
                 href={BOOKING_URL}
                 target="_blank"
                 rel="noreferrer"
-                className="inline-flex items-center justify-center gap-2 bg-foreground px-8 py-3.5 font-sans text-sm font-semibold text-background transition-opacity hover:opacity-90"
+                className="press-grow inline-flex items-center justify-center gap-2 rounded-[var(--radius-pill)] bg-foreground px-8 py-3.5 font-sans text-sm font-semibold text-background shadow-[var(--shadow-glass-strong)] transition-opacity hover:opacity-90"
               >
                 {content.buttonLabel}
                 <ArrowUpRight className="h-4 w-4" strokeWidth={1.5} />
@@ -161,7 +163,7 @@ function LocationHeroSection({
             </div>
           </header>
 
-          <div className="relative min-h-[380px] overflow-hidden bg-accent/30 lg:min-h-[540px]">
+          <GlassCard radius="lg" className="relative min-h-[380px] overflow-hidden lg:min-h-[540px]">
             <Image
               src="/img/location2.png"
               alt={content.exteriorAlt}
@@ -183,7 +185,7 @@ function LocationHeroSection({
                 </p>
               </div>
             </div>
-          </div>
+          </GlassCard>
         </div>
 
         <div className="mt-16 grid grid-cols-1 border-t border-border sm:grid-cols-3 md:mt-20">
@@ -269,7 +271,8 @@ function LocationMapSection({
                 <button
                   type="button"
                   onClick={() => setIsMapDialogOpen(true)}
-                  className="inline-flex w-full items-center justify-center gap-2 border border-foreground/30 bg-background px-5 py-3 font-sans text-sm font-semibold text-foreground transition-colors hover:border-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40 sm:w-auto"
+                  style={{ borderRadius: 'var(--radius-pill)' }}
+                  className="glass glass-press inline-flex w-full items-center justify-center gap-2 px-5 py-3 font-sans text-sm font-semibold text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40 sm:w-auto"
                 >
                   <Navigation className="h-4 w-4 text-primary" strokeWidth={1.5} />
                   {content.mapAppButtonLabel}
@@ -277,7 +280,7 @@ function LocationMapSection({
               </div>
             </div>
 
-            <div className="group relative h-[340px] overflow-hidden border border-border md:h-[420px]">
+            <GlassCard radius="lg" className="group relative h-[340px] overflow-hidden md:h-[420px]">
               <iframe
                 title="The Helia Location"
                 src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3174.8384058135257!2d126.95109607716499!3d37.275258840774896!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x277bcbed795ddd7%3A0xad9cdb91d0fde45f!2z642U7Zes66as7JWEIOyCsO2bhOyhsOumrOybkA!5e0!3m2!1sko!2sus!4v1760246577990!5m2!1sko!2sus"
@@ -286,10 +289,13 @@ function LocationMapSection({
                 referrerPolicy="no-referrer-when-downgrade"
                 allowFullScreen
               />
-              <div className="absolute right-4 top-4 border border-border bg-background px-3 py-1.5 font-sans text-[10px] font-semibold uppercase tracking-[0.2em] text-foreground">
+              <div
+                style={{ borderRadius: 'var(--radius-pill)' }}
+                className="glass absolute right-4 top-4 px-3 py-1.5 font-sans text-[10px] font-semibold uppercase tracking-[0.2em] text-foreground"
+              >
                 {content.mapCallout}
               </div>
-            </div>
+            </GlassCard>
           </div>
 
           <div className="space-y-10">
@@ -353,7 +359,7 @@ function MapAppDialog({
         aria-modal="true"
         aria-labelledby={titleId}
         aria-describedby={descriptionId}
-        className="relative mb-0 flex max-h-[88vh] w-full max-w-lg flex-col overflow-hidden rounded-t-lg border border-border bg-background md:rounded-none"
+        className="glass-prominent relative mb-0 flex max-h-[88vh] w-full max-w-lg flex-col overflow-hidden rounded-t-[var(--radius-sheet)] md:rounded-[var(--radius-md)]"
         onClick={(event) => event.stopPropagation()}
       >
         <div className="flex items-start justify-between gap-4 border-b border-border px-5 pb-5 pt-5 sm:px-6 sm:pb-6 sm:pt-6">
@@ -375,14 +381,13 @@ function MapAppDialog({
               {content.mapAppDialogSubtitle}
             </p>
           </div>
-          <button
-            type="button"
+          <GlassIconButton
             aria-label={content.mapAppDialogCloseLabel}
             onClick={onClose}
-            className="inline-flex h-11 w-11 flex-shrink-0 items-center justify-center border border-border bg-background text-foreground transition-colors hover:border-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40"
+            className="flex-shrink-0"
           >
             <X className="h-4 w-4" strokeWidth={1.5} />
-          </button>
+          </GlassIconButton>
         </div>
 
         <div
@@ -397,7 +402,8 @@ function MapAppDialog({
                 key={option.id}
                 type="button"
                 onClick={() => onSelect(option.id)}
-                className="group flex w-full items-center gap-4 border border-border bg-background p-4 text-left transition-colors hover:border-foreground/40 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40 sm:p-5"
+                style={{ borderRadius: 'var(--radius-card)' }}
+                className="glass glass-interactive group flex w-full items-center gap-4 p-4 text-left focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40 sm:p-5"
               >
                 <Icon className="h-5 w-5 flex-shrink-0 text-primary" strokeWidth={1.5} />
                 <span className="min-w-0 flex-1">
@@ -564,9 +570,11 @@ function LocationGuideSection({
 
           <div className="grid gap-x-8 gap-y-10 md:grid-cols-2 xl:grid-cols-3">
             {content.guideCards.map((card) => (
-              <article
+              <GlassCard
+                as="article"
                 key={card.id}
-                className="flex h-full flex-col border-t border-border pt-6"
+                radius="card"
+                className="flex h-full flex-col p-6"
               >
                 <div className="mb-5 flex items-center justify-between gap-3">
                   <card.Icon className="h-5 w-5 text-primary" strokeWidth={1.5} />
@@ -589,7 +597,7 @@ function LocationGuideSection({
                     </li>
                   ))}
                 </ul>
-              </article>
+              </GlassCard>
             ))}
           </div>
         </div>

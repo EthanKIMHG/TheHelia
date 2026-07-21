@@ -54,6 +54,41 @@ export default function RootLayout({
         <SmoothScroll>{children}</SmoothScroll>
         <Analytics />
         <SpeedInsights />
+        {/* Liquid Glass refraction filter — warps the backdrop behind .glass surfaces
+            for the "liquid" lens look (Chromium; Safari/Firefox fall back to blur). */}
+        <svg
+          aria-hidden
+          width="0"
+          height="0"
+          style={{ position: 'absolute', width: 0, height: 0, pointerEvents: 'none' }}
+        >
+          <filter
+            id="liquidGlass"
+            x="-30%"
+            y="-30%"
+            width="160%"
+            height="160%"
+            colorInterpolationFilters="sRGB"
+          >
+            <feTurbulence
+              type="fractalNoise"
+              baseFrequency="0.009 0.011"
+              numOctaves={2}
+              seed={7}
+              result="noise"
+            />
+            <feGaussianBlur in="noise" stdDeviation="1.4" result="softNoise" />
+            <feDisplacementMap
+              in="SourceGraphic"
+              in2="softNoise"
+              scale={54}
+              xChannelSelector="R"
+              yChannelSelector="G"
+              result="disp"
+            />
+            <feGaussianBlur in="disp" stdDeviation="1.2" />
+          </filter>
+        </svg>
       </body>
     </html>
   )

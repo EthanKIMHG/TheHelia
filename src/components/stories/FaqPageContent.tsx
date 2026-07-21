@@ -6,6 +6,7 @@ import { useState } from 'react'
 
 import { ScrollReveal } from '@/components/common/ScrollReveal'
 import { FAQ_ITEMS } from '@/components/stories/faq-data'
+import { GlassCard } from '@/components/ui/glass/GlassCard'
 import { useOptionalThemeLocale } from '@/context/theme-locale-context'
 
 export function FaqPageContent() {
@@ -21,7 +22,7 @@ export function FaqPageContent() {
   return (
     <div className="w-full max-w-4xl mx-auto">
       <ScrollReveal>
-        <div className="flex flex-col divide-y divide-border border-y border-border">
+        <GlassCard radius="lg" className="flex flex-col divide-y divide-border px-6 md:px-8">
           {FAQ_ITEMS.map((item, index) => {
             const isOpen = openIndex === index;
             return (
@@ -59,7 +60,7 @@ export function FaqPageContent() {
               </div>
             );
           })}
-        </div>
+        </GlassCard>
       </ScrollReveal>
     </div>
   )

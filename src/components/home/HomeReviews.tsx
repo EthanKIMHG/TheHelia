@@ -2,6 +2,8 @@
 
 import { ScrollReveal } from "@/components/common/ScrollReveal";
 import type { Locale } from "@/components/header/types";
+import { GlassCard } from "@/components/ui/glass/GlassCard";
+import { GlassChip } from "@/components/ui/glass/GlassChip";
 import { Star } from "lucide-react";
 import Link from "next/link";
 
@@ -52,15 +54,15 @@ export function HomeReviews({ locale, onSectionMount }: HomeReviewsProps) {
   return (
     <section
       ref={onSectionMount ? (node) => onSectionMount(node) : undefined}
-      className="w-full py-24 bg-[#FDFBF9] dark:bg-background"
+      className="glass-depth w-full py-24"
     >
       <ScrollReveal>
         <div className="container mx-auto px-4">
           <div className="mb-16 flex flex-col items-center text-center">
-            <span className="inline-flex items-center justify-center px-4 py-1.5 rounded-full bg-primary/10 text-primary text-sm font-medium mb-6">
-              <Star className="w-3.5 h-3.5 mr-1.5 fill-current" />
+            <GlassChip className="px-4 py-1.5 text-primary text-sm font-medium mb-6">
+              <Star className="w-3.5 h-3.5 fill-current" />
               {isKo ? "Reviews" : "Reviews"}
-            </span>
+            </GlassChip>
             <h2 className="break-keep text-3xl font-serif font-semibold leading-tight text-foreground md:text-4xl lg:text-4xl">
               {isKo ? (
                 <>
@@ -88,7 +90,7 @@ export function HomeReviews({ locale, onSectionMount }: HomeReviewsProps) {
                 href={review.link}
                 className="group block h-full"
               >
-                <div className="h-full bg-white border border-primary/10 dark:bg-[#2A2928]/40 rounded-[2rem] p-8 transition-transform duration-300 hover:-translate-y-1 hover:shadow-lg flex flex-col justify-between">
+                <GlassCard interactive radius="lg" className="h-full p-8 flex flex-col justify-between">
                   <div>
                     <div className="flex gap-1 mb-6">
                       {[1, 2, 3, 4, 5].map((star) => (
@@ -116,7 +118,7 @@ export function HomeReviews({ locale, onSectionMount }: HomeReviewsProps) {
                       {review.initial}
                     </div>
                   </div>
-                </div>
+                </GlassCard>
               </Link>
             ))}
           </div>

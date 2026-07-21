@@ -13,24 +13,25 @@ export function FloatingReservationCta(): React.JSX.Element {
     <div className="fixed bottom-6 right-4 z-30 md:bottom-10 md:right-10">
       <TransitionLink
         href={`/${locale}/reservation`}
-        className="group flex items-center gap-3 bg-foreground px-4 py-3 text-background transition-colors duration-500 hover:bg-foreground/90 md:gap-4 md:px-6 md:py-4"
+        style={{ borderRadius: 'var(--radius-pill)' }}
+        className="glass-prominent glass-press group flex items-center gap-3 px-5 py-3.5 text-foreground transition-colors duration-500 md:gap-4 md:px-7 md:py-4"
       >
         <CalendarDays
-          className="h-4 w-4 shrink-0 text-background/80 md:h-5 md:w-5"
+          className="h-4 w-4 shrink-0 text-primary md:h-5 md:w-5"
           strokeWidth={1.5}
         />
 
         <span className="flex min-w-0 flex-col text-left">
-          <span className="hidden font-sans text-[9px] font-semibold uppercase tracking-[0.3em] text-background/60 md:block">
+          <span className="hidden font-sans text-[9px] font-semibold uppercase tracking-[0.3em] text-foreground/55 md:block">
             {locale === 'ko' ? 'Reservation' : 'Reserve'}
           </span>
-          <span className="font-sans text-sm font-semibold tracking-[0.08em] text-background md:mt-0.5 md:text-[15px]">
+          <span className="font-sans text-sm font-semibold tracking-[0.08em] text-foreground md:mt-0.5 md:text-[15px]">
             {locale === 'ko' ? '예약하기' : 'Book Now'}
           </span>
         </span>
 
         <ArrowUpRight
-          className="h-4 w-4 shrink-0 text-background/80 transition-transform duration-500 group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
+          className="h-4 w-4 shrink-0 text-foreground/70 transition-transform duration-500 group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
           strokeWidth={1.5}
         />
       </TransitionLink>

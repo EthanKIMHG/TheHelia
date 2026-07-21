@@ -33,7 +33,7 @@ function AccordionCard({
       layout
       onMouseEnter={() => onHover(id)}
       className={cn(
-        "relative h-[500px] md:h-[600px] cursor-pointer overflow-hidden transition-all duration-500 ease-out",
+        "relative h-[500px] md:h-[600px] cursor-pointer overflow-hidden rounded-[var(--radius-lg)] transition-all duration-500 ease-out",
         isActive ? "flex-[3]" : "flex-[1] hover:flex-[1.2]"
       )}
     >
@@ -107,7 +107,7 @@ function AccordionCard({
               <div className="rotate-[-90deg] whitespace-nowrap font-display-serif text-xl font-normal tracking-wide text-white/90 origin-bottom-left translate-x-8 mb-12">
                 {title}
               </div>
-              <div className="flex h-10 w-10 items-center justify-center border border-white/40">
+              <div className="glass-on-dark flex h-10 w-10 items-center justify-center rounded-[var(--radius-sm)]">
                 <Plus className="h-5 w-5 text-white" strokeWidth={1.5} />
               </div>
             </motion.div>
@@ -150,7 +150,7 @@ export function SpaHorizontalAccordion({ items }: SpaHorizontalAccordionProps) {
         {items.map((item, index) => (
           <div
             key={index}
-            className="relative h-[400px] w-full overflow-hidden"
+            className="relative h-[400px] w-full overflow-hidden rounded-[var(--radius-lg)]"
           >
             <Image
               src={item.image}
