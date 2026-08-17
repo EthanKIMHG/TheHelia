@@ -143,6 +143,9 @@ export default function HomePageContent({
           className="w-full py-12 md:py-20"
         >
           <div className="mx-auto max-w-7xl border-t border-border px-4 pb-4 pt-14 text-center md:px-12 md:text-left">
+            <p className="eyebrow mb-4">
+              {locale === 'ko' ? '파트너십' : 'Partnerships'}
+            </p>
             <span className="break-keep font-display-serif text-2xl font-normal text-foreground md:text-3xl">
               {locale === 'ko' ? '더헬리아와 함께하는 기업들' : 'Our Partners'}
             </span>

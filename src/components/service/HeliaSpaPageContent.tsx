@@ -15,7 +15,6 @@ import Link from "next/link";
 
 import { SpaBrandIntro } from "./SpaBrandIntro";
 import { SpaServiceBento } from "./SpaServiceBento";
-import { SpaServiceCarousel } from "./SpaServiceCarousel";
 
 type OverviewCard = {
   id: string;
@@ -154,12 +153,13 @@ export function HeliaSpaPageContent() {
 
       <div className="mt-4 flex flex-col gap-24">
         <div id="head-spa" className="scroll-mt-28">
-          <SpaServiceCarousel
+          <SpaServiceBento
             badge={copy.headSpa.badge}
             title={copy.headSpa.title}
             description={copy.headSpa.description}
             images={copy.headSpa.images}
             features={copy.headSpa.features}
+            reversed
           />
         </div>
 

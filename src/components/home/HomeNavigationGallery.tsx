@@ -204,7 +204,7 @@ function NavigationPanelCard({
   const glassSubLinkClassName =
     'glass-on-dark glass-press inline-flex min-h-9 items-center rounded-[var(--radius-pill)] px-4 py-1.5 text-[11px] tracking-[0.16em] text-white/95'
   const glassCtaClassName =
-    'press-grow inline-flex min-h-11 items-center justify-center gap-2 rounded-[var(--radius-pill)] bg-white/95 px-6 text-[10px] font-semibold uppercase tracking-[0.26em] text-[#3A2E22] shadow-[var(--shadow-glass-strong)] transition-colors duration-300 hover:bg-white'
+    'press-grow inline-flex min-h-11 items-center justify-center gap-2 rounded-[var(--radius-pill)] bg-background/95 px-6 text-[10px] font-semibold uppercase tracking-[0.26em] text-foreground shadow-[var(--shadow-glass-strong)] transition-colors duration-300 hover:bg-background'
 
   const handleDesktopActivate = () => {
     if (!isDesktop) return
@@ -294,7 +294,7 @@ function NavigationPanelCard({
           <div className="flex items-center justify-between gap-3 font-serif">
             <h3
               className={clsx(
-                'text-xl md:text-2xl uppercase tracking-[0.14em] transition-colors duration-500 font-normal drop-shadow-[0_1px_10px_rgba(0,0,0,0.4)]',
+                'text-xl md:text-2xl uppercase tracking-[0.14em] transition-colors duration-500 font-normal drop-shadow-[var(--shadow-photo-text)]',
                 active ? 'text-white' : 'text-white/85',
               )}
             >
@@ -361,7 +361,7 @@ function NavigationPanelCard({
                   }}
                   transition={{ duration: 0.36, ease: [0.22, 1, 0.36, 1] }}
                 >
-                  <h3 className="text-xl font-semibold leading-snug text-white">
+                  <h3 className="font-display-serif text-xl font-normal leading-snug text-white">
                     {item.description ?? item.label}
                   </h3>
 

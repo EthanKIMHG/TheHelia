@@ -20,8 +20,11 @@ export function FaqPageContent() {
   }
 
   return (
-    <div className="w-full max-w-4xl mx-auto">
+    <section className="mx-auto w-full max-w-4xl">
       <ScrollReveal>
+        <p className="eyebrow mb-5 text-center md:text-left">
+          {isKo ? '이용 안내' : 'Guest Guide'}
+        </p>
         <GlassCard radius="lg" className="flex flex-col divide-y divide-border px-6 md:px-8">
           {FAQ_ITEMS.map((item, index) => {
             const isOpen = openIndex === index;
@@ -62,6 +65,6 @@ export function FaqPageContent() {
           })}
         </GlassCard>
       </ScrollReveal>
-    </div>
+    </section>
   )
 }

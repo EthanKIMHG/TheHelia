@@ -4,7 +4,7 @@ import { ScrollReveal } from "@/components/common/ScrollReveal";
 import { GlassCard } from "@/components/ui/glass/GlassCard";
 import { cn } from "@/lib/utils";
 import { AnimatePresence, motion, wrap } from "framer-motion";
-import { ArrowUpRight, Check, ChevronLeft, ChevronRight, Hand } from "lucide-react";
+import { ArrowUpRight, Check, ChevronLeft, ChevronRight } from "lucide-react";
 import Image from "next/image";
 import { useState } from "react";
 
@@ -154,25 +154,6 @@ export function SpaServiceBento({
               </button>
             </div>
 
-            {/* Mobile Swipe Hint */}
-            <div className="absolute inset-0 flex lg:hidden items-center justify-center pointer-events-none z-20">
-              <motion.div 
-                initial={{ opacity: 0 }}
-                animate={{ opacity: [0, 1, 1, 0] }}
-                transition={{ 
-                  duration: 4,
-                  times: [0, 0.1, 0.8, 1],
-                  repeat: Infinity,
-                  repeatDelay: 2
-                }}
-                style={{ borderRadius: "var(--radius-pill)" }}
-                className="glass-on-dark text-white px-4 py-2 flex items-center gap-2"
-              >
-                <Hand className="w-5 h-5 animate-pulse" strokeWidth={1.5} />
-                <span className="text-sm font-medium">Swipe to view</span>
-              </motion.div>
-            </div>
-
             {/* Indicators */}
             <div className="absolute bottom-6 left-1/2 -translate-x-1/2 flex gap-2 z-10">
               {normalizedImages.map((_, idx) => (
@@ -187,7 +168,7 @@ export function SpaServiceBento({
             </div>
 
             <div className="absolute bottom-8 left-8 right-8 text-white pointer-events-none z-10">
-              <p className="text-lg font-medium opacity-0 transform translate-y-4 transition-all duration-500 group-hover:opacity-100 group-hover:translate-y-0">
+              <p className="translate-y-0 text-lg font-normal opacity-100 transition-all duration-500 lg:translate-y-4 lg:opacity-0 lg:group-hover:translate-y-0 lg:group-hover:opacity-100">
                 {title}
               </p>
             </div>

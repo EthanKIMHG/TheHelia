@@ -28,7 +28,7 @@ If documents conflict, follow `globals.css` for tokens, this file for design dir
 
 ## Theme Tokens
 
-### Light theme (default)
+### Site theme (light-only)
 
 - `--background: #FBF9F4` — bright warm ivory
 - `--foreground: #3A2E22` — espresso
@@ -37,14 +37,10 @@ If documents conflict, follow `globals.css` for tokens, this file for design dir
 - `--accent: #EAE1D1` — sand (soft tinted surfaces)
 - `--border: #E4DBCB` — hairline
 
-### Dark theme
-
-- `--background: #16120D` — deep warm espresso
-- `--foreground: #F2EBE0` — warm ivory text
-- `--primary: #B9A88F` — light taupe
-- `--secondary: #A99C8C` — muted warm grey
-- `--accent: #2E261D` — dark sand surface
-- `--border: #3A3128` — dark hairline
+The public site intentionally uses one light theme. Do not expose a theme
+toggle or derive the site theme from the operating system. Deep espresso is a
+local `.zone-dark` treatment for the footer and closing bands, not a global
+dark mode.
 
 ### Token rules
 
@@ -79,10 +75,10 @@ If documents conflict, follow `globals.css` for tokens, this file for design dir
 The Helia renders on a **Liquid Glass** material system (Apple iOS 26 glass), re-tuned for the bright ivory palette. See [Liquid Glass Material](#liquid-glass-material) for the tokens, utility classes, and primitives.
 
 - **Glass surfaces.** Cards, panels, chrome bars, floating controls, and image frames use the frosted-glass material — a translucent warm-white fill + backdrop blur + upper-left specular highlight (135°) + hairline edge + soft warm dual-shadow. Content photography stays opaque _inside_ its glass frame.
-- **Superellipse radii.** The `--radius-*` tokens replace the former square geometry: cards 12–16px, large image frames 20px, pills/chips/toggles 100px, sheets 40px. Full-width chrome bars stay radius 0; standalone full-bleed hero images stay square.
+- **Superellipse radii.** The `--radius-*` tokens replace the former square geometry: cards 12–16px, large image frames 20px, pills/chips/toggles 100px, sheets 40px. Full-width chrome bars stay radius 0, while the floating site header uses the pill radius; standalone full-bleed hero images stay square.
 - **Gentle elevation.** Glass reads through its soft warm shadow, hairline, and specular — not heavy drop shadows. Interactive glass controls grow to `1.05` on press (spring physics); the dominant conversion CTA stays a **solid espresso pill** with the same press physics (never frosted glass).
 - **Hairlines still structure content _inside_ glass** — top rules on list rows, column dividers on stat panels. The glass card is the container; hairlines organize its interior.
-- **Subtle depth.** A faint on-palette warm radial field (`.glass-depth`, plus a global `body` layer) gives glass something to refract, without changing the ivory identity. Full-bleed solid color bands (e.g. the dark footer) stay flat — do not glassify them.
+- **Subtle depth.** A low-contrast, on-palette warm radial field (`.glass-depth`, plus a global `body` layer) gives glass something to refract while keeping the ivory canvas visually dominant. Full-bleed solid color bands (e.g. the dark footer) stay flat — do not glassify them.
 - The light grain overlay on `body` is part of the brand's analog texture; preserve it.
 
 ## Liquid Glass Material
@@ -92,18 +88,18 @@ The glass foundation lives in [src/app/globals.css](src/app/globals.css) (tokens
 ### Tokens (globals.css is the single source of truth for values)
 
 - **Optics** — `--glass-blur` / `--glass-blur-heavy` / `--glass-saturation`; composed as `--glass-backdrop` / `--glass-backdrop-heavy`. Tuned strong enough that the frost + refraction read on the bright base.
-- **Fills** — `--glass-fill` (translucent frosted white), `--glass-fill-prominent`, `--glass-fill-warm` (sand-tinted), `--glass-fill-14`/`-20`/`-24` (white-alpha, for glass over photography).
+- **Fills** — `--glass-fill` (translucent frosted white), `--glass-fill-prominent`, `--glass-fill-warm` (sand-tinted), `--glass-fill-bar` (high-transparency navigation chrome), `--glass-fill-14`/`-20`/`-24` (white-alpha, for glass over photography).
 - **Sheen & light** — `--glass-sheen` / `--glass-sheen-strong` (diagonal 135° specular light-catch, layered as `background-image`), `--glass-specular` (bright rim + upper-left inner light), `--glass-edge`, `--glass-hairline` (espresso), `--glass-hairline-dark`.
 - **Shadows** — `--shadow-glass`, `--shadow-glass-strong` (warm), `--shadow-glass-dark`.
 - **Radii** — `--radius-sm|input|card|md|lg|group|sheet|pill`.
 - **Motion** — `--dur-fast|dur|dur-slow`, `--ease-glass`, `--spring`, `--press-scale` (1.05).
 - **Dark zone** — `--zone-dark` (deep warm espresso-black `#14100B`), `--zone-dark-elevated`, `--zone-dark-fg`/`-secondary`/`-primary`/`-border`, `--zone-dark-glow` (champagne/rose-gold/amber). Applied via `.zone-dark`.
 
-The glass intensity (sheen brightness, blur, translucency, and the warm depth-field strength) is deliberately pushed for a clear liquid-glass read on the ivory base; adjust these token values in `globals.css` to dial the whole site up or down at once.
+The glass optics (sheen, blur, and translucency) stay clear on the ivory base, while the warm depth field remains deliberately restrained. Adjust these values in `globals.css` in small increments to preserve that hierarchy across the site.
 
 ### Utility classes
 
-- `.glass` — default frosted card surface · `.glass-prominent` — stronger chrome · `.glass-warm` — sand-tinted · `.glass-on-dark` — over photography/dark bands · `.glass-bar` — full-width chrome bar (pair with `border-b border-border`) · `.glass-depth` — section warm-depth background · `.glass-interactive` — hover lift for clickable cards · `.glass-press` — press-grow for glass controls · `.press-grow` — scale-only press for solid controls.
+- `.glass` — default frosted card surface · `.glass-prominent` — stronger chrome · `.glass-warm` — sand-tinted · `.glass-on-dark` — over photography/dark bands · `.glass-bar` — readable frosted navigation chrome; the host supplies bar or pill geometry · `.glass-depth` — section warm-depth background · `.glass-interactive` — hover lift for clickable cards · `.glass-press` — press-grow for glass controls · `.press-grow` — scale-only press for solid controls.
 
 ### Primitives
 
@@ -161,18 +157,18 @@ The homepage establishes the grammar; subpages adopt it incrementally.
 
 ## Header And Navigation
 
-- Header is a minimal three-zone bar: menu button (left) · tracked `THE HELIA` wordmark (center) · reserve link (right). Transparent over the home hero, solid ivory + bottom hairline after scroll and on subpages. Foreground text stays espresso in both states (photography is bright).
+- Header is a fixed, centered three-zone floating pill: menu button (left) · tracked `THE HELIA` wordmark (center) · reserve link (right). It uses the high-transparency `.glass-bar`, a specular sheen, a pill hairline, and a restrained warm shadow that strengthens after scroll. Page color should remain visible through the frost while the navigation stays readable over every photograph.
 - Primary navigation is a **full-screen photo-forward overlay** (One&Only grammar), opened by the menu button — the same overlay serves desktop and mobile. There is no top-bar link row or hover dropdown.
   - Left column: large serif category list (`text-4xl`–`text-5xl`), inactive items dimmed to `foreground/45`, numbered `01`–`0N`, hairline dividers. Hovering (desktop) or the first item (default) reveals that category's sub-links as small tracked-uppercase text and swaps the image.
   - Right column (desktop only): full-height photography that crossfades to the active category's preview image.
-  - Footer: solid espresso reserve button + square locale/theme toggle buttons (moved out of the header).
+  - Footer: solid espresso reserve button + square locale toggle button (moved out of the header).
   - Close button and centered wordmark sit above the overlay; `Esc` and body-scroll-lock handled.
 
-## Dark Mode
+## Theme Policy
 
-- Dark mode is deep warm espresso, not cool grey — same monochrome-warm family as light mode
-- Use `[data-theme="dark"]` token behavior from `globals.css`
-- Hairline structure carries over; avoid introducing luminous surfaces or neon accents
+- The product is intentionally light-only; the navigation does not expose a theme toggle.
+- `.zone-dark` is a local composition token for the footer and dramatic closing bands, not an alternate site theme.
+- Keep all global surfaces on the light semantic tokens and avoid OS-driven theme switching.
 
 ## Reservation And Pricing
 

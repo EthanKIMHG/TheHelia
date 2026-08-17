@@ -3,6 +3,7 @@
 import { Footer } from '@/components/Footer'
 import Header from '@/components/Header'
 import PageTransition from '@/components/PageTransition'
+import { BedUpgradeNoticeModal } from '@/components/common/BedUpgradeNoticeModal'
 import { FloatingReservationCta } from '@/components/common/FloatingReservationCta'
 import { ThemeLocaleProvider } from '@/context/theme-locale-context'
 import clsx from 'clsx'
@@ -27,6 +28,7 @@ export function LocaleShell({ locale, theme, children }: LocaleShellProps) {
         </main>
         <FloatingReservationCta />
         <Footer />
+        {locale === 'ko' ? <BedUpgradeNoticeModal /> : null}
       </div>
     </ThemeLocaleProvider>
   )

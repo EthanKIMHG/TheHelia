@@ -5,21 +5,19 @@ import {
   useCallback,
   useContext,
   useEffect,
-  useLayoutEffect,
   useMemo,
   useState,
   type ReactNode,
 } from "react";
+import { MotionConfig } from "framer-motion";
 
 type ThemeMode = "light" | "dark";
 type SupportedLocale = "ko" | "en";
 
 type ThemeLocaleContextValue = {
-  theme: ThemeMode;
+  theme: "light";
   locale: SupportedLocale;
-  setTheme: (value: ThemeMode) => void;
   setLocale: (value: SupportedLocale) => void;
-  toggleTheme: () => void;
   toggleLocale: () => void;
 };
 
@@ -30,19 +28,6 @@ const ThemeLocaleContext = createContext<ThemeLocaleContextValue | undefined>(
 const THEME_STORAGE_KEY = "theme";
 const THEME_COOKIE_KEY = "theme";
 const LOCALE_STORAGE_KEY = "locale";
-
-const resolveInitialTheme = (fallback: ThemeMode = "light"): ThemeMode => {
-  if (typeof window === "undefined") return fallback;
-
-  const stored = window.localStorage.getItem(THEME_STORAGE_KEY);
-  if (stored === "light" || stored === "dark") {
-    return stored;
-  }
-
-  return window.matchMedia("(prefers-color-scheme: dark)").matches
-    ? "dark"
-    : "light";
-};
 
 const resolveInitialLocale = (preferred: SupportedLocale): SupportedLocale => {
   if (typeof window === "undefined") return preferred;
@@ -69,13 +54,7 @@ type ThemeLocaleProviderProps = {
 export function ThemeLocaleProvider({
   children,
   initialLocale = "ko",
-  initialTheme = "light",
 }: ThemeLocaleProviderProps) {
-  const [theme, setThemeState] = useState<ThemeMode>(() =>
-    typeof window === "undefined"
-      ? initialTheme
-      : resolveInitialTheme(initialTheme),
-  );
   const [locale, setLocaleState] = useState<SupportedLocale>(() =>
     resolveInitialLocale(initialLocale),
   );
@@ -87,17 +66,14 @@ export function ThemeLocaleProvider({
     }
   }, [initialLocale]);
 
-  const useIsomorphicLayoutEffect =
-    typeof window !== "undefined" ? useLayoutEffect : useEffect;
-
-  useIsomorphicLayoutEffect(() => {
+  useEffect(() => {
     if (typeof document === "undefined") return;
-    document.documentElement.setAttribute("data-theme", theme);
+    document.documentElement.setAttribute("data-theme", "light");
     if (typeof window !== "undefined") {
-      window.localStorage.setItem(THEME_STORAGE_KEY, theme);
-      document.cookie = `${THEME_COOKIE_KEY}=${theme}; path=/; max-age=31536000`;
+      window.localStorage.setItem(THEME_STORAGE_KEY, "light");
+      document.cookie = `${THEME_COOKIE_KEY}=light; path=/; max-age=31536000`;
     }
-  }, [theme]);
+  }, []);
 
   useEffect(() => {
     if (typeof document === "undefined") return;
@@ -106,39 +82,6 @@ export function ThemeLocaleProvider({
       window.localStorage.setItem(LOCALE_STORAGE_KEY, locale);
     }
   }, [locale]);
-
-  useEffect(() => {
-    if (typeof window === "undefined") return;
-    const handleStorage = (event: StorageEvent) => {
-      if (event.storageArea !== window.localStorage) return;
-      if (event.key === THEME_STORAGE_KEY) {
-        if (event.newValue === "light" || event.newValue === "dark") {
-          setThemeState(event.newValue);
-        }
-      }
-    };
-    window.addEventListener("storage", handleStorage);
-    return () => window.removeEventListener("storage", handleStorage);
-  }, []);
-
-  const setTheme = useCallback((value: ThemeMode) => {
-    setThemeState(value);
-    if (typeof window !== "undefined") {
-      window.localStorage.setItem(THEME_STORAGE_KEY, value);
-      document.cookie = `${THEME_COOKIE_KEY}=${value}; path=/; max-age=31536000`;
-    }
-  }, []);
-
-  const toggleTheme = useCallback(() => {
-    setThemeState((current) => {
-      const next = current === "dark" ? "light" : "dark";
-      if (typeof window !== "undefined") {
-        window.localStorage.setItem(THEME_STORAGE_KEY, next);
-        document.cookie = `${THEME_COOKIE_KEY}=${next}; path=/; max-age=31536000`;
-      }
-      return next;
-    });
-  }, []);
 
   const setLocale = useCallback((value: SupportedLocale) => {
     setLocaleState(value);
@@ -159,19 +102,17 @@ export function ThemeLocaleProvider({
 
   const value = useMemo<ThemeLocaleContextValue>(
     () => ({
-      theme,
+      theme: "light",
       locale,
-      setTheme,
       setLocale,
-      toggleTheme,
       toggleLocale,
     }),
-    [locale, setLocale, setTheme, theme, toggleLocale, toggleTheme],
+    [locale, setLocale, toggleLocale],
   );
 
   return (
     <ThemeLocaleContext.Provider value={value}>
-      {children}
+      <MotionConfig reducedMotion="user">{children}</MotionConfig>
     </ThemeLocaleContext.Provider>
   );
 }

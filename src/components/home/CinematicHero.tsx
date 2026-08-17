@@ -25,8 +25,8 @@ export function CinematicHero({locale} : {locale: Locale}) {
       {/* 1. Full-bleed photography with soft ivory veils */}
       <div className="absolute inset-0 z-0">
         <HeroCarousel onLoadComplete={() => setCriticalImageLoading(false)} />
-        <div className="pointer-events-none absolute inset-x-0 top-0 z-10 h-44 bg-gradient-to-b from-[#FBF9F4]/60 to-transparent" />
-        <div className="pointer-events-none absolute inset-x-0 bottom-0 z-10 h-72 bg-gradient-to-t from-[#FBF9F4]/80 via-[#FBF9F4]/30 to-transparent" />
+        <div className="pointer-events-none absolute inset-x-0 top-0 z-10 h-44 bg-gradient-to-b from-background/60 to-transparent" />
+        <div className="pointer-events-none absolute inset-x-0 bottom-0 z-10 h-72 bg-gradient-to-t from-background/80 via-background/30 to-transparent" />
       </div>
 
       {/* 2. Minimal centered wordmark */}

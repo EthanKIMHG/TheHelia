@@ -76,7 +76,7 @@ export function RoomSuiteTemplate({
           sizes="100vw"
           className="object-cover"
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-[#2D241E]/85 via-[#2D241E]/25 to-[#2D241E]/10" />
+        <div className="absolute inset-0 bg-gradient-to-t from-foreground/85 via-foreground/25 to-foreground/10" />
         <div className="absolute inset-x-0 bottom-0">
           <div className="mx-auto max-w-6xl px-4 pb-10 md:pb-16">
             <ScrollReveal>
