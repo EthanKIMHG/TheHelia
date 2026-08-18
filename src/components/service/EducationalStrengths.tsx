@@ -146,7 +146,7 @@ export function EducationalStrengths({ locale }: { locale: Locale }) {
         <FadeInUp delay={0.3}>
             <div className="group mt-4 md:mt-6 bg-foreground px-8 py-10 md:px-12 md:py-16 text-background overflow-hidden relative rounded-[var(--radius-lg)]">
                 {/* Background Image */}
-                <div className="absolute inset-0 opacity-20 dark:opacity-40 group-hover:scale-[1.03] transition-transform duration-700 mix-blend-overlay">
+                <div className="absolute inset-0 opacity-20 group-hover:scale-[1.03] transition-transform duration-700 mix-blend-overlay">
                      <Image
                         src="/img/headerpreview/vip.jpg"
                         alt={isKo ? "하이브리드 산모 교육을 상징하는 이미지" : "Image representing hybrid learning for mothers"}

@@ -15,6 +15,7 @@ import {
   X,
 } from "lucide-react";
 
+import { GlassCard } from "@/components/ui/glass/GlassCard";
 import { useThemeLocale } from "@/context/theme-locale-context";
 import { FOOTER_CONTENT } from "./footer/footer-data";
 
@@ -119,11 +120,11 @@ export function Footer() {
   }, [isPolicyModalOpen, lenis]);
 
   return (
-    <footer className="zone-dark px-6 py-14 text-white md:px-12 md:py-20">
+    <footer className="zone-dark px-6 py-14 text-foreground md:px-12 md:py-20">
       <div className="mx-auto flex w-full max-w-7xl flex-col gap-12 ">
         <div className="flex flex-col xl:gap-32 md:gap-12 md:flex-row md:items-start md:justify-between gap-4">
           <div className="max-w-xl ">
-            <span className="inline-block py-2 font-sans text-xs font-semibold uppercase tracking-[0.32em] text-[#C4B49E]">
+            <span className="inline-block py-2 font-sans text-xs font-semibold uppercase tracking-[0.32em] text-primary">
               {copy.tagline}
             </span>
             <p className="text-[22px] font-normal leading-relaxed">
@@ -177,35 +178,35 @@ export function Footer() {
           ).map((block, idx) => (
             <div
               key={block.title}
-              className="border-t border-white/20 pt-6"
+              className="border-t border-border pt-6"
             >
-              <div className="flex items-center gap-3 text-white/82">
+              <div className="flex items-center gap-3 text-foreground/82">
                 {idx === 0 ? (
-                  <Calendar1Icon className="h-5 w-5 text-[#C4B49E]" strokeWidth={1.5} />
+                  <Calendar1Icon className="h-5 w-5 text-primary" strokeWidth={1.5} />
                 ) : (
-                  <CalendarClock className="h-5 w-5 text-[#C4B49E]" strokeWidth={1.5} />
+                  <CalendarClock className="h-5 w-5 text-primary" strokeWidth={1.5} />
                 )}
                 <span className="font-sans text-xs font-semibold uppercase tracking-[0.24em]">
                   {block.title}
                 </span>
               </div>
-              <div className="mt-4 text-[22px] font-normal text-white">
+              <div className="mt-4 text-[22px] font-normal text-foreground">
                 {block.hours}
               </div>
               {block.note && (
-                <p className="mt-2 text-xs text-white/80">{block.note}</p>
+                <p className="mt-2 text-xs text-secondary">{block.note}</p>
               )}
             </div>
           ))}
         </div>
 
-        <div className="grid gap-8 border-t border-white/12 pt-8 md:grid-cols-3">
+        <div className="grid gap-8 border-t border-border pt-8 md:grid-cols-3">
           {copy.sections.map((section) => (
             <div key={section.title} className="space-y-4">
-              <h4 className="font-sans text-xs font-semibold uppercase tracking-[0.28em] text-[#C4B49E]">
+              <h4 className="font-sans text-xs font-semibold uppercase tracking-[0.28em] text-primary">
                 {section.title}
               </h4>
-              <div className="flex flex-col gap-3 text-sm text-white/82">
+              <div className="flex flex-col gap-3 text-sm text-foreground/82">
                 {section.items.map((item) =>
                   item.href ? (
                     <Link
@@ -233,7 +234,7 @@ export function Footer() {
           ))}
         </div>
 
-        <div className="flex flex-col gap-3 border-t border-white/12 pt-6 text-xs text-white/55 md:flex-row md:items-center md:justify-between">
+        <div className="flex flex-col gap-3 border-t border-border pt-6 text-xs text-secondary md:flex-row md:items-center md:justify-between">
           <span>{copy.copyright}</span>
           <div className="flex gap-5">
             {copy.sections[2].items.map((item) =>
@@ -256,30 +257,31 @@ export function Footer() {
 
       {isPolicyModalOpen ? (
         <div
-          className="fixed inset-0 z-[120] flex items-center justify-center bg-black/68 px-4 py-5 backdrop-blur-[3px] md:px-10"
+          className="fixed inset-0 z-[120] flex items-center justify-center bg-black/70 px-4 py-5 backdrop-blur-sm md:px-10"
           onClick={closePolicyModal}
         >
-          <div
+          <GlassCard
+            tone="dark"
+            radius="sheet"
             role="dialog"
             aria-modal="true"
             aria-labelledby="policy-modal-title"
-            className="relative w-full max-w-5xl overflow-hidden rounded-[2rem] border border-[#e4d8c8]/22 bg-[linear-gradient(160deg,rgba(33,30,28,0.96),rgba(15,14,13,0.97))] p-5 shadow-[0_34px_120px_rgba(0,0,0,0.56)] md:p-8"
+            className="relative w-full max-w-5xl overflow-hidden p-5 md:p-8"
             onClick={(event) => event.stopPropagation()}
           >
-            <div className="pointer-events-none absolute left-0 top-0 h-24 w-full bg-[linear-gradient(180deg,rgba(255,255,255,0.08),transparent)]" />
             <div className="flex items-start justify-between gap-4">
               <div className="min-w-0">
-                <div className="mb-3 inline-flex items-center gap-2 rounded-full border border-[#d7c3ab]/28 bg-[#d5c0a8]/12 px-3 py-1.5 text-[11px] uppercase tracking-[0.2em] text-[#f1dfcc]/82">
+                <div className="mb-3 inline-flex items-center gap-2 font-sans text-[10px] font-semibold uppercase tracking-[0.28em] text-primary">
                   <FileText className="h-3.5 w-3.5" />
                   {locale === "ko" ? "정책 안내" : "Policy Notice"}
                 </div>
                 <h3
                   id="policy-modal-title"
-                  className="text-xl font-semibold tracking-[0.02em] text-[#f8efe4] md:text-2xl"
+                  className="font-display-serif text-xl font-normal tracking-[0.02em] text-foreground md:text-2xl"
                 >
                   {policyModalTitle}
                 </h3>
-                <p className="mt-2 text-sm leading-relaxed text-[#d8c8b8]/78">
+                <p className="mt-2 text-sm leading-relaxed text-secondary">
                   {locale === "ko"
                     ? "스크롤하여 이용약관 및 개인정보 처리방침 전문을 확인하세요."
                     : "Scroll to read the full Terms of Service and Privacy Policy text."}
@@ -289,7 +291,8 @@ export function Footer() {
                 type="button"
                 aria-label={locale === "ko" ? "모달 닫기" : "Close modal"}
                 onClick={closePolicyModal}
-                className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-[#f0dcc4]/24 bg-[#f0dcc4]/10 text-[#f7ece0] transition hover:bg-[#f0dcc4]/18"
+                style={{ borderRadius: "var(--radius-pill)" }}
+                className="press-grow inline-flex h-11 w-11 items-center justify-center border border-border bg-accent text-foreground transition-colors hover:bg-accent/80"
               >
                 <X className="h-4 w-4" />
               </button>
@@ -297,25 +300,26 @@ export function Footer() {
 
             <div
               data-lenis-prevent
-              className="mt-6 max-h-[68vh] overflow-y-auto overscroll-contain rounded-2xl border border-[#e4d6c5]/14 bg-[#0f0f0f]/35 p-5 touch-pan-y md:p-7"
+              style={{ borderRadius: "var(--radius-md)" }}
+              className="mt-6 max-h-[68vh] touch-pan-y overflow-y-auto overscroll-contain border border-border bg-accent/45 p-5 md:p-7"
             >
               {isPolicyLoading ? (
-                <p className="text-sm text-[#efe1d1]/78">
+                <p className="text-sm text-secondary">
                   {locale === "ko"
                     ? "약관/정책 내용을 불러오는 중입니다..."
                     : "Loading terms and policy..."}
                 </p>
               ) : policyLoadError ? (
-                <p className="text-sm text-[#ffb4b4]">{policyLoadError}</p>
+                <p className="text-sm text-primary">{policyLoadError}</p>
               ) : (
                 <pre
-                  className="font-serif whitespace-pre-wrap break-words text-[13px] leading-[1.95] tracking-[0.01em] text-[#f3e7da]/90 md:text-[15px]"
+                  className="whitespace-pre-wrap break-words font-sans text-[13px] leading-[1.95] tracking-[0.01em] text-foreground/90 md:text-[15px]"
                 >
                   {policyText}
                 </pre>
               )}
             </div>
-          </div>
+          </GlassCard>
         </div>
       ) : null}
     </footer>

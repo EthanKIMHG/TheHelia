@@ -3,7 +3,6 @@
 import { useOptionalThemeLocale } from "@/context/theme-locale-context";
 import clsx from "clsx";
 import { ReactNode, useMemo } from "react";
-import { ScrollReveal } from "./common/ScrollReveal";
 import { getMainPageContent, getSubPageContent } from "./header/nav-data";
 import type { Locale } from "./header/types";
 import { SubPageHero } from "./SubPageHero";
@@ -17,6 +16,15 @@ interface SubPageTemplateProps {
   heroImageSrc?: string;
   heroImageAlt?: string;
 }
+
+const PAGE_IDENTITY_HERO_PATHS = new Set([
+  "/the-helia/about",
+  "/the-helia/location",
+  "/reservation",
+  "/reservation/price",
+  "/stories/guest-reviews",
+  "/stories/faq",
+]);
 
 export function SubPageTemplate({
   path,
@@ -53,10 +61,11 @@ export function SubPageTemplate({
 
   const showEyebrow = Boolean(main?.title) && main?.title !== primary.title;
   const isCinematic = heroVariant === "cinematic";
+  const showPageIdentityHero = isCinematic || PAGE_IDENTITY_HERO_PATHS.has(path);
 
   return (
     <div className="pb-16 md:pb-24">
-      {isCinematic ? (
+      {showPageIdentityHero ? (
         <SubPageHero
           variant="cinematic"
           eyebrow={showEyebrow ? main?.title : undefined}
@@ -75,29 +84,10 @@ export function SubPageTemplate({
 
       <section
         className={clsx(
-          "mx-auto flex w-full flex-col items-center gap-12 pt-16 text-foreground md:gap-16 md:pt-24",
+          "mx-auto flex w-full flex-col items-center gap-12 pt-16 text-foreground md:gap-16",
           fullWidth ? "max-w-none px-0" : "max-w-6xl px-4",
         )}
       >
-        {isCinematic ? null : (
-          <div className="px-4 text-center">
-            <ScrollReveal>
-              {showEyebrow ? (
-                <span className="eyebrow mb-5 block">{main?.title}</span>
-              ) : null}
-              <h2 className="break-keep font-display-serif text-3xl font-normal leading-[1.4] text-foreground md:text-4xl">
-                {primary.title}
-              </h2>
-              <span
-                className="mx-auto mt-7 block h-px w-10 bg-primary/60"
-                aria-hidden
-              />
-              <p className="mx-auto mt-7 max-w-[34ch] break-keep text-[15px] leading-[2] text-secondary md:max-w-2xl md:text-base">
-                {primary.copy ?? primary.description}
-              </p>
-            </ScrollReveal>
-          </div>
-        )}
         {children ? (
           <div
             className={clsx(

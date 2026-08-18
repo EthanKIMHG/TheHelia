@@ -1,6 +1,6 @@
 "use client";
 
-import { motion, useScroll, useTransform } from "framer-motion";
+import { motion, useReducedMotion, useScroll, useTransform } from "framer-motion";
 import { useRef, type ReactNode } from "react";
 
 type ScrollRevealProps = {
@@ -14,6 +14,7 @@ export function ScrollReveal({
   className,
 }: ScrollRevealProps) {
   const ref = useRef<HTMLDivElement>(null);
+  const shouldReduceMotion = useReducedMotion();
   const { scrollYProgress } = useScroll({
     target: ref,
     offset: ["start end", "end start"],
@@ -36,7 +37,7 @@ export function ScrollReveal({
   return (
     <motion.div
       ref={ref}
-      style={{ opacity, y }}
+      style={shouldReduceMotion ? { opacity: 1, y: 0 } : { opacity, y }}
       className={className}
     >
       {children}

@@ -171,7 +171,7 @@ function LocationHeroSection({
               className="object-cover"
               sizes="(min-width: 1024px) 52vw, 100vw"
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-[#2D241E]/78 via-[#2D241E]/15 to-transparent" />
+            <div className="absolute inset-0 bg-gradient-to-t from-foreground/80 via-foreground/15 to-transparent" />
             <div className="absolute left-5 top-5 font-sans text-[11px] font-semibold uppercase tracking-[0.24em] text-white drop-shadow md:left-6 md:top-6">
               {content.exteriorBadge}
             </div>
@@ -258,9 +258,9 @@ function LocationMapSection({
   return (
     <>
       <ScrollReveal>
-        <section className="grid gap-12 lg:grid-cols-[1.08fr_0.92fr] lg:gap-10">
-          <div>
-            <div className="space-y-4 pb-6 text-center md:text-left">
+        <section>
+          <div className="grid gap-8 lg:grid-cols-[1.08fr_0.92fr] lg:items-stretch lg:gap-10">
+            <div className="space-y-4 text-center md:text-left">
               <p className="eyebrow">
                 {content.mapBadge}
               </p>
@@ -280,26 +280,11 @@ function LocationMapSection({
               </div>
             </div>
 
-            <GlassCard radius="lg" className="group relative h-[340px] overflow-hidden md:h-[420px]">
-              <iframe
-                title="The Helia Location"
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3174.8384058135257!2d126.95109607716499!3d37.275258840774896!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x277bcbed795ddd7%3A0xad9cdb91d0fde45f!2z642U7Zes66as7JWEIOyCsO2bhOyhsOumrOybkA!5e0!3m2!1sko!2sus!4v1760246577990!5m2!1sko!2sus"
-                loading="lazy"
-                className="h-full w-full grayscale-[8%] transition-all duration-700 group-hover:grayscale-0"
-                referrerPolicy="no-referrer-when-downgrade"
-                allowFullScreen
-              />
-              <div
-                style={{ borderRadius: 'var(--radius-pill)' }}
-                className="glass absolute right-4 top-4 px-3 py-1.5 font-sans text-[10px] font-semibold uppercase tracking-[0.2em] text-foreground"
-              >
-                {content.mapCallout}
-              </div>
-            </GlassCard>
-          </div>
-
-          <div className="space-y-10">
-            <article className="border-t border-border pt-6">
+            <GlassCard
+              as="article"
+              radius="lg"
+              className="flex h-full items-center p-6 md:p-8"
+            >
               <div className="flex items-start gap-4">
                 <MapPinIcon className="mt-1 h-5 w-5 flex-shrink-0 text-primary" strokeWidth={1.5} />
                 <div className="space-y-2">
@@ -314,8 +299,25 @@ function LocationMapSection({
                   </p>
                 </div>
               </div>
-            </article>
+            </GlassCard>
           </div>
+
+          <GlassCard radius="lg" className="group relative mt-8 h-[340px] overflow-hidden md:h-[460px] lg:mt-10">
+            <iframe
+              title="The Helia Location"
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3174.8384058135257!2d126.95109607716499!3d37.275258840774896!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x277bcbed795ddd7%3A0xad9cdb91d0fde45f!2z642U7Zes66as7JWEIOyCsO2bhOyhsOumrOybkA!5e0!3m2!1sko!2sus!4v1760246577990!5m2!1sko!2sus"
+              loading="lazy"
+              className="h-full w-full grayscale-[8%] transition-all duration-700 group-hover:grayscale-0"
+              referrerPolicy="no-referrer-when-downgrade"
+              allowFullScreen
+            />
+            <div
+              style={{ borderRadius: 'var(--radius-pill)' }}
+              className="glass absolute right-4 top-4 px-3 py-1.5 font-sans text-[10px] font-semibold uppercase tracking-[0.2em] text-foreground"
+            >
+              {content.mapCallout}
+            </div>
+          </GlassCard>
         </section>
       </ScrollReveal>
 

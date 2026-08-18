@@ -27,7 +27,7 @@ const stripLocaleFromPath = (path: string) => {
 export default function Header() {
   const router = useRouter();
   const pathname = usePathname();
-  const { theme, locale, setLocale, toggleTheme } = useThemeLocale();
+  const { locale, setLocale } = useThemeLocale();
 
   const [navOpen, setNavOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
@@ -122,12 +122,10 @@ export default function Header() {
       <FullscreenNav
         open={navOpen}
         locale={locale}
-        theme={theme}
         navItems={navItems}
         normalizedPath={normalizedPath}
         onClose={() => setNavOpen(false)}
         onLocaleChange={changeLocale}
-        onToggleTheme={toggleTheme}
       />
 
       {/* Close button lives above the overlay so it stays reachable */}

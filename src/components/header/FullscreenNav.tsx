@@ -1,7 +1,7 @@
 "use client";
 
 import { AnimatePresence, motion } from "framer-motion";
-import { GlobeIcon, Languages, MoonIcon, SunIcon } from "lucide-react";
+import { GlobeIcon, Languages } from "lucide-react";
 import Image from "next/image";
 import { useEffect, useMemo, useState } from "react";
 
@@ -13,12 +13,10 @@ import type { Locale, NavItem } from "./types";
 type FullscreenNavProps = {
   open: boolean;
   locale: Locale;
-  theme: "light" | "dark";
   navItems: NavItem[];
   normalizedPath: string;
   onClose: () => void;
   onLocaleChange: (locale: Locale) => void;
-  onToggleTheme: () => void;
 };
 
 const SOFT_EASE = [0.22, 1, 0.36, 1] as const;
@@ -26,12 +24,10 @@ const SOFT_EASE = [0.22, 1, 0.36, 1] as const;
 export function FullscreenNav({
   open,
   locale,
-  theme,
   navItems,
   normalizedPath,
   onClose,
   onLocaleChange,
-  onToggleTheme,
 }: FullscreenNavProps) {
   const [activeId, setActiveId] = useState<string | null>(
     navItems[0]?.id ?? null,
@@ -196,21 +192,6 @@ export function FullscreenNav({
                       <Languages className="h-4 w-4" strokeWidth={1.5} />
                     ) : (
                       <GlobeIcon className="h-4 w-4" strokeWidth={1.5} />
-                    )}
-                  </GlassIconButton>
-                  <GlassIconButton
-                    onClick={onToggleTheme}
-                    className="h-10 w-10"
-                    aria-label={
-                      theme === "dark"
-                        ? "라이트 모드로 전환"
-                        : "다크 모드로 전환"
-                    }
-                  >
-                    {theme === "dark" ? (
-                      <SunIcon className="h-4 w-4" strokeWidth={1.5} />
-                    ) : (
-                      <MoonIcon className="h-4 w-4" strokeWidth={1.5} />
                     )}
                   </GlassIconButton>
                 </div>
